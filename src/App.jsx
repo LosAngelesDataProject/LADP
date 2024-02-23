@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AboutUs from "./components/AboutUs";
@@ -12,26 +12,37 @@ import SiteNav from "./components/SiteNav";
 import NotFound from "./components/NotFound";
 
 function App() {
-  return (
-    <Fragment>
-      <SiteNav />
 
-      <BrowserRouter>
+  const [state, setState] = useState({
+    isRegisterClicked: false
+  });
+
+  const onRegisterClicked = (response) => {
+    console.log("response in onRegisterClick app.Jsx", response)
+  };
+
+  return (
+    <BrowserRouter>
+      <Fragment>
+        <SiteNav
+          set={setState}
+          registered={state.isRegisterClicked}
+        />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/aboutUs" element={<AboutUs />} />
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/login" element={<Login />} />
           <Route path="/navigate" element={<Navigate />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/register" element={<Register onRegisterClicked={onRegisterClicked} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </BrowserRouter>
 
-      {/* <Main /> */}
+        {/* <Main /> */}
 
-      <Footer />
-    </Fragment>
+        <Footer />
+      </Fragment>
+    </BrowserRouter>
   );
 }
 
