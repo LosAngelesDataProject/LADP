@@ -27,7 +27,7 @@ function Footer() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/calendar" className="nav-link px-2 text-white link-button"
+              <Link to="/caledar" className="nav-link px-2 text-white link-button"
               > Calendar
               </Link>
             </li>
