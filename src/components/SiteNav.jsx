@@ -1,5 +1,5 @@
 function SiteNav() {
-  return <p>Navigate</p>;
+  return <p>SiteNav</p>;
 }
 
 export default SiteNav;
