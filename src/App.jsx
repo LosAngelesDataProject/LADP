@@ -12,10 +12,10 @@ import SiteNav from "./components/SiteNav";
 import NotFound from "./components/NotFound";
 
 function App() {
+
   return (
     <Fragment>
       <SiteNav />
-
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
