@@ -1,0 +1,42 @@
+.navbarContainer {
+    
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    
+  }
+  .navbar {
+    align-items: center;
+    width: 100%;
+  }
+  
+  .navbarContainer > .container {
+    max-width: 1280px;
+  }
+  
+  @media (max-width: 768px) {
+    .navbarContainer {
+      position: static;
+    }
+  
+    .navbar {
+      width: auto;
+    }
+  }
+
+  .authLinks {
+    display: flex;
+    align-items: right;
+  }
+  
+  .authLinks a {
+    padding: 0.5rem 1rem; /* Adjust padding to match other Nav.Link components */
+  }
+  
+  .navLink:hover {
+    text-decoration: underline;
+    color: #11e09b; /* Adjust the color as needed */
+    text-decoration-thickness: 3px;
+  }
+  
