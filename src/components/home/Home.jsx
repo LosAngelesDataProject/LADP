@@ -1,7 +1,7 @@
 import { Fragment, useRef, useState } from "react";
 import { Button, ButtonGroup, Dropdown, Form, Overlay, Popover } from "react-bootstrap";
-
 import LaImg from "../../assets/LaImg.jpg";
+import LaMap from "../../assets/LaMap.png";
 import styles from "./Home.module.css";
 import "react-datepicker/dist/react-datepicker.css";
 import { format } from "date-fns";
@@ -15,7 +15,7 @@ function Home() {
   const ref = useRef(null);
 
   const handleGoButtonClick = () => {
-    setShowFilters(true); // Set showDropdown to true when GO button is clicked
+    setShowFilters(true);
   };
 
   const handleDateChange = (date) => {
@@ -176,7 +176,7 @@ function Home() {
             Map of Los Angeles, CA
           </h3>
           <div>
-            <img width="600" src="https://maps.googleapis.com/maps/api/staticmap?center=South+Central+Los+Angeles%2C+CA&zoom=10&scale=2&size=700x500&maptype=roadmap&format=png&key=AIzaSyBgb2bkilOp2jQ7TEGeYR4iGsP0I5PiWMc" alt="Google map of Los Angeles, CA" />
+            <img width="600" src={LaMap} alt="Google map of Los Angeles, CA" />
           </div>
         </div>
       </div>
