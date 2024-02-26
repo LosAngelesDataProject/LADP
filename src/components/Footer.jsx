@@ -41,8 +41,7 @@ function Footer() {
         <p className="text-white">© 2024 LA Data Project. All rights reserved.</p>
       </footer>
     </BrowserRouter>
-
   );
 }
 
-export default Footer; 
+export default Footer;
