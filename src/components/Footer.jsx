@@ -1,5 +1,4 @@
 import { BrowserRouter, Link } from "react-router-dom";
-
 function Footer() {
   return (
     <BrowserRouter>

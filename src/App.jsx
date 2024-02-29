@@ -10,6 +10,7 @@ import Navigate from "./components/Navigate";
 import Register from "./components/Register";
 import SiteNav from "./components/SiteNav";
 import NotFound from "./components/NotFound";
+import ContactUs from "./components/ContactUs";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/navigate" element={<Navigate />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/contactUs" element={<ContactUs />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
