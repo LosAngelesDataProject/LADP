@@ -11,7 +11,7 @@ function Footer() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/aboutus" className="nav-link px-2 text-white link-button">
+              <Link to="/about-us" className="nav-link px-2 text-white link-button">
                 About Us
               </Link>
             </li>
@@ -31,7 +31,7 @@ function Footer() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/contactus" className="nav-link px-2 text-white link-button"
+              <Link to="/contact-us" className="nav-link px-2 text-white link-button"
               > Contact Us
               </Link>
             </li>
