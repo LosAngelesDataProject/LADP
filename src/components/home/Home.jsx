@@ -1,5 +1,12 @@
 import { Fragment, useRef, useState } from "react";
-import { Button, ButtonGroup, Dropdown, Form, Overlay, Popover } from "react-bootstrap";
+import {
+  Button,
+  ButtonGroup,
+  Dropdown,
+  Form,
+  Overlay,
+  Popover,
+} from "react-bootstrap";
 import LaImg from "../../assets/LaImg.jpg";
 import LaMap from "../../assets/LaMap.png";
 import styles from "./Home.module.css";
@@ -20,18 +27,21 @@ function Home() {
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
-  }
+  };
 
   const handleClick = (event) => {
     setShow(!show);
     setTarget(event.target);
-  }
+  };
 
   return (
     <Fragment>
       <Form>
         <Form.Group className="mb-1" controlId="formCityOrZipCode">
-          <Form.Control type="search" placeholder="Please Enter a City or Zip Code" />
+          <Form.Control
+            type="search"
+            placeholder="Please Enter a City or Zip Code"
+          />
         </Form.Group>
         <Form.Text className="text-muted">
           <p>FIND A FOOD BANK NEAR YOU!</p>
@@ -40,7 +50,6 @@ function Home() {
         <Button variant="primary" type="button" onClick={handleGoButtonClick}>
           GO
         </Button>
-
       </Form>
 
       {showFilters && (
@@ -54,7 +63,7 @@ function Home() {
                 <DatePicker
                   selected={selectedDate}
                   onChange={handleDateChange}
-                  dateFormat={(date) => format(date, 'MM/dd/yyyy')}
+                  dateFormat={(date) => format(date, "MM/dd/yyyy")}
                 />
               </Dropdown.Menu>
             </Dropdown>
@@ -172,9 +181,7 @@ function Home() {
       </div>
       <div className={styles.mapContainer}>
         <div className={styles.mapInfo}>
-          <h3>
-            Map of Los Angeles, CA
-          </h3>
+          <h3>Map of Los Angeles, CA</h3>
           <div>
             <img width="600" src={LaMap} alt="Google map of Los Angeles, CA" />
           </div>
@@ -185,6 +192,3 @@ function Home() {
 }
 
 export default Home;
-
-
-
