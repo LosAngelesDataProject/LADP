@@ -10,6 +10,7 @@ import Navigate from "./components/Navigate";
 import Register from "./components/Register";
 import SiteNav from "./components/SiteNav";
 import NotFound from "./components/NotFound";
+import ContactUs from "./components/ContactUs";
 
 function App() {
 
@@ -19,11 +20,12 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/aboutUs" element={<AboutUs />} />
+          <Route path="/about-us" element={<AboutUs />} />
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/login" element={<Login />} />
           <Route path="/navigate" element={<Navigate />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/contact-us" element={<ContactUs />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
