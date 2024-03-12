@@ -1,9 +1,10 @@
-import React from "react";
+import { Fragment } from "react";
 import { Row, Col } from "react-bootstrap";
-import Avatar1 from ".assets/headerimages/Avatar1.png";
-import ladataWhiteClearLogo from ".assets/headerimages/ladataWhiteClearLogo.svg";
+import LADPHeadImg from "../../assets/headerimages/LADPHeadImg.png";
+import ladataWhiteClearLogo from "../../assets/headerimages/ladataWhiteClearLogo.svg";
+import PropTypes from "prop-types";
 
-function HeaderOne() {
+const HeaderOne = () => {
   return (
     <Fragment>
       <div>
@@ -12,11 +13,11 @@ function HeaderOne() {
             lg={{ span: 12 }}
             md={12}
             sm={12}
-            className="header mb-12 background-image"
+            className="headerOne mb-12 background-image"
           >
             <img
-              src={Avatar1}
-              className="header-image-carousel"
+              src={LADPHeadImg}
+              className="headerOne-image-flex"
               alt="LAData-Home-Banner"
             />
             <div className="logo-img-overlay">
@@ -31,6 +32,11 @@ function HeaderOne() {
       </div>
     </Fragment>
   );
-}
+};
+
+HeaderOne.propTypes = {
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string,
+};
 
 export default HeaderOne;
