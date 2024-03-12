@@ -12,33 +12,54 @@ function Footer() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/aboutus" className="nav-link px-2 text-white link-button">
+              <Link
+                to="/aboutus"
+                className="nav-link px-2 text-white link-button"
+              >
                 About Us
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/register" className="nav-link px-2 text-white link-button"
-              > Register
+              <Link
+                to="/register"
+                className="nav-link px-2 text-white link-button"
+              >
+                {" "}
+                Register
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/login" className="nav-link px-2 text-white link-button"
-              > Login
+              <Link
+                to="/login"
+                className="nav-link px-2 text-white link-button"
+              >
+                {" "}
+                Login
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/calendar" className="nav-link px-2 text-white link-button"
-              > Calendar
+              <Link
+                to="/calendar"
+                className="nav-link px-2 text-white link-button"
+              >
+                {" "}
+                Calendar
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/contactus" className="nav-link px-2 text-white link-button"
-              > Contact Us
+              <Link
+                to="/contactus"
+                className="nav-link px-2 text-white link-button"
+              >
+                {" "}
+                Contact Us
               </Link>
             </li>
           </ul>
         </div>
-        <p className="text-white">© 2024 LA Data Project. All rights reserved.</p>
+        <p className="text-white">
+          © 2024 LA Data Project. All rights reserved.
+        </p>
       </footer>
     </BrowserRouter>
   );
