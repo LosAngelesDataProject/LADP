@@ -1,0 +1,14 @@
+.background-container {
+    position: relative;
+    object-fit: cover;
+}
+
+.header-one-img {
+    position: top;
+    height: 400px;
+}
+
+.background-image {
+    width: 100%;
+    height: 100%;
+ }
