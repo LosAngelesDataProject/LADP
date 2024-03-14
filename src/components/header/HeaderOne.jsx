@@ -1,13 +1,14 @@
-import "./HeaderOne.css";
+import styles from "./HeaderOne.module.css";
 
 const HeaderOne = () => {
   return (
-    <div className="background-container">
-      <div className="header-one-img">
+    <div className={styles.container}>
+      <div className={styles.headerOne}>
         <img
           src="https://i.imgur.com/gk4XsvY.png"
-          className="background-image"
-          alt="HeaderOne Background Image"
+          className={styles.headerImage}
+          alt="hands distributing canned goods"
+          align="left"
         />
       </div>
     </div>

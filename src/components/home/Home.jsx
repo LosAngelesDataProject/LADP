@@ -13,7 +13,6 @@ import styles from "./Home.module.css";
 import "react-datepicker/dist/react-datepicker.css";
 import { format } from "date-fns";
 import DatePicker from "react-datepicker";
-import HeaderOne from "../header/HeaderOne";
 
 function Home() {
   const [showFilters, setShowFilters] = useState(false);
@@ -37,7 +36,6 @@ function Home() {
 
   return (
     <Fragment>
-      <HeaderOne></HeaderOne>
       <Form>
         <Form.Group className="mb-1" controlId="formCityOrZipCode">
           <Form.Control
