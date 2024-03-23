@@ -12,3 +12,11 @@
 .read-the-docs {
   color: #888;
 }
+
+.flex {
+  text-align: center;
+  font-size: 14px;
+  flex: auto;
+}
+
+
