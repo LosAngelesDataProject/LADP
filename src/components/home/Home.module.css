@@ -1,0 +1,234 @@
+  .home {
+    width: 100vw;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: serif;
+    overflow-y: auto;
+  }
+
+  .title {
+    color: #070707;
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 0px;
+  }
+
+  .titleContainer {
+    position: relative; 
+    top: 10px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    z-index: 2; 
+    width: 100%
+  }
+
+  .titleContainer,
+  .searchContainer,
+  .filterContainer {
+    width: 100%; 
+  }
+
+  .searchContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .searchInputContainer {
+    width: 100%;
+    max-width: 400px;
+    margin-top: 20px;
+  }
+  
+  .searchInput {
+    width: calc(70% - 20px); 
+    max-width: 400px;
+    height: 47px; 
+    margin-bottom: 0px;
+    margin-right: 0px; 
+    background-color: rgb(195, 240, 195);
+  }
+  
+  .goButton {
+    height: 47px; 
+    margin-bottom: 0px;
+    background-color: white; 
+    border: 2px solid #000; 
+    border-radius: 5px; 
+    padding: 10px 20px; 
+    color: #000; 
+    font-weight: bold; 
+    cursor: pointer; 
+    transition: all 0.3s ease; 
+  }
+  
+  
+  .searchHint {
+    margin-top: 0px; 
+    text-align: left;
+   
+  }
+
+  .filterContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 0px;
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  .filterButton {
+    margin-bottom: 10px; 
+    background-color: white; 
+    border: 2px solid #000; 
+    border-radius: 5px; 
+    padding: 10px 20px; 
+    color: #000; 
+    font-weight: bold; 
+    cursor: pointer; 
+    transition: all 0.3s ease; 
+  }
+  
+  .filterOptions {
+    position: absolute; 
+    top: 100%; 
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .filterItem {
+    position: relative;
+    margin-right: 20px; 
+  }
+  
+  .filterButton:hover {
+    background-color: #5ab876; 
+  }
+
+  .bodyContainer {
+    display: flex; 
+    justify-content: space-between; 
+    padding: 0 1px;
+    flex-grow: 1; 
+    max-height: calc(100vh - 250px);
+  }
+  
+  .searchResultsContainer,
+  .mapContainer {
+    width: calc(50% - 10px); 
+    margin: 0 5px;
+  }
+
+  .card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  .cardContent {
+    padding: 10px;
+  }
+
+  .cardContent h4 {
+    margin: 0;
+  }
+
+  .cardContent p {
+    margin: 10px 0;
+  }
+
+  .searchResultsTitle,
+  .mapTitle {
+    color: #0c0c0c; 
+    font-weight: bold;
+  }
+
+  .roundedButton {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #85a18a;
+    color: #070707;
+    text-decoration: none;
+    border-radius: 3px;
+    border: 1px solid #000; 
+    font-size: 16px; 
+  }
+  
+  .mapTitle {
+    text-align: center;
+  }
+
+  .searchResultsContainer {
+    max-height: calc(100vh - 120px); 
+    overflow-y: auto; 
+  }
+
+  .mapContainer {
+    width: 50%; 
+    max-width: 100%; 
+    margin-left: 10px;
+  }
+
+  .searchResultItem {
+    margin-bottom: 20px; 
+  }
+  
+  .additionalInfo {
+    background-color: #f9f9f9; 
+    padding: 10px; 
+    border-radius: 5px; 
+    border: 1px solid #354b3c; 
+  }
+  
+  .popDetail {
+    font-weight: lighter; 
+    font-size: 16px;
+  }
+
+  .mapContainer img {
+    max-width: 100%; 
+    height: auto; 
+    max-height: calc(100vh - 120px); 
+    border: 1px solid #000; 
+    border-radius: 5px;
+  }
+
+  .heroContainer {
+    margin-top: 20px; 
+    padding: 20px;
+    border: 1px solid #000; 
+    text-align: center;
+    font-size: 24px;
+    background-color: #f0f0f0;
+  }
+  
+  .heroContent {
+    text-align: center;
+    font-size: 40px;
+    color: #333; 
+  }
+  
+
+  
+
+
+  
+ 
+
+  
+  
+  
