@@ -1,13 +1,4 @@
 import { Fragment, useRef, useState } from "react";
-import {
-  Button,
-  ButtonGroup,
-  Dropdown,
-  Form,
-  Overlay,
-  Popover,
-} from "react-bootstrap";
-import LaImg from "../../assets/LaImg.jpg";
 import LaMap from "../../assets/LaMap.png";
 import styles from "./Home.module.css";
 import "react-datepicker/dist/react-datepicker.css";
