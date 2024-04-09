@@ -10,10 +10,9 @@ import Navigate from "./components/Navigate";
 import Register from "./components/Register";
 import SiteNav from "./components/SiteNav";
 import NotFound from "./components/NotFound";
-import ContactUs from "./components/ContactUs";
+import ContactUs from "./components/contact/ContactUs";
 
 function App() {
-
   return (
     <Fragment>
       <SiteNav />
