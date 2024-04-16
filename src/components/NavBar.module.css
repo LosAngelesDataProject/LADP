@@ -1,42 +1,29 @@
-.navbarContainer {
-    
-    width: 100vw;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    
-  }
-  .navbar {
-    align-items: center;
-    width: 100%;
-  }
-  
-  .navbarContainer > .container {
-    max-width: 1280px;
-  }
-  
-  @media (max-width: 768px) {
-    .navbarContainer {
-      position: static;
-    }
-  
-    .navbar {
-      width: auto;
-    }
-  }
+:root {
+  --main-color: #062d1d;
+  --secondary-color: #E3AA4D;
+  --support-color: #ffffff;
+}
 
-  .authLinks {
-    display: flex;
-    align-items: right;
-  }
-  
-  .authLinks a {
-    padding: 0.5rem 1rem; /* Adjust padding to match other Nav.Link components */
-  }
-  
-  .navLink:hover {
-    text-decoration: underline;
-    color: #11e09b; /* Adjust the color as needed */
-    text-decoration-thickness: 3px;
-  }
-  
+.nav-link:hover {  
+  color: var(--secondary-color) !important;
+}
+
+.bg-dark {
+  background-color: var(--main-color) !important;
+}
+
+.bg-dark .nav-link {  
+  color: var(--support-color) !important;
+}
+
+.bg-light {
+  background-color: var(--support-color) !important;
+}
+
+.bg-light .nav-link {  
+  color: var(--main-color) !important;
+}
+
+.btn-logout {
+  background-color: transparent;
+}

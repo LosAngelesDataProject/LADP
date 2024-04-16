@@ -1,5 +1,5 @@
-import { Fragment, useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React, { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import AboutUs from "./components/AboutUs";
 import Calendar from "./components/Calendar";
@@ -16,18 +16,13 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleLogin = () => {
-    setIsLoggedIn(true);
-  };
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
+    setIsLoggedIn(!isLoggedIn);
   };
 
 
   return (
-    <BrowserRouter>
-      <Fragment>
-        <NavBar isLoggedIn={isLoggedIn} onLogout={handleLogout} />
+      <React.Fragment>
+        <NavBar isLoggedIn={isLoggedIn} onLogout={handleLogin} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about-us" element={<AboutUs />} />
@@ -38,10 +33,8 @@ function App() {
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-        {/* <Main /> */}
         <Footer />
-      </Fragment>
-    </BrowserRouter>
+      </React.Fragment>
   );
 }
 
