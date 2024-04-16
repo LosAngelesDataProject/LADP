@@ -20,7 +20,7 @@ function Home() {
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
-  }
+  };
 
   const handleDateDropdownClick = () => {
     setShowDateDropdown(!showDateDropdown);
@@ -58,8 +58,14 @@ function Home() {
         </div>
         <div className={styles.searchContainer}>
           <div className={styles.searchInputContainer}>
-            <input type="search" className={styles.searchInput} placeholder="      Please Enter a City or Zip Code" />
-            <button className={styles.goButton} onClick={handleGoButtonClick}>Go!</button>
+            <input
+              type="search"
+              className={styles.searchInput}
+              placeholder="      Please Enter a City or Zip Code"
+            />
+            <button className={styles.goButton} onClick={handleGoButtonClick}>
+              Go!
+            </button>
           </div>
           <div className={styles.searchHint}>
             <p>FIND A FOOD BANK NEAR YOU!</p>
@@ -69,19 +75,29 @@ function Home() {
         {showFilters && (
           <div className={styles.filterContainer}>
             <div className={styles.filterItem}>
-              <button className={styles.filterButton} onClick={handleDateDropdownClick}>Date Posted</button>
+              <button
+                className={styles.filterButton}
+                onClick={handleDateDropdownClick}
+              >
+                Date Posted
+              </button>
               {showDateDropdown && (
                 <div className={styles.filterOptions}>
                   <DatePicker
                     selected={selectedDate}
                     onChange={handleDateChange}
-                    dateFormat={(date) => format(date, 'MM/dd/yyyy')}
+                    dateFormat={(date) => format(date, "MM/dd/yyyy")}
                   />
                 </div>
               )}
             </div>
             <div className={styles.filterItem}>
-              <button className={styles.filterButton} onClick={handleDayDropdownClick}>Day of the Week </button>
+              <button
+                className={styles.filterButton}
+                onClick={handleDayDropdownClick}
+              >
+                Day of the Week{" "}
+              </button>
               {showDayDropdown && (
                 <div className={styles.filterOptions}>
                   <div>
@@ -100,7 +116,12 @@ function Home() {
               )}
             </div>
             <div className={styles.filterItem}>
-              <button className={styles.filterButton} onClick={handleProductDropdownClick}>Product Type</button>
+              <button
+                className={styles.filterButton}
+                onClick={handleProductDropdownClick}
+              >
+                Product Type
+              </button>
               {showProductDropdown && (
                 <div className={styles.filterOptions}>
                   <div>
@@ -131,7 +152,12 @@ function Home() {
                     Eggs
                     <p> 500 dozen - Culver City</p>
                     <div ref={ref}>
-                      <button className={styles.roundedButton} onClick={() => handleInfoClick(0)}>More Info</button>
+                      <button
+                        className={styles.roundedButton}
+                        onClick={() => handleInfoClick(0)}
+                      >
+                        More Info
+                      </button>
                     </div>
                   </h4>
                   {showInfo[0] && (
@@ -151,7 +177,12 @@ function Home() {
                     Oranges
                     <p> 500 count - Ventura</p>
                     <div ref={ref}>
-                      <button className={styles.roundedButton} onClick={() => handleInfoClick(1)}>More Info</button>
+                      <button
+                        className={styles.roundedButton}
+                        onClick={() => handleInfoClick(1)}
+                      >
+                        More Info
+                      </button>
                     </div>
                   </h4>
                   {showInfo[1] && (
@@ -171,7 +202,12 @@ function Home() {
                     Diapers
                     <p> 1,000 boxes - West Hollywood</p>
                     <div ref={ref}>
-                      <button className={styles.roundedButton} onClick={() => handleInfoClick(2)}>More Info</button>
+                      <button
+                        className={styles.roundedButton}
+                        onClick={() => handleInfoClick(2)}
+                      >
+                        More Info
+                      </button>
                     </div>
                   </h4>
                   {showInfo[2] && (
@@ -191,7 +227,12 @@ function Home() {
                     Whole Chickens
                     <p> 200 count - South LA</p>
                     <div ref={ref}>
-                      <button className={styles.roundedButton} onClick={() => handleInfoClick(3)}>More Info</button>
+                      <button
+                        className={styles.roundedButton}
+                        onClick={() => handleInfoClick(3)}
+                      >
+                        More Info
+                      </button>
                     </div>
                   </h4>
                   {showInfo[3] && (
@@ -220,9 +261,8 @@ function Home() {
           </div>
         </div>
       </div>
-    </Fragment >
+    </Fragment>
   );
 }
 
 export default Home;
-
