@@ -4,26 +4,26 @@
   --support-color: #ffffff;
 }
 
-.nav-link:hover {  
+.background {
+  background-color: var(--main-color);
+}
+
+.navLink {  
+  color: var(--support-color)!important;
+}
+
+.navLink:hover {  
+  color: var(--secondary-color) !important;
+  font-size: 1.05rem;
+  transition: 0.2s;
+}
+
+.endText {
   color: var(--secondary-color) !important;
 }
 
-.bg-dark {
-  background-color: var(--main-color) !important;
-}
-
-.bg-dark .nav-link {  
-  color: var(--support-color) !important;
-}
-
-.bg-light {
-  background-color: var(--support-color) !important;
-}
-
-.bg-light .nav-link {  
-  color: var(--main-color) !important;
-}
-
-.btn-logout {
-  background-color: transparent;
+.endText:hover  {
+  color: var(--support-color)!important;
+  font-size: 1.05rem;
+  transition: 0.2s;
 }

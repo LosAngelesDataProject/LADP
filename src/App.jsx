@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import AboutUs from "./components/AboutUs";
@@ -9,11 +9,11 @@ import Login from "./components/Login";
 import Navigate from "./components/Navigate";
 import Register from "./components/Register";
 import NotFound from "./components/NotFound";
-import ContactUs from "./components/ContactUs";
+import ContactUs from "./components/contact/ContactUs";
 import NavBar from "./components/NavBar";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const handleLogin = () => {
     setIsLoggedIn(!isLoggedIn);
@@ -21,7 +21,7 @@ function App() {
 
 
   return (
-      <React.Fragment>
+      <>
         <NavBar isLoggedIn={isLoggedIn} onLogout={handleLogin} />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -34,7 +34,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
-      </React.Fragment>
+      </>
   );
 }
 
