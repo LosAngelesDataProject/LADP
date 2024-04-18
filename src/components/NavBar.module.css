@@ -1,0 +1,29 @@
+:root {
+  --main-color: #062d1d;
+  --secondary-color: #E3AA4D;
+  --support-color: #ffffff;
+}
+
+.background {
+  background-color: var(--main-color);
+}
+
+.navLink {  
+  color: var(--support-color)!important;
+}
+
+.navLink:hover {  
+  color: var(--secondary-color) !important;
+  font-size: 1.05rem;
+  transition: 0.2s;
+}
+
+.endText {
+  color: var(--secondary-color) !important;
+}
+
+.endText:hover  {
+  color: var(--support-color)!important;
+  font-size: 1.05rem;
+  transition: 0.2s;
+}
