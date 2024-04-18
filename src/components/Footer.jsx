@@ -1,8 +1,7 @@
-import { BrowserRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <BrowserRouter>
       <footer className="footer navbar-expand-md navbar-dark bg-dark">
         <div className="container" id="footer">
           <ul className="navbar-nav me-auto mb-2 mb-md-0">
@@ -61,7 +60,6 @@ function Footer() {
           © 2024 LA Data Project. All rights reserved.
         </p>
       </footer>
-    </BrowserRouter>
   );
 }
 

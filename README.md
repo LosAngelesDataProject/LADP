@@ -14,7 +14,4 @@ This repository utilizes the City of Los Angeles Open Interactive Data, accessib
 For any queries or suggestions, please open an issue in this repository or contact us directly at AbeRuelas10swe@gmail.com.
 
 Join us in our endeavor to leverage technology for the betterment of Los Angeles!
-
-## How to run locally
-npm i
-npm run dev
+>>>>>>> f41812c81a0e36cb883561a8126f39978eb0766f
