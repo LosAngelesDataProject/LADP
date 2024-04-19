@@ -65,4 +65,14 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+<<<<<<< HEAD
+}
+
+/* mapcontainer */
+.leaflet-container {
+  height: 600px;
+  width: 100%;
+}
+=======
 } 
+>>>>>>> main
