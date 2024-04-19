@@ -1,0 +1,36 @@
+:root {
+     --main-color: #062d1d;
+     --secondary-color: #E3AA4D;
+     --support-color: #ffffff;
+     font-family: 'Arista Pro Alternate', sans-serif;
+     font-family: 'Arista Pro Trial', sans-serif;
+     font-family: 'Arista Pro Icons', sans-serif;
+
+}
+
+.background {
+     background-color: var(--main-color);
+}
+
+.header {
+     color: var(--secondary-color);
+     font-family: serif;
+     font-weight: 500;
+}
+
+.footerText {
+     color: var(--support-color);
+     font-family: serif;
+}
+
+.footerBorder {
+     color: var(--secondary-color);
+     border-width: 2px;
+}
+
+.logo {
+     /* margin-left: auto; */
+     display: flex;
+     justify-content: flex-end;
+     /* align-self: center; */
+}
