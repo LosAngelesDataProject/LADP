@@ -2,10 +2,6 @@
      --main-color: #062d1d;
      --secondary-color: #E3AA4D;
      --support-color: #ffffff;
-     font-family: 'Arista Pro Alternate', sans-serif;
-     font-family: 'Arista Pro Trial', sans-serif;
-     font-family: 'Arista Pro Icons', sans-serif;
-
 }
 
 .background {
@@ -22,12 +18,14 @@
 .logo {
      display: flex;
      justify-content: flex-end;
-     align-self: center;
+     align-self:center;
 }
 
 .footerBorder {
      color: var(--secondary-color);
      border-width: 2px;
+     margin-left: 1rem;
+     margin-right: 1rem;
 }
 
 .footerText {
@@ -43,4 +41,40 @@
      color: var(--secondary-color);
      font-size: 1.05rem;
      transition: 0.2s;
+}
+
+.socialBtn {
+     color: var(--support-color);
+}
+
+.socialBtn:hover  {
+     color: var(--secondary-color);
+     font-size: 1.05rem;
+     transition: 0.2s;
+}
+
+@media (max-width: 767px) {
+     .header {
+          display: flex;
+          justify-content: center;
+     }
+     .logo {
+          justify-content: start;
+     }
+     .privacy {
+          display: flex;
+          justify-content: end;
+     }
+   }
+
+@media (max-width: 575px) {
+     .header {
+          padding-left: 1rem;
+     }
+     .footerContent {
+          padding-left: 1rem;
+     }
+     .logo {
+          padding-left: 1rem;
+     }
 }
