@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const SocialLinks = () => {
      return (
           <>
-               <div className="mt-4 ">
+               <div className="">
                     <Link
                          to="#"
                          className="btn-social btn-linkedin"

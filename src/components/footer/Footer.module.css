@@ -16,11 +16,13 @@
      color: var(--secondary-color);
      font-family: serif;
      font-weight: 500;
+     font-size: 2.5rem;
 }
 
-.footerText {
-     color: var(--support-color);
-     font-family: serif;
+.logo {
+     display: flex;
+     justify-content: flex-end;
+     align-self: center;
 }
 
 .footerBorder {
@@ -28,9 +30,17 @@
      border-width: 2px;
 }
 
-.logo {
-     /* margin-left: auto; */
-     display: flex;
-     justify-content: flex-end;
-     /* align-self: center; */
+.footerText {
+     color: var(--support-color);
+     font-family: serif;
+}
+
+.footerLink {
+     color: var(--support-color);
+     font-family: serif;
+}
+.footerLink:hover {
+     color: var(--secondary-color);
+     font-size: 1.05rem;
+     transition: 0.2s;
 }

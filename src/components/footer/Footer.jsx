@@ -7,16 +7,16 @@ function Footer() {
   return (
       <footer className={`${styles.background} footer navbar-expand-md`}>
         <Container>
-          <Row>
-            <Col md={6}sm={12} className="pt-4 ">
+          <Row className="py-4 ">
+            <Col md={6}sm={12}>
               <Row>
                 <h1 className={`${styles.header}`}>
                   Los Angeles Data Project
                 </h1>
               </Row>
               <Row>
-                <ul className={`${styles.footerText} navbar-nav me-auto mb-2 mb-md-0`}>
-                  <li className="nav-item">
+                <ul className={`navbar-nav me-auto mb-2 mb-md-0`}>
+                  <li className={`nav-item ${styles.footerLink}`}>
                     <Link
                       to="/aboutus"
                       className="nav-link px-2  link-button"
@@ -24,7 +24,7 @@ function Footer() {
                       About Us
                     </Link>
                   </li>
-                  <li className="nav-item">
+                  <li className={`nav-item ${styles.footerLink}`}>
                     <Link
                       to="/contactus"
                       className="nav-link px-2 link-button"
@@ -33,7 +33,7 @@ function Footer() {
                       Contact Us
                     </Link>
                   </li>
-                  <li className="nav-item">
+                  <li className={`nav-item ${styles.footerLink}`}>
                     <Link
                       to="/calendar"
                       className="nav-link px-2 link-button"
@@ -45,10 +45,10 @@ function Footer() {
                 </ul>
               </Row>
               <Row>
-              <SocialLinks/>
+                <SocialLinks/>
               </Row>
             </Col>
-            <Col md={6}sm={12} className="pt-4 ">
+            <Col md={6}sm={12} className="d-flex justify-content-end">
               <Link to="/" className={`d-inline-block ${styles.logo}`}>
                 <img
                   src={logo}
@@ -61,18 +61,15 @@ function Footer() {
             </Col>
           </Row>
           <Row>
-            <hr className={`my-4 ${styles.footerBorder}`}/>
+            <hr className={`d-flex justify-content-start ${styles.footerBorder}`}/>
             <Col>
-                <p className="nav-link px-2">
+                <p className={`${styles.footerText}`}>
                   © 2024 LA Data Project. All rights reserved.
                 </p>
             </Col>
             <Col>
-            <ul className={`${styles.footerText} navbar-nav me-auto mb-2 mb-md-0`}>
-                <li className="nav-item">
-                  
-                </li>
-                <li className="nav-item">
+              <ul className={`navbar-nav d-flex justify-content-end`}>
+                <li className={`nav-item ${styles.footerLink}`}>
                   <Link
                     to="/contactus"
                     className="nav-link px-2 link-button"
@@ -81,10 +78,10 @@ function Footer() {
                     Privacy Policy
                   </Link>
                 </li>
-                <li className="nav-item">
+                <li className={`nav-item ${styles.footerLink}`}>
                   <Link
                     to="/calendar"
-                    className="nav-link px-2 link-button"
+                    className="nav-link ps-2 link-button"
                   >
                     {" "}
                     Terms & Service
