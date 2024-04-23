@@ -1,4 +1,6 @@
-import { Fragment, useRef, useState } from "react";
+/* eslint-disable no-unused-vars */
+import { Fragment, useRef, useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import LaMap from "../../assets/LaMap.png";
 import styles from "./Home.module.css";
 import "react-datepicker/dist/react-datepicker.css";
@@ -12,6 +14,16 @@ function Home() {
   const [showDayDropdown, setShowDayDropdown] = useState(false);
   const [showProductDropdown, setShowProductDropdown] = useState(false);
   const [showInfo, setShowInfo] = useState([false, false, false]); // State for each item's additional information
+  const [userName, setUserName] = useState([]);
+
+  const locate = useLocation();
+
+  useEffect(() => {
+    if (locate) {
+      setUserName(locate.loginData);
+    }
+  }, [locate]);
+
   const ref = useRef(null);
 
   const handleGoButtonClick = () => {
