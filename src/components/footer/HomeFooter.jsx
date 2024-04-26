@@ -9,7 +9,7 @@ function Footer() {
         <ul className={`navbar-nav me-auto mb-2 mb-md-0`}>
           <li className={`nav-item ${styles.footerLink}`}>
             <Link
-              to="/aboutus"
+              to="/about-us"
               className="nav-link px-2  link-button"
             >
               About Us
@@ -17,7 +17,7 @@ function Footer() {
           </li>
           <li className={`nav-item ${styles.footerLink}`}>
             <Link
-              to="/contactus"
+              to="/contact-us"
               className="nav-link px-2 link-button"
             >
               {" "}
@@ -90,7 +90,7 @@ function Footer() {
           <ul className={`navbar-nav d-flex justify-content-end`}>
             <li className={`nav-item ${styles.footerLink} ${styles.privacy}`}>
               <Link
-                to="/contactus"
+                to="/privacy"
                 className="nav-link px-2 link-button"
               >
                 {" "}
@@ -99,7 +99,7 @@ function Footer() {
             </li>
             <li className={`nav-item ${styles.footerLink} ${styles.privacy}`}>
               <Link
-                to="/calendar"
+                to="/terms"
                 className="nav-link ps-2 link-button"
               >
                 {" "}
