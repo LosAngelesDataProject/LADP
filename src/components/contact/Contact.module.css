@@ -1,0 +1,127 @@
+.contactPageTitle {
+    color: rgb(20, 30, 2);  
+    font-weight: bold;
+    font-size: 450%;
+    padding-bottom: 3%;  
+    padding-top: 3%;  
+    text-align: center;
+    font-family: "Merriweather", serif;
+    font-weight: 900;
+    
+}
+
+.contactColumn1 {
+    padding-left: 10%;
+    color: rgb(3, 48, 3);
+    font-size: 75px;
+    font-weight: bold;
+    padding-bottom: 5%;  
+    padding-top: 3%;  
+    font-family: "Merriweather", serif;
+    width: 50%;
+}
+
+.contactForm {
+    box-align: right;
+    }
+
+.contactColumn2 {
+    padding-left: 2%;
+    padding-bottom: 5%;  
+    padding-top: 3%; 
+    font-family: "Merriweather", serif;
+    width: 50%;
+}
+
+.contactFormTitle {
+    padding-bottom: 100px;  
+    padding-top: 100px;  
+    column-width: 45%;
+    text-align: left;
+    font-family: "Merriweather", serif;
+ }
+
+.formHeader {
+    text-align: center;
+    font-family: "Merriweather", serif;
+    font-weight: 500;
+    color: rgb(3, 40, 3);
+}
+
+.card {
+    border-color: transparent; 
+    width: 40%;
+}
+
+.cardBody {
+    background-color: rgb(3, 40, 3);
+    border-radius: 75px;
+}
+
+.formLabel {
+    color:white;
+    font-size: x-large;
+    text-align: left; 
+    font-weight: 300;
+    font-family: "Merriweather", serif;
+}
+
+.btn {
+    padding: 40px;
+    background-color: rgb(3, 37, 3);
+    font-family: "Merriweather", serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 3.5px;
+    color: rgb #e9ba09;
+}
+
+.customBtn {
+    padding: 40px;
+    background-color: rgb(5, 222, 5);
+    font-family: "Merriweather", serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 3.5px;
+    color: rgb #e9ba09;
+}
+
+.custom-button {
+    background-color: red; /* Change background color */
+    color: white; /* Change text color */
+    border-color: red; /* Change border color */
+    font-family: "Merriweather", serif;
+}
+
+.email {
+    padding-top: 20%;
+}
+
+.emailHQAddress {
+    padding-top: 2%;
+    font-family: "Merriweather", serif;
+}
+
+.phone {
+    padding-top: 5%;
+    font-family: "Merriweather", serif;
+    font-weight: 400;
+    font-style: normal;
+    color: rgb(3, 40, 3);
+}
+
+.phoneHQNumber {
+    padding-top: 2%;
+    font-family: "Merriweather", serif;
+    font-size: 1.5rem;
+}
+
+.follow {
+    padding-top: 5%;
+    font-family: "Merriweather", serif;
+    color: rgb(3, 40, 3);
+}
+
+.volunteer {
+    position: relative;
+}

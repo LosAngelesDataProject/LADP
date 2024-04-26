@@ -17,6 +17,7 @@ a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
+  font-family:"Merriweather", serif;
 }
 a:hover {
   color: #535bf2;
@@ -28,27 +29,42 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  font-family:"Merriweather", serif;
+  font-style: normal;
+  font-weight: 400;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: 400%;
+  line-height: 2.1;
+  font-family:"Merriweather", serif;
+  color: rgb(2, 26, 2);
+  font-weight: 800;
+  
+}
+
+p {
+  font-size: 50px;
+  font-family:"Merriweather", serif;
 }
 
 button {
-  border-radius: 8px;
+  border-radius: 15px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
-  font-size: 1em;
+  font-size: 2em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  color: rgb(214, 164, 36);
+  background-color: #062c16;
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -66,3 +82,62 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.merriweather-light {
+  font-family: "Merriweather", serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.merriweather-regular {
+  font-family: "Merriweather", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.merriweather-bold {
+  font-family: "Merriweather", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.merriweather-black {
+  font-family: "Merriweather", serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.merriweather-light-italic {
+  font-family: "Merriweather", serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.merriweather-regular-italic {
+  font-family: "Merriweather", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.merriweather-bold-italic {
+  font-family: "Merriweather", serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.merriweather-black-italic {
+  font-family: "Merriweather", serif;
+  font-weight: 900;
+  font-style: italic;
+}
+
+/* <uniquifier>: Use a unique and descriptive class name
+   <weight>: Use a value from 200 to 900 
+
+.source-serif 4-<uniquifier> {
+  font-family: "Source Serif 4", serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
+*/

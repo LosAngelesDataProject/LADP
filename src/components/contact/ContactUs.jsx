@@ -1,78 +1,93 @@
 import { Fragment } from "react";
-import { Col, Row, Table, Image } from "react-bootstrap";
+import { Row, Table } from "react-bootstrap";
 import ContactForm from "./ContactForm";
 import HeaderOne from "../header/HeaderOne";
+import styles from "./Contact.module.css";
 
 function ContactUs() {
   return (
     <Fragment>
       <Row className="contact-header-image image-center mb-4">
         <HeaderOne></HeaderOne>
-        <h1 className="contact-title" type="text-primary">
+        <h1 className={styles.contactPageTitle} type="text-primary">
           Contact Us
         </h1>
       </Row>
-      <hr></hr>
-      <Table className="contact-table">
-        <Col className="Contact-form-title 18-rem">
-          <Row className="Contact-Us">
-            <h1 className="Contact">Send Us A Message!</h1>
-          </Row>
-          <Row className="contact-card-form">
-            <ContactForm />
-          </Row>
-        </Col>
 
-        <Col>
+      <Table className="contact-table">
+        <th className={styles.contactColumn1}>
+          <tr className="Contact-Us">
+            <h1 className={styles.formHeader}>Send Us A Message</h1>
+          </tr>
+          <tr className="contact-card-form">
+            <ContactForm className={styles.contactform} />
+          </tr>
+        </th>
+
+        <th className={styles.contactColumn2}>
           <tr className="company-email text-black" type="text-primary">
             <div className="co-contact-email">
-              <h1>EMAIL</h1>
-              <h3>LADataProj@gmail.com</h3>
+              <h1 className={styles.email}>EMAIL</h1>
+              <h3 className={styles.emailHQAddress}> LADataProj@gmail.com</h3>
             </div>
           </tr>
           <tr className="company-phone text-black" type="text-primary">
             <div className="co-contact-phone">
-              <h1>PHONE</h1>
-              <h3>212-555-2233</h3>
+              <h1 className={styles.phone}>PHONE</h1>
+              <h3 className={styles.phoneHQNumber}> 212-555-2233</h3>
             </div>
           </tr>
+
           <tr className="company-follow text-black" type="text-primary">
             <div className="social-follow">
-              <h1>FOLLOW US</h1>
-              <Image
-                className="facebook icon"
-                scr="https://imgur.com/qb4v2Rw"
-                alt="facebook-round-icon"
-              />
-              <Image
-                className="insta icon"
-                scr="https://imgur.com/95k4doz"
-                alt="instagram-round-icon"
-              />
-              <Image
-                className="twitter icon"
-                scr="https://imgur.com/qaEjXaq"
-                alt="twitter-round-icon"
-              />
-              <Image
-                className="github icon"
-                scr="https://imgur.com/kALlX0L"
-                alt="github-round-icon"
-              />
+              <h1 className={styles.follow}>FOLLOW US</h1>
+              <div className={styles.social}>
+                <img
+                  className="social-icon-fb"
+                  src="https://i.imgur.com/5QQIbkU.jpg"
+                  title="facebook social channel"
+                  alt="facebook-icon-click-button"
+                />
+
+                <img
+                  className="social-icon-insta"
+                  src="https://i.imgur.com/e6TCHZ9.jpg"
+                  title="instagram social channel"
+                  alt="instagram-icon-click-button"
+                />
+
+                <img
+                  className="social-icon-X"
+                  src="https://i.imgur.com/rIg9FvT.jpg"
+                  title="X social channel"
+                  alt="twitter-X-icon-click-button"
+                />
+
+                <img
+                  className="social icon-youtube"
+                  src="https://i.imgur.com/0N7bqHt.jpg"
+                  title="youtube social channel"
+                  alt="youtube-icon-click-button"
+                />
+              </div>
             </div>
           </tr>
+          {/* graphic for volunteer will become a button that clicks throught to a Volunteer Sign Up Form */}
           <tr
             className="volunteer-hotbutton"
             type="image"
             alt="volunteer-image-button"
           >
-            <Image
-              className="volunteer opps image"
-              scr="https://imgur.com/Y8V9d4g"
-              alt="volunteer-form-shortcut"
-            />
+            <div className={styles.volunteer}>
+              <img
+                className="volunteer opps image "
+                src="https://i.imgur.com/0Xye9Se.jpg"
+                title="volunteer click through graphic"
+                alt="volunteer-inquiry-click-through-graphic"
+              />
+            </div>
           </tr>
-        </Col>
+        </th>
       </Table>
     </Fragment>
   );
