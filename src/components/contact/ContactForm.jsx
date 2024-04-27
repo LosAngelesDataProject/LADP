@@ -5,7 +5,7 @@ import styles from "./Contact.module.css";
 function ContactForm() {
   return (
     <Fragment>
-      <Card style={{ width: "55rem-flex" }} className={styles.card}>
+      <Card style={{ width: "55rem" }} className={styles.card}>
         <Card.Body className={styles.cardBody}>
           <Form className="mt-5 mb-5 mx-5">
             <Form.Group className="mt-5 mb-5" controlId="contactForm.NameInput">
