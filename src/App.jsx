@@ -11,6 +11,7 @@ import Register from "./components/Register";
 import NotFound from "./components/NotFound";
 import ContactUs from "./components/contact/ContactUs";
 import NavBar from "./components/NavBar";
+import { addDays, subDays } from "date-fns";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -26,7 +27,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/calendar" element={<Calendar />} />
+          <Route path="/calendar" element={<Calendar  events={[
+          { date: subDays(new Date(), 6), title: "Post video" },
+          { date: subDays(new Date(), 1), title: "Edit video" },
+          { date: addDays(new Date(), 3), title: "Code" },
+        ]} />} />
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
           <Route path="/navigate" element={<Navigate />} />
           <Route path="/register" element={<Register />} />

@@ -1,0 +1,16 @@
+/* custom.css */
+.headerBackground {
+     background-image: url(../assets/headerImages/CalendarHeader.png);
+     height: 300px;
+     background-size:cover;
+     min-width: 100%;
+}
+.calendarConatiner {
+     min-height: 100vh;
+}
+
+.customGrid > * {
+     flex: 0 0 auto;
+     min-width: 14.2857142857%; /* 100 / 7 */
+ }
+ 
