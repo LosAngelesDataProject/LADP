@@ -1,9 +1,11 @@
 import { Fragment, useRef, useState } from "react";
-import LaMap from "../../assets/LaMap.png";
+
+import mapStyles from "../map/Map.module.css";
 import styles from "./Home.module.css";
 import "react-datepicker/dist/react-datepicker.css";
 import { format } from "date-fns";
 import DatePicker from "react-datepicker";
+import BaseMap from "../map/BaseMap";
 
 function Home() {
   const [showFilters, setShowFilters] = useState(false);
@@ -246,13 +248,11 @@ function Home() {
               </div>
             </div>
           </div>
-          <div className={styles.mapContainer}>
+          <div className={mapStyles.leafletContainer}>
             <div className={styles.mapInfo}>
               <h4 className={styles.mapTitle}>Map of Los Angeles, CA</h4>
-              <div>
-                <img src={LaMap} alt="Google map of Los Angeles, CA" />
-              </div>
             </div>
+            <div>{<BaseMap />}</div>
           </div>
         </div>
         <div className={styles.heroContainer}>
