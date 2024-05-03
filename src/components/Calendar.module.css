@@ -44,7 +44,14 @@
      color: var(--support-color);
 }
 
+.eventCard:hover {
+     cursor: pointer;
+}
+
 @media (max-width: 425px) and (min-width: 320px) {
+     .calendarConatiner {
+          min-height: 75vh;
+     }
      .calendarCard {
           height: 4rem;
           font-size:x-small;     
@@ -52,8 +59,14 @@
 }
 
 @media (max-width: 320px) {
+     .calendarConatiner {
+          min-height: 60vh;
+     }
+     .headerBackground {
+         display: none;
+     }
      .calendarCard {
-          height: 3rem;
+          height: 3.5rem;
           font-size:x-small;
      }
 }

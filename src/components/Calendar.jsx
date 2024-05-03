@@ -16,11 +16,13 @@ function Calendar() {
   const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const events = [
-    { date: subDays(new Date(), 6), title: "Event 1" },
-    { date: subDays(new Date(), 1), title: "Event 2" },
-    { date: subDays(new Date(), 9), title: "Event 3" },
-    { date: addDays(new Date(), 3), title: "Event 4" }
+    { date: 'Wed May 01 2024 12:14:29 GMT-0500 (Central Daylight Time)', title: "Event 1", details:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." },
+    { date: 'Fri May 03 2024 12:14:29 GMT-0500 (Central Daylight Time)', title: "Event 2", details:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." },
+    { date: 'Fri May 03 2024 12:14:29 GMT-0500 (Central Daylight Time)', title: "Event 3", details:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." },
+    { date: subDays(new Date(), 9), title: "Event 3", details: "random details" },
+    { date: addDays(new Date(), 3), title: "Event 4", details: "random details" }
   ]
+
   const currentDate = new Date();
   const firstDayOfMonth = startOfMonth(currentDate);
   const lastDayOfMonth = endOfMonth(currentDate);
@@ -28,12 +30,19 @@ function Calendar() {
   const endingDayIndex = getDay(lastDayOfMonth);
   const placeholdersToEnd = 6 - endingDayIndex;
   const [modal, setModal] = useState(false);
+  const [currentEvent, setCurrentEvent] = useState(
+    { date: "Fri May 03 2024 12:14:29 GMT-0500 (Central Daylight Time)", title: "", details: ""}
+  );
 
-  const toggle = () => setModal(!modal);
+  const toggleModal = (event) => {
+    setCurrentEvent(event);
+    setModal(!modal);
+  };
   const daysInMonth = eachDayOfInterval({
     start: firstDayOfMonth,
     end: lastDayOfMonth,
   });
+
 
   const eventsByDate = useMemo(() => {
     return events.reduce((acc, event) => {
@@ -60,27 +69,15 @@ function Calendar() {
             <Card.Header className="fw-bold">
               {format(day, "d")}
             </Card.Header>
-            {todaysEvents.map((event, eventIndex) => {
-              const eventId = `event-${eventIndex}`;
-              return (
-                <Card.Body key={eventId} className="p-1" onClick={toggle}>
-                  {event.title}
-                  <Modal 
-                    isOpen={modal}
-                    toggle={toggle}
-                  >
-                    <Modal.Header
-                        toggle={toggle}>{eventId}</Modal.Header>
-                    <Modal.Body>
-                      eventId
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <button color="primary" onClick={toggle}>Okay</button>
-                    </Modal.Footer>
-                  </Modal>
-                </Card.Body>
-              );
-            })}
+            <Card.Body>
+              {todaysEvents.map((event, eventIndex) => {
+                return (
+                  <div key={`event-${eventIndex}`} className={`p-1 ${styles.eventCard}`} onClick={() => toggleModal(event)}>
+                    {event.title}
+                  </div>
+                );
+              })}
+            </Card.Body>
           </div>
         );
       })}
@@ -88,6 +85,18 @@ function Calendar() {
         <div key={`emptyCard-end-${index}`} className="col" />
       ))}
     </>
+  );
+
+  const EventModal = () => (
+    <Modal show={modal} onHide={toggleModal} centered>
+      <Modal.Header closeButton>
+        {currentEvent ? `Event on ${format(new Date(currentEvent.date), 'PPPP')}` : 'No event selected.'}
+      </Modal.Header>
+      <Modal.Body>
+        <p>Event Details</p>
+        <p>{currentEvent ? currentEvent.details : ''}</p>
+      </Modal.Body>
+    </Modal>
   );
 
   return (
@@ -114,6 +123,7 @@ function Calendar() {
           </div>
         ))}
         <CalendarCards/>
+        <EventModal/>
       </div>
     </Container>
   );
