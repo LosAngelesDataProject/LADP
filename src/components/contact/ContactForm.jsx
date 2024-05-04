@@ -45,14 +45,13 @@ function ContactForm() {
               href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
               rel="contact.module.css"
             />
-            <Button
-              className={styles.btn}
+            <button
+              className={styles.customBtn}
               alt="email send button"
               type="button"
-              variant={styles.customBtn}
             >
               SEND MESSAGE
-            </Button>
+            </button>
           </Form>
         </Card.Body>
       </Card>

@@ -17,7 +17,7 @@ function ContactUs() {
       <Table className="contact-table">
         <th className={styles.contactColumn1}>
           <tr className="Contact-Us">
-            <h1 className={styles.formHeader}>Send Us A Message</h1>
+            <h1 className={styles.formHeader}>Send Us A Message !</h1>
           </tr>
           <tr className="contact-card-form">
             <ContactForm className={styles.contactform} />
@@ -42,49 +42,59 @@ function ContactUs() {
             <div className="social-follow">
               <h1 className={styles.follow}>FOLLOW US</h1>
               <div className={styles.social}>
-                <img
-                  className="social-icon-fb"
-                  src="https://i.imgur.com/5QQIbkU.jpg"
-                  title="facebook social channel"
-                  alt="facebook-icon-click-button"
-                />
+                <button>
+                  <img
+                    className="social icon-fb"
+                    src="https://i.imgur.com/5QQIbkU.jpg"
+                    title="facebook social channel"
+                    alt="facebook-icon-click-button"
+                  />
+                </button>
 
-                <img
-                  className="social-icon-insta"
-                  src="https://i.imgur.com/e6TCHZ9.jpg"
-                  title="instagram social channel"
-                  alt="instagram-icon-click-button"
-                />
+                <button>
+                  <img
+                    className="social icon-insta"
+                    src="https://i.imgur.com/e6TCHZ9.jpg"
+                    title="instagram social channel"
+                    alt="instagram-icon-click-button"
+                  />
+                </button>
 
-                <img
-                  className="social-icon-X"
-                  src="https://i.imgur.com/rIg9FvT.jpg"
-                  title="X social channel"
-                  alt="twitter-X-icon-click-button"
-                />
+                <button>
+                  <img
+                    className="social icon-X"
+                    src="https://i.imgur.com/rIg9FvT.jpg"
+                    title="X social channel"
+                    alt="twitter-X-icon-click-button"
+                  />
+                </button>
 
-                <img
-                  className="social icon-youtube"
-                  src="https://i.imgur.com/0N7bqHt.jpg"
-                  title="youtube social channel"
-                  alt="youtube-icon-click-button"
-                />
+                <button>
+                  <img
+                    className="social icon-youtube"
+                    src="https://i.imgur.com/0N7bqHt.jpg"
+                    title="youtube social channel"
+                    alt="youtube-icon-click-button"
+                  />
+                </button>
               </div>
             </div>
           </tr>
-          {/* graphic for volunteer will become a button that clicks throught to a Volunteer Sign Up Form */}
+
           <tr
             className="volunteer-hotbutton"
             type="image"
             alt="volunteer-image-button"
           >
             <div className={styles.volunteer}>
-              <img
-                className="volunteer opps image "
-                src="https://i.imgur.com/0Xye9Se.jpg"
-                title="volunteer click through graphic"
-                alt="volunteer-inquiry-click-through-graphic"
-              />
+              <button>
+                <img
+                  className="volunteer opps image "
+                  src="https://i.imgur.com/0Xye9Se.jpg"
+                  title="volunteer click through graphic"
+                  alt="volunteer-inquiry-click-through-graphic"
+                />
+              </button>
             </div>
           </tr>
         </th>

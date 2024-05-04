@@ -23,6 +23,7 @@
 
 .contactForm {
     box-align: right;
+    border-color: white;
     }
 
 .contactColumn2 {
@@ -50,12 +51,13 @@
 
 .card {
     border-color: transparent; 
-    width: 40%;
+   
 }
 
 .cardBody {
     background-color: rgb(3, 40, 3);
     border-radius: 75px;
+    
 }
 
 .formLabel {
@@ -66,31 +68,14 @@
     font-family: "Merriweather", serif;
 }
 
-.btn {
-    padding: 40px;
-    background-color: rgb(3, 37, 3);
-    font-family: "Merriweather", serif;
-    font-size: 1.5rem;
-    font-weight: bold;
-    line-height: 3.5px;
-    color: rgb #e9ba09;
-}
-
 .customBtn {
     padding: 40px;
-    background-color: rgb(5, 222, 5);
+    background-color: rgb(3, 40, 3);
     font-family: "Merriweather", serif;
     font-size: 1.5rem;
     font-weight: bold;
     line-height: 3.5px;
     color: rgb #e9ba09;
-}
-
-.custom-button {
-    background-color: red; /* Change background color */
-    color: white; /* Change text color */
-    border-color: red; /* Change border color */
-    font-family: "Merriweather", serif;
 }
 
 .email {
@@ -120,6 +105,10 @@
     padding-top: 5%;
     font-family: "Merriweather", serif;
     color: rgb(3, 40, 3);
+}
+
+.social {
+    border-color: white;
 }
 
 .volunteer {
