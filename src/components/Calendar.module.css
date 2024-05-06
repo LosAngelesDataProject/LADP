@@ -1,0 +1,72 @@
+:root {
+     --main-color: #062d1d;
+     --secondary-color: #E3AA4D;
+     --support-color: #ffffff;
+}
+
+.calendarConatiner {
+     min-height: 100vh;
+}
+
+.headerBackground {
+     background-image: url(../assets/headerImages/CalendarHeader.png);
+     height: 250px;
+     background-size:cover;
+     min-width: 100%;
+}
+
+.logo {
+     height: 100px;
+     width: 100px;
+     position: absolute;
+     opacity: 55%;
+     color: #ffffff;
+}
+
+.customGrid > * {
+     flex: 0 0 auto;
+     min-width: 14.2857142857%;
+}
+
+.calendarCard {
+     height: 8rem;
+     border-width: 1px;
+     border-style: solid;
+}
+.calendarCard:hover{
+     border-color: var(--secondary-color);
+     color: var(--secondary-color);
+     transition: 0.2s;
+}
+
+.calendarToday {
+     background-color: var(--main-color);
+     color: var(--support-color);
+}
+
+.eventCard:hover {
+     cursor: pointer;
+}
+
+@media (max-width: 425px) and (min-width: 320px) {
+     .calendarConatiner {
+          min-height: 75vh;
+     }
+     .calendarCard {
+          height: 4rem;
+          font-size:x-small;     
+     }
+}
+
+@media (max-width: 320px) {
+     .calendarConatiner {
+          min-height: 60vh;
+     }
+     .headerBackground {
+         display: none;
+     }
+     .calendarCard {
+          height: 3.5rem;
+          font-size:x-small;
+     }
+}
