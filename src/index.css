@@ -23,24 +23,12 @@ a:hover {
   color: #535bf2;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-  font-family:"Merriweather", serif;
-  font-style: normal;
-  font-weight: 400;
-}
-
 h1 {
   font-size: 400%;
   line-height: 2.1;
   font-family:"Merriweather", serif;
   color: rgb(2, 26, 2);
   font-weight: 800;
-  
 }
 
 p {
@@ -81,55 +69,6 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
-
-.merriweather-light {
-  font-family: "Merriweather", serif;
-  font-weight: 300;
-  font-style: normal;
-}
-
-.merriweather-regular {
-  font-family: "Merriweather", serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.merriweather-bold {
-  font-family: "Merriweather", serif;
-  font-weight: 700;
-  font-style: normal;
-}
-
-.merriweather-black {
-  font-family: "Merriweather", serif;
-  font-weight: 900;
-  font-style: normal;
-}
-
-.merriweather-light-italic {
-  font-family: "Merriweather", serif;
-  font-weight: 300;
-  font-style: italic;
-}
-
-.merriweather-regular-italic {
-  font-family: "Merriweather", serif;
-  font-weight: 400;
-  font-style: italic;
-}
-
-.merriweather-bold-italic {
-  font-family: "Merriweather", serif;
-  font-weight: 700;
-  font-style: italic;
-}
-
-.merriweather-black-italic {
-  font-family: "Merriweather", serif;
-  font-weight: 900;
-  font-style: italic;
-}
 
 .merriweather-light {
   font-family: "Merriweather", serif;
@@ -183,4 +122,3 @@ button:focus-visible {
 .leaflet-container {
   height: 600px;
   width: 100%;
-}
