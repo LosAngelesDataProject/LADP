@@ -1,13 +1,13 @@
 :root {
   --heroHeight: 300px;
+  --searchHeight: 300px
 }
  
   .home {
-    width: 100vw;
+    min-width: 75vw;
     margin: 0;
     padding: 20px;
     min-height: 100vh;
-    /* max-height: 100vh; */
   }
 
   /* .title {
@@ -116,97 +116,74 @@
   /* .filterButton:hover {
     background-color: #5ab876; 
   } */
+/*---------------Search Area----------------------------------------*/  
 
-  /* .bodyContainer {
-    display: flex; 
-    justify-content: space-between; 
-    padding: 0 1px;
-    flex-grow: 1; 
-    max-height: calc(100vh - 250px);
-  } */
+
+/*---------------Search Results----------------------------------------*/
+
+.resultsContainer {
   
+}
 
- 
+.card {
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  overflow: hidden;
+  height: 10vh;
+  transition: height .25s ease-out;
+  background-color: white;
+}
+.card :hover{
+  cursor: pointer;
+}
+.cardSelected {
+  height:50vh;
+}
 
-  /* .cardContent {
-    padding: 10px;
-  } */
+.resultInfo {
+  font-weight: lighter; 
+  font-size: 16px;
+}
 
-  /* .cardContent h4 {
-    margin: 0;
-  } */
-
-  /* .cardContent p {
-    margin: 10px 0;
-  } */
-
-  .searchResultsTitle,
-  .mapTitle {
-    color: #0c0c0c; 
-    font-weight: bold;
+@media (max-width: 425px) {
+  .card {
+    transition: height 0.15s ease-out;
   }
-
-  /* .searchResultItem {
-    margin-bottom: 20px; 
-  } */
-
-   .card {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    overflow: hidden;
-    margin-right: .25;
+  .cardSelected {
+    height:75vh;
   }
-
-  /* .roundedButton {
-    display: inline-block;
-    padding: 5px 10px;
-    background-color: #85a18a;
-    color: #070707;
-    text-decoration: none;
-    border-radius: 3px;
-    border: 1px solid #000; 
-    font-size: 16px; 
-  } */
-  
-  
-
-  /* .searchResultsContainer {
-    max-height: calc(100vh - 120px); 
-    overflow-y: auto; 
-  } */
-
   .mapContainer {
-    position: sticky !important;
-    top: 1rem;
-    bottom: 1rem;
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    /* min-height: calc(100vh - 600px);  */
-    min-height:600px;
-    height: calc(100vh  - var(--heroHeight));
+    display: none;
   }
-  .mapTitle {
-    text-align: center;
-  }
-  
-  
-  /* .additionalInfo {
-    background-color: #f9f9f9; 
-    padding: 10px; 
-    border-radius: 5px; 
-    border: 1px solid #354b3c; 
-  } */
-  
-  /* .popDetail {
-    font-weight: lighter; 
-    font-size: 16px;
-  } */
-
   .heroContainer {
-    border: 1px solid #000; 
-    text-align: center;
-    font-size: 24px;
-    background-color: #f0f0f0;
-    min-height: var(--heroHeight);
-    bottom: 0;
+    display: none;
   }
+}
+/*---------------Map----------------------------------------*/
+
+.mapContainer {
+  position: sticky !important;
+  top: 1rem;
+  bottom: 1rem;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  /* min-height:600px; */
+  /* height: calc(100vh  - var(--heroHeight)); */
+    height: calc(100vh  - 2rem);
+}
+.mapTitle {
+  text-align: center;
+  color: #0c0c0c; 
+  font-weight: bold;
+}
+
+/*---------------Hero----------------------------------------*/
+
+.heroContainer {
+  border: 1px solid #000; 
+  text-align: center;
+  font-size: 24px;
+  background-color: #f0f0f0;
+  min-height: var(--heroHeight);
+  bottom: 0;
+}

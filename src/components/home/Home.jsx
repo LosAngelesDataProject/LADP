@@ -1,4 +1,6 @@
-import { useRef, useState } from "react";
+import { 
+  //useRef, 
+  useState } from "react";
 import { Container, Row, Col } from "react-bootstrap"
 // import mapStyles from "../map/Map.module.css";
 import styles from "./Home.module.css";
@@ -13,13 +15,15 @@ function Home() {
   // const [showDateDropdown, setShowDateDropdown] = useState(false);
   // const [showDayDropdown, setShowDayDropdown] = useState(false);
   // const [showProductDropdown, setShowProductDropdown] = useState(false);
-  const [showInfo, setShowInfo] = useState([false, false, false]); // State for each item's additional information
-  const ref = useRef(null);
+  // const ref = useRef(null);
 
   const [showDateDropdown, setShowDateDropdown] = useState(false);
   const [showDayDropdown, setShowDayDropdown] = useState(false);
   const [showProductDropdown, setShowProductDropdown] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const currentDate = new Date();
+  const dayOfTheWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+  const todayIs = dayOfTheWeek[currentDate.getDay() - 1];
 
   const handleGoButtonClick = () => {
     setShowFilters(true);
@@ -48,13 +52,6 @@ function Home() {
     // Hide other dropdowns when this one is clicked
     setShowDateDropdown(false);
     setShowDayDropdown(false);
-  };
-
-  const handleInfoClick = (index) => {
-    // Toggle the visibility of the additional information for the clicked item
-    const newShowInfo = [...showInfo];
-    newShowInfo[index] = !newShowInfo[index];
-    setShowInfo(newShowInfo);
   };
 
   // const handleDateChange = date => setSelectedDate(date);
@@ -142,134 +139,717 @@ function Home() {
     const results = [
       {
         supplies: "Eggs",
-        location: "Culver City",
+        area: "Culver City",
+        address: "1010-B W. 108th St",
         amount: "500 dozen",
-        info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        businessHours: [
+          {
+            day: "Monday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Tuesday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Wednesday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Thursday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Friday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Saturday",
+            open: null,
+            close: null
+          },
+          {
+            day: "Sunday",
+            open: null,
+            close: null
+          }
+        ]
       },
       {
         supplies: "Diapers",
-        location: "Ventura",
+        area: "Ventura",
+        address: "1010-B W. 108th St",
         amount: "500 dozen",
-        info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        businessHours: [
+          {
+            day: "Monday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Tuesday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Wednesday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Thursday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Friday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Saturday",
+            open: null,
+            close: null
+          },
+          {
+            day: "Sunday",
+            open: null,
+            close: null
+          }
+        ]
       },
       {
         supplies: "Whole Chickens",
-        location: "West Hollywood",
+        area: "West Hollywood",
+        address: "1010-B W. 108th St",
         amount: "500 dozen",
-        info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        businessHours: [
+          {
+            day: "Monday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Tuesday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Wednesday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Thursday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Friday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Saturday",
+            open: null,
+            close: null
+          },
+          {
+            day: "Sunday",
+            open: null,
+            close: null
+          }
+        ]
       },
       {
         supplies: "Eggs",
-        location: "Culver City",
+        area: "Culver City",
+        address: "1010-B W. 108th St",
         amount: "500 dozen",
-        info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        businessHours: [
+          {
+            day: "Monday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Tuesday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Wednesday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Thursday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Friday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Saturday",
+            open: null,
+            close: null
+          },
+          {
+            day: "Sunday",
+            open: null,
+            close: null
+          }
+        ]
       },
       {
         supplies: "Diapers",
-        location: "Ventura",
+        area: "Ventura",
+        address: "1010-B W. 108th St",
         amount: "500 dozen",
-        info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        businessHours: [
+          {
+            day: "Monday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Tuesday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Wednesday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Thursday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Friday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Saturday",
+            open: null,
+            close: null
+          },
+          {
+            day: "Sunday",
+            open: null,
+            close: null
+          }
+        ]
       },
       {
         supplies: "Whole Chickens",
-        location: "West Hollywood",
+        area: "West Hollywood",
+        address: "1010-B W. 108th St",
         amount: "500 dozen",
-        info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        businessHours: [
+          {
+            day: "Monday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Tuesday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Wednesday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Thursday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Friday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Saturday",
+            open: null,
+            close: null
+          },
+          {
+            day: "Sunday",
+            open: null,
+            close: null
+          }
+        ]
       },
       {
         supplies: "Eggs",
-        location: "Culver City",
+        area: "Culver City",
+        address: "1010-B W. 108th St",
         amount: "500 dozen",
-        info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        businessHours: [
+          {
+            day: "Monday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Tuesday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Wednesday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Thursday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Friday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Saturday",
+            open: null,
+            close: null
+          },
+          {
+            day: "Sunday",
+            open: null,
+            close: null
+          }
+        ]
       },
       {
         supplies: "Diapers",
-        location: "Ventura",
+        area: "Ventura",
+        address: "1010-B W. 108th St",
         amount: "500 dozen",
-        info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        businessHours: [
+          {
+            day: "Monday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Tuesday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Wednesday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Thursday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Friday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Saturday",
+            open: null,
+            close: null
+          },
+          {
+            day: "Sunday",
+            open: null,
+            close: null
+          }
+        ]
       },
       {
         supplies: "Whole Chickens",
-        location: "West Hollywood",
+        area: "West Hollywood",
+        address: "1010-B W. 108th St",
         amount: "500 dozen",
-        info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        businessHours: [
+          {
+            day: "Monday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Tuesday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Wednesday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Thursday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Friday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Saturday",
+            open: null,
+            close: null
+          },
+          {
+            day: "Sunday",
+            open: null,
+            close: null
+          }
+        ]
       },
       {
         supplies: "Eggs",
-        location: "Culver City",
+        area: "Culver City",
+        address: "1010-B W. 108th St",
         amount: "500 dozen",
-        info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        businessHours: [
+          {
+            day: "Monday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Tuesday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Wednesday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Thursday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Friday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Saturday",
+            open: null,
+            close: null
+          },
+          {
+            day: "Sunday",
+            open: null,
+            close: null
+          }
+        ]
       },
       {
         supplies: "Diapers",
-        location: "Ventura",
+        area: "Ventura",
+        address: "1010-B W. 108th St",
         amount: "500 dozen",
-        info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        businessHours: [
+          {
+            day: "Monday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Tuesday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Wednesday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Thursday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Friday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Saturday",
+            open: null,
+            close: null
+          },
+          {
+            day: "Sunday",
+            open: null,
+            close: null
+          }
+        ]
       },
       {
         supplies: "Whole Chickens",
-        location: "West Hollywood",
+        area: "West Hollywood",
+        address: "1010-B W. 108th St",
         amount: "500 dozen",
-        info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        businessHours: [
+          {
+            day: "Monday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Tuesday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Wednesday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Thursday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Friday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Saturday",
+            open: null,
+            close: null
+          },
+          {
+            day: "Sunday",
+            open: null,
+            close: null
+          }
+        ]
       },
       {
         supplies: "Eggs",
-        location: "Culver City",
+        area: "Culver City",
+        address: "1010-B W. 108th St",
         amount: "500 dozen",
-        info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        businessHours: [
+          {
+            day: "Monday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Tuesday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Wednesday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Thursday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Friday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Saturday",
+            open: null,
+            close: null
+          },
+          {
+            day: "Sunday",
+            open: null,
+            close: null
+          }
+        ]
       },
       {
         supplies: "Diapers",
-        location: "Ventura",
+        area: "Ventura",
+        address: "1010-B W. 108th St",
         amount: "500 dozen",
-        info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        businessHours: [
+          {
+            day: "Monday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Tuesday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Wednesday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Thursday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Friday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Saturday",
+            open: null,
+            close: null
+          },
+          {
+            day: "Sunday",
+            open: null,
+            close: null
+          }
+        ]
       },
       {
         supplies: "Whole Chickens",
-        location: "West Hollywood",
+        area: "West Hollywood",
+        address: "1010-B W. 108th St",
         amount: "500 dozen",
-        info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        businessHours: [
+          {
+            day: "Monday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Tuesday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Wednesday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Thursday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Friday",
+            open: "9:am",
+            close: "12:30"
+          },
+          {
+            day: "Saturday",
+            open: null,
+            close: null
+          },
+          {
+            day: "Sunday",
+            open: null,
+            close: null
+          }
+        ]
       }
     ]
+    const [showInfo, setShowInfo] = useState(new Array(results.length).fill(false));
+
+    const handleInfoClick = (index) => {
+      // Create an array with all false values, then set only the clicked item to true
+      const newShowInfo = showInfo.map((_, i) => i === index ? !showInfo[index] : false);
+      setShowInfo(newShowInfo);
+    };
     return (
       <>
-        {/* <div> */}
-          <h4 className={styles.searchResultsTitle}>
-            Search Results
-          </h4>
-          {results.length != 0 ? results.map((result, index)=>{
-            return (
-              <div
-              // <div className={styles.searchResultItem} 
-              key={`resultCard-${index}`}>
-                <div className={`my-3 ${styles.card}`}>
-                  <div className={styles.cardContent}>
-                    <h4>
-                      {result.supplies}
-                      <p> {result.amount} - {result.location}</p>
-                      <div ref={ref}>
-                        <button
-                          className={styles.roundedButton}
-                          onClick={() => handleInfoClick(index)}
-                        >
-                          More Info
-                        </button>
+        {results.length != 0 ? results.map((result, index)=>{
+          const finalCard = index != results.length - 1 ? "mb-3" : "";
+          return (
+              <div 
+                className={`${finalCard} ${styles.card} ${showInfo[index] ? styles.cardSelected : ""}`} 
+                key={`resultCard-${index}`} onClick={() => handleInfoClick(index)}
+              >
+                <div className={`ms-3 mt-3 card-body ${styles.cardContent}`}>
+                  <h4>
+                    {result.supplies}
+                  </h4>
+                  <p> Location: {result.area}</p>
+
+                  {showInfo[index] && (
+                    <div className={styles.additionalInfo}>
+                      <div>
+                        {result.address}
                       </div>
-                    </h4>
-                    {showInfo[index] && (
-                      <div className={styles.additionalInfo}>
-                        <div className={styles.popDetail}>
+                      <div className="my-3">
+                        <p>Description:</p>
+                        <p className={styles.resultInfo}>
                           {result.info}
-                        </div>
+                        </p>
                       </div>
-                    )}
-                  </div>
+                      <div>
+                        {result.businessHours.map((businessHours, index)=>{
+                          const timeOpen = businessHours.open != null ? `${businessHours.open} - ${businessHours.close}` : "Closed";
+                          return(
+                            <p key={`day-${index}`} 
+                            className={`${styles.calendarCard} ${todayIs === businessHours.day ? 'fw-bold' : 'fw-light'}`}
+                            >
+                              {`${businessHours.day}: ${timeOpen}`}
+                            </p>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
-            )
-          }):
-          <p> No Results</p>}
-        {/* </div> */}
+          )
+        }):
+        <p> No Results</p>}
       </>
     )
   }
@@ -290,10 +870,6 @@ function Home() {
   return (
     <>
       <Container className={styles.home}>
-      {/* <div className={styles.home}> */}
-        {/* <div className={styles.titleContainer}>
-          <h2 className={styles.title}>LA Data Project</h2>
-        </div> */}
         <Row>
           <div className={`${styles.searchContainer}`}>
             <div className={styles.searchInputContainer}>
@@ -319,7 +895,7 @@ function Home() {
         </Row>
         <Row>
           <Col>
-            <div className={styles.bodyContainer}>
+            <div className={styles.resultsContainer}>
               <SearchResults/>
             </div>
           </Col>
