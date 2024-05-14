@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 
 
 function Register() {
-  const [selected, setSelected] = useState("");
   const initialUserData = {
     firstName: "",
     lastName: "",
@@ -20,10 +19,6 @@ function Register() {
   console.log("this is the initialUserData", initialUserData);
 
   const [userFormData, setUserFormData] = useState(initialUserData);
-
-  const handleOptionChange = (event) => {
-    setSelected(event.target.value)
-  }
 
   const onFormFieldChange = (event) => {
     console.log("onChange", { syntheticEvent: event });
@@ -61,20 +56,6 @@ function Register() {
     <Fragment>
       <div className={`mx-0 px-0 ${styles.headerBackground}`}/>
       <h1 className={styles.h1}>Register</h1>
-        <div className={styles.checkboxContainer}>
-          <div className={styles.checkbox}>
-            <input type="checkbox" className="form-check-input" id="personalCheck" value="personal"
-              onChange={handleOptionChange} checked={selected == "personal"}
-            />
-            <label className="form-check-label" htmlFor="personalCheck">Personal</label>
-          </div>
-          <div className={styles.checkbox}>
-            <input type="checkbox" className="form-check-input" id="companyCheck" value="company"
-              onChange={handleOptionChange} checked={selected == "company"}
-            />
-            <label className="form-check-label" htmlFor="companyCheck">Company</label>
-          </div>
-        </div>
       <form className={styles.form}>
         <div className="mb-3">
           <label htmlFor="inputFirstName" className="form-label">
