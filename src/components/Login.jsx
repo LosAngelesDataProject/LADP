@@ -4,51 +4,51 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Link, useNavigate } from "react-router-dom";
 import loginUser from "../services/loginService";
 import loginFormSchema from "./schemas/loginFormSchema";
+import styles from "./Login.module.css";
 
 function Login() {
   const [loginData] = useState({
     username: "",
-    password: "",
   });
 
   const navigate = useNavigate();
-  navigate("/home", { state: { loginData } });
 
-  function handleSubmit(values) {
+  function onSubmit(values) {
     if (values && values.type === "LoginData_Add") {
-      loginUser.addLogin(loginData).then(onAddSuccess).catch(onAddError);
+      loginUser.addLogin(values).then(onAddSuccess).catch(onAddError);
     }
   }
   function onAddSuccess() {
-    toastr.success("Success on Loggin in");
+    toastr.success("Login Successful");
+    navigate("/", { state: { loginData } });
   }
   function onAddError() {
-    toastr.error("Could not Login, please try again", "Error on submission");
+    toastr.error("Unsuccessful, please try again");
   }
 
   return (
-    <React.Fragment>
+    <>
+      <div className={`mx-0 px-0 ${styles.headerBackground}`}></div>
       <div className="card login-form">
-        <div className="row justify-content-center align-items-center">
-          <div className="form-card-container col-md-5 center">
+        <div className="row justify-content-center">
+          <div className="col-md-3">
             <Formik
               enableReinitialize={true}
               initialValues={loginData}
-              onSubmit={handleSubmit}
+              onSubmit={onSubmit}
               validationSchema={loginFormSchema}
             >
               <Form>
-                <p className="lead mb-8"></p>
-                <div className="form-control me-2">
-                  <p className="row justify-content-center align-items-center fw-bold fs-3">
-                    Login Form
-                  </p>
-                  <label htmlFor="username">Username</label>
+                <div className="">
+                  <div className={styles.text}>Login</div>
+                  <label htmlFor="username" className={styles.altText}>
+                    Username
+                  </label>
                   <Field
                     type="text"
                     name="username"
                     id="username"
-                    placeholder="Your username"
+                    placeholder="Username"
                     className="form-control"
                   />
                   <ErrorMessage
@@ -56,45 +56,42 @@ function Login() {
                     components="div"
                     className="has error"
                   />
-                  <label htmlFor="password">Password</label>
+                  <div></div>
+                  <label htmlFor="password" className={styles.altText}>
+                    Password
+                  </label>
                   <Field
                     type="password"
                     name="password"
                     id="password"
-                    placeholder="Your Password"
-                    className="form-control"
+                    placeholder="Password"
+                    className="form-control "
                   />
                   <ErrorMessage
                     name="Password"
                     components="div"
                     className="has-error"
                   />
-                  <Link
-                    to="/home"
+                  <div></div>
+                  <button
                     type="submit"
-                    className="mt-2 btn btn-primary submit-button"
+                    className={styles.submitBtn}
+                    onSubmit={onSubmit}
                   >
                     Submit
-                  </Link>
-                  <Link
-                    to="/home"
-                    className="mt-2 btn btn-secondary Cancel-button"
-                  >
-                    Cancel
-                  </Link>
-                  <Link
-                    to="/register"
-                    className="mt-2 btn btn-primary Register-button"
-                  >
-                    Register
-                  </Link>
+                  </button>
                 </div>
               </Form>
             </Formik>
+            <div className="d-flex justify-content-end">
+              <Link to="/register" className={styles.linkText}>
+                Sign Up
+              </Link>
+            </div>
           </div>
         </div>
       </div>
-    </React.Fragment>
+    </>
   );
 }
 

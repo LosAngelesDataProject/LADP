@@ -1,6 +1,6 @@
 :root {
   --main-color: #062d1d;
-  --secondary-color: #E3AA4D;
+  --secondary-color: #e3aa4d;
   --support-color: #ffffff;
 }
 
@@ -8,22 +8,26 @@
   background-color: var(--main-color);
 }
 
-.navLink {  
-  color: var(--support-color)!important;
+.navLink {
+  color: var(--support-color) !important;
+  font-family: "Merriweather", serif;
 }
 
-.navLink:hover {  
+.navLink:hover {
   color: var(--secondary-color) !important;
+  font-family: "Merriweather", serif;
   font-size: 1.05rem;
   transition: 0.2s;
 }
 
 .endText {
+  font-family: "Merriweather", serif;
   color: var(--secondary-color) !important;
 }
 
-.endText:hover  {
-  color: var(--support-color)!important;
+.endText:hover {
+  font-family: "Merriweather", serif;
+  color: var(--support-color) !important;
   font-size: 1.05rem;
   transition: 0.2s;
 }

@@ -13,9 +13,7 @@ const loginUser = (payload) => {
     crossdomain: true,
     headers: { "Content-Type": "application/json" },
   };
-  console.log("Login working right?");
   return axios(config);
 };
-
 
 export default loginUser;
