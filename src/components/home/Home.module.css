@@ -63,20 +63,21 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 0px;
+  /* margin-top: 0px; */
   width: 100%;
   max-width: 600px;
-  margin-right: 20px; 
-
+  /* margin-right: 20px;  */
 }
 
 .filterItem {
-  margin-right: 20px; 
+  /* margin-right: 20px;  */
   position: relative;
   display: inline-block;
+  justify-content: space-between;
 }
 
 .filterButton {
+  display: flex;
   border-radius: 10px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
@@ -116,14 +117,32 @@
   cursor: pointer;
   background-color: #ddd;
 }
+@media (max-width: 360px) {
+  .filterItem {
+   max-width: 100px;
+  }
+  .filterButton {
+    font-size: .5em;
+    font-weight: 500;
+  }
+}
 
 
-@media (max-width: 425px) {
+@media (max-width: 425px) and (min-width: 360px) {
+  .filterItem {
+   max-width: 100px;
+
+  }
+  .filterButton {
+    font-size: .70em;
+    font-weight: 500;
+    min-height: 50px;
+    align-items: center;
+  }
   .card {
     transition: height 0.15s ease-out;
   }
   .cardSelected {
-    height:75vh;
   }
   .mapContainer {
     display: none;
@@ -139,15 +158,25 @@
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   overflow: hidden;
-  height: 10vh;
   transition: height .25s ease-out;
   background-color: white;
 }
+
 .card :hover{
   cursor: pointer;
 }
+
 .cardSelected {
-  height:50vh;
+  /*   */
+}
+
+.tag {
+  display: inline-block;
+  max-height: 35px;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
 }
 
 .resultInfo {
@@ -163,9 +192,7 @@
   bottom: 1rem;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  /* min-height:600px; */
-  /* height: calc(100vh  - var(--heroHeight)); */
-    height: calc(100vh  - 2rem);
+  height: calc(100vh  - 2rem);
 }
 .mapTitle {
   text-align: center;

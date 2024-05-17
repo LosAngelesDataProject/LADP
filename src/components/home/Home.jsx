@@ -68,7 +68,7 @@ function Home() {
   const FilterButtons = () => {
     return (
       <>
-        <div className={styles.filterItem}>
+        <div className={`me-3 mt-3 ${styles.filterItem}`}>
           <button className={styles.filterButton} onClick={() => handleButtonClick(setShowDateDropdown, [setShowDayDropdown, setShowProductDropdown])}>
             Date 
             <i className={`fa-solid fa-chevron-up ms-2 ${showDateDropdown ? styles.filterSelected : ""}`} />
@@ -83,7 +83,7 @@ function Home() {
             </div>
           )}
         </div>
-        <div className={styles.filterItem}>
+        <div className={`me-3 mt-3 ${styles.filterItem}`}>
           <button 
             className={styles.filterButton}
             onClick={() => handleButtonClick(setShowDayDropdown, [setShowDateDropdown, setShowProductDropdown])}
@@ -99,7 +99,7 @@ function Home() {
             </div>
           )}
         </div>
-        <div className={styles.filterItem}>
+        <div className={`mt-3 ${styles.filterItem}`}>
           <button
             className={styles.filterButton}
             onClick={() => handleButtonClick(setShowProductDropdown, [setShowDateDropdown, setShowDayDropdown])}
@@ -122,10 +122,11 @@ function Home() {
   const SearchResults = () => {
     const results = [
       {
-        supplies: "Eggs",
-        area: "Culver City",
-        address: "1010-B W. 108th St",
-        amount: "500 dozen",
+        name: "A World With Compassion",
+        area: "Boyle Heights",
+        address: "2912 Guirado St, Los Angeles, CA 90023, United States",
+        tags: ["Fresh Produce", "Dairy", "Meat", "Bread", "Mexican Food", "Frozen Food", "Baby Needs"],
+        number:"(562) 396-3893",
         info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         businessHours: [
           {
@@ -166,10 +167,11 @@ function Home() {
         ]
       },
       {
-        supplies: "Diapers",
-        area: "Ventura",
-        address: "1010-B W. 108th St",
-        amount: "500 dozen",
+        name: "Christ Living Gospel",
+        area: "Lincoln Heights",
+        address: "2221 Workman St., Los Angeles, CA 90031, United States",
+        tags: ["Baby Needs"],
+        number:"(323) 534-8980",
         info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         businessHours: [
           {
@@ -210,10 +212,11 @@ function Home() {
         ]
       },
       {
-        supplies: "Whole Chickens",
-        area: "West Hollywood",
-        address: "1010-B W. 108th St",
-        amount: "500 dozen",
+        name: "Foothill Unity Center",
+        area: "Mid Central",
+        address: "191 N. Oak Avenue, Pasadena, CA 91107, United States",
+        tags: ["Fresh Produce", "Dairy"],
+        number:"(323) 534-8980",
         info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         businessHours: [
           {
@@ -254,10 +257,11 @@ function Home() {
         ]
       },
       {
-        supplies: "Eggs",
-        area: "Culver City",
-        address: "1010-B W. 108th St",
-        amount: "500 dozen",
+        name: "Foothill Unity Center",
+        area: "Azusa",
+        address: "5525 North Lake Ellen Avenue, Azusa, CA 91702, United States",
+        tags: ["Meat", "Bread"],
+        number:"909-766-8038",
         info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         businessHours: [
           {
@@ -298,10 +302,11 @@ function Home() {
         ]
       },
       {
-        supplies: "Diapers",
-        area: "Ventura",
-        address: "1010-B W. 108th St",
-        amount: "500 dozen",
+        name: "Harmony Bites",
+        area: "South Park",
+        address: "5850 Avalon Blvd, Los Angeles, CA 90003, United States",
+        tags: [ "Mexican Food", "Frozen Food"],
+        number:"(213) 840-8455",
         info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         businessHours: [
           {
@@ -342,10 +347,11 @@ function Home() {
         ]
       },
       {
-        supplies: "Whole Chickens",
-        area: "West Hollywood",
-        address: "1010-B W. 108th St",
-        amount: "500 dozen",
+        name: "A World With Compassion",
+        area: "Boyle Heights",
+        address: "2912 Guirado St, Los Angeles, CA 90023, United States",
+        tags: ["Fresh Produce", "Dairy", "Meat", "Bread", "Mexican Food", "Frozen Food", "Baby Needs"],
+        number:"(562) 396-3893",
         info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         businessHours: [
           {
@@ -386,10 +392,11 @@ function Home() {
         ]
       },
       {
-        supplies: "Eggs",
-        area: "Culver City",
-        address: "1010-B W. 108th St",
-        amount: "500 dozen",
+        name: "Christ Living Gospel",
+        area: "Lincoln Heights",
+        address: "2221 Workman St., Los Angeles, CA 90031, United States",
+        tags: ["Baby Needs"],
+        number:"(323) 534-8980",
         info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         businessHours: [
           {
@@ -430,10 +437,11 @@ function Home() {
         ]
       },
       {
-        supplies: "Diapers",
-        area: "Ventura",
-        address: "1010-B W. 108th St",
-        amount: "500 dozen",
+        name: "Foothill Unity Center",
+        area: "Mid Central",
+        address: "191 N. Oak Avenue, Pasadena, CA 91107, United States",
+        tags: ["Fresh Produce", "Dairy"],
+        number:"(323) 534-8980",
         info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         businessHours: [
           {
@@ -474,10 +482,11 @@ function Home() {
         ]
       },
       {
-        supplies: "Whole Chickens",
-        area: "West Hollywood",
-        address: "1010-B W. 108th St",
-        amount: "500 dozen",
+        name: "Foothill Unity Center",
+        area: "Azusa",
+        address: "5525 North Lake Ellen Avenue, Azusa, CA 91702, United States",
+        tags: ["Meat", "Bread"],
+        number:"909-766-8038",
         info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         businessHours: [
           {
@@ -518,10 +527,11 @@ function Home() {
         ]
       },
       {
-        supplies: "Eggs",
-        area: "Culver City",
-        address: "1010-B W. 108th St",
-        amount: "500 dozen",
+        name: "Harmony Bites",
+        area: "South Park",
+        address: "5850 Avalon Blvd, Los Angeles, CA 90003, United States",
+        tags: [ "Mexican Food", "Frozen Food"],
+        number:"(213) 840-8455",
         info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         businessHours: [
           {
@@ -562,10 +572,11 @@ function Home() {
         ]
       },
       {
-        supplies: "Diapers",
-        area: "Ventura",
-        address: "1010-B W. 108th St",
-        amount: "500 dozen",
+        name: "A World With Compassion",
+        area: "Boyle Heights",
+        address: "2912 Guirado St, Los Angeles, CA 90023, United States",
+        tags: ["Fresh Produce", "Dairy", "Meat", "Bread", "Mexican Food", "Frozen Food", "Baby Needs"],
+        number:"(562) 396-3893",
         info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         businessHours: [
           {
@@ -606,10 +617,11 @@ function Home() {
         ]
       },
       {
-        supplies: "Whole Chickens",
-        area: "West Hollywood",
-        address: "1010-B W. 108th St",
-        amount: "500 dozen",
+        name: "Christ Living Gospel",
+        area: "Lincoln Heights",
+        address: "2221 Workman St., Los Angeles, CA 90031, United States",
+        tags: ["Baby Needs"],
+        number:"(323) 534-8980",
         info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         businessHours: [
           {
@@ -650,10 +662,11 @@ function Home() {
         ]
       },
       {
-        supplies: "Eggs",
-        area: "Culver City",
-        address: "1010-B W. 108th St",
-        amount: "500 dozen",
+        name: "Foothill Unity Center",
+        area: "Mid Central",
+        address: "191 N. Oak Avenue, Pasadena, CA 91107, United States",
+        tags: ["Fresh Produce", "Dairy"],
+        number:"(323) 534-8980",
         info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         businessHours: [
           {
@@ -694,10 +707,11 @@ function Home() {
         ]
       },
       {
-        supplies: "Diapers",
-        area: "Ventura",
-        address: "1010-B W. 108th St",
-        amount: "500 dozen",
+        name: "Foothill Unity Center",
+        area: "Azusa",
+        address: "5525 North Lake Ellen Avenue, Azusa, CA 91702, United States",
+        tags: ["Meat", "Bread"],
+        number:"909-766-8038",
         info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         businessHours: [
           {
@@ -738,10 +752,11 @@ function Home() {
         ]
       },
       {
-        supplies: "Whole Chickens",
-        area: "West Hollywood",
-        address: "1010-B W. 108th St",
-        amount: "500 dozen",
+        name: "Harmony Bites",
+        area: "South Park",
+        address: "5850 Avalon Blvd, Los Angeles, CA 90003, United States",
+        tags: [ "Mexican Food", "Frozen Food"],
+        number:"(213) 840-8455",
         info: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         businessHours: [
           {
@@ -780,14 +795,14 @@ function Home() {
             close: null
           }
         ]
-      }
+      },
     ]
-    //add tags for filter remove amount swap main tiltle for Area
     const [showInfo, setShowInfo] = useState(new Array(results.length).fill(false));
 
     const handleInfoClick = (index) => {
       const newShowInfo = showInfo.map((_, i) => i === index ? !showInfo[index] : false);
       setShowInfo(newShowInfo);
+      //add some way to recenter the map to card clicked
     };
 
     return (
@@ -801,13 +816,24 @@ function Home() {
             >
               <div className={`ms-3 mt-3 card-body ${styles.cardContent}`}>
                 <h4>
-                  {result.supplies}
+                  {result.name}
                 </h4>
-                <p> Location: {result.area}</p>
+                <h6>
+                  Area: {result.area}
+                </h6>
+                <p> Address: {result.address}</p>
                 {showInfo[index] && (
-                  <div className={styles.additionalInfo}>
-                    <div>
-                      {result.address}
+                  <div >
+                    <p>Tags:</p>
+                    <div className={``}>
+                     {result.tags.map((tag, index) => {
+                        return (
+                          <p key={`tag-${index}`} className={`${styles.tag} col `} 
+                          >
+                            {tag}
+                          </p>
+                        );
+                      })}
                     </div>
                     <div className="my-3">
                       <p>Description:</p>
@@ -844,7 +870,7 @@ function Home() {
           <div className={styles.searchInputContainer}>
             <SearchBar/>
           </div>
-          <div className={`mt-3 ${styles.filterContainer}`}>
+          <div className={`${styles.filterContainer}`}>
             <FilterButtons />
           </div>
         </Row>
