@@ -15,7 +15,6 @@
 
 .navLink:hover {
   color: var(--secondary-color) !important;
-  font-family: "Merriweather", serif;
   font-size: 1.05rem;
   transition: 0.2s;
 }
@@ -26,7 +25,6 @@
 }
 
 .endText:hover {
-  font-family: "Merriweather", serif;
   color: var(--support-color) !important;
   font-size: 1.05rem;
   transition: 0.2s;

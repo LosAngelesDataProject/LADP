@@ -39,7 +39,7 @@ function Login() {
               validationSchema={loginFormSchema}
             >
               <Form>
-                <div className="">
+                <div>
                   <div className={styles.text}>Login</div>
                   <label htmlFor="username" className={styles.altText}>
                     Username
@@ -72,7 +72,7 @@ function Login() {
                     components="div"
                     className="has-error"
                   />
-                  <div></div>
+
                   <button
                     type="submit"
                     className={styles.submitBtn}

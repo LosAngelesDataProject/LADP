@@ -24,7 +24,6 @@
 
 .linkText:hover {
   color: #e3aa4d;
-  font-family: "Merriweather", serif;
   font-size: large;
   font-weight: 200;
   animation: shake 0.5s;
