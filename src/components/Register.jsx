@@ -3,6 +3,7 @@ import { registerUser } from "../services/usersService"
 import toastr from "toastr";
 import styles from "./Register.module.css";
 import { Link } from "react-router-dom";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 
 
 function Register() {
@@ -56,129 +57,242 @@ function Register() {
     <Fragment>
       <div className={`mx-0 px-0 ${styles.headerBackground}`}/>
       <h1 className={styles.h1}>Register</h1>
-      <form className={styles.form}>
-        <div className="mb-3">
-          <label htmlFor="inputFirstName" className="form-label">
-            First Name
-          </label>
-          <input
-            value={userFormData.firstName}
-            onChange={onFormFieldChange}
-            type="text"
-            className="form-control"
-            id="inputFirstName"
-            name="firstName"
-            placeholder="Enter First Name"
-        />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="inputLastName" className="form-label">
-            Last Name
-          </label>
-          <input
-            value={userFormData.lastName}
-            onChange={onFormFieldChange}
-            type="text"
-            className="form-control"
-            id="inputLastName"
-            name="lastName"
-            placeholder="Enter Last Name"
-        />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="inputEmail" className="form-label">
-            Email 
-          </label>
-          <input
-            value={userFormData.email}
-            onChange={onFormFieldChange}
-            type="email"
-            className="form-control"
-            id="inputEmail"
-            name="email"
-            placeholder="Enter Email Address"
-        />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="inputPhone" className="form-label">
-            Phone 
-          </label>
-          <input
-            value={userFormData.phone}
-            onChange={onFormFieldChange}
-            type="tel"
-            className="form-control"
-            id="inputPhone"
-            name="phone"
-            placeholder="Enter Phone Number"
-        />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="inputZipCode" className="form-label">
-            Zip Code
-          </label>
-          <input
-            value={userFormData.zipcode}
-            onChange={onFormFieldChange}
-            type="text"
-            className="form-control"
-            id="inputZipCode"
-            name="zipcode"
-            placeholder="Enter Your Zip Code"
-        />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="inputUserName" className="form-label">
-            User Name
-          </label>
-          <input
-            value={userFormData.userName}
-            onChange={onFormFieldChange}
-            type="text"
-            className="form-control"
-            id="inputUserName"
-            name="userName"
-            placeholder="Create a User Name"
-        />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="inputPassword1" className="form-label">
-            Password
-          </label>
-          <input
-            value={userFormData.password}
-            onChange={onFormFieldChange}
-            type="password"
-            className="form-control"
-            id="inputPassword1"
-            name="password"
-            placeholder="Create a Password"
-        />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="inputPassword2" className="form-label">
-            Confirm Password
-          </label>
-          <input
-            value={userFormData.passwordConfirm}
-            onChange={onFormFieldChange}
-            type="password"
-            className="form-control"
-            id="passwordConfirm"
-            name="passwordConfirm"
-            placeholder="Confirm Password"
-        />
-        </div>
-        <div className={styles.buttonContainer}>
-          <button onClick={addUser} type="submit" className={styles.button}>REGISTER</button>
-          <p className={styles.ptext}>Have an account already?</p>
-          <Link
-            to="/login"
-          >
-            Login Here
-          </Link>
-        </div>
-      </form>
+      <Formik 
+        enableReinitialize={true}
+        initialValues={userFormData}
+        onSubmit={addUser}
+        // validationSchema={registerSchema}
+      >
+        <Form className={styles.form}>
+
+
+          <div className="mb-3">
+            <label htmlFor="inputFirstName" className="form-label">
+              First Name
+            </label>
+            <Field
+              type="text"
+              className="form-control"
+              placeholder="Enter First Name"
+              id="inputFirstName"
+            />
+            {/* <input
+              value={userFormData.firstName}
+              onChange={onFormFieldChange}
+              type="text"
+              className="form-control"
+              id="inputFirstName"
+              name="firstName"
+              placeholder="Enter First Name"
+          /> */}
+            <ErrorMessage
+              name="firstName"
+              component="div"
+              className="text-center error-message"
+            />
+          </div>
+
+
+          <div className="mb-3">
+            <label htmlFor="inputLastName" className="form-label">
+              Last Name
+            </label>
+            <Field 
+              type="text"
+              className="form-control"
+              placeholder="Enter Last Name"
+              id="inputLastName"
+            />
+            <ErrorMessage
+              name="lastName"
+              component="div"
+              className="text-center error-message"
+            />
+            {/* <input
+              value={userFormData.lastName}
+              onChange={onFormFieldChange}
+              type="text"
+              className="form-control"
+              id="inputLastName"
+              name="lastName"
+              placeholder="Enter Last Name"
+          /> */}
+          </div>
+
+
+          <div className="mb-3">
+            <label htmlFor="inputEmail" className="form-label">
+              Email 
+            </label>
+            <Field 
+              type="text"
+              className="form-control"
+              placeholder="Enter Email Address"
+              id="inputEmail"
+            />
+             <ErrorMessage
+              name="email"
+              component="div"
+              className="text-center error-message"
+            />
+            {/* <input
+              value={userFormData.email}
+              onChange={onFormFieldChange}
+              type="email"
+              className="form-control"
+              id="inputEmail"
+              name="email"
+              placeholder="Enter Email Address"
+            /> */}
+          </div>
+
+
+          <div className="mb-3">
+            <label htmlFor="inputPhone" className="form-label">
+              Phone 
+            </label>
+            <Field 
+              type="tel"
+              className="form-control"
+              placeholder="Enter Phone Number"
+              id="inputPhone"
+            />
+            <ErrorMessage
+              name="phone"
+              component="div"
+              className="text-center error-message"
+            />
+            {/* <input
+              value={userFormData.phone}
+              onChange={onFormFieldChange}
+              type="tel"
+              className="form-control"
+              id="inputPhone"
+              name="phone"
+              placeholder="Enter Phone Number"
+          /> */}
+          </div>
+
+
+          <div className="mb-3">
+            <label htmlFor="inputZipCode" className="form-label">
+              Zip Code
+            </label>
+            <Field 
+              type="text"
+              className="form-control"
+              placeholder="Enter Your Zip Code"
+              id="inputZipCode"
+            />
+            <ErrorMessage
+              name="zipcode"
+              component="div"
+              className="text-center error-message"
+            />
+            {/* <input
+              value={userFormData.zipcode}
+              onChange={onFormFieldChange}
+              type="text"
+              className="form-control"
+              id="inputZipCode"
+              name="zipcode"
+              placeholder="Enter Your Zip Code"
+            /> */}
+          </div>
+
+
+          <div className="mb-3">
+            <label htmlFor="inputUserName" className="form-label">
+              User Name
+            </label>
+            <Field 
+              type="text"
+              className="form-control"
+              placeholder="Create a User Name"
+              id="inputUserName"
+            />
+            <ErrorMessage
+              name="phone"
+              component="div"
+              className="text-center error-message"
+            />
+            {/* <input
+              value={userFormData.userName}
+              onChange={onFormFieldChange}
+              type="text"
+              className="form-control"
+              id="inputUserName"
+              name="userName"
+              placeholder="Create a User Name"
+            /> */}
+          </div>
+
+
+          <div className="mb-3">
+            <label htmlFor="inputPassword1" className="form-label">
+              Password
+            </label>
+            <Field 
+              type="password"
+              className="form-control"
+              placeholder="Create a Password"
+              id="inputPassword1"
+            />
+            <ErrorMessage
+              name="password"
+              component="div"
+              className="text-center error-message"
+            />
+            {/* <input
+              value={userFormData.password}
+              onChange={onFormFieldChange}
+              type="password"
+              className="form-control"
+              id="inputPassword1"
+              name="password"
+              placeholder="Create a Password"
+          /> */}
+          </div>
+
+
+          <div className="mb-3">
+            <label htmlFor="inputPassword2" className="form-label">
+              Confirm Password
+            </label>
+            <Field 
+              type="password"
+              className="form-control"
+              placeholder="Confirm Password"
+              id="passwordConfirm"
+            />
+            <ErrorMessage
+              name="passwordConfirm"
+              component="div"
+              className="text-center error-message"
+            />
+            {/* <input
+              value={userFormData.passwordConfirm}
+              onChange={onFormFieldChange}
+              type="password"
+              className="form-control"
+              id="passwordConfirm"
+              name="passwordConfirm"
+              placeholder="Confirm Password"
+          /> */}
+          </div>
+
+
+          <div className={styles.buttonContainer}>
+            <button onSubmit={addUser} type="submit" className={styles.button}>REGISTER</button>
+            <p className={styles.ptext}>Have an account already?</p>
+            <Link
+              to="/login"
+            >
+              Login Here
+            </Link>
+          </div>
+        </Form>
+      </Formik>
     </Fragment>
   );
 }
