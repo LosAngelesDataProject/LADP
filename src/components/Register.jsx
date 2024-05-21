@@ -1,9 +1,8 @@
 import { Fragment, useState } from "react";
-import { registerUser } from "../services/usersService"
+import { registerUser } from "../services/usersService";
 import toastr from "toastr";
 
 function Register() {
-
   const initialUserData = {
     firstName: "",
     lastName: "",
@@ -12,7 +11,7 @@ function Register() {
     userName: "",
     password: "",
     passwordConfirm: "",
-    zipcode: ""
+    zipcode: "",
   };
   console.log("this is the initialUserData", initialUserData);
 
@@ -32,7 +31,7 @@ function Register() {
       };
       newUserObject[nameOfField] = newUserValue;
       return newUserObject;
-    })
+    });
   };
 
   function addUser(e) {
@@ -43,7 +42,6 @@ function Register() {
   const successful = (response) => {
     console.log({ id: response }, "new user added");
     toastr["success"]("register success");
-
   };
 
   const error = (response) => {
@@ -53,7 +51,7 @@ function Register() {
 
   const cancelRegistration = () => {
     setUserFormData(initialUserData);
-  }
+  };
 
   return (
     <Fragment>
@@ -171,8 +169,16 @@ function Register() {
             placeholder="Enter Your Zip Code"
           />
         </div>
-        <button onClick={addUser} type="submit" className="btn btn-primary">Register</button>
-        <button onClick={cancelRegistration} type="button" className="btn btn-secondary">Cancel</button>
+        <button onClick={addUser} type="submit" className="btn btn-primary">
+          Register
+        </button>
+        <button
+          onClick={cancelRegistration}
+          type="button"
+          className="btn btn-secondary"
+        >
+          Cancel
+        </button>
       </form>
     </Fragment>
   );

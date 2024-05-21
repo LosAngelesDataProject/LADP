@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import loginUser from "../services/loginService";
 import loginFormSchema from "./schemas/loginFormSchema";
 import styles from "./Login.module.css";
+import HeaderOne from "../components/header/HeaderOne";
 
 function Login() {
   const [loginData] = useState({
@@ -28,7 +29,10 @@ function Login() {
 
   return (
     <>
-      <div className={`mx-0 px-0 ${styles.headerBackground}`}></div>
+      <div>
+        {" "}
+        <HeaderOne />
+      </div>
       <div className="card login-form">
         <div className="row justify-content-center">
           <div className="col-md-3">
@@ -73,11 +77,7 @@ function Login() {
                     className="has-error"
                   />
 
-                  <button
-                    type="submit"
-                    className={styles.submitBtn}
-                    onSubmit={onSubmit}
-                  >
+                  <button type="submit" onSubmit={onSubmit}>
                     Submit
                   </button>
                 </div>
