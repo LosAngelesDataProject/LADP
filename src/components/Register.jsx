@@ -12,7 +12,6 @@ function Register() {
     lastName: "",
     email: "",
     phone: "",
-    userName: "",
     password: "",
     passwordConfirm: "",
     zipcode: ""
@@ -197,33 +196,6 @@ function Register() {
               id="inputZipCode"
               name="zipcode"
               placeholder="Enter Your Zip Code"
-            /> */}
-          </div>
-
-
-          <div className="mb-3">
-            <label htmlFor="inputUserName" className="form-label">
-              User Name
-            </label>
-            <Field 
-              type="text"
-              className="form-control"
-              placeholder="Create a User Name"
-              id="inputUserName"
-            />
-            <ErrorMessage
-              name="phone"
-              component="div"
-              className="text-center error-message"
-            />
-            {/* <input
-              value={userFormData.userName}
-              onChange={onFormFieldChange}
-              type="text"
-              className="form-control"
-              id="inputUserName"
-              name="userName"
-              placeholder="Create a User Name"
             /> */}
           </div>
 
