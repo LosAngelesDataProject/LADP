@@ -2,7 +2,7 @@
   --heroHeight: 300px;
   --searchHeight: 300px;
   --main-color: #062d1d;
-  --secondary-color: #E3AA4D;
+  --secondary-color: #e3aa4d;
   --support-color: #ffffff;
 }
  
@@ -37,11 +37,9 @@
   background-color: white;
   min-height: 48px;
 }
+
 .searchInputLeft {
   border-radius: 10px 0px 0px 10px;
-}
-
-.searchInputRight {
 }
 
 .searchIcon {
@@ -54,6 +52,7 @@
   padding-right: 15px;
   border-radius: 0px 10px 10px 0px;
 }
+
 .searchIcon:hover {
   cursor: pointer;
   color: var(--secondary-color);
@@ -63,14 +62,11 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  /* margin-top: 0px; */
   width: 100%;
   max-width: 600px;
-  /* margin-right: 20px;  */
 }
 
 .filterItem {
-  /* margin-right: 20px;  */
   position: relative;
   display: inline-block;
   justify-content: space-between;
@@ -89,9 +85,11 @@
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 .filterButton:hover {
   color: var(--secondary-color);
 }
+
 .filterSelected {
   transform: rotate(180deg);
 }
@@ -113,43 +111,10 @@
   text-decoration: none;
   display: block;
 }
+
 .filterOption:hover {
   cursor: pointer;
   background-color: #ddd;
-}
-@media (max-width: 360px) {
-  .filterItem {
-   max-width: 100px;
-  }
-  .filterButton {
-    font-size: .5em;
-    font-weight: 500;
-  }
-}
-
-
-@media (max-width: 425px) and (min-width: 360px) {
-  .filterItem {
-   max-width: 100px;
-
-  }
-  .filterButton {
-    font-size: .70em;
-    font-weight: 500;
-    min-height: 50px;
-    align-items: center;
-  }
-  .card {
-    transition: height 0.15s ease-out;
-  }
-  .cardSelected {
-  }
-  .mapContainer {
-    display: none;
-  }
-  .heroContainer {
-    display: none;
-  }
 }
 
 /*---------------Search Results----------------------------------------*/
@@ -164,10 +129,6 @@
 
 .card :hover{
   cursor: pointer;
-}
-
-.cardSelected {
-  /*   */
 }
 
 .tag {
@@ -194,6 +155,7 @@
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   height: calc(100vh  - 2rem);
 }
+
 .mapTitle {
   text-align: center;
   color: #0c0c0c; 
@@ -209,4 +171,40 @@
   background-color: #f0f0f0;
   min-height: var(--heroHeight);
   bottom: 0;
+}
+
+@media (max-width: 360px) {
+  .filterItem {
+   max-width: 100px;
+  }
+  
+  .filterButton {
+    font-size: .5em;
+    font-weight: 500;
+  }
+}
+
+@media (max-width: 425px) and (min-width: 360px) {
+  .filterItem {
+   max-width: 100px;
+
+  }
+  .filterButton {
+    font-size: .70em;
+    font-weight: 500;
+    min-height: 50px;
+    align-items: center;
+  }
+
+  .card {
+    transition: height 0.15s ease-out;
+  }
+  
+  .mapContainer {
+    display: none;
+  }
+
+  .heroContainer {
+    display: none;
+  }
 }
