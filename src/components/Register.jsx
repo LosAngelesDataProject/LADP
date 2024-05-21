@@ -55,7 +55,7 @@ function Register() {
   return (
     <Fragment>
       <div className={`mx-0 px-0 ${styles.headerBackground}`}/>
-      <h1 className={styles.h1}>Register</h1>
+      <h1 className={styles.titleName}>Register</h1>
       <form className={styles.form}>
         <div className="mb-3">
           <label htmlFor="inputFirstName" className="form-label">

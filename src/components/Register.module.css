@@ -5,11 +5,7 @@
   min-width: 100%;
 }
 
-.card {
-  position: relative;
-}
-
-.h1 {
+.titleName {
   text-align: center;
 }
 
