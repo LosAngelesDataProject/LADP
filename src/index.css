@@ -69,6 +69,7 @@ button:focus-visible {
 
 /* mapcontainer */
 .leaflet-container {
-  height: 600px;
+  height: 100%;
+  border-radius: 10px;
   width: 100%;
 }
