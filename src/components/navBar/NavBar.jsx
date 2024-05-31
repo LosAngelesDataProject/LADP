@@ -7,7 +7,7 @@ import styles from "./NavBar.module.css";
 const NavBar = (props) => {
   const { isLoggedIn, onLogout } = props;
   return (
-    <Navbar className={styles.background} expand="lg" sticky="top">
+    <Navbar className={styles.background} expand="lg">
       <Container>
         <Nav className="me-auto col-md-5 justify-content-start justify-content-around">
           <Nav.Link className={styles.endText} as={Link} to="/">Home</Nav.Link>

@@ -1,4 +1,4 @@
-import { React, useState, useRef } from "react";
+import { useState, useRef } from "react";
 
 import styles from "./Map.module.css";
 
@@ -7,7 +7,9 @@ import osmProviders from "./osm-providers";
 import "leaflet/dist/leaflet.css";
 
 const BaseMap = () => {
-  const [center, setCenter] = useState({ lat: 34.0549, lng: -118.2426 });
+  const [center
+  //  , setCenter
+  ] = useState({ lat: 34.0549, lng: -118.2426 });
   const zoomLevel = 10.5; //base zoom level
   const mapRef = useRef();
 
@@ -34,10 +36,10 @@ const BaseMap = () => {
             url={osmProviders.maptiler.url}
             attribution={osmProviders.maptiler.attribution}
           />
-          {markers.map((markers) => (
-            <Marker position={markers.geocode}>
+          {markers.map((marker, index) => (
+            <Marker position={marker.geocode} key={`marker-${index}`}>
               <Popup>
-                <p>{markers.popUp}</p>
+                <p>{marker.popUp}</p>
               </Popup>
             </Marker>
           ))}
