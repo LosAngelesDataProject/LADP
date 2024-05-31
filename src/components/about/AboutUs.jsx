@@ -1,7 +1,7 @@
 import LaImg from "../assets/LaImg.jpg";
 import logo from "../assets/ladpLogo_light.png";
 import styles from "./AboutUs.module.css";
-import ProfileCard from "./ProfileCard";
+import ProfileCard from "../ProfileCard";
 import LinkedIn from "../assets/LinkedIn.svg";
 import Github from "../assets/Github.svg";
 
