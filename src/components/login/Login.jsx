@@ -55,12 +55,9 @@ function Login() {
                     placeholder="Username"
                     className="form-control"
                   />
-                  <ErrorMessage
-                    name="username"
-                    components="div"
-                    className="has error"
-                  />
-                  <div></div>
+                  <div>
+                    <ErrorMessage name="username" />
+                  </div>
                   <label htmlFor="password" className={styles.altText}>
                     Password
                   </label>
@@ -69,15 +66,17 @@ function Login() {
                     name="password"
                     id="password"
                     placeholder="Password"
-                    className="form-control "
+                    className="form-control"
                   />
-                  <ErrorMessage
-                    name="Password"
-                    components="div"
-                    className="has-error"
-                  />
+                  <div>
+                    <ErrorMessage name="password" />
+                  </div>
 
-                  <button type="submit" onSubmit={onSubmit}>
+                  <button
+                    className={styles.button}
+                    type="submit"
+                    onSubmit={onSubmit}
+                  >
                     Submit
                   </button>
                 </div>
