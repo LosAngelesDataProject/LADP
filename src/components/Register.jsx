@@ -1,9 +1,11 @@
 import { Fragment, useState } from "react";
 import { registerUser } from "../services/usersService"
 import toastr from "toastr";
+import styles from "./Register.module.css";
+import { Link } from "react-router-dom";
+
 
 function Register() {
-
   const initialUserData = {
     firstName: "",
     lastName: "",
@@ -43,7 +45,6 @@ function Register() {
   const successful = (response) => {
     console.log({ id: response }, "new user added");
     toastr["success"]("register success");
-
   };
 
   const error = (response) => {
@@ -51,30 +52,13 @@ function Register() {
     toastr["error"]("error in registration");
   };
 
-  const cancelRegistration = () => {
-    setUserFormData(initialUserData);
-  }
-
   return (
     <Fragment>
-      <form className="container shadow mb-3">
-        <p></p>
+      <div className={`mx-0 px-0 ${styles.headerBackground}`}/>
+      <h1 className={styles.titleName}>Register</h1>
+      <form className={styles.form}>
         <div className="mb-3">
-          <label htmlFor="exampleInputEmail1" className="form-label">
-            Email Address
-          </label>
-          <input
-            value={userFormData.email}
-            onChange={onFormFieldChange}
-            type="email"
-            className="form-control"
-            id="exampleInputEmail"
-            name="email"
-            placeholder="Enter Email"
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="firstName" className="form-label">
+          <label htmlFor="inputFirstName" className="form-label">
             First Name
           </label>
           <input
@@ -82,13 +66,13 @@ function Register() {
             onChange={onFormFieldChange}
             type="text"
             className="form-control"
-            id="exampleInputFirstName"
+            id="inputFirstName"
             name="firstName"
             placeholder="Enter First Name"
-          />
+        />
         </div>
         <div className="mb-3">
-          <label htmlFor="lastName" className="form-label">
+          <label htmlFor="inputLastName" className="form-label">
             Last Name
           </label>
           <input
@@ -96,27 +80,55 @@ function Register() {
             onChange={onFormFieldChange}
             type="text"
             className="form-control"
-            id="exampleInputLastName"
+            id="inputLastName"
             name="lastName"
             placeholder="Enter Last Name"
-          />
+        />
         </div>
         <div className="mb-3">
-          <label htmlFor="phone" className="form-label">
-            Phone Number
+          <label htmlFor="inputEmail" className="form-label">
+            Email 
+          </label>
+          <input
+            value={userFormData.email}
+            onChange={onFormFieldChange}
+            type="email"
+            className="form-control"
+            id="inputEmail"
+            name="email"
+            placeholder="Enter Email Address"
+        />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="inputPhone" className="form-label">
+            Phone 
           </label>
           <input
             value={userFormData.phone}
             onChange={onFormFieldChange}
             type="tel"
             className="form-control"
-            id="exampleInputPhone"
+            id="inputPhone"
             name="phone"
             placeholder="Enter Phone Number"
-          />
+        />
         </div>
         <div className="mb-3">
-          <label htmlFor="username" className="form-label">
+          <label htmlFor="inputZipCode" className="form-label">
+            Zip Code
+          </label>
+          <input
+            value={userFormData.zipcode}
+            onChange={onFormFieldChange}
+            type="text"
+            className="form-control"
+            id="inputZipCode"
+            name="zipcode"
+            placeholder="Enter Your Zip Code"
+        />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="inputUserName" className="form-label">
             User Name
           </label>
           <input
@@ -124,13 +136,13 @@ function Register() {
             onChange={onFormFieldChange}
             type="text"
             className="form-control"
-            id="exampleInputUserName"
+            id="inputUserName"
             name="userName"
             placeholder="Create a User Name"
-          />
+        />
         </div>
         <div className="mb-3">
-          <label htmlFor="exampleInputPassword1" className="form-label">
+          <label htmlFor="inputPassword1" className="form-label">
             Password
           </label>
           <input
@@ -138,13 +150,13 @@ function Register() {
             onChange={onFormFieldChange}
             type="password"
             className="form-control"
-            id="exampleInputPassword1"
+            id="inputPassword1"
             name="password"
             placeholder="Create a Password"
-          />
+        />
         </div>
         <div className="mb-3">
-          <label htmlFor="exampleInputPassword2" className="form-label">
+          <label htmlFor="inputPassword2" className="form-label">
             Confirm Password
           </label>
           <input
@@ -155,27 +167,19 @@ function Register() {
             id="passwordConfirm"
             name="passwordConfirm"
             placeholder="Confirm Password"
-          />
+        />
         </div>
-        <div className="mb-3">
-          <label htmlFor="zipcode" className="form-label">
-            Zip Code
-          </label>
-          <input
-            value={userFormData.zipcode}
-            onChange={onFormFieldChange}
-            type="text"
-            className="form-control"
-            id="ExampleInputZipCode"
-            name="zipcode"
-            placeholder="Enter Your Zip Code"
-          />
+        <div className={styles.buttonContainer}>
+          <button onClick={addUser} type="submit" className={styles.button}>REGISTER</button>
+          <p className={styles.ptext}>Have an account already?</p>
+          <Link
+            to="/login"
+          >
+            Login Here
+          </Link>
         </div>
-        <button onClick={addUser} type="submit" className="btn btn-primary">Register</button>
-        <button onClick={cancelRegistration} type="button" className="btn btn-secondary">Cancel</button>
       </form>
     </Fragment>
   );
 }
-
 export default Register;
