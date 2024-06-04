@@ -1,9 +1,8 @@
 import { Fragment, useState } from "react";
-import { registerUser } from "../services/usersService"
+import { registerUser } from "../services/usersService";
 import toastr from "toastr";
 import styles from "./Register.module.css";
 import { Link } from "react-router-dom";
-
 
 function Register() {
   const initialUserData = {
@@ -14,7 +13,7 @@ function Register() {
     userName: "",
     password: "",
     passwordConfirm: "",
-    zipcode: ""
+    zipcode: "",
   };
   console.log("this is the initialUserData", initialUserData);
 
@@ -34,7 +33,7 @@ function Register() {
       };
       newUserObject[nameOfField] = newUserValue;
       return newUserObject;
-    })
+    });
   };
 
   function addUser(e) {
@@ -54,7 +53,7 @@ function Register() {
 
   return (
     <Fragment>
-      <div className={`mx-0 px-0 ${styles.headerBackground}`}/>
+      <div className={`mx-0 px-0 ${styles.headerBackground}`} />
       <h1 className={styles.titleName}>Register</h1>
       <form className={styles.form}>
         <div className="mb-3">
@@ -69,7 +68,7 @@ function Register() {
             id="inputFirstName"
             name="firstName"
             placeholder="Enter First Name"
-        />
+          />
         </div>
         <div className="mb-3">
           <label htmlFor="inputLastName" className="form-label">
@@ -83,11 +82,11 @@ function Register() {
             id="inputLastName"
             name="lastName"
             placeholder="Enter Last Name"
-        />
+          />
         </div>
         <div className="mb-3">
           <label htmlFor="inputEmail" className="form-label">
-            Email 
+            Email
           </label>
           <input
             value={userFormData.email}
@@ -97,11 +96,11 @@ function Register() {
             id="inputEmail"
             name="email"
             placeholder="Enter Email Address"
-        />
+          />
         </div>
         <div className="mb-3">
           <label htmlFor="inputPhone" className="form-label">
-            Phone 
+            Phone
           </label>
           <input
             value={userFormData.phone}
@@ -111,7 +110,7 @@ function Register() {
             id="inputPhone"
             name="phone"
             placeholder="Enter Phone Number"
-        />
+          />
         </div>
         <div className="mb-3">
           <label htmlFor="inputZipCode" className="form-label">
@@ -125,7 +124,7 @@ function Register() {
             id="inputZipCode"
             name="zipcode"
             placeholder="Enter Your Zip Code"
-        />
+          />
         </div>
         <div className="mb-3">
           <label htmlFor="inputUserName" className="form-label">
@@ -139,7 +138,7 @@ function Register() {
             id="inputUserName"
             name="userName"
             placeholder="Create a User Name"
-        />
+          />
         </div>
         <div className="mb-3">
           <label htmlFor="inputPassword1" className="form-label">
@@ -153,7 +152,7 @@ function Register() {
             id="inputPassword1"
             name="password"
             placeholder="Create a Password"
-        />
+          />
         </div>
         <div className="mb-3">
           <label htmlFor="inputPassword2" className="form-label">
@@ -167,16 +166,14 @@ function Register() {
             id="passwordConfirm"
             name="passwordConfirm"
             placeholder="Confirm Password"
-        />
+          />
         </div>
         <div className={styles.buttonContainer}>
-          <button onClick={addUser} type="submit" className={styles.button}>REGISTER</button>
+          <button onClick={addUser} type="submit" className={styles.button}>
+            REGISTER
+          </button>
           <p className={styles.ptext}>Have an account already?</p>
-          <Link
-            to="/login"
-          >
-            Login Here
-          </Link>
+          <Link to="/login">Login Here</Link>
         </div>
       </form>
     </Fragment>
