@@ -1,0 +1,35 @@
+.headerBackground {
+  background-image: url(../assets/LAPalmTrees.png);
+  height: 250px;
+  background-size:cover;
+  min-width: 100%;
+}
+
+.titleName {
+  text-align: center;
+}
+
+.form {
+  max-width: 600px; 
+  margin: 0 auto; 
+  margin-bottom: 40px;
+  padding: 40px; 
+  border: 1px solid #ccc; 
+  border-radius: 5px; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+}
+
+.buttonContainer {
+  text-align: center;
+}
+
+.button {
+  color: #E3AA4D;
+  background-color: #062d1d;
+  padding-block: 3px;
+  border-radius: 5px;
+}
+
+.ptext {
+  margin: 0px;
+}

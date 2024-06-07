@@ -1,267 +1,223 @@
-import { Fragment, useRef, useState } from "react";
-
-import mapStyles from "../map/Map.module.css";
+import { useEffect, useRef, useState } from "react";
+import { Container, Row, Col } from "react-bootstrap";
 import styles from "./Home.module.css";
 import "react-datepicker/dist/react-datepicker.css";
-import { format } from "date-fns";
 import DatePicker from "react-datepicker";
 import BaseMap from "../map/BaseMap";
+import results from "../../assets/data/results.js";
+import SearchResults from "./SearchResults.jsx";
 
 function Home() {
-  const [showFilters, setShowFilters] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(null);
   const [showDateDropdown, setShowDateDropdown] = useState(false);
   const [showDayDropdown, setShowDayDropdown] = useState(false);
   const [showProductDropdown, setShowProductDropdown] = useState(false);
-  const [showInfo, setShowInfo] = useState([false, false, false]); // State for each item's additional information
-  const ref = useRef(null);
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const dayOfTheWeek = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
+  const productOptions = [
+    "Fresh Produce",
+    "Dairy",
+    "Meat",
+    "Bread",
+    "Mexican Food",
+    "Frozen Food",
+    "Baby Needs",
+  ];
+  const dateDropdownRef = useRef(null);
+  const dayDropdownRef = useRef(null);
+  const productDropdownRef = useRef(null);
+  const markers = results.map((result) => ({
+    geocode: [result.latitude, result.longitude],
+    popUp: {
+      name: result.name,
+      address: `${result.streetAddress}, ${result.city}`,
+    },
+  }));
+  const [center, setCenter] = useState({ lat: 34.0549, lng: -118.2426 });
 
-  const handleGoButtonClick = () => {
-    setShowFilters(true);
+  const handleClickOutside = (event) => {
+    const clickedOutsideDateDropdown =
+      dateDropdownRef.current &&
+      !dateDropdownRef.current.contains(event.target);
+    const clickedOutsideDayDropdown =
+      dayDropdownRef.current && !dayDropdownRef.current.contains(event.target);
+    const clickedOutsideProductDropdown =
+      productDropdownRef.current &&
+      !productDropdownRef.current.contains(event.target);
+
+    if (
+      clickedOutsideDateDropdown ||
+      clickedOutsideDayDropdown ||
+      clickedOutsideProductDropdown
+    ) {
+      setShowDateDropdown(false);
+      setShowDayDropdown(false);
+      setShowProductDropdown(false);
+    }
   };
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleButtonClick = (dropdownSetter, otherDropdowns) => {
+    dropdownSetter((prev) => !prev);
+    otherDropdowns.forEach((setter) => setter(false));
   };
 
-  const handleDateDropdownClick = () => {
-    setShowDateDropdown(!showDateDropdown);
-    // Hide other dropdowns when this one is clicked
-    setShowDayDropdown(false);
-    setShowProductDropdown(false);
+  const SearchBar = () => {
+    return (
+      <>
+        <input
+          id="searchFilter"
+          type="search"
+          className={styles.searchInputLeft}
+          placeholder=" Search what you need"
+        />
+        <input
+          id="searchLocation"
+          type="search"
+          className={styles.searchInputRight}
+          placeholder=" Please Enter a City or Zip Code"
+        />
+        <i
+          className={`fa-solid fa-magnifying-glass ${styles.searchIcon}`}
+          onClick={() => {}}
+        />
+      </>
+    );
   };
 
-  const handleDayDropdownClick = () => {
-    setShowDayDropdown(!showDayDropdown);
-    // Hide other dropdowns when this one is clicked
-    setShowDateDropdown(false);
-    setShowProductDropdown(false);
-  };
-
-  const handleProductDropdownClick = () => {
-    setShowProductDropdown(!showProductDropdown);
-    // Hide other dropdowns when this one is clicked
-    setShowDateDropdown(false);
-    setShowDayDropdown(false);
-  };
-
-  const handleInfoClick = (index) => {
-    // Toggle the visibility of the additional information for the clicked item
-    const newShowInfo = [...showInfo];
-    newShowInfo[index] = !newShowInfo[index];
-    setShowInfo(newShowInfo);
+  const FilterButtons = () => {
+    return (
+      <>
+        <div className={`me-3 mt-3 ${styles.filterItem}`}>
+          <button
+            className={styles.filterButton}
+            onClick={() =>
+              handleButtonClick(setShowDateDropdown, [
+                setShowDayDropdown,
+                setShowProductDropdown,
+              ])
+            }
+          >
+            Date
+            <i
+              className={`fa-solid fa-chevron-up ms-2 ${
+                showDateDropdown ? styles.filterSelected : ""
+              }`}
+            />
+          </button>
+          {showDateDropdown && (
+            <div ref={dateDropdownRef} className={styles.dropdown}>
+              <DatePicker
+                className={styles.filterOption}
+                selected={selectedDate}
+                onChange={(date) => setSelectedDate(date)}
+              />
+            </div>
+          )}
+        </div>
+        <div className={`me-3 mt-3 ${styles.filterItem}`}>
+          <button
+            className={styles.filterButton}
+            onClick={() =>
+              handleButtonClick(setShowDayDropdown, [
+                setShowDateDropdown,
+                setShowProductDropdown,
+              ])
+            }
+          >
+            Day of the Week
+            <i
+              className={`fa-solid fa-chevron-up ms-2 ${
+                showDayDropdown ? styles.filterSelected : ""
+              }`}
+            />
+          </button>
+          {showDayDropdown && (
+            <div ref={dayDropdownRef} className={styles.dropdown}>
+              {dayOfTheWeek.map((day, index) => (
+                <option key={index} className={styles.filterOption}>
+                  {day}
+                </option>
+              ))}
+            </div>
+          )}
+        </div>
+        <div className={`mt-3 ${styles.filterItem}`}>
+          <button
+            className={styles.filterButton}
+            onClick={() =>
+              handleButtonClick(setShowProductDropdown, [
+                setShowDateDropdown,
+                setShowDayDropdown,
+              ])
+            }
+          >
+            Product Type
+            <i
+              className={`fa-solid fa-chevron-up ms-2 ${
+                showProductDropdown ? styles.filterSelected : ""
+              }`}
+            />
+          </button>
+          {showProductDropdown && (
+            <div ref={productDropdownRef} className={styles.dropdown}>
+              {productOptions.map((product, index) => (
+                <option key={index} className={styles.filterOption}>
+                  {product}
+                </option>
+              ))}
+            </div>
+          )}
+        </div>
+      </>
+    );
   };
 
   return (
-    <Fragment>
-      <div className={styles.home}>
-        <div className={styles.titleContainer}>
-          <h2 className={styles.title}>LA Data Project</h2>
-        </div>
-        <div className={styles.searchContainer}>
+    <>
+      <Container className={styles.home}>
+        <Row className={`mx-2 my-4 ${styles.searchContainer}`}>
           <div className={styles.searchInputContainer}>
-            <input
-              type="search"
-              className={styles.searchInput}
-              placeholder="      Please Enter a City or Zip Code"
+            <SearchBar />
+          </div>
+          <div className={`${styles.filterContainer}`}>
+            <FilterButtons />
+          </div>
+        </Row>
+        <Row>
+          <Col>
+            <SearchResults
+              results={results}
+              dayOfTheWeek={dayOfTheWeek}
+              setCenter={setCenter}
+              center={center}
             />
-            <button className={styles.goButton} onClick={handleGoButtonClick}>
-              Go!
-            </button>
-          </div>
-          <div className={styles.searchHint}>
-            <p>FIND A FOOD BANK NEAR YOU!</p>
-          </div>
-        </div>
-
-        {showFilters && (
-          <div className={styles.filterContainer}>
-            <div className={styles.filterItem}>
-              <button
-                className={styles.filterButton}
-                onClick={handleDateDropdownClick}
-              >
-                Date Posted
-              </button>
-              {showDateDropdown && (
-                <div className={styles.filterOptions}>
-                  <DatePicker
-                    selected={selectedDate}
-                    onChange={handleDateChange}
-                    dateFormat={(date) => format(date, "MM/dd/yyyy")}
-                  />
-                </div>
-              )}
-            </div>
-            <div className={styles.filterItem}>
-              <button
-                className={styles.filterButton}
-                onClick={handleDayDropdownClick}
-              >
-                Day of the Week{" "}
-              </button>
-              {showDayDropdown && (
-                <div className={styles.filterOptions}>
-                  <div>
-                    <label>Day of The Week</label>
-                    <select>
-                      <option>Monday</option>
-                      <option>Tuesday</option>
-                      <option>Wednesday</option>
-                      <option>Thursday</option>
-                      <option>Friday</option>
-                      <option>Saturday</option>
-                      <option>Sunday</option>
-                    </select>
-                  </div>
-                </div>
-              )}
-            </div>
-            <div className={styles.filterItem}>
-              <button
-                className={styles.filterButton}
-                onClick={handleProductDropdownClick}
-              >
-                Product Type
-              </button>
-              {showProductDropdown && (
-                <div className={styles.filterOptions}>
-                  <div>
-                    <label>Product Types</label>
-                    <select>
-                      <option>Fresh Produce</option>
-                      <option>Dairy</option>
-                      <option>Meat</option>
-                      <option>Bread</option>
-                      <option>Mexican Food</option>
-                      <option>Frozen Food</option>
-                      <option>Baby Needs</option>
-                    </select>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        )}
-
-        <div className={styles.bodyContainer}>
-          <div className={styles.searchResultsContainer}>
-            <h4 className={styles.searchResultsTitle}>Search Results</h4>
-            <div className={styles.searchResultItem}>
-              <div className={styles.card}>
-                <div className={styles.cardContent}>
-                  <h4>
-                    Eggs
-                    <p> 500 dozen - Culver City</p>
-                    <div ref={ref}>
-                      <button
-                        className={styles.roundedButton}
-                        onClick={() => handleInfoClick(0)}
-                      >
-                        More Info
-                      </button>
-                    </div>
-                  </h4>
-                  {showInfo[0] && (
-                    <div className={styles.additionalInfo}>
-                      <div className={styles.popDetail}>
-                        Address: 3333 HTML Rd
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-            <div className={styles.searchResultItem}>
-              <div className={styles.card}>
-                <div className={styles.cardContent}>
-                  <h4>
-                    Oranges
-                    <p> 500 count - Ventura</p>
-                    <div ref={ref}>
-                      <button
-                        className={styles.roundedButton}
-                        onClick={() => handleInfoClick(1)}
-                      >
-                        More Info
-                      </button>
-                    </div>
-                  </h4>
-                  {showInfo[1] && (
-                    <div className={styles.additionalInfo}>
-                      <div className={styles.popDetail}>
-                        Address: 3333 HTML Rd
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-            <div className={styles.searchResultItem}>
-              <div className={styles.card}>
-                <div className={styles.cardContent}>
-                  <h4>
-                    Diapers
-                    <p> 1,000 boxes - West Hollywood</p>
-                    <div ref={ref}>
-                      <button
-                        className={styles.roundedButton}
-                        onClick={() => handleInfoClick(2)}
-                      >
-                        More Info
-                      </button>
-                    </div>
-                  </h4>
-                  {showInfo[2] && (
-                    <div className={styles.additionalInfo}>
-                      <div className={styles.popDetail}>
-                        Address: 3333 HTML Rd
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-            <div className={styles.searchResultItem}>
-              <div className={styles.card}>
-                <div className={styles.cardContent}>
-                  <h4>
-                    Whole Chickens
-                    <p> 200 count - South LA</p>
-                    <div ref={ref}>
-                      <button
-                        className={styles.roundedButton}
-                        onClick={() => handleInfoClick(3)}
-                      >
-                        More Info
-                      </button>
-                    </div>
-                  </h4>
-                  {showInfo[3] && (
-                    <div className={styles.additionalInfo}>
-                      <div className={styles.popDetail}>
-                        Address: 3333 HTML Rd
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className={mapStyles.leafletContainer}>
-            <div className={styles.mapInfo}>
-              <h4 className={styles.mapTitle}>Map of Los Angeles, CA</h4>
-            </div>
-            <div>{<BaseMap />}</div>
-          </div>
-        </div>
-        <div className={styles.heroContainer}>
-          <div className={styles.heroContent}>
+          </Col>
+          <Col className={`${styles.mapContainer}`}>
+            <h4 className={styles.mapTitle}>Map of Los Angeles, CA</h4>
+            <BaseMap markers={markers} center={center} />
+          </Col>
+        </Row>
+        <Row className={`mt-3 ${styles.heroContainer}`}>
+          <div>
             <p> Hero Section: Welcome to the Los Angeles Data Project...</p>
           </div>
-        </div>
-      </div>
-    </Fragment>
+        </Row>
+      </Container>
+    </>
   );
 }
 

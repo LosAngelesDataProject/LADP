@@ -1,43 +1,38 @@
-import { React, useState, useRef } from "react";
-
+import { useEffect, useRef } from "react";
 import styles from "./Map.module.css";
-
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import osmProviders from "./osm-providers";
 import "leaflet/dist/leaflet.css";
+import PropTypes from 'prop-types';
 
-const BaseMap = () => {
-  const [center, setCenter] = useState({ lat: 34.0549, lng: -118.2426 });
-  const zoomLevel = 10.5; //base zoom level
+
+const BaseMap = (props) => {
+  const { center, markers } = props;
+  const baseZoom = 10.5; //base zoom level
   const mapRef = useRef();
-
-  const markers = [
-    {
-      geocode: [33.779225, -118.146143],
-      popUp: "3935 E. 10th St.",
-    },
-    {
-      geocode: [33.938011, -118.292446],
-      popUp: "1010-B W. 108th St.",
-    },
-    {
-      geocode: [34.099089, -117.900356],
-      popUp: "17880 E. Covina Blvd.",
-    },
-  ];
+  useEffect(() => {
+    if (mapRef.current) {
+      mapRef.current.setView(center, 15); // Adjust the zoom level as needed
+    }
+  }, [center]);
 
   return (
     <>
       <div className={styles.leafletContainer}>
-        <MapContainer center={center} zoom={zoomLevel} ref={mapRef}>
+        <MapContainer 
+          center={center} 
+          zoom={baseZoom} 
+          ref={mapRef}
+        >
           <TileLayer
             url={osmProviders.maptiler.url}
             attribution={osmProviders.maptiler.attribution}
           />
-          {markers.map((markers) => (
-            <Marker position={markers.geocode}>
+          {markers.map((marker, index) => (
+            <Marker position={marker.geocode} key={`marker-${index}`}>
               <Popup>
-                <p>{markers.popUp}</p>
+                <p>{marker.popUp.name}</p>
+                <p>{marker.popUp.address}</p>
               </Popup>
             </Marker>
           ))}
@@ -46,6 +41,22 @@ const BaseMap = () => {
       </div>
     </>
   );
+};
+
+BaseMap.propTypes = {
+  markers: PropTypes.arrayOf(
+    PropTypes.shape({
+      geocode: PropTypes.arrayOf(PropTypes.number).isRequired,
+      popUp: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        address: PropTypes.string.isRequired,
+      }).isRequired,
+    })
+  ).isRequired,
+  center: PropTypes.shape({
+    lat: PropTypes.number.isRequired,
+    lng: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
 export default BaseMap;
