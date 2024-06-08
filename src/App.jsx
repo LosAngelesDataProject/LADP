@@ -7,7 +7,7 @@ import Footer from "./components/footer/HomeFooter";
 import Home from "./components/home/Home";
 import Login from "./components/login/Login";
 import Navigate from "./components/Navigate";
-import Register from "./components/Register";
+import Register from "./components/register/Register";
 import NotFound from "./components/NotFound";
 import ContactUs from "./components/contact/ContactUs";
 import NavBar from "./components/navBar/NavBar";
