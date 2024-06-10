@@ -1,7 +1,7 @@
 import { Fragment, useState } from "react";
-import { registerUser } from "../services/usersService";
+import { registerUser } from "../../services/usersService";
 import toastr from "toastr";
-import styles from "./Register.module.css";
+import styles from "../register/Register.module.css";
 import { Link } from "react-router-dom";
 
 function Register() {
