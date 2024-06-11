@@ -1,18 +1,22 @@
-@import url("https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css");
+.headerBackground {
+  background-image: url(../assets/LAPalmTrees.png);
+  height: 250px;
+  background-size: cover;
+  min-width: 100%;
+}
 
-.h1 {
+.titleName {
   text-align: center;
-  padding: 45px;
 }
 
 .form {
-  max-width: 600px; 
-  margin: 0 auto; 
+  max-width: 600px;
+  margin: 0 auto;
   margin-bottom: 40px;
-  padding: 40px; 
-  border: 1px solid #ccc; 
-  border-radius: 5px; 
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+  padding: 40px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .buttonContainer {
@@ -20,7 +24,7 @@
 }
 
 .button {
-  color: #E3AA4D;
+  color: #e3aa4d;
   background-color: #062d1d;
   padding-block: 3px;
   border-radius: 5px;
@@ -28,62 +32,4 @@
 
 .ptext {
   margin: 0px;
-}
-
-.authCodeContainer {
-  padding: 16px;
-}
-
-.authcCodeInput {
-  padding: 16px;
-  width: 20ch;
-  /* padding: 8px; */
-  border-radius: 8px;
-  box-align: center;
-  font-size: 40px;
-  text-decoration: black;
-  text-align: center;
-  margin-right: 12px;
-  border: 1px solid black;
-  text-transform: uppercase;
-  /* background-color: white; */
-}
-
-.wizard {
-  color:#E3AA4D
-}
-
-.errorMessage {
-  color:red;
-  text-align: center;
-  font-size: 0.875em;
-  margin-top: 0.25em;
-}
-
-.radioContainer {
-  display: flex; 
-  justify-content: center; 
-  padding: 45px;
-}
-
-.radio {
-  display: flex;
-  align-items: center;
-  padding-left: 35px;
-  margin-right: 120px; 
-  margin-left: 120px;
-  margin-bottom: 20px;
-}
-
-.radio input[type="radio"] {
-  width: 40px; 
-  height: 40px;
-  border-radius: 50%; 
-  border: 1px solid #ccc;
-  margin-right: 8px; 
-}
-
-.radio input[type="radio"]:checked {
-  background-color: #062d1d; 
-  border-color: #062d1d; 
 }

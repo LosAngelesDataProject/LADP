@@ -1,0 +1,53 @@
+:root {
+  --main-color: #062d1d;
+  --secondary-color: #e3aa4d;
+  --support-color: #ffffff;
+}
+
+.formBody {
+  background-color: #062d1d !important;
+  width: 50% !important;
+  margin-left: 100px;
+  margin-right: 50px;
+  border-radius: 50px !important;
+  margin-bottom: 100px;
+}
+
+.formHeader {
+  margin-left: 450px;
+  margin-bottom: 10px;
+  font-family: "Merriweather", serif;
+}
+
+.headerRow {
+  text-align: center;
+  font-size: 250%;
+  font-weight: 500;
+  font-family: "Merriweather", serif;
+  margin-top: 1%;
+}
+
+.infoField {
+  width: 51% !important;
+  margin-bottom: 2% !important;
+}
+
+.infoText {
+  margin-bottom: 20px;
+}
+.messageForm {
+  font-family: "Merriweather", serif;
+  font-size: large;
+  font-weight: 300;
+  color: var(--support-color);
+  width: 100%;
+}
+
+.tableText {
+  font-size: x-small;
+  margin-bottom: auto;
+}
+
+.volunteer {
+  image-rendering: optimizeSpeed;
+}

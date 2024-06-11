@@ -1,33 +1,53 @@
-import { Fragment } from "react";
-import { Button, Form, Card } from "react-bootstrap";
+import { Form, Card } from "react-bootstrap";
+import styles from "./Contact.module.css";
 
 function ContactForm() {
   return (
-    <Fragment>
-      <Card style={{ width: "18rem" }}>
-        <Card.Body>
-          <Form>
-            <Form.Group className="mb-3" controlId="contactForm.NameInput">
-              <Form.Label>Name</Form.Label>
-              <Form.Control type="name" placeholder="your full name here" />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="contactForm.PhoneInput">
-              <Form.Label>Phone</Form.Label>
-              <Form.Control type="phone" placeholder="555-555-5555" />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="contactForm.EmailInput">
-              <Form.Label>Email</Form.Label>
-              <Form.Control type="email" placeholder="name@example.com" />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="ContactForm.Message">
-              <Form.Label>Message</Form.Label>
-              <Form.Control as="textarea" rows={3} />
-            </Form.Group>
-            <Button variant="primary">SEND MESSAGE</Button>
-          </Form>
-        </Card.Body>
+    <>
+      <Card className={styles.formBody}>
+        <Form className={styles.messageForm}>
+          <Form.Group controlId="contactForm.NameInput">
+            <Form.Label>Name</Form.Label>
+            <Form.Control
+              className={styles.infoField}
+              type="text-input"
+              placeholder="Full name"
+            />
+          </Form.Group>
+
+          <Form.Group controlId="contactForm.PhoneInput">
+            <Form.Label>Phone Number</Form.Label>
+            <Form.Control
+              className={styles.infoField}
+              type="text-input"
+              placeholder="555-867-5309"
+            />
+          </Form.Group>
+
+          <Form.Group controlId="contactForm.EmailInput">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              className={styles.infoField}
+              type="text-input"
+              placeholder="name@example.com"
+            />
+          </Form.Group>
+
+          <Form.Group controlId="ContactForm.Message">
+            <Form.Label>Message</Form.Label>
+            <Form.Control as="textarea" rows={8} />
+          </Form.Group>
+
+          <button
+            className="fs-4"
+            alt="message form submit button"
+            type="submit"
+          >
+            SEND MESSAGE
+          </button>
+        </Form>
       </Card>
-    </Fragment>
+    </>
   );
 }
 

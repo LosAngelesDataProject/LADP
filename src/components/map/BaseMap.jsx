@@ -3,8 +3,7 @@ import styles from "./Map.module.css";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import osmProviders from "./osm-providers";
 import "leaflet/dist/leaflet.css";
-import PropTypes from 'prop-types';
-
+import PropTypes from "prop-types";
 
 const BaseMap = (props) => {
   const { center, markers } = props;
@@ -19,11 +18,7 @@ const BaseMap = (props) => {
   return (
     <>
       <div className={styles.leafletContainer}>
-        <MapContainer 
-          center={center} 
-          zoom={baseZoom} 
-          ref={mapRef}
-        >
+        <MapContainer center={center} zoom={baseZoom} ref={mapRef}>
           <TileLayer
             url={osmProviders.maptiler.url}
             attribution={osmProviders.maptiler.attribution}
