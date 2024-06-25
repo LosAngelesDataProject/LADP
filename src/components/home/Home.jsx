@@ -6,6 +6,7 @@ import DatePicker from "react-datepicker";
 import BaseMap from "../map/BaseMap";
 import results from "../../assets/data/results.js";
 import SearchResults from "./SearchResults.jsx";
+import HomeSlide from "./HomeSlide.jsx";
 
 function Home() {
   const [showDateDropdown, setShowDateDropdown] = useState(false);
@@ -189,6 +190,9 @@ function Home() {
   return (
     <>
       <Container className={styles.home}>
+        <div className="Home-Carousel">
+          <HomeSlide className="Carousel-Hero" />
+        </div>
         <Row className={`mx-2 my-4 ${styles.searchContainer}`}>
           <div className={styles.searchInputContainer}>
             <SearchBar />

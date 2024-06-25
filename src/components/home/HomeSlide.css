@@ -1,0 +1,10 @@
+#carouselHero .home-slider-item img{
+    object-fit: cover;
+    object-position: center;
+    height: 45vh;
+}
+
+.homeSlider-margin{
+    margin-top:20px;
+    margin-left: 7%;
+}
