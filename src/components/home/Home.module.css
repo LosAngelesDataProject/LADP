@@ -5,7 +5,7 @@
   --secondary-color: #e3aa4d;
   --support-color: #ffffff;
 }
- 
+
 .home {
   min-width: 75vw;
   margin: 0;
@@ -13,7 +13,7 @@
   min-height: 100vh;
 }
 
-/*---------------Search Area----------------------------------------*/  
+/*---------------Search Area----------------------------------------*/
 
 .searchContainer {
   justify-content: center;
@@ -26,7 +26,8 @@
   display: flex;
 }
 
-.searchInputLeft, .searchInputRight {
+.searchInputLeft,
+.searchInputRight {
   border-color: rgba(235, 235, 235, 1);
   display: flex;
   overflow: hidden;
@@ -36,6 +37,7 @@
   flex: 1;
   background-color: white;
   min-height: 48px;
+  color: black;
 }
 
 .searchInputLeft {
@@ -98,14 +100,14 @@
   position: absolute;
   background-color: #f1f1f1;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
   border-radius: 10px;
 }
 
 .filterOption {
-   background-color: var(--support-color);
-  border: none; 
+  background-color: var(--support-color);
+  border: none;
   color: black;
   padding: 12px 16px;
   text-decoration: none;
@@ -123,11 +125,11 @@
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   overflow: hidden;
-  transition: height .25s ease-out;
+  transition: height 0.25s ease-out;
   background-color: white;
 }
 
-.card :hover{
+.card :hover {
   cursor: pointer;
 }
 
@@ -137,11 +139,11 @@
   margin: 5px;
   padding: 5px;
   border-radius: 10px;
-  box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
 }
 
 .resultInfo {
-  font-weight: lighter; 
+  font-weight: lighter;
   font-size: 16px;
 }
 
@@ -153,19 +155,19 @@
   bottom: 1rem;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  height: calc(100vh  - 2rem);
+  height: calc(100vh - 2rem);
 }
 
 .mapTitle {
   text-align: center;
-  color: #0c0c0c; 
+  color: #0c0c0c;
   font-weight: bold;
 }
 
 /*---------------Hero----------------------------------------*/
 
 .heroContainer {
-  border: 1px solid #000; 
+  border: 1px solid #000;
   text-align: center;
   font-size: 24px;
   background-color: #f0f0f0;
@@ -175,22 +177,21 @@
 
 @media (max-width: 360px) {
   .filterItem {
-   max-width: 100px;
+    max-width: 100px;
   }
-  
+
   .filterButton {
-    font-size: .5em;
+    font-size: 0.5em;
     font-weight: 500;
   }
 }
 
 @media (max-width: 425px) and (min-width: 360px) {
   .filterItem {
-   max-width: 100px;
-
+    max-width: 100px;
   }
   .filterButton {
-    font-size: .70em;
+    font-size: 0.7em;
     font-weight: 500;
     min-height: 50px;
     align-items: center;
@@ -199,7 +200,7 @@
   .card {
     transition: height 0.15s ease-out;
   }
-  
+
   .mapContainer {
     display: none;
   }
