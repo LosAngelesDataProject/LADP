@@ -1,12 +1,11 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FormWizard from "react-form-wizard-component";
-import 'react-form-wizard-component/dist/style.css';
+import "react-form-wizard-component/dist/style.css";
 import UserRegisterForm from "./UserRegisterForm";
 import UserAdditionalInfo from "./UserAdditionalInfo";
 import toastr from "toastr";
-import { registerUser } from "../../services/usersService"
-
+import { registerUser } from "../../services/usersService";
 
 function RegisterWizard() {
   const [userInfo, setUserInfo] = useState({
@@ -15,24 +14,24 @@ function RegisterWizard() {
     email: "",
     phone: "",
     password: "",
-    passwordConfirm: ""
+    passwordConfirm: "",
   });
   const navigate = useNavigate();
 
   const onRegisterSubmit = (userInfo) => {
-    registerUser(userInfo).then(onRegisterSuccess).catch(onRegisterError)
-  }
+    registerUser(userInfo).then(onRegisterSuccess).catch(onRegisterError);
+  };
 
   const onRegisterSuccess = (response) => {
     console.log("Registration success", response);
     toastr.success("Congratulations, You have successfully created an account");
     navigate("/login");
-  }
+  };
 
   const onRegisterError = (error) => {
     console.log("Registration error", error);
     toastr.error("Error Registration was Unsuccessful");
-  }
+  };
 
   const tabChanged = ({ prevIndex, nextIndex }) => {
     console.log("prevIndex", prevIndex);
@@ -49,18 +48,23 @@ function RegisterWizard() {
       >
         <FormWizard.TabContent title="Personal Details" icon="ti-user">
           <h3>Personal Details</h3>
-          <UserRegisterForm 
+          <UserRegisterForm
             userInfo={userInfo}
             setUserInfo={setUserInfo}
-            onRegisterSubmit={onRegisterSubmit}/>
+            onRegisterSubmit={onRegisterSubmit}
+          />
         </FormWizard.TabContent>
 
         <FormWizard.TabContent title="Additional Info" icon="ti-settings">
           <h3>Additional Info</h3>
-          <UserAdditionalInfo/>
+          <UserAdditionalInfo />
         </FormWizard.TabContent>
 
-        <FormWizard.TabContent title="Finished" icon="ti-check" onFinish={onRegisterSubmit} >
+        <FormWizard.TabContent
+          title="Finished"
+          icon="ti-check"
+          onFinish={onRegisterSubmit}
+        >
           <h4>Click Finish to Create Account.</h4>
         </FormWizard.TabContent>
       </FormWizard>
