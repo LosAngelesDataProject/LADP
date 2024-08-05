@@ -13,7 +13,7 @@ import ContactUs from "./components/contact/ContactUs";
 import NavBar from "./components/navBar/NavBar";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleLogin = () => {
     setIsLoggedIn(!isLoggedIn);

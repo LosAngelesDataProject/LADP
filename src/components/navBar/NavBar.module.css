@@ -19,6 +19,13 @@
   transition: 0.2s;
 }
 
+.navLink:focus {
+  color: var(--support-color) !important;
+  font-size: 1.05rem;
+  /* transition: 0.2s; */
+  text-decoration: wavy underline #e3aa4d;
+}
+
 .endText {
   font-family: "Merriweather", serif;
   color: var(--secondary-color) !important;
@@ -28,4 +35,11 @@
   color: var(--support-color) !important;
   font-size: 1.05rem;
   transition: 0.2s;
+}
+
+.endText:focus {
+  color: var(--secondary-color) !important;
+  font-size: 1.05rem;
+  transition: 0.2s;
+  text-decoration: wavy underline white;
 }
