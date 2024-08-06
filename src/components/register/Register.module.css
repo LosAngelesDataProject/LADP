@@ -1,12 +1,13 @@
 .headerBackground {
   background-image: url(../assets/LAPalmTrees.png);
-  height: 250px;
+  height: 100px;
   background-size: cover;
   min-width: 100%;
 }
 
 .titleName {
   text-align: center;
+  margin-bottom: 30px;
 }
 
 .form {
