@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import PropTypes from "prop-types";
 import logo from "../../assets/images/logo.png";
@@ -6,18 +6,14 @@ import styles from "./NavBar.module.css";
 
 const NavBar = (props) => {
   const { isLoggedIn, onLogout } = props;
-
-  const location = useLocation(); // Get the current location
-  const isActive = (path) => location.pathname === path ? styles.active : '';
-
   return (
     <Navbar className={styles.background} expand="lg">
       <Container>
         <Nav className="me-auto col-md-5 justify-content-start justify-content-around">
-          <Nav.Link className={`${styles.navLink} ${isActive("")}`} as={Link} to="/">
+          <Nav.Link className={styles.endText} as={Link} to="/">
             Home
           </Nav.Link>
-          <Nav.Link className={`${styles.navLink} ${isActive("/calendar")}`} as={Link} to="/calendar">
+          <Nav.Link className={styles.navLink} as={Link} to="/calendar">
             Calendar
           </Nav.Link>
           <Nav.Link className={styles.navLink} as={Link} to="/about-us">

@@ -37,8 +37,9 @@
   transition: 0.2s;
 }
 
-.active {
-  font-size: 1.05rem !important;
-  transition: 0.2s !important;
-  text-decoration: wavy underline white !important;
+.endText:focus {
+  color: var(--secondary-color) !important;
+  font-size: 1.05rem;
+  transition: 0.2s;
+  text-decoration: wavy underline white;
 }
