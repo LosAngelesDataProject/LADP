@@ -42,22 +42,18 @@ function Home() {
     },
   }));
   const [center, setCenter] = useState({ lat: 34.0549, lng: -118.2426 });
+  const [current, setCurrent] = useState({ lat: 34.0549, lng: -118.2426 });
+  const [zoom, setZoom] = useState(15);
 
   const handleClickOutside = (event) => {
     const clickedOutsideDateDropdown =
-      dateDropdownRef.current &&
-      !dateDropdownRef.current.contains(event.target);
+      dateDropdownRef.current && !dateDropdownRef.current.contains(event.target);
     const clickedOutsideDayDropdown =
       dayDropdownRef.current && !dayDropdownRef.current.contains(event.target);
     const clickedOutsideProductDropdown =
-      productDropdownRef.current &&
-      !productDropdownRef.current.contains(event.target);
+      productDropdownRef.current && !productDropdownRef.current.contains(event.target);
 
-    if (
-      clickedOutsideDateDropdown ||
-      clickedOutsideDayDropdown ||
-      clickedOutsideProductDropdown
-    ) {
+    if (clickedOutsideDateDropdown || clickedOutsideDayDropdown || clickedOutsideProductDropdown) {
       setShowDateDropdown(false);
       setShowDayDropdown(false);
       setShowProductDropdown(false);
@@ -69,6 +65,31 @@ function Home() {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
+  }, []);
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      if (position.coords.latitude) {
+        setZoom(16);
+        setCurrent((prevState) => {
+          const newCurrent = { ...prevState };
+
+          newCurrent.lat = position.coords.latitude;
+          newCurrent.lng = position.coords.longitude;
+
+          return { ...newCurrent };
+        });
+
+        setCenter((prevState) => {
+          const newCurrent = { ...prevState };
+
+          newCurrent.lat = position.coords.latitude;
+          newCurrent.lng = position.coords.longitude;
+
+          return { ...newCurrent };
+        });
+      }
+    });
   }, []);
 
   const handleButtonClick = (dropdownSetter, otherDropdowns) => {
@@ -91,10 +112,7 @@ function Home() {
           className={styles.searchInputRight}
           placeholder=" Please Enter a City or Zip Code"
         />
-        <i
-          className={`fa-solid fa-magnifying-glass ${styles.searchIcon}`}
-          onClick={() => {}}
-        />
+        <i className={`fa-solid fa-magnifying-glass ${styles.searchIcon}`} onClick={() => {}} />
       </>
     );
   };
@@ -106,10 +124,7 @@ function Home() {
           <button
             className={styles.filterButton}
             onClick={() =>
-              handleButtonClick(setShowDateDropdown, [
-                setShowDayDropdown,
-                setShowProductDropdown,
-              ])
+              handleButtonClick(setShowDateDropdown, [setShowDayDropdown, setShowProductDropdown])
             }
           >
             Date
@@ -133,10 +148,7 @@ function Home() {
           <button
             className={styles.filterButton}
             onClick={() =>
-              handleButtonClick(setShowDayDropdown, [
-                setShowDateDropdown,
-                setShowProductDropdown,
-              ])
+              handleButtonClick(setShowDayDropdown, [setShowDateDropdown, setShowProductDropdown])
             }
           >
             Day of the Week
@@ -160,10 +172,7 @@ function Home() {
           <button
             className={styles.filterButton}
             onClick={() =>
-              handleButtonClick(setShowProductDropdown, [
-                setShowDateDropdown,
-                setShowDayDropdown,
-              ])
+              handleButtonClick(setShowProductDropdown, [setShowDateDropdown, setShowDayDropdown])
             }
           >
             Product Type
@@ -212,7 +221,7 @@ function Home() {
           </Col>
           <Col className={`${styles.mapContainer}`}>
             <h4 className={styles.mapTitle}>Map of Los Angeles, CA</h4>
-            <BaseMap markers={markers} center={center} />
+            <BaseMap markers={markers} center={center} current={current} zoom={zoom} />
           </Col>
         </Row>
         <Row className={`mt-3 ${styles.heroContainer}`}>
