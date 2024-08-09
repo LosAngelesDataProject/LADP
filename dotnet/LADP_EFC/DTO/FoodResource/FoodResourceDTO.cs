@@ -1,8 +1,8 @@
-﻿using LADP__EFC.DTO.BusinessHours;
-using LADP__EFC.DTO.Tag;
-using LADP__EFC.Models;
+﻿using LADP_EFC.DTO.BusinessHours;
+using LADP_EFC.DTO.Tag;
+using LADP_EFC.Models;
 
-namespace LADP__EFC.DTO.FoodResource
+namespace LADP_EFC.DTO.FoodResource
 {
     public class FoodResourceDTO
     {

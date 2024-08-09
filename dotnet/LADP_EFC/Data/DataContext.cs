@@ -1,8 +1,8 @@
-﻿using LADP__EFC.Models;
+﻿using LADP_EFC.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 
-namespace LADP__EFC.Data
+namespace LADP_EFC.Data
 {
     public partial class DataContext : DbContext
     {

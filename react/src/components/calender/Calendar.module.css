@@ -9,7 +9,7 @@
 }
 
 .headerBackground {
-  background-image: url(../assets/headerImages/CalendarHeader.png);
+  background-image: url(../../assets/headerImages/CalendarHeader.png);
   height: 250px;
   background-size: cover;
   min-width: 100%;

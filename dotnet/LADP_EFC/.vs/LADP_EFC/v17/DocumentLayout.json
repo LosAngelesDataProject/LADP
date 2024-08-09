@@ -5,6 +5,14 @@
     {
       "AbsoluteMoniker": "D:0:0:{CC54DF4F-5459-4685-A9AA-AAA45CCEB9A3}|LADP_EFC.csproj|c:\\sf.code\\ladp\\dotnet\\ladp_efc\\repository\\repositoryfoodresource.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CC54DF4F-5459-4685-A9AA-AAA45CCEB9A3}|LADP_EFC.csproj|solutionrelative:repository\\repositoryfoodresource.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC54DF4F-5459-4685-A9AA-AAA45CCEB9A3}|LADP_EFC.csproj|c:\\sf.code\\ladp\\dotnet\\ladp_efc\\repository\\interfaces\\irepositoryfoodresource.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC54DF4F-5459-4685-A9AA-AAA45CCEB9A3}|LADP_EFC.csproj|solutionrelative:repository\\interfaces\\irepositoryfoodresource.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC54DF4F-5459-4685-A9AA-AAA45CCEB9A3}|LADP_EFC.csproj|c:\\sf.code\\ladp\\dotnet\\ladp_efc\\controllers\\foodresourcescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC54DF4F-5459-4685-A9AA-AAA45CCEB9A3}|LADP_EFC.csproj|solutionrelative:controllers\\foodresourcescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,11 +22,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 152,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FoodResourcesController.cs",
+              "DocumentMoniker": "C:\\SF.Code\\LADP\\dotnet\\LADP_EFC\\Controllers\\FoodResourcesController.cs",
+              "RelativeDocumentMoniker": "Controllers\\FoodResourcesController.cs",
+              "ToolTip": "C:\\SF.Code\\LADP\\dotnet\\LADP_EFC\\Controllers\\FoodResourcesController.cs",
+              "RelativeToolTip": "Controllers\\FoodResourcesController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-09T17:30:27.498Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IRepositoryFoodResource.cs",
+              "DocumentMoniker": "C:\\SF.Code\\LADP\\dotnet\\LADP_EFC\\Repository\\Interfaces\\IRepositoryFoodResource.cs",
+              "RelativeDocumentMoniker": "Repository\\Interfaces\\IRepositoryFoodResource.cs",
+              "ToolTip": "C:\\SF.Code\\LADP\\dotnet\\LADP_EFC\\Repository\\Interfaces\\IRepositoryFoodResource.cs",
+              "RelativeToolTip": "Repository\\Interfaces\\IRepositoryFoodResource.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-09T17:13:34.999Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -28,9 +62,9 @@
               "RelativeDocumentMoniker": "Repository\\RepositoryFoodResource.cs",
               "ToolTip": "C:\\SF.Code\\LADP\\dotnet\\LADP_EFC\\Repository\\RepositoryFoodResource.cs",
               "RelativeToolTip": "Repository\\RepositoryFoodResource.cs",
-              "ViewState": "AQIAAK0AAAAAAAAAAAAswMYAAAA1AAAA",
+              "ViewState": "AQIAABkAAAAAAAAAAAAAwGgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-07T19:01:43.476Z",
+              "WhenOpened": "2024-08-09T17:16:16.101Z",
               "EditorCaption": ""
             }
           ]

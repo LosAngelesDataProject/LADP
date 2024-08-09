@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using LADP__EFC.Models;
-using LADP__EFC.Repository.Interfaces;
+using LADP_EFC.Models;
+using LADP_EFC.Repository.Interfaces;
 
 namespace LADP__EFC.Controllers
 {

@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace LADP__EFC.Migrations
+namespace LADP_EFC.Migrations
 {
     /// <inheritdoc />
     public partial class AddFoodResource : Migration

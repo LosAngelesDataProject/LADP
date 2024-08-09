@@ -1,19 +1,13 @@
-﻿using Azure;
-using LADP__EFC.Data;
-using LADP__EFC.DTO.Tag;
-using LADP__EFC.DTO.Day;
-using LADP__EFC.DTO.FoodResource;
-using LADP__EFC.DTO.BusinessHours;
-using LADP__EFC.Models;
-using LADP__EFC.Repository.Interfaces;
+﻿using LADP_EFC.Data;
+using LADP_EFC.DTO.Tag;
+using LADP_EFC.DTO.Day;
+using LADP_EFC.DTO.FoodResource;
+using LADP_EFC.DTO.BusinessHours;
+using LADP_EFC.Models;
+using LADP_EFC.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
-using Mono.TextTemplating;
-using System.Diagnostics.Metrics;
-using System.Reflection.Emit;
-using Microsoft.CodeAnalysis.Elfie.Model.Tree;
 
-namespace LADP__EFC.Repository
+namespace LADP_EFC.Repository
 {
     public class RepositoryFoodResource : IRepositoryFoodResource
     {
@@ -38,16 +32,9 @@ namespace LADP__EFC.Repository
             foreach (var bh in item.BusinessHours)
             {
                 _context.BusinessHours.Remove(bh);
-                //_context.SaveChanges();
             }
 
             // Enusre ResourceTags are properly deleted and not tags
-            //foreach (var tag in item.Tags)
-            //{
-            //    var resourceTag = _context.ResourceTags.FirstOrDefault(rt => rt.TagId == tag.Id && rt.FoodResourceId == item.Id);
-            //    _context.ResourceTags.Remove(resourceTag);
-            //    //_context.SaveChanges();
-            //}
             var resourceTags = _context.ResourceTags.Where(rt => rt.FoodResourceId == item.Id).ToList();
             foreach (var resourceTag in resourceTags)
             {
@@ -57,7 +44,6 @@ namespace LADP__EFC.Repository
             _context.FoodResources.Remove(item);
             _context.SaveChanges();
             return item;
-
         }
 
         public FoodResourceDTO GetById(int id)
@@ -83,8 +69,6 @@ namespace LADP__EFC.Repository
             return item;
         }
 
-        // why not use async
-        // public async Task<in>t PostFoodResource(InsertUpdateItem foodResource)
         public FoodResourceDTO Create(AddFoodResourceDTO insertItem)
         {
             // Create new instance of your entity without setting Id
@@ -118,10 +102,11 @@ namespace LADP__EFC.Repository
                     _context.Tags.Add(tag);
                     _context.SaveChanges(); // Save to get the tag ID
                 }
+
+                newFoodResource.Tags.Add(tag);
                 // Handle the join table ResourceTags
                 var resourceTag = new ResourceTags { TagId = tag.Id, FoodResourceId = newFoodResource.Id };
                 _context.ResourceTags.Add(resourceTag);
-                newFoodResource.Tags.Add(tag);
             }
 
             // Ensure Days are properly handled for BusinessHours
@@ -143,88 +128,89 @@ namespace LADP__EFC.Repository
             return MapFoodResource(newFoodResource);
         }
 
-        public FoodResourceDTO Update(FoodResourceDTO foodResource)
+        public FoodResourceDTO Update(FoodResourceDTO updateItem)
         {
             var item = _context.FoodResources
                             .Include(r => r.Tags)
                             .Include(b => b.BusinessHours).ThenInclude(bh => bh.Day)
-                            .FirstOrDefault(fr => fr.Id == foodResource.Id);
+                            .FirstOrDefault(fr => fr.Id == updateItem.Id);
             if (item == null)
             {
-                throw new Exception($"FoodResource with Id: {foodResource.Id} does not exist.");
+                throw new Exception($"FoodResource with Id: {updateItem.Id} does not exist.");
             }
 
-            item.Name = foodResource.Name;
-            item.Area = foodResource?.Area;
-            item.StreetAddress = foodResource.StreetAddress;
-            item.City = foodResource.City;
-            item.State = foodResource.State;
-            item.Zipcode = foodResource.Zipcode;
-            item.Country = foodResource?.Country;
-            item.Latitude = foodResource.Latitude;
-            item.Longitude = foodResource.Longitude;
-            item.Phone = foodResource?.Phone;
-            item.Website = foodResource?.Website;
-            item.Description = foodResource?.Description;
+            item.Name = updateItem.Name;
+            item.Area = updateItem?.Area;
+            item.StreetAddress = updateItem.StreetAddress;
+            item.City = updateItem.City;
+            item.State = updateItem.State;
+            item.Zipcode = updateItem.Zipcode;
+            item.Country = updateItem?.Country;
+            item.Latitude = updateItem.Latitude;
+            item.Longitude = updateItem.Longitude;
+            item.Phone = updateItem?.Phone;
+            item.Website = updateItem?.Website;
+            item.Description = updateItem?.Description;
 
-            // Clear existing ResourceTags before update
+            //adds all tags together and removes duplicates
+            var allTags = item.Tags.Select(x => new TagDTO { Name = x.Name }).Union(updateItem.Tags).Distinct().ToList();
+
+            // selects existing resourceTag realtionships
             var existingResourceTags = _context.ResourceTags.Where(rt => rt.FoodResourceId == item.Id).ToList();
-            foreach (var resourceTag in existingResourceTags)
+            foreach (var tag in allTags)
             {
-                _context.ResourceTags.Remove(resourceTag);
-            }
-
-            // Add tags and ResourceTags
-            foreach (var tag in foodResource.Tags)
-            {
-                // Check if tag exists
-                var newTag = _context.Tags.FirstOrDefault(t => t.Name == tag.Name);
-                if (newTag == null) // If it does not exist, create it
+                //checks if tag will be added
+                if (updateItem.Tags.Any(t => t.Name == tag.Name))
                 {
-                    newTag = new Tag { Name = tag.Name };
-                    _context.Tags.Add(newTag);
-                    _context.SaveChanges(); // Save to get the tag ID
-                }
-
-                // Add the new ResourceTags relationship
-                var resourceTag = new ResourceTags { TagId = newTag.Id, FoodResourceId = item.Id };
-                _context.ResourceTags.Add(resourceTag);
-
-                item.Tags.Add(newTag);
-            }
-
-            // Ensure Days are properly handled for BusinessHours
-            // Ensure Days are properly handled for BusinessHours
-            var daysOfWeek = _context.Days.ToList();
-            //foreach (var day in item.BusinessHours)
-            foreach (var day in daysOfWeek)
-            {
-                var newBH = foodResource.BusinessHours.FirstOrDefault(b => b.Day.Name == day.Name);
-                var prevBH = item.BusinessHours.FirstOrDefault(b => b.Day.Name == day.Name);
-
-                if (newBH != null)
-                {
-                    if (prevBH != null)
+                    // Check if tag exists
+                    var newTag = _context.Tags.FirstOrDefault(t => t.Name == tag.Name);
+                    if (newTag == null) // If it does not exist, creates it
                     {
-                        prevBH.OpenTime = newBH.OpenTime;
-                        prevBH.CloseTime = newBH.CloseTime;
+                        newTag = new Tag { Name = tag.Name };
+                        _context.Tags.Add(newTag);
+                        _context.SaveChanges(); // Save to get the tag ID
                     }
-                    else
+
+                    // check if tag + relationship alredy exists
+                    var existingTag = item.Tags.FirstOrDefault(r => r.Name == tag.Name);
+                    if (existingTag == null)
                     {
-                        item.BusinessHours.Add(new BusinessHours
+                        // adds tag to list
+                        item.Tags.Add(newTag);
+                        //Add the new ResourceTags relationship
+                        _context.ResourceTags.Add(new ResourceTags { TagId = newTag.Id, FoodResourceId = item.Id });
+                    }
+
+                }
+                else// if not going to be added then remove the relationship and then the tag from list
+                {
+                    var removeTag = item.Tags.FirstOrDefault(r => r.Name == tag.Name);
+                    if (removeTag != null)
+                    {
+                        var resourceTag = existingResourceTags.FirstOrDefault(rt => rt.TagId == removeTag.Id);
+                        if (resourceTag != null)
                         {
-                            Day = day,
-                            OpenTime = newBH.OpenTime,
-                            CloseTime = newBH.CloseTime,
-                            FoodResource = item
-                        });
+                            _context.ResourceTags.Remove(resourceTag);
+                        }
+                        item.Tags.Remove(removeTag);
                     }
                 }
-                else if (prevBH != null)
+            }
+
+            // updates each BusinessHour
+            foreach (var businessHour in item.BusinessHours)
+            {
+                // Selects previous Business hour by the same day that is inputed
+                var newBH = updateItem.BusinessHours.FirstOrDefault(b => b.Day.Name == businessHour.Day.Name);
+                if (newBH == null)// if no day sent then sets that day to null
                 {
-                    // If there is no new business hour for this day, set times to null
-                    prevBH.OpenTime = null;
-                    prevBH.CloseTime = null;
+                    businessHour.OpenTime = null;
+                    businessHour.CloseTime = null;
+                }
+                else// updates the day given
+                {
+                    businessHour.OpenTime = newBH?.OpenTime;
+                    businessHour.CloseTime = newBH?.CloseTime;
                 }
             }
 
@@ -234,7 +220,7 @@ namespace LADP__EFC.Repository
 
         private static FoodResourceDTO MapFoodResource(FoodResource item)
         {
-            var mappedItem =  new FoodResourceDTO
+            var mappedItem = new FoodResourceDTO
             {
                 Id = item.Id,
                 Name = item.Name,
@@ -248,10 +234,11 @@ namespace LADP__EFC.Repository
                 Longitude = item.Longitude,
                 Phone = item.Phone,
                 Website = item.Website,
-                Description = item.Description            };
-            if(item.Tags.Count > 0)
+                Description = item.Description
+            };
+            if (item.Tags.Count > 0)
             {
-                foreach(var tag in item.Tags)
+                foreach (var tag in item.Tags)
                 {
                     mappedItem.Tags.Add(new TagDTO { Name = tag.Name });
                 }
@@ -260,7 +247,7 @@ namespace LADP__EFC.Repository
             {
                 mappedItem.BusinessHours.Add(new BusinessHoursDTO
                 {
-                    Day = new DayDTO { Name = bh.Day.Name},
+                    Day = new DayDTO { Name = bh.Day.Name },
                     OpenTime = bh?.OpenTime,
                     CloseTime = bh?.CloseTime,
                 });

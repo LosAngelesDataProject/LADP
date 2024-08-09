@@ -1,4 +1,4 @@
-﻿namespace LADP__EFC.DTO.Day
+﻿namespace LADP_EFC.DTO.Day
 {
     public class DayDTO
     {

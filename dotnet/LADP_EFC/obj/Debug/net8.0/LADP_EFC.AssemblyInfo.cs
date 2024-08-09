@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LADP_EFC")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ea65b719b2209509ce7130b62e4498a73260d52a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+edaf989682bd56a58c0327b6908e78adab5bef14")]
 [assembly: System.Reflection.AssemblyProductAttribute("LADP_EFC")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LADP_EFC")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
