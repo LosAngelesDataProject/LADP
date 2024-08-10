@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\LADP_EFC.props" />
+</Project>
