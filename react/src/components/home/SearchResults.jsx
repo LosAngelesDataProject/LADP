@@ -32,7 +32,7 @@ const SearchResults = (props) => {
                     }}
                 >
                   <div className={`ms-3 mt-3 mb-3 card-body ${styles.cardContent}`}>
-                    <h4>
+                    <h4 className={`${styles.cardTitle}`}>
                       {result.name}
                     </h4>
                     <h6>

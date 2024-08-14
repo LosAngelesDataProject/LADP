@@ -129,7 +129,15 @@
   background-color: white;
 }
 
-.card :hover {
+.cardContent {
+  font-size: 50%;
+}
+
+.cardTitle {
+  font-size: 250%
+}
+
+.card:hover {
   cursor: pointer;
 }
 
@@ -155,14 +163,19 @@
   bottom: 1rem;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  height: calc(100vh - 2rem);
+  height: calc(100vh - 15rem)
 }
 
 .mapTitle {
   text-align: center;
   color: #0c0c0c;
   font-weight: bold;
+  font-size: medium;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
+
+
 
 /*---------------Hero----------------------------------------*/
 
@@ -190,6 +203,7 @@
   .filterItem {
     max-width: 100px;
   }
+
   .filterButton {
     font-size: 0.7em;
     font-weight: 500;
