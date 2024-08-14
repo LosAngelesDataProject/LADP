@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import PropTypes from "prop-types";
 import logo from "../../assets/images/logo.png";
@@ -6,17 +6,32 @@ import styles from "./NavBar.module.css";
 
 const NavBar = (props) => {
   const { isLoggedIn, onLogout } = props;
+  const location = useLocation(); // Get the current location
+  const isActive = (path) => (location.pathname === path ? styles.active : "");
   return (
     <Navbar className={styles.background} expand="lg">
       <Container>
         <Nav className="me-auto col-md-5 justify-content-start justify-content-around">
-          <Nav.Link className={styles.endText} as={Link} to="/">
+          <Nav.Link
+            className={`${styles.endText} ${isActive("/")}`}
+            as={Link}
+            to="/"
+          >
             Home
           </Nav.Link>
-          <Nav.Link className={styles.navLink} as={Link} to="/calendar">
+
+          <Nav.Link
+            className={`${styles.navLink} ${isActive("/calendar")}`}
+            as={Link}
+            to="/calendar"
+          >
             Calendar
           </Nav.Link>
-          <Nav.Link className={styles.navLink} as={Link} to="/about-us">
+          <Nav.Link
+            className={`${styles.navLink} ${isActive("/about-us")}`}
+            as={Link}
+            to="/about-us"
+          >
             About Us
           </Nav.Link>
         </Nav>
@@ -34,19 +49,32 @@ const NavBar = (props) => {
           />
         </Navbar.Brand>
         <Nav className="ms-auto col-md-5 justify-content-end justify-content-around">
-          <Nav.Link className={styles.navLink} as={Link} to="/contact-us">
+          <Nav.Link
+            className={`${styles.navLink} ${isActive("/contact-us")}`}
+            as={Link}
+            to="/contact-us"
+          >
             Contact Us
           </Nav.Link>
+
           {isLoggedIn ? (
             <Nav.Link className={styles.endText} onClick={onLogout}>
               Logout
             </Nav.Link>
           ) : (
             <>
-              <Nav.Link className={styles.navLink} as={Link} to="/login">
+              <Nav.Link
+                className={`${styles.navLink} ${isActive("/login")}`}
+                as={Link}
+                to="/login"
+              >
                 Login
               </Nav.Link>
-              <Nav.Link className={styles.endText} as={Link} to="/register">
+              <Nav.Link
+                className={`${styles.endText} ${isActive("/register")}`}
+                as={Link}
+                to="/register"
+              >
                 Register
               </Nav.Link>
             </>

@@ -15,14 +15,7 @@
 
 .navLink:hover {
   color: var(--secondary-color) !important;
-  font-size: 1.05rem;
-  transition: 0.2s;
-}
-
-.navLink:focus {
-  color: var(--support-color) !important;
-  font-size: 1.05rem;
-  text-decoration: wavy underline #e3aa4d;
+  transition: 0.1s;
 }
 
 .endText {
@@ -30,20 +23,11 @@
   color: var(--secondary-color) !important;
 }
 
-/* .endText:hover {
+.endText:hover {
   color: var(--support-color) !important;
-  font-size: 1.05rem;
-  transition: 0.2s;
+  transition: 0.1s;
 }
 
-.endText:focus {
-  color: var(--secondary-color) !important;
-  font-size: 1.05rem;
-  text-decoration: wavy underline white;
-} */
-
-.endText:target {
-  color: var(--secondary-color) !important;
-  font-size: 1.05rem;
-  text-decoration: wavy underline white;
+.active {
+  text-decoration: wavy underline rgb(69, 184, 255) !important;
 }
