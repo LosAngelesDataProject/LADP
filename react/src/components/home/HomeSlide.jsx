@@ -43,7 +43,7 @@ function HomeSlide() {
   const mappedArray = array.map(mappingFunction);
 
   return (
-    <div className="pt-5 bg-white homeSlider-margin">
+    <div className="bg-white homeSlider-margin">
       <Row id="carouselHero">
         <Col className="Text-center">
           <Carousel className="img-fluid">{mappedArray}</Carousel>
