@@ -1,18 +1,29 @@
 import { useEffect, useRef, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import styles from "./Home.module.css";
-import "react-datepicker/dist/react-datepicker.css";
-import DatePicker from "react-datepicker";
 import BaseMap from "../map/BaseMap";
 import results from "../../assets/data/results.js";
 import SearchResults from "./SearchResults.jsx";
 import HomeSlide from "./HomeSlide.jsx";
 
 function Home() {
-  const [showDateDropdown, setShowDateDropdown] = useState(false);
   const [showDayDropdown, setShowDayDropdown] = useState(false);
   const [showProductDropdown, setShowProductDropdown] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [showLocationDropdown, setShowLocationDropdown] = useState(false);
+
+  const [filteredDay, setFilteredDay] = useState({
+    selection: "",
+    selected: false
+  });
+  const [filteredProduct, setFilteredProduct] = useState({
+    selection: "",
+    selected: false
+  });
+  const [filteredLocation, setFilteredLocation] = useState({
+    selection: "",
+    selected: false
+  });
+
   const dayOfTheWeek = [
     "Monday",
     "Tuesday",
@@ -27,13 +38,20 @@ function Home() {
     "Dairy",
     "Meat",
     "Bread",
-    "Mexican Food",
     "Frozen Food",
     "Baby Needs",
+    "Clothing",
+    "Medicine"
   ];
-  const dateDropdownRef = useRef(null);
+  const locationOptions = [
+    "Food Pantry",
+    "Soup Kitchen"
+  ];
+
+  const locationDropdownRef = useRef(null);
   const dayDropdownRef = useRef(null);
   const productDropdownRef = useRef(null);
+
   const markers = results.map((result) => ({
     geocode: [result.latitude, result.longitude],
     popUp: {
@@ -45,57 +63,58 @@ function Home() {
   const [current, setCurrent] = useState({ lat: 34.0549, lng: -118.2426 });
   const [zoom, setZoom] = useState(15);
 
-  const handleClickOutside = (event) => {
-    const clickedOutsideDateDropdown =
-      dateDropdownRef.current && !dateDropdownRef.current.contains(event.target);
-    const clickedOutsideDayDropdown =
-      dayDropdownRef.current && !dayDropdownRef.current.contains(event.target);
-    const clickedOutsideProductDropdown =
-      productDropdownRef.current && !productDropdownRef.current.contains(event.target);
-
-    if (clickedOutsideDateDropdown || clickedOutsideDayDropdown || clickedOutsideProductDropdown) {
-      setShowDateDropdown(false);
-      setShowDayDropdown(false);
-      setShowProductDropdown(false);
-    }
-  };
-
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
+  
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
       if (position.coords.latitude) {
         setZoom(16);
         setCurrent((prevState) => {
           const newCurrent = { ...prevState };
-
+          
           newCurrent.lat = position.coords.latitude;
           newCurrent.lng = position.coords.longitude;
-
+          
           return { ...newCurrent };
         });
-
+        
         setCenter((prevState) => {
           const newCurrent = { ...prevState };
-
+          
           newCurrent.lat = position.coords.latitude;
           newCurrent.lng = position.coords.longitude;
-
+          
           return { ...newCurrent };
         });
       }
     });
   }, []);
+  
+  const handleClickOutside = (event) => {
+    const clickedOutsideLocationDropdown =
+      showLocationDropdown.current && !locationDropdownRef.current.contains(event.target);
+    const clickedOutsideDayDropdown =
+      dayDropdownRef.current && !dayDropdownRef.current.contains(event.target);
+    const clickedOutsideProductDropdown =
+      productDropdownRef.current && !productDropdownRef.current.contains(event.target);
 
+    if (clickedOutsideLocationDropdown || clickedOutsideDayDropdown || clickedOutsideProductDropdown) {
+      setShowLocationDropdown(false);
+      setShowDayDropdown(false);
+      setShowProductDropdown(false);
+    }
+  };
+  
   const handleButtonClick = (dropdownSetter, otherDropdowns) => {
     dropdownSetter((prev) => !prev);
     otherDropdowns.forEach((setter) => setter(false));
   };
+  
 
   const SearchBar = () => {
     return (
@@ -118,51 +137,83 @@ function Home() {
   };
 
   const FilterButtons = () => {
+    const handleDayButton = () => {
+      if(!filteredDay.selected){
+        handleButtonClick(setShowDayDropdown, [setShowLocationDropdown, setShowProductDropdown])
+      }
+      else{
+        handleRemoveFilter(setFilteredDay)
+      }
+    }
+    const handleTypeButton = () => {
+      if(!filteredProduct.selected){
+        handleButtonClick(setShowProductDropdown, [setShowLocationDropdown, setShowDayDropdown])
+      }
+      else{
+        // handleRemoveFilter(setFilteredProduct)
+        setFilteredProduct({
+          type: "",
+          selected: false
+        })
+      }
+    }
+    const handleLocationButton = () => {
+      if(!filteredLocation.selected){
+        handleButtonClick(setShowLocationDropdown, [setShowDayDropdown, setShowProductDropdown])
+      }
+      else{
+        setFilteredLocation({
+          selection: "",
+          selected: false
+        })
+      }
+    }
+
+    const handleOptionClick = (option, setFiltered, setDropdown) => {
+      setFiltered({selection: option, selected: true}); // Update the button label with the selected option
+      setDropdown(false); // Close the dropdown
+    };
+    const handleRemoveFilter = (setter) => {
+      setter({selection: "", selected: false})
+    }
+
     return (
       <>
         <div className={`me-3 mt-3 ${styles.filterItem}`}>
           <button
-            className={styles.filterButton}
-            onClick={() =>
-              handleButtonClick(setShowDateDropdown, [setShowDayDropdown, setShowProductDropdown])
-            }
+            className={`${styles.filterButton} ${filteredDay.selected ? styles.filterSelected : ""}`}
+            onClick={handleDayButton}
           >
-            Date
+            {filteredDay.selection || "Day of the Week"}
             <i
-              className={`fa-solid fa-chevron-up ms-2 ${
-                showDateDropdown ? styles.filterSelected : ""
-              }`}
-            />
-          </button>
-          {showDateDropdown && (
-            <div ref={dateDropdownRef} className={styles.dropdown}>
-              <DatePicker
-                className={styles.filterOption}
-                selected={selectedDate}
-                onChange={(date) => setSelectedDate(date)}
-              />
-            </div>
-          )}
-        </div>
-        <div className={`me-3 mt-3 ${styles.filterItem}`}>
-          <button
-            className={styles.filterButton}
-            onClick={() =>
-              handleButtonClick(setShowDayDropdown, [setShowDateDropdown, setShowProductDropdown])
-            }
-          >
-            Day of the Week
-            <i
-              className={`fa-solid fa-chevron-up ms-2 ${
-                showDayDropdown ? styles.filterSelected : ""
-              }`}
+              className={`${!filteredDay.selected ? `fa-solid fa-chevron-up` : `fa-regular fa-circle-xmark`} ms-2 align-self-center ${showDayDropdown ? styles.filterClicked : ""}`}
             />
           </button>
           {showDayDropdown && (
             <div ref={dayDropdownRef} className={styles.dropdown}>
               {dayOfTheWeek.map((day, index) => (
-                <option key={index} className={styles.filterOption}>
+                <option key={index} className={styles.filterOption} onClick={() =>(handleOptionClick(day, setFilteredDay, setShowDayDropdown))}>
                   {day}
+                </option>
+              ))}
+            </div>
+          )}
+        </div>
+        <div className={`me-3 mt-3 ${styles.filterItem}`}>
+          <button
+            className={`${styles.filterButton} ${filteredProduct.selected ? styles.filterSelected : ""}`}
+            onClick={handleTypeButton}
+          >
+            {filteredProduct.selection || "Product Type"}
+            <i
+              className={`${!filteredProduct.selected ? `fa-solid fa-chevron-up` : `fa-regular fa-circle-xmark`} ms-2 align-self-center ${showProductDropdown ? styles.filterClicked : ""}`}
+            />
+          </button>
+          {showProductDropdown && (
+            <div ref={productDropdownRef} className={styles.dropdown}>
+              {productOptions.map((product, index) => (
+                <option key={index} className={styles.filterOption} onClick={() =>(handleOptionClick(product, setFilteredProduct, setShowProductDropdown))}>
+                  {product}
                 </option>
               ))}
             </div>
@@ -170,23 +221,19 @@ function Home() {
         </div>
         <div className={`mt-3 ${styles.filterItem}`}>
           <button
-            className={styles.filterButton}
-            onClick={() =>
-              handleButtonClick(setShowProductDropdown, [setShowDateDropdown, setShowDayDropdown])
-            }
+            className={`${styles.filterButton} ${filteredLocation.selected ? styles.filterSelected : ""}`}
+            onClick={handleLocationButton}
           >
-            Product Type
+            {filteredLocation.selection || "Location Type"}
             <i
-              className={`fa-solid fa-chevron-up ms-2 ${
-                showProductDropdown ? styles.filterSelected : ""
-              }`}
+              className={`${!filteredLocation.selected ? `fa-solid fa-chevron-up` : `fa-regular fa-circle-xmark`} ms-2 align-self-center ${showLocationDropdown ? styles.filterClicked : ""}`}
             />
           </button>
-          {showProductDropdown && (
-            <div ref={productDropdownRef} className={styles.dropdown}>
-              {productOptions.map((product, index) => (
-                <option key={index} className={styles.filterOption}>
-                  {product}
+          {showLocationDropdown && (
+            <div ref={locationDropdownRef} className={styles.dropdown}>
+              {locationOptions.map((location, index) => (
+                <option key={index} className={styles.filterOption} onClick={() =>(handleOptionClick(location, setFilteredLocation, setShowLocationDropdown))}>
+                  {location}
                 </option>
               ))}
             </div>
