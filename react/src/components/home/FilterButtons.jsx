@@ -1,9 +1,13 @@
 import styles from "./Home.module.css";
 import { useState, useRef, useEffect} from "react";
 import PropTypes from "prop-types";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function FilterButtons (props) {
      const { dayOfTheWeek } = props;
+     const location = useLocation();
+     const navigate = useNavigate();
+     const urlParams = new URLSearchParams(location.search);
      const [showDayDropdown, setShowDayDropdown] = useState(false);
      const [showProductDropdown, setShowProductDropdown] = useState(false);
      const [showLocationDropdown, setShowLocationDropdown] = useState(false);
@@ -22,7 +26,6 @@ function FilterButtons (props) {
           selection: "",
           selected: false
      });
-
      const productOptions = [
           "Fresh Produce",
           "Dairy",
@@ -39,6 +42,16 @@ function FilterButtons (props) {
      ];
 
      useEffect(() => {
+          const dayParam = urlParams.get("d");
+          const productParam = urlParams.get("p");
+          const locationParam = urlParams.get("l");
+      
+          if (dayParam) setFilteredDay({ selection: dayParam, selected: true });
+      
+          if (productParam) setFilteredProduct({ selection: productParam, selected: true });
+      
+          if (locationParam) setFilteredLocation({ selection: locationParam, selected: true });
+
           document.addEventListener("mousedown", handleClickOutside);
           return () => {
             document.removeEventListener("mousedown", handleClickOutside);
@@ -66,46 +79,49 @@ function FilterButtons (props) {
      };
 
      const handleDayButton = () => {
-          if(!filteredDay.selected){
+          if(!filteredDay.selected)
+          {
                handleButtonClick(setShowDayDropdown, [setShowLocationDropdown, setShowProductDropdown])
           }
-          else{
-               handleRemoveFilter(setFilteredDay)
+          else
+          {
+               handleRemoveFilter(setFilteredDay, "d")
           }
      }
 
      const handleTypeButton = () => {
-          if(!filteredProduct.selected){
-          handleButtonClick(setShowProductDropdown, [setShowLocationDropdown, setShowDayDropdown])
+          if(!filteredProduct.selected)
+          {
+               handleButtonClick(setShowProductDropdown, [setShowLocationDropdown, setShowDayDropdown])
           }
-          else{
-          // handleRemoveFilter(setFilteredProduct)
-          setFilteredProduct({
-          type: "",
-          selected: false
-          })
+          else
+          {
+               handleRemoveFilter(setFilteredProduct, "p")
           }
      }
 
      const handleLocationButton = () => {
-          if(!filteredLocation.selected){
+          if(!filteredLocation.selected)
+          {
                handleButtonClick(setShowLocationDropdown, [setShowDayDropdown, setShowProductDropdown])
           }
-          else{
-               setFilteredLocation({
-                    selection: "",
-                    selected: false
-               })
+          else
+          {
+               handleRemoveFilter(setFilteredLocation, "l")
           }
      }
 
-     const handleOptionClick = (option, setFiltered, setDropdown) => {
-          setFiltered({selection: option, selected: true}); // Update the button label with the selected option
-          setDropdown(false); // Close the dropdown
+     const handleOptionClick = (option, type, setFiltered, setDropdown) => {
+          setFiltered({selection: option, selected: true});
+          setDropdown(false);
+          urlParams.set(type, option);
+          navigate(`${location.pathname}?${urlParams.toString()}`);
      };
 
-     const handleRemoveFilter = (setter) => {
+     const handleRemoveFilter = (setter, type) => {
           setter({selection: "", selected: false})
+          urlParams.delete(type);
+          navigate(`${location.pathname}?${urlParams.toString()}`);
      }
 
      return (
@@ -123,8 +139,8 @@ function FilterButtons (props) {
                     {showDayDropdown && (
                          <div ref={dayDropdownRef} className={styles.dropdown}>
                               {dayOfTheWeek.map((day, index) => (
-                                   <option key={index} className={styles.filterOption} onClick={() =>(handleOptionClick(day, setFilteredDay, setShowDayDropdown))}>
-                                   {day}
+                                   <option key={index} className={styles.filterOption} onClick={() =>(handleOptionClick(day, "d", setFilteredDay, setShowDayDropdown))}>
+                                        {day}
                                    </option>
                               ))}
                          </div>
@@ -143,7 +159,7 @@ function FilterButtons (props) {
                     {showProductDropdown && (
                          <div ref={productDropdownRef} className={styles.dropdown}>
                               {productOptions.map((product, index) => (
-                                   <option key={index} className={styles.filterOption} onClick={() =>(handleOptionClick(product, setFilteredProduct, setShowProductDropdown))}>
+                                   <option key={index} className={styles.filterOption} onClick={() =>(handleOptionClick(product, "p", setFilteredProduct, setShowProductDropdown))}>
                                         {product}
                                    </option>
                               ))}
@@ -163,7 +179,7 @@ function FilterButtons (props) {
                     {showLocationDropdown && (
                          <div ref={locationDropdownRef} className={styles.dropdown}>
                               {locationOptions.map((location, index) => (
-                                   <option key={index} className={styles.filterOption} onClick={() =>(handleOptionClick(location, setFilteredLocation, setShowLocationDropdown))}>
+                                   <option key={index} className={styles.filterOption} onClick={() =>(handleOptionClick(location, "l", setFilteredLocation, setShowLocationDropdown))}>
                                         {location}
                                    </option>
                               ))}
