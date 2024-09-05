@@ -25,7 +25,7 @@ function Home() {
     },
   }));
   const [center, setCenter] = useState({ lat: 34.0549, lng: -118.2426 });
-  const [current, setCurrent] = useState({ lat: 34.0549, lng: -118.2426 });
+  const [current, setCurrent] = useState({ lat: 34.0549, lng: -118.2426, active: "off" });
   const [zoom, setZoom] = useState(15);
   
   useEffect(() => {
@@ -37,7 +37,8 @@ function Home() {
           
           newCurrent.lat = position.coords.latitude;
           newCurrent.lng = position.coords.longitude;
-          
+          newCurrent.active = "on";
+
           return { ...newCurrent };
         });
         
@@ -96,6 +97,7 @@ function Home() {
               dayOfTheWeek={dayOfTheWeek}
               setCenter={setCenter}
               center={center}
+              current={current}
             />
           </Col>
           <Col className={`${styles.mapContainer}`}>
