@@ -1,6 +1,7 @@
 import styles from "./Home.module.css";
 import { useState } from "react";
 import PropTypes from "prop-types";
+import GetDirections from "../map/GetDirections";
 
 const SearchResults = (props) => {
   const { setCenter, results, dayOfTheWeek, center, current } = props;
@@ -25,6 +26,9 @@ const SearchResults = (props) => {
       {results.length !== 0 ? (
         results.map((result, index) => {
           const finalCard = index !== results.length - 1 ? "mb-3" : "";
+          const resultAddressString = `${result.streetAddress}, ${result.city}, ${result.state} ${
+            result.zipcode
+          },${" "} ${result.country} `;
           return (
             <div
               className={`${finalCard} ${styles.card} ${
@@ -58,30 +62,8 @@ const SearchResults = (props) => {
                       <p className="col d-inline">{result.website}</p>
                     </div>
 
-                    {/* Google Maps converts the Apple Maps Link if executed in Windows or Android. That is why I decided to use the Apple Maps link. */}
-                    {/* The other option is to create two separate links, one for Google Maps and the other for Apple Maps */}
                     <div>
-                      {current.active === "on" ? (
-                        <a
-                          href={`http://maps.apple.com/?saddr=${current.lat},${current.lng}&daddr=${
-                            result.streetAddress
-                          }, ${result.city}, ${result.state} ${result.zipcode},${" "}
-                    ${result.country}`}
-                          target="_blank"
-                        >
-                          Get directions
-                        </a>
-                      ) : (
-                        <a
-                          href={`http://maps.apple.com/?daddr=${result.streetAddress}, ${
-                            result.city
-                          }, ${result.state} ${result.zipcode},${" "}
-                    ${result.country}`}
-                          target="_blank"
-                        >
-                          Get directions
-                        </a>
-                      )}
+                      <GetDirections markerAddress={resultAddressString} current={current} />
                     </div>
                     <br></br>
                     <div className={`mb-3`}>

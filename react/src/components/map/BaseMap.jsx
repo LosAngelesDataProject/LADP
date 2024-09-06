@@ -4,6 +4,7 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 import osmProviders from "./osm-providers";
 import "leaflet/dist/leaflet.css";
+import GetDirections from "./GetDirections";
 import PropTypes from "prop-types";
 
 const BaseMap = (props) => {
@@ -44,20 +45,7 @@ const BaseMap = (props) => {
                 <p>{marker.popUp.name}</p>
                 <p>{marker.popUp.address}</p>
 
-                {/* Google Maps converts the Apple Maps Link if executed in Windows or Android. That is why I decided to use the Apple Maps link. */}
-                {/* The other option is to create two separate links, one for Google Maps and the other for Apple Maps */}
-                {current.active === "on" ? (
-                  <a
-                    href={`http://maps.apple.com/?saddr=${current.lat},${current.lng}&daddr=${marker.popUp.address}`}
-                    target="_blank"
-                  >
-                    Get directions
-                  </a>
-                ) : (
-                  <a href={`http://maps.apple.com/?daddr=${marker.popUp.address}`} target="_blank">
-                    Get directions
-                  </a>
-                )}
+                <GetDirections markerAddress={marker.popUp.address} current={current} />
               </Popup>
             </Marker>
           ))}
