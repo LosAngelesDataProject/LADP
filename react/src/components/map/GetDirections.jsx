@@ -22,18 +22,17 @@ const GetDirections = (props) => {
 
   return (
     <>
-      <h5>Get directions:</h5>
       <div className={styles.directionbtn}>
         <button className={` ${styles.directionButton}`} onClick={(e) => directionClick("", e)}>
           <FaMapMarkedAlt className={styles.directionIcon} />
-          Standard
+          Get Directions
         </button>
         <button
           className={` ${styles.directionButton}`}
           onClick={(e) => directionClick("&dirflg=r", e)}
         >
           <FaBusAlt className={styles.directionIcon} />
-          Public Transit
+          Get Public Transit
         </button>
       </div>
     </>
