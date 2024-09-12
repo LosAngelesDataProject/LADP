@@ -92,7 +92,11 @@
   color: var(--secondary-color);
 }
 
-.filterSelected {
+.filterSelected{
+  color: var(--secondary-color);
+}
+
+.filterClicked {
   transform: rotate(180deg);
 }
 
