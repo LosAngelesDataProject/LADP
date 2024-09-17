@@ -80,7 +80,7 @@ namespace LADP_EFC.Repository
                 City = insertItem.City,
                 State = insertItem.State,
                 Zipcode = insertItem.Zipcode,
-                Country = insertItem.Country,
+                County = insertItem.County,
                 Latitude = insertItem.Latitude,
                 Longitude = insertItem.Longitude,
                 Phone = insertItem.Phone,
@@ -145,7 +145,7 @@ namespace LADP_EFC.Repository
             item.City = updateItem.City;
             item.State = updateItem.State;
             item.Zipcode = updateItem.Zipcode;
-            item.Country = updateItem?.Country;
+            item.County = updateItem?.County;
             item.Latitude = updateItem.Latitude;
             item.Longitude = updateItem.Longitude;
             item.Phone = updateItem?.Phone;
@@ -229,7 +229,7 @@ namespace LADP_EFC.Repository
                 City = item.City,
                 State = item.State,
                 Zipcode = item.Zipcode,
-                Country = item.Country,
+                County = item.County,
                 Latitude = item.Latitude,
                 Longitude = item.Longitude,
                 Phone = item.Phone,

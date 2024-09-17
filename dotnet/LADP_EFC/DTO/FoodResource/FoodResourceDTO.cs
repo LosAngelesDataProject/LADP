@@ -13,7 +13,7 @@ namespace LADP_EFC.DTO.FoodResource
         public string City { get; set; } = null!;
         public string State { get; set; } = null!;
         public string Zipcode { get; set; } = null!;
-        public string? Country { get; set; }
+        public string? County { get; set; }
         public decimal Latitude { get; set; }
         public decimal Longitude { get; set; }
         public string? Phone { get; set; }
