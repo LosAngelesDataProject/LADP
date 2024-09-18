@@ -1,4 +1,4 @@
-﻿namespace LADP__EFC.DTO.Tag
+﻿namespace LADP_EFC.DTO.Tag
 {
     public class TagDTO
     {

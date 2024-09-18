@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace LADP__EFC.Models;
+namespace LADP_EFC.Models;
 public class Day
 {
     public int Id { get; set; }

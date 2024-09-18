@@ -1,11 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using LADP__EFC.Models;
-using LADP__EFC.Repository.Interfaces;
-using NuGet.Protocol.Core.Types;
-using Azure;
-using LADP__EFC.DTO.FoodResource;
+using LADP_EFC.Repository.Interfaces;
+using LADP_EFC.DTO.FoodResource;
 
-namespace LADP__EFC.Controllers
+namespace LADP_EFC.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -22,7 +19,7 @@ namespace LADP__EFC.Controllers
         public ActionResult<IEnumerable<FoodResourceDTO>> GetFoodResources()
         {
             try
-            { 
+            {
                 var list = _repository.GetAll();
                 if (list == null)
                 {
@@ -33,7 +30,7 @@ namespace LADP__EFC.Controllers
                     return Ok(list);
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 int iCode = 500;
                 return StatusCode(iCode, ex.ToString());
@@ -55,7 +52,7 @@ namespace LADP__EFC.Controllers
 
                 return Ok(foodResource);
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 int iCode = 500;
                 return StatusCode(iCode, ex.ToString());
@@ -94,13 +91,6 @@ namespace LADP__EFC.Controllers
 
         // POST: api/FoodResources
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        // verify the benefits of using Async
-        /* public async Task<IActionResult> InsertFoodResource(FoodResourceAddDTO insertItem)*
-           {
-                var id = await _repository.InsertFoodResource(insertItem);
-                return Created(string.Empty, new { id });
-        }
-         */
         [HttpPost]
         //public ActionResult<FoodResourceAddDTO> PostFoodResource(FoodResourceAddDTO foodResource)
         public ActionResult<FoodResourceDTO> CreateFoodResource(AddFoodResourceDTO foodResource)
@@ -123,7 +113,6 @@ namespace LADP__EFC.Controllers
         [HttpDelete("{id}")]
         public ActionResult<FoodResourceDTO> DeleteFoodResource(int id)
         {
-            ObjectResult result;
             try
             {
                 var item = _repository.Delete(id);
@@ -131,17 +120,16 @@ namespace LADP__EFC.Controllers
                 {
                     return NoContent();
                 }
-                else 
+                else
                 {
                     return Ok();
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 int iCode = 500;
-                result = StatusCode(iCode, ex.ToString());
+                return StatusCode(iCode, ex.ToString());
             }
-            return result;
         }
     }
 }

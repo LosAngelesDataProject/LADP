@@ -1,7 +1,7 @@
-﻿using LADP__EFC.DTO.FoodResource;
-using LADP__EFC.Models;
+﻿using LADP_EFC.DTO.FoodResource;
+using LADP_EFC.Models;
 
-namespace LADP__EFC.Repository.Interfaces
+namespace LADP_EFC.Repository.Interfaces
 {
     public interface IRepositoryFoodResource
     {
@@ -12,4 +12,3 @@ namespace LADP__EFC.Repository.Interfaces
         FoodResource Delete(int id);
     }
 }
-
