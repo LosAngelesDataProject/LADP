@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace LADP__EFC.Models;
+namespace LADP_EFC.Models;
 
 public class FoodResource
 {
@@ -12,7 +12,7 @@ public class FoodResource
     public string City { get; set; } = null!;
     public string State { get; set; } = null!;
     public string Zipcode { get; set; } = null!;
-    public string? Country { get; set; }
+    public string? County { get; set; }
     public decimal Latitude { get; set; }
     public decimal Longitude { get; set; }
     public string? Phone { get; set; }

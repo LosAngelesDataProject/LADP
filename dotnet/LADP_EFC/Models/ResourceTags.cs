@@ -1,4 +1,4 @@
-﻿namespace LADP__EFC.Models
+﻿namespace LADP_EFC.Models
 {
     public class ResourceTags
     {

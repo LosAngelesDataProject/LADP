@@ -1,8 +1,8 @@
-﻿using LADP__EFC.Models;
+﻿using LADP_EFC.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 
-namespace LADP__EFC.Data
+namespace LADP_EFC.Data
 {
     public partial class DataContext : DbContext
     {
@@ -54,7 +54,7 @@ namespace LADP__EFC.Data
                 entity.Property(e => e.City).IsRequired().HasMaxLength(100).HasColumnName("City").HasColumnType("nvarchar(100)");
                 entity.Property(e => e.State).IsRequired().HasMaxLength(2).HasColumnName("State").HasColumnType("nvarchar(2)");
                 entity.Property(e => e.Zipcode).IsRequired().HasMaxLength(50).HasColumnName("Zipcode").HasColumnType("varchar(50)");
-                entity.Property(e => e.Country).HasMaxLength(100).HasColumnName("Country").HasColumnType("nvarchar(100)");
+                entity.Property(e => e.County).HasMaxLength(100).HasColumnName("County").HasColumnType("nvarchar(100)");
                 entity.Property(e => e.Latitude).IsRequired().HasColumnName("Latitude").HasColumnType("decimal(9, 6)");
                 entity.Property(e => e.Longitude).IsRequired().HasColumnName("Longitude").HasColumnType("decimal(9, 6)");
                 entity.Property(e => e.Phone).HasMaxLength(20).HasColumnName("Phone").HasColumnType("nvarchar(20)");
