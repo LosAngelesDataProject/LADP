@@ -92,7 +92,7 @@
   color: var(--secondary-color);
 }
 
-.filterSelected{
+.filterSelected {
   color: var(--secondary-color);
 }
 
@@ -121,6 +121,15 @@
 .filterOption:hover {
   cursor: pointer;
   background-color: #ddd;
+}
+
+.resetIcon {
+  border-color: rgb(76, 182, 243);
+  color: rgb(255, 0, 0);
+  min-height: 48px;
+  align-content: space-around;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 /*---------------Search Results----------------------------------------*/

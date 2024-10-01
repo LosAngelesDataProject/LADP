@@ -32,9 +32,6 @@ function Home() {
   });
   const [zoom, setZoom] = useState(15);
 
-  /////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////
-
   const [resultsData, setResultsData] = useState({
     arrayOfResults: results,
     firstFilteredResults: [],
@@ -50,24 +47,7 @@ function Home() {
   };
 
   const handleLocation = (e) => {
-    let targetVal = e.target.value;
-
-    let resultsCities = results.map((result) => result.city);
-
-    let resultsZipCodes = results.map((result) => result.zipcode.toString());
-
-    if (resultsCities.includes(targetVal)) {
-      console.log(targetVal, "if statement for city launching");
-      setLocationFilter(targetVal);
-    } else if (resultsZipCodes.includes(targetVal)) {
-      console.log(targetVal, "if statement for ZIP launching");
-
-      setLocationFilter(targetVal);
-    } else {
-      console.log(targetVal, "default logic launching");
-
-      setLocationFilter("");
-    }
+    setLocationFilter(e.target.value);
   };
 
   const onSearchRequested = (e) => {
@@ -76,7 +56,7 @@ function Home() {
     resultsData.firstFilteredResults = filterByValue(results, query);
 
     if (locationFilter) {
-      resultsData.secondFilteredResults = filterByValue(
+      resultsData.secondFilteredResults = filterByLocation(
         resultsData.firstFilteredResults,
         locationFilter
       );
@@ -92,14 +72,17 @@ function Home() {
 
       console.log(newResults);
 
-      return rd; //resultsData
+      return rd;
     });
   };
 
   const onLocationRequested = (e) => {
     e.preventDefault();
 
-    resultsData.firstFilteredResults = filterByValue(results, locationFilter);
+    resultsData.firstFilteredResults = filterByLocation(
+      results,
+      locationFilter
+    );
 
     if (query) {
       resultsData.secondFilteredResults = filterByValue(
@@ -118,7 +101,56 @@ function Home() {
 
       console.log(newResults);
 
-      return rd; //resultsData
+      return rd;
+    });
+  };
+
+  const onResetQueryFilter = (e) => {
+    e.preventDefault();
+
+    setQuery("");
+    clearQueryField();
+
+    if (locationFilter) {
+      resultsData.firstFilteredResults = filterByLocation(
+        results,
+        locationFilter
+      );
+    } else if (!locationFilter) {
+      resultsData.firstFilteredResults = results;
+    }
+    setResultsData((prevState) => {
+      let newResults = resultsData.firstFilteredResults;
+
+      const rd = { ...prevState };
+      rd.arrayOfResults = newResults;
+
+      console.log(newResults);
+
+      return rd;
+    });
+  };
+
+  const onResetLocationFilter = (e) => {
+    e.preventDefault();
+
+    setLocationFilter("");
+    clearLocationField();
+
+    if (query) {
+      resultsData.firstFilteredResults = filterByValue(results, query);
+    } else if (!query) {
+      resultsData.firstFilteredResults = results;
+    }
+    setResultsData((prevState) => {
+      let newResults = resultsData.firstFilteredResults;
+
+      const rd = { ...prevState };
+      rd.arrayOfResults = newResults;
+
+      console.log(newResults);
+
+      return rd;
     });
   };
 
@@ -132,8 +164,19 @@ function Home() {
     );
   }
 
-  /////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////
+  function filterByLocation(array, string) {
+    return array.filter(
+      (result) => result.city == string || result.zipcode == string
+    );
+  }
+
+  function clearQueryField() {
+    document.getElementById("searchFilter").value = "";
+  }
+
+  function clearLocationField() {
+    document.getElementById("searchLocation").value = "";
+  }
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -172,22 +215,35 @@ function Home() {
             <>
               <input
                 id="searchFilter"
-                type="text"
+                type="search"
                 className={styles.searchInputLeft}
                 placeholder=" Search what you need"
                 onChange={handleSearch}
               />
+              {query && (
+                <i
+                  className={`fa-regular fa-circle-xmark ${styles.resetIcon}`}
+                  onClick={onResetQueryFilter}
+                />
+              )}
               <i
                 className={`fa-solid fa-magnifying-glass ${styles.searchIcon}`}
                 onClick={onSearchRequested}
               />
+
               <input
                 id="searchLocation"
-                type="text"
+                type="search"
                 className={styles.searchInputLeft}
                 placeholder=" Please Enter a City or Zip Code"
                 onChange={handleLocation}
               />
+              {locationFilter && (
+                <i
+                  className={`fa-regular fa-circle-xmark ${styles.resetIcon}`}
+                  onClick={onResetLocationFilter}
+                />
+              )}
               <i
                 className={`fa-solid fa-magnifying-glass ${styles.searchIcon}`}
                 onClick={onLocationRequested}
