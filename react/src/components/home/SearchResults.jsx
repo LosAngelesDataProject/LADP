@@ -5,7 +5,9 @@ import GetDirections from "../map/GetDirections";
 
 const SearchResults = (props) => {
   const { setCenter, results, dayOfTheWeek, center, current } = props;
-  const [showDescription, setShowDescription] = useState(new Array(results.length).fill(false));
+  const [showDescription, setShowDescription] = useState(
+    new Array(results.length).fill(false)
+  );
   const currentDate = new Date();
   const todayIs = dayOfTheWeek[currentDate.getDay() - 1];
 
@@ -14,10 +16,17 @@ const SearchResults = (props) => {
       i === index ? !showDescription[index] : false
     );
     setShowDescription(newShowDescription);
-    let resultsLocation = { lat: results[index].latitude, lng: results[index].longitude };
-    let reCenter = resultsLocation.lat === center.lat && resultsLocation.lng === center.lng;
+    let resultsLocation = {
+      lat: results[index].latitude,
+      lng: results[index].longitude,
+    };
+    let reCenter =
+      resultsLocation.lat === center.lat && resultsLocation.lng === center.lng;
     if (reCenter) {
-      setCenter({ lat: results[index].latitude, lng: results[index].longitude });
+      setCenter({
+        lat: results[index].latitude,
+        lng: results[index].longitude,
+      });
     }
   };
 
@@ -26,9 +35,9 @@ const SearchResults = (props) => {
       {results.length !== 0 ? (
         results.map((result, index) => {
           const finalCard = index !== results.length - 1 ? "mb-3" : "";
-          const resultAddressString = `${result.streetAddress}, ${result.city}, ${result.state} ${
-            result.zipcode
-          },${" "} ${result.country} `;
+          const resultAddressString = `${result.streetAddress}, ${
+            result.city
+          }, ${result.state} ${result.zipcode},${" "} ${result.country} `;
           return (
             <div
               className={`${finalCard} ${styles.card} ${
@@ -37,18 +46,23 @@ const SearchResults = (props) => {
               key={`resultCard-${index}`}
               onClick={() => {
                 handleDescriptionClick(index);
-                setCenter({ lat: results[index].latitude, lng: results[index].longitude });
+                setCenter({
+                  lat: results[index].latitude,
+                  lng: results[index].longitude,
+                });
               }}
             >
               <div className={`ms-3 mt-3 mb-3 card-body ${styles.cardContent}`}>
                 <h4 className={`${styles.cardTitle}`}>{result.name}</h4>
                 <h6>Area: {result.area}</h6>
-                <div className={`mb-1 ${!result.streetAddress ? "d-none" : ""}`}>
+                <div
+                  className={`mb-1 ${!result.streetAddress ? "d-none" : ""}`}
+                >
                   <h6 className="col d-inline">Address: &nbsp;</h6>
 
                   <p className="col d-inline">
-                    {result.streetAddress}, {result.city}, {result.state} {result.zipcode},{" "}
-                    {result.country}
+                    {result.streetAddress}, {result.city}, {result.state}{" "}
+                    {result.zipcode}, {result.country}
                   </p>
                 </div>
                 {showDescription[index] && (
@@ -63,22 +77,32 @@ const SearchResults = (props) => {
                     </div>
 
                     <div>
-                      <GetDirections markerAddress={resultAddressString} current={current} />
+                      <GetDirections
+                        markerAddress={resultAddressString}
+                        current={current}
+                      />
                     </div>
                     <br></br>
                     <div className={`mb-3`}>
                       <h6 className="mb-1">Tags:</h6>
                       {result.tags.map((tag, index) => {
                         return (
-                          <p key={`tag-${index}`} className={`${styles.tag} col `}>
+                          <p
+                            key={`tag-${index}`}
+                            className={`${styles.tag} col `}
+                          >
                             {tag}
                           </p>
                         );
                       })}
                     </div>
-                    <div className={`my-3 ${!result.description ? "d-none" : ""}`}>
+                    <div
+                      className={`my-3 ${!result.description ? "d-none" : ""}`}
+                    >
                       <p className="mb-1">Description:</p>
-                      <p className={`fw-light ${styles.resultDescription}`}>{result.description}</p>
+                      <p className={`fw-light ${styles.resultDescription}`}>
+                        {result.description}
+                      </p>
                     </div>
                     <div>
                       {result.businessHours.map((businessHours, index) => {
@@ -96,7 +120,9 @@ const SearchResults = (props) => {
                           <p
                             key={`day-${index}`}
                             className={`mb-0 ${
-                              todayIs === businessHours.day ? "fw-bold" : "fw-light"
+                              todayIs === businessHours.day
+                                ? "fw-bold"
+                                : "fw-light"
                             }`}
                           >
                             {`${businessHours.day}: ${timeOpen}`}
