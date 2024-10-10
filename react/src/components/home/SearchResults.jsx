@@ -46,7 +46,7 @@ const SearchResults = (props) => {
               }}
             >
               <div className={`ms-3 mt-3 mb-3 card-body ${styles.cardContent}`}>
-                <h4>{result.name}</h4>
+                <h4 className={`${styles.cardTitle}`}>{result.name}</h4>
                 <h6>Area: {result.area}</h6>
                 <div className={`mb-1 ${!result.streetAddress ? "d-none" : ""}`}>
                   <h6 className="col d-inline">Address: &nbsp;</h6>
