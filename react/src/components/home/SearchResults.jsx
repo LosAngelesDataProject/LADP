@@ -1,5 +1,5 @@
 import styles from "./Home.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import GetDirections from "../map/GetDirections";
 
@@ -9,11 +9,18 @@ const SearchResults = (props) => {
   const currentDate = new Date();
   const todayIs = dayOfTheWeek[currentDate.getDay() - 1];
 
+  useEffect(() => {
+    if (results.length > 0) {
+      setShowDescription(new Array(results.length).fill(false));
+    }
+  }, [results]);
+
   const handleDescriptionClick = (index) => {
     const newShowDescription = showDescription.map((_, i) =>
       i === index ? !showDescription[index] : false
     );
     setShowDescription(newShowDescription);
+
     let resultsLocation = { lat: results[index].latitude, lng: results[index].longitude };
     let reCenter = resultsLocation.lat === center.lat && resultsLocation.lng === center.lng;
     if (reCenter) {
@@ -26,9 +33,7 @@ const SearchResults = (props) => {
       {results.length !== 0 ? (
         results.map((result, index) => {
           const finalCard = index !== results.length - 1 ? "mb-3" : "";
-          const resultAddressString = `${result.streetAddress}, ${result.city}, ${result.state} ${
-            result.zipcode
-          },${" "} ${result.country} `;
+          const resultAddressString = `${result.streetAddress}, ${result.city}, ${result.state} ${result.zipcode}`;
           return (
             <div
               className={`${finalCard} ${styles.card} ${
@@ -47,8 +52,7 @@ const SearchResults = (props) => {
                   <h6 className="col d-inline">Address: &nbsp;</h6>
 
                   <p className="col d-inline">
-                    {result.streetAddress}, {result.city}, {result.state} {result.zipcode},{" "}
-                    {result.country}
+                    {result.streetAddress}, {result.city}, {result.state} {result.zipcode}
                   </p>
                 </div>
                 {showDescription[index] && (
@@ -71,7 +75,7 @@ const SearchResults = (props) => {
                       {result.tags.map((tag, index) => {
                         return (
                           <p key={`tag-${index}`} className={`${styles.tag} col `}>
-                            {tag}
+                            {tag.name}
                           </p>
                         );
                       })}
@@ -99,7 +103,7 @@ const SearchResults = (props) => {
                               todayIs === businessHours.day ? "fw-bold" : "fw-light"
                             }`}
                           >
-                            {`${businessHours.day}: ${timeOpen}`}
+                            {`${businessHours.day.name}: ${timeOpen}`}
                           </p>
                         );
                       })}
@@ -124,19 +128,17 @@ SearchResults.propTypes = {
       latitude: PropTypes.number.isRequired,
       longitude: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
-      area: PropTypes.string,
       streetAddress: PropTypes.string,
       city: PropTypes.string,
       state: PropTypes.string,
-      zipcode: PropTypes.number,
-      country: PropTypes.string,
+      zipcode: PropTypes.string,
       phone: PropTypes.string,
       website: PropTypes.string,
-      tags: PropTypes.arrayOf(PropTypes.string),
+      tags: PropTypes.arrayOf(PropTypes.object),
       description: PropTypes.string,
       businessHours: PropTypes.arrayOf(
         PropTypes.shape({
-          day: PropTypes.string.isRequired,
+          day: PropTypes.object,
           open: PropTypes.string,
           close: PropTypes.string,
         })
