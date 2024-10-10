@@ -3,9 +3,13 @@ import { Container, Row, Col } from "react-bootstrap";
 import styles from "./Home.module.css";
 import BaseMap from "../map/BaseMap";
 import foodResourcesService from "../../services/foodResourcesService";
+import sampleResults from "../../assets/data/sampleResults.js";
 import SearchResults from "./SearchResults.jsx";
 import HomeSlide from "./HomeSlide.jsx";
 import FilterButtons from "./FilterButtons.jsx";
+import { useLocation } from "react-router-dom";
+import resultFilterer from "./resultFilterer.js";
+import Spinner from "react-bootstrap/Spinner";
 
 function Home() {
   const dayOfTheWeek = [
@@ -18,10 +22,17 @@ function Home() {
     "Sunday",
   ];
 
+  const location = useLocation();
+  const urlParams = new URLSearchParams(location.search);
+  const dayParam = urlParams.get("d");
+  const productParam = urlParams.get("p");
+  const locationParam = urlParams.get("l");
+
   const [center, setCenter] = useState({ lat: 34.0549, lng: -118.2426 });
   const [current, setCurrent] = useState({ lat: 34.0549, lng: -118.2426, active: "off" });
   const [zoom, setZoom] = useState(15);
   const [results, setResults] = useState([]);
+  const [resultsArray, setResultsArray] = useState([]);
 
   const markers = results.map((result) => ({
     geocode: [result.latitude, result.longitude],
@@ -63,11 +74,14 @@ function Home() {
   }, []);
 
   const onGetFoodResourcesSuccess = (response) => {
+    setResultsArray(() => [...response.data]);
     setResults(() => [...response.data]);
   };
 
   const onGetFoodResourcesError = (error) => {
-    console.error(error);
+    console.error("Error!!!!!!!!!!!!!!! ", error);
+    setResultsArray(() => [...sampleResults]);
+    setResults(() => [...sampleResults]);
   };
 
   const SearchBar = () => {
@@ -90,6 +104,16 @@ function Home() {
     );
   };
 
+  useEffect(() => {
+    if (dayParam || productParam || locationParam) {
+      const filteredResults = resultFilterer(resultsArray, dayParam, productParam, locationParam);
+
+      setResults(() => [...filteredResults]);
+    } else {
+      setResults(() => [...resultsArray]);
+    }
+  }, [location, dayParam, productParam, locationParam]);
+
   return (
     <>
       <Container className={styles.home}>
@@ -104,15 +128,20 @@ function Home() {
             <FilterButtons dayOfTheWeek={dayOfTheWeek} />
           </div>
         </Row>
+
         <Row>
           <Col>
-            <SearchResults
-              results={results}
-              dayOfTheWeek={dayOfTheWeek}
-              setCenter={setCenter}
-              center={center}
-              current={current}
-            />
+            {resultsArray.length ? (
+              <SearchResults
+                results={results}
+                dayOfTheWeek={dayOfTheWeek}
+                setCenter={setCenter}
+                center={center}
+                current={current}
+              />
+            ) : (
+              <Spinner animation="grow" variant="dark" className="mt-5 d-flex mx-auto" />
+            )}
           </Col>
           <Col className={`${styles.mapContainer}`}>
             <h4 className={styles.mapTitle}>Map of Los Angeles, CA</h4>
