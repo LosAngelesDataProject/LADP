@@ -119,7 +119,7 @@ function FilterButtons(props) {
 
   return (
     <>
-      <div className={`${!config.showDayOfTheWeekFilter && "d-none"}`}>
+      <div className={`${config.hideDayOfTheWeekFilter && "d-none"}`}>
         <div className={`me-3 mt-3 ${styles.filterItem}`}>
           <button
             className={`${styles.filterButton} ${
@@ -149,7 +149,7 @@ function FilterButtons(props) {
           )}
         </div>
       </div>
-      <div className={`${!config.showProductTypeFilter && "d-none"}`}>
+      <div className={`${config.hideProductTypeFilter && "d-none"}`}>
         <div className={`me-3 mt-3 ${styles.filterItem}`}>
           <button
             className={`${styles.filterButton} ${
