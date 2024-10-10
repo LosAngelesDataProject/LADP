@@ -22,13 +22,15 @@ namespace LADP_EFC
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
             });
 
-            // Add CORS configuration
+            // Configure CORS policy
             builder.Services.AddCors(options =>
             {
-                options.AddPolicy("AllowAllOrigins",
-                    policy => policy.AllowAnyOrigin()
-                                    .AllowAnyMethod()
-                                    .AllowAnyHeader());
+                options.AddPolicy("AllowSpecificOrigin",
+                    policy => policy
+                        .WithOrigins("http://localhost:5173")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials());
             });
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -50,8 +52,9 @@ namespace LADP_EFC
 
             // app.UseHttpsRedirection();
 
-            // Enable CORS
-            app.UseCors("AllowAllOrigins");
+            // Apply CORS policy
+            app.UseCors("AllowSpecificOrigin");
+
 
             app.UseAuthorization();
 

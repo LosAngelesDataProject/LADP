@@ -33,9 +33,7 @@ const SearchResults = (props) => {
       {results.length !== 0 ? (
         results.map((result, index) => {
           const finalCard = index !== results.length - 1 ? "mb-3" : "";
-          const resultAddressString = `${result.streetAddress}, ${result.city}, ${result.state} ${
-            result.zipcode
-          },${" "} ${result.country} `;
+          const resultAddressString = `${result.streetAddress}, ${result.city}, ${result.state} ${result.zipcode}`;
           return (
             <div
               className={`${finalCard} ${styles.card} ${
@@ -49,13 +47,11 @@ const SearchResults = (props) => {
             >
               <div className={`ms-3 mt-3 mb-3 card-body ${styles.cardContent}`}>
                 <h4>{result.name}</h4>
-                <h6>Area: {result.area}</h6>
                 <div className={`mb-1 ${!result.streetAddress ? "d-none" : ""}`}>
                   <h6 className="col d-inline">Address: &nbsp;</h6>
 
                   <p className="col d-inline">
-                    {result.streetAddress}, {result.city}, {result.state} {result.zipcode},{" "}
-                    {result.country}
+                    {result.streetAddress}, {result.city}, {result.state} {result.zipcode}
                   </p>
                 </div>
                 {showDescription[index] && (
@@ -131,12 +127,10 @@ SearchResults.propTypes = {
       latitude: PropTypes.number.isRequired,
       longitude: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
-      area: PropTypes.string,
       streetAddress: PropTypes.string,
       city: PropTypes.string,
       state: PropTypes.string,
       zipcode: PropTypes.string,
-      country: PropTypes.string,
       phone: PropTypes.string,
       website: PropTypes.string,
       tags: PropTypes.arrayOf(PropTypes.object),

@@ -8,7 +8,7 @@ foodResourcesService.getFoodResources = () => {
   const config = {
     method: "GET",
     url: foodResourcesService.endpoint,
-    // withCredentials: true,
+    withCredentials: true,
     crossdomain: true,
     headers: { "Content-Type": "application/json" },
   };

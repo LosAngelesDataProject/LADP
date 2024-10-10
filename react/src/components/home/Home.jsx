@@ -63,8 +63,6 @@ function Home() {
   }, []);
 
   const onGetFoodResourcesSuccess = (response) => {
-    console.log("Response: ", response.data);
-
     setResults(() => [...response.data]);
   };
 
@@ -121,11 +119,11 @@ function Home() {
             <BaseMap markers={markers} center={center} current={current} zoom={zoom} />
           </Col>
         </Row>
-        {/* <Row className={`mt-3 ${styles.heroContainer}`}>
+        <Row className={`mt-3 ${styles.heroContainer}`}>
           <div>
             <p> Hero Section: Welcome to the Los Angeles Data Project...</p>
           </div>
-        </Row> */}
+        </Row>
       </Container>
     </>
   );
