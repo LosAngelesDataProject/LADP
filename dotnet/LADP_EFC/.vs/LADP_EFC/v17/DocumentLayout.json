@@ -1,7 +1,36 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\SF.LADataProject\\LADP\\dotnet\\LADP_EFC\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\SF.Code\\LADP\\dotnet\\LADP_EFC\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{CC54DF4F-5459-4685-A9AA-AAA45CCEB9A3}|LADP_EFC.csproj|c:\\sf.code\\ladp\\dotnet\\ladp_efc\\repository\\repositoryfoodresource.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC54DF4F-5459-4685-A9AA-AAA45CCEB9A3}|LADP_EFC.csproj|solutionrelative:repository\\repositoryfoodresource.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC54DF4F-5459-4685-A9AA-AAA45CCEB9A3}|LADP_EFC.csproj|c:\\sf.code\\ladp\\dotnet\\ladp_efc\\models\\foodresource.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC54DF4F-5459-4685-A9AA-AAA45CCEB9A3}|LADP_EFC.csproj|solutionrelative:models\\foodresource.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC54DF4F-5459-4685-A9AA-AAA45CCEB9A3}|LADP_EFC.csproj|c:\\sf.code\\ladp\\dotnet\\ladp_efc\\dto\\foodresource\\foodresourcedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC54DF4F-5459-4685-A9AA-AAA45CCEB9A3}|LADP_EFC.csproj|solutionrelative:dto\\foodresource\\foodresourcedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC54DF4F-5459-4685-A9AA-AAA45CCEB9A3}|LADP_EFC.csproj|c:\\sf.code\\ladp\\dotnet\\ladp_efc\\dto\\foodresource\\addfoodresourcedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC54DF4F-5459-4685-A9AA-AAA45CCEB9A3}|LADP_EFC.csproj|solutionrelative:dto\\foodresource\\addfoodresourcedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC54DF4F-5459-4685-A9AA-AAA45CCEB9A3}|LADP_EFC.csproj|c:\\sf.code\\ladp\\dotnet\\ladp_efc\\data\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC54DF4F-5459-4685-A9AA-AAA45CCEB9A3}|LADP_EFC.csproj|solutionrelative:data\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC54DF4F-5459-4685-A9AA-AAA45CCEB9A3}|LADP_EFC.csproj|c:\\sf.code\\ladp\\dotnet\\ladp_efc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC54DF4F-5459-4685-A9AA-AAA45CCEB9A3}|LADP_EFC.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CC54DF4F-5459-4685-A9AA-AAA45CCEB9A3}|LADP_EFC.csproj|c:\\sf.code\\ladp\\dotnet\\ladp_efc\\repository\\repositorytodoitems.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CC54DF4F-5459-4685-A9AA-AAA45CCEB9A3}|LADP_EFC.csproj|solutionrelative:repository\\repositorytodoitems.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,15 +38,105 @@
       "DocumentGroups": [
         {
           "DockedWidth": 152,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 6,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FoodResource.cs",
+              "DocumentMoniker": "C:\\SF.Code\\LADP\\dotnet\\LADP_EFC\\Models\\FoodResource.cs",
+              "RelativeDocumentMoniker": "Models\\FoodResource.cs",
+              "ToolTip": "C:\\SF.Code\\LADP\\dotnet\\LADP_EFC\\Models\\FoodResource.cs",
+              "RelativeToolTip": "Models\\FoodResource.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-17T18:21:23.199Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FoodResourceDTO.cs",
+              "DocumentMoniker": "C:\\SF.Code\\LADP\\dotnet\\LADP_EFC\\DTO\\FoodResource\\FoodResourceDTO.cs",
+              "RelativeDocumentMoniker": "DTO\\FoodResource\\FoodResourceDTO.cs",
+              "ToolTip": "C:\\SF.Code\\LADP\\dotnet\\LADP_EFC\\DTO\\FoodResource\\FoodResourceDTO.cs",
+              "RelativeToolTip": "DTO\\FoodResource\\FoodResourceDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-17T18:21:14.116Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AddFoodResourceDTO.cs",
+              "DocumentMoniker": "C:\\SF.Code\\LADP\\dotnet\\LADP_EFC\\DTO\\FoodResource\\AddFoodResourceDTO.cs",
+              "RelativeDocumentMoniker": "DTO\\FoodResource\\AddFoodResourceDTO.cs",
+              "ToolTip": "C:\\SF.Code\\LADP\\dotnet\\LADP_EFC\\DTO\\FoodResource\\AddFoodResourceDTO.cs",
+              "RelativeToolTip": "DTO\\FoodResource\\AddFoodResourceDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-17T18:21:10.472Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DataContext.cs",
+              "DocumentMoniker": "C:\\SF.Code\\LADP\\dotnet\\LADP_EFC\\Data\\DataContext.cs",
+              "RelativeDocumentMoniker": "Data\\DataContext.cs",
+              "ToolTip": "C:\\SF.Code\\LADP\\dotnet\\LADP_EFC\\Data\\DataContext.cs",
+              "RelativeToolTip": "Data\\DataContext.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAAwDwAAAB6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-17T18:20:55.601Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RepositoryFoodResource.cs",
+              "DocumentMoniker": "C:\\SF.Code\\LADP\\dotnet\\LADP_EFC\\Repository\\RepositoryFoodResource.cs",
+              "RelativeDocumentMoniker": "Repository\\RepositoryFoodResource.cs",
+              "ToolTip": "C:\\SF.Code\\LADP\\dotnet\\LADP_EFC\\Repository\\RepositoryFoodResource.cs",
+              "RelativeToolTip": "Repository\\RepositoryFoodResource.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAIIAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-04T16:33:59.174Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "RepositoryTodoItems.cs",
+              "DocumentMoniker": "C:\\SF.Code\\LADP\\dotnet\\LADP_EFC\\Repository\\RepositoryTodoItems.cs",
+              "RelativeDocumentMoniker": "Repository\\RepositoryTodoItems.cs",
+              "ToolTip": "C:\\SF.Code\\LADP\\dotnet\\LADP_EFC\\Repository\\RepositoryTodoItems.cs",
+              "RelativeToolTip": "Repository\\RepositoryTodoItems.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-04T16:33:58.05Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\SF.Code\\LADP\\dotnet\\LADP_EFC\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\SF.Code\\LADP\\dotnet\\LADP_EFC\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-04T16:33:46.203Z",
+              "EditorCaption": ""
             }
           ]
         },

@@ -2,14 +2,10 @@ import { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import styles from "./Home.module.css";
 import BaseMap from "../map/BaseMap";
-import foodResourcesService from "../../services/foodResourcesService";
-import sampleResults from "../../assets/data/sampleResults.js";
+import results from "../../assets/data/results.js";
 import SearchResults from "./SearchResults.jsx";
 import HomeSlide from "./HomeSlide.jsx";
 import FilterButtons from "./FilterButtons.jsx";
-import { useLocation } from "react-router-dom";
-import resultFilterer from "./resultFilterer.js";
-import Spinner from "react-bootstrap/Spinner";
 
 function Home() {
   const dayOfTheWeek = [
@@ -21,19 +17,6 @@ function Home() {
     "Saturday",
     "Sunday",
   ];
-
-  const location = useLocation();
-  const urlParams = new URLSearchParams(location.search);
-  const dayParam = urlParams.get("d");
-  const productParam = urlParams.get("p");
-  const locationParam = urlParams.get("l");
-
-  const [center, setCenter] = useState({ lat: 34.0549, lng: -118.2426 });
-  const [current, setCurrent] = useState({ lat: 34.0549, lng: -118.2426, active: "off" });
-  const [zoom, setZoom] = useState(15);
-  const [results, setResults] = useState([]);
-  const [resultsArray, setResultsArray] = useState([]);
-
   const markers = results.map((result) => ({
     geocode: [result.latitude, result.longitude],
     popUp: {
@@ -41,48 +24,35 @@ function Home() {
       address: `${result.streetAddress}, ${result.city}`,
     },
   }));
-
+  const [center, setCenter] = useState({ lat: 34.0549, lng: -118.2426 });
+  const [current, setCurrent] = useState({ lat: 34.0549, lng: -118.2426, active: "off" });
+  const [zoom, setZoom] = useState(15);
+  
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
       if (position.coords.latitude) {
         setZoom(16);
         setCurrent((prevState) => {
           const newCurrent = { ...prevState };
-
+          
           newCurrent.lat = position.coords.latitude;
           newCurrent.lng = position.coords.longitude;
           newCurrent.active = "on";
 
           return { ...newCurrent };
         });
-
+        
         setCenter((prevState) => {
           const newCurrent = { ...prevState };
-
+          
           newCurrent.lat = position.coords.latitude;
           newCurrent.lng = position.coords.longitude;
-
+          
           return { ...newCurrent };
         });
       }
     });
-
-    foodResourcesService
-      .getFoodResources()
-      .then(onGetFoodResourcesSuccess)
-      .catch(onGetFoodResourcesError);
   }, []);
-
-  const onGetFoodResourcesSuccess = (response) => {
-    setResultsArray(() => [...response.data]);
-    setResults(() => [...response.data]);
-  };
-
-  const onGetFoodResourcesError = (error) => {
-    console.error("Error!!!!!!!!!!!!!!! ", error);
-    setResultsArray(() => [...sampleResults]);
-    setResults(() => [...sampleResults]);
-  };
 
   const SearchBar = () => {
     return (
@@ -104,16 +74,6 @@ function Home() {
     );
   };
 
-  useEffect(() => {
-    if (dayParam || productParam || locationParam) {
-      const filteredResults = resultFilterer(resultsArray, dayParam, productParam, locationParam);
-
-      setResults(() => [...filteredResults]);
-    } else {
-      setResults(() => [...resultsArray]);
-    }
-  }, [location, dayParam, productParam, locationParam]);
-
   return (
     <>
       <Container className={styles.home}>
@@ -122,30 +82,32 @@ function Home() {
         </div>
         <Row className={`mx-2 my-4 ${styles.searchContainer}`}>
           <div className={styles.searchInputContainer}>
-            <SearchBar />
+            <SearchBar/>
           </div>
           <div className={`${styles.filterContainer}`}>
-            <FilterButtons dayOfTheWeek={dayOfTheWeek} />
+            <FilterButtons
+              dayOfTheWeek = {dayOfTheWeek}
+            />
           </div>
         </Row>
-
         <Row>
           <Col>
-            {resultsArray.length ? (
-              <SearchResults
-                results={results}
-                dayOfTheWeek={dayOfTheWeek}
-                setCenter={setCenter}
-                center={center}
-                current={current}
-              />
-            ) : (
-              <Spinner animation="grow" variant="dark" className="mt-5 d-flex mx-auto" />
-            )}
+            <SearchResults
+              results={results}
+              dayOfTheWeek={dayOfTheWeek}
+              setCenter={setCenter}
+              center={center}
+              current={current}
+            />
           </Col>
           <Col className={`${styles.mapContainer}`}>
             <h4 className={styles.mapTitle}>Map of Los Angeles, CA</h4>
-            <BaseMap markers={markers} center={center} current={current} zoom={zoom} />
+            <BaseMap 
+              markers={markers} 
+              center={center} 
+              current={current} 
+              zoom={zoom} 
+            />
           </Col>
         </Row>
         <Row className={`mt-3 ${styles.heroContainer}`}>
