@@ -1,15 +1,14 @@
 import axios from "axios";
 
 var developersService = {
-  endpoint: "https://localhost:7035/api/Developers", 
+  endpoint: "http://localhost:3001/developers", 
 };
 
 const getDevelopers = () => {
   const config = {
     method: "GET",
     url: developersService.endpoint,
-    headers: { "Content-Type": "application/json" },
-    withCredentials: true,
+    headers: { "Content-Type": "application/json" }
   };
 
   return axios(config)

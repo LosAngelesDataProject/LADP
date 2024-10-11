@@ -22,16 +22,16 @@ namespace LADP__EFC.Repository
         public async Task<IEnumerable<DeveloperDTO>> GetAllAsync()
         {
             return await _context.Developers
-                .Select(d => new DeveloperDTO
-                {
-                    DeveloperID = d.DeveloperID,
-                    Name = d.Name,
-                    Role = d.Role,
-                    PictureUrl = d.PictureUrl,
-                    LinkedInUrl = d.LinkedInUrl,
-                    GithubUrl = d.GithubUrl
-                })
-                .ToListAsync();
+      .Include(d => d.Role)  
+      .Select(d => new DeveloperDTO
+      {
+          DeveloperID = d.DeveloperID,
+          Name = d.Name,
+          Role = d.Role.Title,  
+          LinkedInUrl = d.LinkedInUrl,
+          GithubUrl = d.GithubUrl
+      })
+      .ToListAsync();
         }
     }
 }

@@ -4,12 +4,14 @@ import styles from "./AboutUs.module.css";
 import ProfileCard from "../ProfileCard";
 import LinkedIn from "../../assets/LinkedIn.svg";
 import Github from "../../assets/Github.svg";
-import { getDevelopers } from "../../services/developerService";
 import React, { useEffect, useState } from "react";
+import { getDevelopers } from "../../services/developerService";
+import developersData from "../../assets/data/developersData.js";
 
 function AboutUs() {
   const [developers, setDevelopers] = useState([]);
 
+  // Fetching data from the fake json-derver (plugin) API
   useEffect(() => {
     const fetchDevelopers = async () => {
       try {
@@ -17,9 +19,14 @@ function AboutUs() {
         console.log("Fetched developers data:", data);
         setDevelopers(data);
       } catch (error) {
-        console.error("Error fetching developers:", error);
+        console.error("Error fetching developers", error);
+
+        // Use static developers data if the API call fails
+        console.log("Error! Developers sample data:");
+        setDevelopers(developersData);
       }
     };
+
     fetchDevelopers();
   }, []);
 

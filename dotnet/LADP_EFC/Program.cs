@@ -21,7 +21,9 @@ namespace LADP__EFC
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
             });
 
-            // Configure CORS policy
+            // Configure https://github.com/LosAngelesDataProject/LADP/pull/41
+
+            // CORS policy
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowSpecificOrigin",
