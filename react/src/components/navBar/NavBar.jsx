@@ -9,7 +9,7 @@ const NavBar = (props) => {
   const location = useLocation(); // Get the current location
   const isActive = (path) => (location.pathname === path ? styles.active : "");
   return (
-    <Navbar className={styles.background} expand="lg">
+    <Navbar className={styles.background} expand="md">
       <Container>
         <Nav className="me-auto col-md-5 justify-content-start justify-content-around">
           <Nav.Link
