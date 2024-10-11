@@ -52,7 +52,7 @@ const NavBar = (props) => {
           <Nav.Link
             className={`${styles.navLink} ${isActive("/contact-us")}`}
             as={Link}
-            to="/contact-us"
+            to="/under-construction"
           >
             Contact Us
           </Nav.Link>
@@ -66,14 +66,14 @@ const NavBar = (props) => {
               <Nav.Link
                 className={`${styles.navLink} ${isActive("/login")}`}
                 as={Link}
-                to="/login"
+                to="/under-construction"
               >
                 Login
               </Nav.Link>
               <Nav.Link
                 className={`${styles.endText} ${isActive("/register")}`}
                 as={Link}
-                to="/register"
+                to="/under-construction"
               >
                 Register
               </Nav.Link>
