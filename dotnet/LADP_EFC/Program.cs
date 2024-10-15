@@ -1,3 +1,4 @@
+
 using Microsoft.EntityFrameworkCore;
 using LADP__EFC.Data;
 using LADP__EFC.Repository;
@@ -13,15 +14,15 @@ namespace LADP__EFC
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+
+            // Add Repositories to the container.
             builder.Services.AddScoped<IRepositoryFoodResource, RepositoryFoodResource>();
             builder.Services.AddScoped<IRepositoryToDoItems, RepositoryToDoItems>();
-            builder.Services.AddScoped<IRepositoryDeveloper, RepositoryDeveloper>();
             builder.Services.AddControllers().AddJsonOptions(options =>
             {
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
             });
 
-            // Configure https://github.com/LosAngelesDataProject/LADP/pull/41
 
             // CORS policy
             builder.Services.AddCors(options =>
@@ -40,8 +41,8 @@ namespace LADP__EFC
             builder.Services.AddDbContext<DataContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-            });
 
+            });
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -52,9 +53,6 @@ namespace LADP__EFC
             }
 
             app.UseHttpsRedirection();
-
-            // Apply CORS policy
-            app.UseCors("AllowSpecificOrigin");
 
             app.UseAuthorization();
 

@@ -21,7 +21,7 @@ function AboutUs() {
       } catch (error) {
         console.error("Error fetching developers", error);
 
-        // Use static developers data if the API call fails
+        // Static developers data will show up if the API call fails
         console.log("Error! Developers sample data:");
         setDevelopers(developersData);
       }

@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using LADP__EFC.Models;
+﻿using LADP__EFC.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 
@@ -19,7 +16,6 @@ namespace LADP__EFC.Data
         public DbSet<ResourceTags> ResourceTags { get; set; }
         public DbSet<BusinessHours> BusinessHours { get; set; }
         public DbSet<Day> Days { get; set; }
-        public DbSet<Developer> Developers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -90,18 +86,6 @@ namespace LADP__EFC.Data
                 entity.HasKey(e => e.Id).HasName("PK_Tag");
                 entity.Property(e => e.Id).HasColumnName("Id").HasColumnType("int");
                 entity.Property(e => e.Name).HasMaxLength(100).HasColumnName("Name").HasColumnType("nvarchar(100)");
-            });
-
-            modelBuilder.Entity<Developer>(entity =>
-            {
-                entity.ToTable("DevelopersInfo");
-                entity.HasKey(e => e.DeveloperID).HasName("PK_DevelopersInfo");
-                entity.Property(e => e.DeveloperID).HasColumnName("DeveloperID").HasColumnType("int");
-                entity.Property(e => e.Name).IsRequired().HasMaxLength(255).HasColumnName("Name").HasColumnType("nvarchar(255)");
-                entity.Property(e => e.Role).IsRequired().HasMaxLength(100).HasColumnName("Role").HasColumnType("nvarchar(100)");
-                entity.Property(e => e.PictureUrl).HasColumnName("PictureUrl").HasColumnType("nvarchar(MAX)");
-                entity.Property(e => e.LinkedInUrl).HasColumnName("LinkedInUrl").HasColumnType("nvarchar(MAX)");
-                entity.Property(e => e.GithubUrl).HasColumnName("GithubUrl").HasColumnType("nvarchar(MAX)");
             });
         }
     }
