@@ -1,10 +1,11 @@
+
 using Microsoft.EntityFrameworkCore;
-using LADP_EFC.Data;
-using LADP_EFC.Repository;
-using LADP_EFC.Repository.Interfaces;
+using LADP__EFC.Data;
+using LADP__EFC.Repository;
+using LADP__EFC.Repository.Interfaces;
 using System.Text.Json.Serialization;
 
-namespace LADP_EFC
+namespace LADP__EFC
 {
     public class Program
     {
@@ -22,7 +23,8 @@ namespace LADP_EFC
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
             });
 
-            // Configure CORS policy
+
+            // CORS policy
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowSpecificOrigin",
@@ -39,8 +41,8 @@ namespace LADP_EFC
             builder.Services.AddDbContext<DataContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-            });
 
+            });
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -50,11 +52,7 @@ namespace LADP_EFC
                 app.UseSwaggerUI();
             }
 
-            // app.UseHttpsRedirection();
-
-            // Apply CORS policy
-            app.UseCors("AllowSpecificOrigin");
-
+            app.UseHttpsRedirection();
 
             app.UseAuthorization();
 
