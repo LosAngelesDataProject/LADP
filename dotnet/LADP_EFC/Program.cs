@@ -1,11 +1,11 @@
 
 using Microsoft.EntityFrameworkCore;
-using LADP_EFC.Data;
-using LADP_EFC.Repository;
-using LADP_EFC.Repository.Interfaces;
+using LADP__EFC.Data;
+using LADP__EFC.Repository;
+using LADP__EFC.Repository.Interfaces;
 using System.Text.Json.Serialization;
 
-namespace LADP_EFC
+namespace LADP__EFC
 {
     public class Program
     {
@@ -22,6 +22,19 @@ namespace LADP_EFC
             {
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
             });
+
+
+            // CORS policy
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigin",
+                    policy => policy
+                        .WithOrigins("http://localhost:5173")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials());
+            });
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

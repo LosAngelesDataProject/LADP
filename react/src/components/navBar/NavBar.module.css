@@ -6,6 +6,7 @@
 
 .background {
   background-color: var(--main-color);
+  font-size: 80%;
 }
 
 .navLink {

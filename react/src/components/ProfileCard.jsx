@@ -1,49 +1,34 @@
+import React from "react";
 import Card from "react-bootstrap/Card";
-import ProfileImg from "../assets/ProfileImg.jpg";
-import LinkedIn from "../assets/LinkedIn.svg";
-import Github from "../assets/Github.svg";
+import LinkedInIcon from "../assets/LinkedIn.svg";
+import GithubIcon from "../assets/Github.svg";
+import styles from "./ProfileCard.module.css";
 
-function ProfileCard() {
-  const cardContainer = { padding: "50px" };
-  const cardStyle = {
-    width: "18rem",
-    boxShadow: "0 4px 8px rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)",
-    borderRadius: "15px",
-  };
-
+function ProfileCard({ name, role, pictureUrl, linkedInUrl, githubUrl }) {
   return (
-    <>
-      <div style={cardContainer}>
-        <Card style={cardStyle}>
-          <Card.Img variant="top" src={ProfileImg} />
-          <Card.Body>
-            <Card.Title>Software Dev</Card.Title>
-            <Card.Text>
-              Tier 1 developer contributing to the foundation of the LA Data
-              Project
-            </Card.Text>
-            <a
-              href="https://www.linkedin.com/"
-              rel="noreferrer noopener"
-              target="_blank"
-            >
-              <img src={LinkedIn} alt="LinkedIn" />
+    <div className={styles.cardContainer}>
+      <Card className={styles.cardStyle}>
+        <div className={styles.imageContainer}>
+          <Card.Img
+            variant="top"
+            src={pictureUrl}
+            className={styles.profileImage}
+          />
+        </div>
+        <Card.Body>
+          <Card.Title className={styles.cardTitle}>{role}</Card.Title>
+          <Card.Text className={styles.cardText}>{name}</Card.Text>
+          <div className={styles.iconLinks}>
+            <a href={linkedInUrl} rel="noreferrer noopener" target="_blank">
+              <img src={LinkedInIcon} alt="LinkedIn" />
             </a>
-            <a
-              href="https://github.com/"
-              rel="noreferrer noopener"
-              target="_blank"
-            >
-              <img src={Github} alt="Github" />
+            <a href={githubUrl} rel="noreferrer noopener" target="_blank">
+              <img src={GithubIcon} alt="GitHub" />
             </a>
-
-            {/* <Card.Link href="#">Card Link</Card.Link>
-            <Card.Link href="#">Another Link</Card.Link> */}
-            {/* <FontAwesomeIcon icon="fa-brands fa-linkedin" /> */}
-          </Card.Body>
-        </Card>
-      </div>
-    </>
+          </div>
+        </Card.Body>
+      </Card>
+    </div>
   );
 }
 
