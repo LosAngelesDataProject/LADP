@@ -35,7 +35,7 @@ function HomeSlide() {
   const mappingFunction = (avatar) => {
     return (
       <Carousel.Item key={avatar} interval={2500} className="home-slider-item">
-        <img src={avatar} className="img-fluid center" />
+        <img src={avatar} className="center" />
       </Carousel.Item>
     );
   };

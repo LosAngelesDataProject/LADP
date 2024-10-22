@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import toastr from "toastr";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Link, useNavigate } from "react-router-dom";
@@ -29,10 +29,7 @@ function Login() {
 
   return (
     <>
-      <div>
-        {" "}
-        <HeaderOne />
-      </div>
+      <HeaderOne />
       <div className="card login-form">
         <div className="row justify-content-center">
           <div className="col-md-3">

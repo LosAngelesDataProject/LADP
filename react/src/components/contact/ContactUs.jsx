@@ -6,15 +6,13 @@ import styles from "./Contact.module.css";
 function ContactUs() {
   return (
     <>
-      <row>
-        <HeaderOne />
-        <p className={styles.headerRow}>Contact Us</p>
-        <p className={styles.formHeader}>Send Us A Message !</p>
-        <column className="d-flex">
-          <ContactForm />
-          <ContactInfo />
-        </column>
-      </row>
+      <HeaderOne />
+      <p className={styles.headerRow}>Contact Us</p>
+      <p className={styles.formHeader}>Send Us A Message !</p>
+      <column className="d-flex">
+        <ContactForm />
+        <ContactInfo />
+      </column>
     </>
   );
 }
