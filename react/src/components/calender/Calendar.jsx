@@ -9,7 +9,7 @@ import {
 import { useMemo, useState } from "react";
 import styles from "./Calendar.module.css";
 import Logo from "../../assets/ladpLogo_light.png";
-import { Container, Card, Modal } from "react-bootstrap";
+import { Card, Modal } from "react-bootstrap";
 import { addDays, subDays } from "date-fns";
 
 function Calendar() {
@@ -132,7 +132,7 @@ function Calendar() {
   );
 
   return (
-    <Container className={`${styles.calendarConatiner}`}>
+    <>
       <div className={`mx-0 px-0 ${styles.headerBackground}`}>
         <img
           src={Logo}
@@ -155,7 +155,7 @@ function Calendar() {
         <CalendarCards />
         <EventModal />
       </div>
-    </Container>
+    </>
   );
 }
 

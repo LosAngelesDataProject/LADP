@@ -1,4 +1,3 @@
-import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { registerUser } from "../../services/usersService";
 import toastr from "toastr";
@@ -34,7 +33,7 @@ function Register() {
   };
 
   return (
-    <React.Fragment>
+    <>
       <div className={`mx-0 px-0 ${styles.headerBackground}`} />
       <h1 className={styles.titleName}>Register</h1>
       <Formik
@@ -186,7 +185,7 @@ function Register() {
           </Form>
         )}
       </Formik>
-    </React.Fragment>
+    </>
   );
 }
 

@@ -4,10 +4,6 @@
   --support-color: #ffffff;
 }
 
-.calendarConatiner {
-  min-height: 100vh;
-}
-
 .headerBackground {
   background-image: url(../../assets/headerImages/CalendarHeader.png);
   height: 250px;
