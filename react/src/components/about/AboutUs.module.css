@@ -4,13 +4,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 700px;
+  padding-bottom: 40px;
   position: relative;
   overflow: hidden;
 }
 
 .bgImg {
-  height: 80%;
+  height: 560px;
   width: 100%;
   object-fit: cover;
 }
