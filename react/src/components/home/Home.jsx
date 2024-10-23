@@ -2,10 +2,16 @@ import { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import styles from "./Home.module.css";
 import BaseMap from "../map/BaseMap";
-import results from "../../assets/data/results.js";
+import foodResourcesService from "../../services/foodResourcesService";
+import sampleResults from "../../assets/data/sampleResults.js";
+// import results from "../../assets/data/results.js";
+
 import SearchResults from "./SearchResults.jsx";
 import HomeSlide from "./HomeSlide.jsx";
 import FilterButtons from "./FilterButtons.jsx";
+import { useLocation } from "react-router-dom";
+import resultFilterer from "./resultFilterer.js";
+import Spinner from "react-bootstrap/Spinner";
 
 function Home() {
   const dayOfTheWeek = [
@@ -17,13 +23,13 @@ function Home() {
     "Saturday",
     "Sunday",
   ];
-  const markers = results.map((result) => ({
-    geocode: [result.latitude, result.longitude],
-    popUp: {
-      name: result.name,
-      address: `${result.streetAddress}, ${result.city}`,
-    },
-  }));
+
+  const location = useLocation();
+  const urlParams = new URLSearchParams(location.search);
+  const dayParam = urlParams.get("d");
+  const productParam = urlParams.get("p");
+  const locationParam = urlParams.get("l");
+
   const [center, setCenter] = useState({ lat: 34.0549, lng: -118.2426 });
   const [current, setCurrent] = useState({
     lat: 34.0549,
@@ -31,6 +37,16 @@ function Home() {
     active: "off",
   });
   const [zoom, setZoom] = useState(15);
+  const [results, setResults] = useState([]);
+  const [resultsArray, setResultsArray] = useState([]);
+
+  const markers = results.map((result) => ({
+    geocode: [result.latitude, result.longitude],
+    popUp: {
+      name: result.name,
+      address: `${result.streetAddress}, ${result.city}`,
+    },
+  }));
 
   const [resultsData, setResultsData] = useState({
     arrayOfResults: results,
@@ -70,8 +86,6 @@ function Home() {
       const rd = { ...prevState };
       rd.arrayOfResults = newResults;
 
-      console.log(newResults);
-
       return rd;
     });
   };
@@ -99,8 +113,6 @@ function Home() {
       const rd = { ...prevState };
       rd.arrayOfResults = newResults;
 
-      console.log(newResults);
-
       return rd;
     });
   };
@@ -125,8 +137,6 @@ function Home() {
       const rd = { ...prevState };
       rd.arrayOfResults = newResults;
 
-      console.log(newResults);
-
       return rd;
     });
   };
@@ -148,15 +158,11 @@ function Home() {
       const rd = { ...prevState };
       rd.arrayOfResults = newResults;
 
-      console.log(newResults);
-
       return rd;
     });
   };
 
   function filterByValue(array, string) {
-    console.log(string);
-
     return array.filter((o) =>
       Object.keys(o).some((k) =>
         String(o[k]).toLowerCase().includes(string.toLowerCase())
@@ -177,8 +183,6 @@ function Home() {
   function clearLocationField() {
     document.getElementById("searchLocation").value = "";
   }
-
-  console.log(onResetLocationFilter, onResetQueryFilter);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -204,71 +208,104 @@ function Home() {
         });
       }
     });
+
+    foodResourcesService
+      .getFoodResources()
+      .then(onGetFoodResourcesSuccess)
+      .catch(onGetFoodResourcesError);
   }, []);
-  const SearchBar = () => {
-    // const handleSearch = (e) => {
-    //   setQuery(e.target.value);
-    // };
 
-    // const handleLocation = (e) => {
-    //   setLocationFilter(e.target.value);
-    // };
-    return (
-      // <>
-      //   <input
-      //     id="searchFilter"
-      //     type="search"
-      //     className={styles.searchInputLeft}
-      //     placeholder=" Search what you need"
-      //   />
-      //   <input
-      //     id="searchLocation"
-      //     type="search"
-      //     className={styles.searchInputRight}
-      //     placeholder=" Please Enter a City or Zip Code"
-      //   />
-      //   <i className={`fa-solid fa-magnifying-glass ${styles.searchIcon}`} onClick={() => {}} />
-      // </>
-
-      <>
-        <input
-          id="searchFilter"
-          type="text"
-          className={styles.searchInputLeft}
-          placeholder=" Search what you need"
-          onChange={handleSearch}
-        />
-        {/* {query && (
-          <i
-            className={`fa-regular fa-circle-xmark ${styles.resetIcon}`}
-            onClick={onResetQueryFilter}
-          />
-        )} */}
-        <i
-          className={`fa-solid fa-magnifying-glass ${styles.searchIcon}`}
-          onClick={onSearchRequested}
-        />
-
-        <input
-          id="searchLocation"
-          type="text"
-          className={styles.searchInputLeft}
-          placeholder=" Please Enter a City or Zip Code"
-          onChange={handleLocation}
-        />
-        {/* {locationFilter && (
-          <i
-            className={`fa-regular fa-circle-xmark ${styles.resetIcon}`}
-            onClick={onResetLocationFilter}
-          />
-        )} */}
-        <i
-          className={`fa-solid fa-magnifying-glass ${styles.searchIcon}`}
-          onClick={onLocationRequested}
-        />
-      </>
-    );
+  const onGetFoodResourcesSuccess = (response) => {
+    setResultsArray(() => [...response.data]);
+    setResults(() => [...response.data]);
   };
+
+  const onGetFoodResourcesError = (error) => {
+    console.error("Error!!!!!!!!!!!!!!! ", error);
+    setResultsArray(() => [...sampleResults]);
+    setResults(() => [...sampleResults]);
+  };
+
+  // const SearchBar = () => {
+  //   // const handleSearch = (e) => {
+  //   //   setQuery(e.target.value);
+  //   // };
+
+  //   // const handleLocation = (e) => {
+  //   //   setLocationFilter(e.target.value);
+  //   // };
+  //   return (
+  //     // <>
+  //     //   <input
+  //     //     id="searchFilter"
+  //     //     type="search"
+  //     //     className={styles.searchInputLeft}
+  //     //     placeholder=" Search what you need"
+  //     //   />
+  //     //   <input
+  //     //     id="searchLocation"
+  //     //     type="search"
+  //     //     className={styles.searchInputRight}
+  //     //     placeholder=" Please Enter a City or Zip Code"
+  //     //   />
+  //     //   <i className={`fa-solid fa-magnifying-glass ${styles.searchIcon}`} onClick={() => {}} />
+  //     // </>
+
+  //     <>
+  //       <input
+  //         id="searchFilter"
+  //         type="text"
+  //         className={styles.searchInputLeft}
+  //         placeholder=" Search what you need"
+  //         onChange={handleSearch}
+  //       />
+  //       {/* {query && (
+  //         <i
+  //           className={`fa-regular fa-circle-xmark ${styles.resetIcon}`}
+  //           onClick={onResetQueryFilter}
+  //         />
+  //       )} */}
+  //       <i
+  //         className={`fa-solid fa-magnifying-glass ${styles.searchIcon}`}
+  //         onClick={onSearchRequested}
+  //       />
+
+  //       <input
+  //         id="searchLocation"
+  //         type="text"
+  //         className={styles.searchInputLeft}
+  //         placeholder=" Please Enter a City or Zip Code"
+  //         onChange={handleLocation}
+  //       />
+  //       {/* {locationFilter && (
+  //         <i
+  //           className={`fa-regular fa-circle-xmark ${styles.resetIcon}`}
+  //           onClick={onResetLocationFilter}
+  //         />
+  //       )} */}
+  //       <i
+  //         className={`fa-solid fa-magnifying-glass ${styles.searchIcon}`}
+  //         onClick={onLocationRequested}
+  //       />
+  //     </>
+  //   );
+  // };
+
+  useEffect(() => {
+    if (dayParam || productParam || locationParam) {
+      const filteredResults = resultFilterer(
+        resultsArray,
+        dayParam,
+        productParam,
+        locationParam
+      );
+
+      setResults(() => [...filteredResults]);
+    } else {
+      setResults(() => [...resultsArray]);
+    }
+  }, [location, dayParam, productParam, locationParam]);
+
   return (
     <>
       <Container className={styles.home}>
@@ -277,8 +314,8 @@ function Home() {
         </div>
         <Row className={`mx-2 my-4 ${styles.searchContainer}`}>
           <div className={styles.searchInputContainer}>
-            <SearchBar dayOfTheWeek={dayOfTheWeek} />
-            {/* <>
+            {/* <SearchBar dayOfTheWeek={dayOfTheWeek} /> */}
+            <>
               <input
                 id="searchFilter"
                 type="text"
@@ -314,21 +351,30 @@ function Home() {
                 className={`fa-solid fa-magnifying-glass ${styles.searchIcon}`}
                 onClick={onLocationRequested}
               />
-            </> */}
+            </>
           </div>
           <div className={`${styles.filterContainer}`}>
             <FilterButtons dayOfTheWeek={dayOfTheWeek} />
           </div>
         </Row>
+
         <Row>
           <Col>
-            <SearchResults
-              results={resultsData.arrayOfResults}
-              dayOfTheWeek={dayOfTheWeek}
-              setCenter={setCenter}
-              center={center}
-              current={current}
-            />
+            {resultsArray.length ? (
+              <SearchResults
+                results={results}
+                dayOfTheWeek={dayOfTheWeek}
+                setCenter={setCenter}
+                center={center}
+                current={current}
+              />
+            ) : (
+              <Spinner
+                animation="grow"
+                variant="dark"
+                className="mt-5 d-flex mx-auto"
+              />
+            )}
           </Col>
           <Col className={`${styles.mapContainer}`}>
             <h4 className={styles.mapTitle}>Map of Los Angeles, CA</h4>
