@@ -178,6 +178,8 @@ function Home() {
     document.getElementById("searchLocation").value = "";
   }
 
+  console.log(onResetLocationFilter, onResetQueryFilter);
+
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
       if (position.coords.latitude) {
@@ -203,7 +205,70 @@ function Home() {
       }
     });
   }, []);
+  const SearchBar = () => {
+    // const handleSearch = (e) => {
+    //   setQuery(e.target.value);
+    // };
 
+    // const handleLocation = (e) => {
+    //   setLocationFilter(e.target.value);
+    // };
+    return (
+      // <>
+      //   <input
+      //     id="searchFilter"
+      //     type="search"
+      //     className={styles.searchInputLeft}
+      //     placeholder=" Search what you need"
+      //   />
+      //   <input
+      //     id="searchLocation"
+      //     type="search"
+      //     className={styles.searchInputRight}
+      //     placeholder=" Please Enter a City or Zip Code"
+      //   />
+      //   <i className={`fa-solid fa-magnifying-glass ${styles.searchIcon}`} onClick={() => {}} />
+      // </>
+
+      <>
+        <input
+          id="searchFilter"
+          type="text"
+          className={styles.searchInputLeft}
+          placeholder=" Search what you need"
+          onChange={handleSearch}
+        />
+        {/* {query && (
+          <i
+            className={`fa-regular fa-circle-xmark ${styles.resetIcon}`}
+            onClick={onResetQueryFilter}
+          />
+        )} */}
+        <i
+          className={`fa-solid fa-magnifying-glass ${styles.searchIcon}`}
+          onClick={onSearchRequested}
+        />
+
+        <input
+          id="searchLocation"
+          type="text"
+          className={styles.searchInputLeft}
+          placeholder=" Please Enter a City or Zip Code"
+          onChange={handleLocation}
+        />
+        {/* {locationFilter && (
+          <i
+            className={`fa-regular fa-circle-xmark ${styles.resetIcon}`}
+            onClick={onResetLocationFilter}
+          />
+        )} */}
+        <i
+          className={`fa-solid fa-magnifying-glass ${styles.searchIcon}`}
+          onClick={onLocationRequested}
+        />
+      </>
+    );
+  };
   return (
     <>
       <Container className={styles.home}>
@@ -212,10 +277,11 @@ function Home() {
         </div>
         <Row className={`mx-2 my-4 ${styles.searchContainer}`}>
           <div className={styles.searchInputContainer}>
-            <>
+            <SearchBar dayOfTheWeek={dayOfTheWeek} />
+            {/* <>
               <input
                 id="searchFilter"
-                type="search"
+                type="text"
                 className={styles.searchInputLeft}
                 placeholder=" Search what you need"
                 onChange={handleSearch}
@@ -233,7 +299,7 @@ function Home() {
 
               <input
                 id="searchLocation"
-                type="search"
+                type="text"
                 className={styles.searchInputLeft}
                 placeholder=" Please Enter a City or Zip Code"
                 onChange={handleLocation}
@@ -248,7 +314,7 @@ function Home() {
                 className={`fa-solid fa-magnifying-glass ${styles.searchIcon}`}
                 onClick={onLocationRequested}
               />
-            </>
+            </> */}
           </div>
           <div className={`${styles.filterContainer}`}>
             <FilterButtons dayOfTheWeek={dayOfTheWeek} />
