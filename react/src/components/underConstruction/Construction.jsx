@@ -3,7 +3,6 @@ import Logo from "../../assets/ladpLogo_light.png";
 import { Link } from "react-router-dom";
 
 function Construction(){
-
     return(
     <>
         <div className={styles.background}>
@@ -24,11 +23,8 @@ function Construction(){
                 </Link>
             </div>
         </div>
-        
-
     </>
     )
-
 }
 
 export default Construction
