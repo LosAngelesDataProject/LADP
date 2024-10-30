@@ -20,6 +20,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-/dotnet/LADP_EFC/.vs/LADP_EFC/FileContentIndex
-/dotnet/LADP_EFC/obj
 
+# Ignore build directories
+dotnet/LADP_EFC/bin/
+dotnet/LADP_EFC/obj/
+dotnet/LADP_EFC/.vs/

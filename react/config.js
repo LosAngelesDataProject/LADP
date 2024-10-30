@@ -4,6 +4,8 @@ const config = {
 
   // Set to "true" to hide the Product Type filter button in the home page.
   hideProductTypeFilter: true,
+
+  enableApiFlag: false,
 };
 
 export default config;
