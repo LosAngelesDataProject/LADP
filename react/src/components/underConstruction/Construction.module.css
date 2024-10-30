@@ -1,0 +1,39 @@
+.background {
+    background-image: url(../../assets/LAPalmTrees.png);
+    height: 600px;
+    background-size: cover;
+    background-position: center;
+}
+
+.link {
+    background-color: rgb(17, 48, 21);
+    color: white;
+    padding: 15px 25px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.linkContainer {
+    text-align: center;
+    padding-top: 35px;
+    opacity: 87%;
+}
+
+.logo {
+    height: 100px;
+    width: 100px;
+    left: 92%;
+    top: 19%;
+    position: absolute;
+    opacity: 25%;
+    color: #ffffff;
+}
+
+.message {
+    text-align: center;
+    padding-top: 250px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    opacity: 85%;
+}
