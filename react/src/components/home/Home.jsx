@@ -4,8 +4,6 @@ import styles from "./Home.module.css";
 import BaseMap from "../map/BaseMap";
 import foodResourcesService from "../../services/foodResourcesService";
 import sampleResults from "../../assets/data/sampleResults.js";
-// import results from "../../assets/data/results.js";
-
 import SearchResults from "./SearchResults.jsx";
 import HomeSlide from "./HomeSlide.jsx";
 import FilterButtons from "./FilterButtons.jsx";
@@ -47,142 +45,6 @@ function Home() {
       address: `${result.streetAddress}, ${result.city}`,
     },
   }));
-
-  const [resultsData, setResultsData] = useState({
-    arrayOfResults: results,
-    firstFilteredResults: [],
-    secondFilteredResults: [],
-  });
-
-  const [query, setQuery] = useState("");
-
-  const [locationFilter, setLocationFilter] = useState("");
-
-  const handleSearch = (e) => {
-    setQuery(e.target.value);
-  };
-
-  const handleLocation = (e) => {
-    setLocationFilter(e.target.value);
-  };
-
-  const onSearchRequested = (e) => {
-    e.preventDefault();
-
-    resultsData.firstFilteredResults = filterByValue(results, query);
-
-    if (locationFilter) {
-      resultsData.secondFilteredResults = filterByLocation(
-        resultsData.firstFilteredResults,
-        locationFilter
-      );
-    } else {
-      resultsData.secondFilteredResults = resultsData.firstFilteredResults;
-    }
-
-    setResultsData((prevState) => {
-      let newResults = resultsData.secondFilteredResults;
-
-      const rd = { ...prevState };
-      rd.arrayOfResults = newResults;
-
-      return rd;
-    });
-  };
-
-  const onLocationRequested = (e) => {
-    e.preventDefault();
-
-    resultsData.firstFilteredResults = filterByLocation(
-      results,
-      locationFilter
-    );
-
-    if (query) {
-      resultsData.secondFilteredResults = filterByValue(
-        resultsData.firstFilteredResults,
-        query
-      );
-    } else {
-      resultsData.secondFilteredResults = resultsData.firstFilteredResults;
-    }
-
-    setResultsData((prevState) => {
-      let newResults = resultsData.secondFilteredResults;
-
-      const rd = { ...prevState };
-      rd.arrayOfResults = newResults;
-
-      return rd;
-    });
-  };
-
-  const onResetQueryFilter = (e) => {
-    e.preventDefault();
-
-    setQuery("");
-    clearQueryField();
-
-    if (locationFilter) {
-      resultsData.firstFilteredResults = filterByLocation(
-        results,
-        locationFilter
-      );
-    } else if (!locationFilter) {
-      resultsData.firstFilteredResults = results;
-    }
-    setResultsData((prevState) => {
-      let newResults = resultsData.firstFilteredResults;
-
-      const rd = { ...prevState };
-      rd.arrayOfResults = newResults;
-
-      return rd;
-    });
-  };
-
-  const onResetLocationFilter = (e) => {
-    e.preventDefault();
-
-    setLocationFilter("");
-    clearLocationField();
-
-    if (query) {
-      resultsData.firstFilteredResults = filterByValue(results, query);
-    } else if (!query) {
-      resultsData.firstFilteredResults = results;
-    }
-    setResultsData((prevState) => {
-      let newResults = resultsData.firstFilteredResults;
-
-      const rd = { ...prevState };
-      rd.arrayOfResults = newResults;
-
-      return rd;
-    });
-  };
-
-  function filterByValue(array, string) {
-    return array.filter((o) =>
-      Object.keys(o).some((k) =>
-        String(o[k]).toLowerCase().includes(string.toLowerCase())
-      )
-    );
-  }
-
-  function filterByLocation(array, string) {
-    return array.filter(
-      (result) => result.city == string || result.zipcode == string
-    );
-  }
-
-  function clearQueryField() {
-    document.getElementById("searchFilter").value = "";
-  }
-
-  function clearLocationField() {
-    document.getElementById("searchLocation").value = "";
-  }
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -226,70 +88,28 @@ function Home() {
     setResults(() => [...sampleResults]);
   };
 
-  // const SearchBar = () => {
-  //   // const handleSearch = (e) => {
-  //   //   setQuery(e.target.value);
-  //   // };
-
-  //   // const handleLocation = (e) => {
-  //   //   setLocationFilter(e.target.value);
-  //   // };
-  //   return (
-  //     // <>
-  //     //   <input
-  //     //     id="searchFilter"
-  //     //     type="search"
-  //     //     className={styles.searchInputLeft}
-  //     //     placeholder=" Search what you need"
-  //     //   />
-  //     //   <input
-  //     //     id="searchLocation"
-  //     //     type="search"
-  //     //     className={styles.searchInputRight}
-  //     //     placeholder=" Please Enter a City or Zip Code"
-  //     //   />
-  //     //   <i className={`fa-solid fa-magnifying-glass ${styles.searchIcon}`} onClick={() => {}} />
-  //     // </>
-
-  //     <>
-  //       <input
-  //         id="searchFilter"
-  //         type="text"
-  //         className={styles.searchInputLeft}
-  //         placeholder=" Search what you need"
-  //         onChange={handleSearch}
-  //       />
-  //       {/* {query && (
-  //         <i
-  //           className={`fa-regular fa-circle-xmark ${styles.resetIcon}`}
-  //           onClick={onResetQueryFilter}
-  //         />
-  //       )} */}
-  //       <i
-  //         className={`fa-solid fa-magnifying-glass ${styles.searchIcon}`}
-  //         onClick={onSearchRequested}
-  //       />
-
-  //       <input
-  //         id="searchLocation"
-  //         type="text"
-  //         className={styles.searchInputLeft}
-  //         placeholder=" Please Enter a City or Zip Code"
-  //         onChange={handleLocation}
-  //       />
-  //       {/* {locationFilter && (
-  //         <i
-  //           className={`fa-regular fa-circle-xmark ${styles.resetIcon}`}
-  //           onClick={onResetLocationFilter}
-  //         />
-  //       )} */}
-  //       <i
-  //         className={`fa-solid fa-magnifying-glass ${styles.searchIcon}`}
-  //         onClick={onLocationRequested}
-  //       />
-  //     </>
-  //   );
-  // };
+  const SearchBar = () => {
+    return (
+      <>
+        <input
+          id="searchFilter"
+          type="search"
+          className={styles.searchInputLeft}
+          placeholder=" Search what you need"
+        />
+        <input
+          id="searchLocation"
+          type="search"
+          className={styles.searchInputRight}
+          placeholder=" Please Enter a City or Zip Code"
+        />
+        <i
+          className={`fa-solid fa-magnifying-glass ${styles.searchIcon}`}
+          onClick={() => {}}
+        />
+      </>
+    );
+  };
 
   useEffect(() => {
     if (dayParam || productParam || locationParam) {
@@ -314,44 +134,7 @@ function Home() {
         </div>
         <Row className={`mx-2 my-4 ${styles.searchContainer}`}>
           <div className={styles.searchInputContainer}>
-            {/* <SearchBar dayOfTheWeek={dayOfTheWeek} /> */}
-            <>
-              <input
-                id="searchFilter"
-                type="text"
-                className={styles.searchInputLeft}
-                placeholder=" Search what you need"
-                onChange={handleSearch}
-              />
-              {query && (
-                <i
-                  className={`fa-regular fa-circle-xmark ${styles.resetIcon}`}
-                  onClick={onResetQueryFilter}
-                />
-              )}
-              <i
-                className={`fa-solid fa-magnifying-glass ${styles.searchIcon}`}
-                onClick={onSearchRequested}
-              />
-
-              <input
-                id="searchLocation"
-                type="text"
-                className={styles.searchInputLeft}
-                placeholder=" Please Enter a City or Zip Code"
-                onChange={handleLocation}
-              />
-              {locationFilter && (
-                <i
-                  className={`fa-regular fa-circle-xmark ${styles.resetIcon}`}
-                  onClick={onResetLocationFilter}
-                />
-              )}
-              <i
-                className={`fa-solid fa-magnifying-glass ${styles.searchIcon}`}
-                onClick={onLocationRequested}
-              />
-            </>
+            <SearchBar />
           </div>
           <div className={`${styles.filterContainer}`}>
             <FilterButtons dayOfTheWeek={dayOfTheWeek} />
