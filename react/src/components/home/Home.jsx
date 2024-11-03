@@ -22,6 +22,13 @@ function Home() {
     "Sunday",
   ];
 
+  ///////////////////////////////////
+  //Test Test Test
+
+  console.log("Hellor World Test");
+
+  /////////////////////////////
+
   const location = useLocation();
   const urlParams = new URLSearchParams(location.search);
   const dayParam = urlParams.get("d");
