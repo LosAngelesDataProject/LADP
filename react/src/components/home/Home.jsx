@@ -19,15 +19,8 @@ function Home() {
     "Thursday",
     "Friday",
     "Saturday",
-    "Sunday",
+    // "Sunday",
   ];
-
-  ///////////////////////////////////
-  //Test Test Test
-
-  console.log("Hellor World Test");
-
-  /////////////////////////////
 
   const location = useLocation();
   const urlParams = new URLSearchParams(location.search);
