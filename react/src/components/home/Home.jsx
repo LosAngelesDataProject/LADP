@@ -19,7 +19,7 @@ function Home() {
     "Thursday",
     "Friday",
     "Saturday",
-    // "Sunday",
+    "Sunday",
   ];
 
   const location = useLocation();
