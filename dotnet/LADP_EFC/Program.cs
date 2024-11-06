@@ -1,8 +1,8 @@
 
 using Microsoft.EntityFrameworkCore;
-using LADP__EFC.Data;
-using LADP__EFC.Repository;
-using LADP__EFC.Repository.Interfaces;
+using LADP_EFC.Data;
+using LADP_EFC.Repository;
+using LADP_EFC.Repository.Interfaces;
 using System.Text.Json.Serialization;
 
 namespace LADP__EFC
