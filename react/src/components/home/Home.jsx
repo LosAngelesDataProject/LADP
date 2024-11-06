@@ -3,7 +3,7 @@ import { Row, Col } from "react-bootstrap";
 import styles from "./Home.module.css";
 import BaseMap from "../map/BaseMap";
 import foodResourcesService from "../../services/foodResourcesService";
-import sampleResults from "../../assets/data/sampleResults.js";
+import sampleResults from "../../assets/data/foodResources.js";
 import SearchResults from "./SearchResults.jsx";
 import HomeSlide from "./HomeSlide.jsx";
 import FilterButtons from "./FilterButtons.jsx";
