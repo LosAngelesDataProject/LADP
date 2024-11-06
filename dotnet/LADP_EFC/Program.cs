@@ -18,6 +18,7 @@ namespace LADP__EFC
             // Add Repositories to the container.
             builder.Services.AddScoped<IRepositoryFoodResource, RepositoryFoodResource>();
             builder.Services.AddScoped<IRepositoryToDoItems, RepositoryToDoItems>();
+            builder.Services.AddScoped<IRepositoryDeveloper, RepositoryDeveloper>();
             builder.Services.AddControllers().AddJsonOptions(options =>
             {
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
