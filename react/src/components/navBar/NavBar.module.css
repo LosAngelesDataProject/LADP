@@ -34,3 +34,81 @@
 }
 
 /**------- Mobile NavBar -------------- **/
+
+.navBrandText {
+  color: var(--support-color) !important;
+  font-size: small;
+  text-align: center;
+  font-family: "Merriweather", serif;
+}
+
+.filterIcon {
+  color: var(--support-color) !important;
+}
+
+/*---------------Search Area----------------------------------------*/
+.searchContainer {
+  align-items: center;
+  /* justify-content: center;
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%; */
+}
+
+.searchButton,
+.locationButton {
+  border-color: rgba(235, 235, 235, 1);
+  background-color: var(--support-color);
+  color: rgb(107, 107, 107);
+  width: 50%;
+  height: 40px;
+  text-align: start;
+}
+
+.searchButton {
+  border-radius: 10px 0px 0px 10px;
+}
+
+.locationButton {
+  border-radius: 0px 10px 10px 0px;
+}
+
+.buttonIcon {
+  color: var(--main-color);
+}
+
+.searchInput {
+  border-color: white;
+  background-color: white;
+  min-height: 35px;
+  color: black;
+  width: 80%;
+  height: 40px;
+  padding: 0;
+}
+
+.searchIconRight,
+.searchIconLeft {
+  border-color: rgba(235, 235, 235, 1);
+  color: var(--main-color);
+  background-color: var(--support-color);
+  align-content: space-around;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 10%;
+  height: 40px;
+}
+
+.searchIconRight:hover,
+.searchIconLeft:hover {
+  cursor: pointer;
+  color: var(--secondary-color);
+}
+
+.searchIconRight {
+  border-radius: 0px 10px 10px 0px;
+}
+
+.searchIconLeft {
+  border-radius: 10px 0px 0px 10px;
+}

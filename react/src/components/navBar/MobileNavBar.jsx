@@ -1,93 +1,107 @@
-import { Link, useLocation } from "react-router-dom";
-import { Navbar, Nav, Container } from "react-bootstrap";
-import PropTypes from "prop-types";
+import { useState } from "react";
+import {
+  Link,
+  //  , useLocation
+} from "react-router-dom";
+import { Navbar, Container, Col } from "react-bootstrap";
 import logo from "../../assets/images/logo.png";
 import styles from "./NavBar.module.css";
 
-const MobileNavBar = (props) => {
-  const { isLoggedIn, onLogout } = props;
-  const location = useLocation(); // Get the current location
-  const isActive = (path) => (location.pathname === path ? styles.active : "");
+const MobileNavBar = () => {
+  // const location = useLocation(); // Get the current location
+  // const isActive = (path) => (location.pathname === path ? styles.active : "");
+  // const SearchBar = () => {
+  //   return (
+  //     <>
+  //       <input
+  //         id="searchFilter"
+  //         type="search"
+  //         className={styles.searchInputLeft}
+  //         placeholder="Search"
+  //       />
+  //       <input
+  //         id="searchLocation"
+  //         type="search"
+  //         className={styles.searchInputRight}
+  //         placeholder="Location"
+  //       />
+  //       {/* <i
+  //         className={`fa-solid fa-magnifying-glass ${styles.searchIcon}`}
+  //         onClick={() => {}}
+  //       /> */}
+  //     </>
+  //   );
+  // };
+  const [toggleInput, setToggleInput] = useState({ input: false, type: "" });
   return (
-    <Navbar className={styles.background} expand="md">
+    <Navbar className={styles.background} expand={false}>
       <Container>
-        {/* <Nav className="me-auto col-md-5 justify-content-start justify-content-around">
-          <Nav.Link
-            className={`${styles.endText} ${isActive("/")}`}
-            as={Link}
-            to="/"
-          >
-            Home
-          </Nav.Link>
-
-          <Nav.Link
-            className={`${styles.navLink} ${isActive("/calendar")}`}
-            as={Link}
-            to="/calendar"
-          >
-            Calendar
-          </Nav.Link>
-          <Nav.Link
-            className={`${styles.navLink} ${isActive("/about-us")}`}
-            as={Link}
-            to="/about-us"
-          >
-            About Us
-          </Nav.Link>
-        </Nav> */}
-        <Navbar.Brand
-          as={Link}
-          to="/"
-          className="mx-auto d-flex justify-content-center col-md-2"
-        >
+        <Navbar.Brand as={Link} to="/" className={`${styles.navBrandText}`}>
           <img
             src={logo}
-            width="48"
-            height="48"
+            width="35"
+            height="35"
             alt="logo"
-            className="align-self-center rounded-4"
+            className="d-inline-block rounded-2 me-2"
           />
+          LADP
         </Navbar.Brand>
-        <Nav className="ms-auto col-md-5 justify-content-end justify-content-around">
-          <Nav.Link
-            className={`${styles.navLink} ${isActive("/contact-us")}`}
-            as={Link}
-            to="/contact-us"
-          >
-            Contact Us
-          </Nav.Link>
+        {/* <div> */}
+        {toggleInput.input ? (
+          <Col className={` align-middle`}>
+            <i
+              className={`fa-solid fa-arrow-left ${styles.searchIconLeft}`}
+              onClick={() => {
+                setToggleInput({ input: false, type: "" });
+              }}
+            />
+            <input
+              id="searchFilter"
+              type="search"
+              className={styles.searchInput}
+              placeholder={toggleInput.type}
+            />
+            {toggleInput.type === "Search" ? (
+              <i
+                className={`fa-solid fa-magnifying-glass ${styles.searchIconRight}`}
+                onClick={() => {}}
+              />
+            ) : (
+              <i
+                className={`fa-solid fa-location-dot ${styles.searchIconRight}`}
+                onClick={() => {}}
+              />
+            )}
+          </Col>
+        ) : (
+          <Col>
+            <button
+              className={styles.searchButton}
+              onClick={() => {
+                setToggleInput({ input: true, type: "Search" });
+              }}
+            >
+              <i
+                className={`fa-solid fa-magnifying-glass ${styles.buttonIcon}`}
+              />
+              Search
+            </button>
+            <button
+              className={styles.locationButton}
+              onClick={() => {
+                setToggleInput({ input: true, type: "Location" });
+              }}
+            >
+              <i className={`fa-solid fa-location-dot ${styles.buttonIcon}`} />
+              Location
+            </button>
+          </Col>
+        )}
 
-          {isLoggedIn ? (
-            <Nav.Link className={styles.endText} onClick={onLogout}>
-              Logout
-            </Nav.Link>
-          ) : (
-            <>
-              <Nav.Link
-                className={`${styles.navLink} ${isActive("/login")}`}
-                as={Link}
-                to="/login"
-              >
-                Login
-              </Nav.Link>
-              <Nav.Link
-                className={`${styles.endText} ${isActive("/register")}`}
-                as={Link}
-                to="/register"
-              >
-                Register
-              </Nav.Link>
-            </>
-          )}
-        </Nav>
+        {/* </div> */}
       </Container>
     </Navbar>
   );
-};
-
-MobileNavBar.propTypes = {
-  isLoggedIn: PropTypes.bool.isRequired,
-  onLogout: PropTypes.func.isRequired,
 };
 
 export default MobileNavBar;
