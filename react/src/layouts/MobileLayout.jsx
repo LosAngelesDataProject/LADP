@@ -8,9 +8,7 @@ const MobileLayout = (props) => {
   return (
     <>
       <MobileNavBar {...props} />
-      <Container className={styles.defaultContainer}>
-        {props.children}
-      </Container>
+      <Container className={styles.mobileContainer}>{props.children}</Container>
       <MobileFooter />
     </>
   );

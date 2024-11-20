@@ -37,14 +37,11 @@
 
 .navBrandText {
   color: var(--support-color) !important;
-  /* font-size: small; */
   text-align: center;
   font-family: "Merriweather", serif;
 }
 
-.filterIcon {
-  /* height: 25px;
-  width: 25px; */
+.profileIcon {
   color: var(--support-color);
 }
 
@@ -53,59 +50,4 @@
     color: var(--secondary-color);
     text-decoration: none;
   }
-}
-
-/*---------------Search Area----------------------------------------*/
-.searchInputLeft,
-.searchInputRight {
-  border-color: white;
-  background-color: white;
-  max-height: 40px;
-  color: black;
-  padding: 12px 20px 12px 20px;
-  font-family: Arial, FontAwesome;
-}
-
-.searchInputLeft {
-  border-radius: 10px 0px 0px 10px;
-}
-
-.searchInputRight {
-  border-radius: 0px 10px 10px 0px;
-}
-
-.expand {
-  border: none;
-  width: 100%;
-  border-radius: 10px !important;
-  padding: 12px 20px 12px 40px;
-}
-
-.searchIconRight,
-.searchIconLeft {
-  color: var(--main-color);
-  background-color: var(--support-color);
-  justify-content: center;
-  align-content: space-around;
-  padding-left: 10px;
-  padding-right: 10px;
-  height: 40px;
-}
-
-.searchIconRight:hover,
-.searchIconLeft:hover {
-  cursor: pointer;
-  color: var(--secondary-color);
-}
-
-.searchIconRight {
-  border-radius: 0px 10px 10px 0px;
-  position: absolute;
-  translate: -30px;
-}
-
-.searchIconLeft {
-  border-radius: 10px 0px 0px 10px;
-  position: absolute;
-  translate: 0px;
 }

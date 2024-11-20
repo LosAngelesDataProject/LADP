@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import styles from "./Footer.module.css";
 
 const MobileFooter = () => {
-  const location = useLocation(); // Get the current location
+  const location = useLocation();
   const isActive = (path) => (location.pathname === path ? styles.active : "");
   return (
     <footer className={`fixed-bottom ${styles.footerContainer}`}>
@@ -28,7 +28,9 @@ const MobileFooter = () => {
                   "/calendar"
                 )} ${styles.footerIcon}`}
               />
-              <span className={styles.footerText}>Calendar</span>
+              <span className={`${styles.footerText} ${isActive("/calendar")}`}>
+                Calendar
+              </span>
             </Link>
           </Col>
           <Col>
@@ -38,7 +40,9 @@ const MobileFooter = () => {
                   styles.footerIcon
                 }`}
               />
-              <span className={styles.footerText}>About us</span>
+              <span className={`${styles.footerText} ${isActive("/about-us")}`}>
+                About us
+              </span>
             </Link>
           </Col>
           <Col>

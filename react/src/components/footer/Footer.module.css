@@ -96,7 +96,7 @@
   color: var(--support-color);
   font-size: 0.75rem;
   display: block;
-  margin-top: 4px; /* Space between icon and text */
+  margin-top: 4px;
   text-decoration: none !important;
 }
 
@@ -106,6 +106,6 @@
 }
 
 .link {
-  text-decoration: none !important; /* Removes the underline from link text */
-  color: inherit; /* Keeps the color unchanged (you can customize it if needed) */
+  text-decoration: none !important;
+  color: inherit;
 }

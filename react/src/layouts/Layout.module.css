@@ -4,3 +4,10 @@
   padding: 40px;
   min-height: 100vh;
 }
+
+.mobileContainer {
+  min-width: 75vw;
+  margin: 0;
+  padding: 20px 20px 80px 20px;
+  min-height: 100vh;
+}
