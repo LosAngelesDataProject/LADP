@@ -1,27 +1,18 @@
-.aboutUs {
-  min-width: none;
-  margin-top: -55px; 
-  padding: 60px;
-  min-height: 100vh;
-  box-sizing: border-box;
-  position: relative;
-}
-
 /*-----Header-----*/
 .header {
-  display: flex; 
-  flex-direction: column; 
-  justify-content: center; 
-  align-items: center; 
-  height: 700px; 
-  position: relative; 
-  overflow: hidden; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 40px;
+  position: relative;
+  overflow: hidden;
 }
 
 .bgImg {
-  height: 80%;
+  height: 560px;
   width: 100%;
-  object-fit: cover; 
+  object-fit: cover;
 }
 
 .logo {
@@ -34,7 +25,7 @@
   color: white;
   font-size: 20px;
   text-align: center;
-  opacity: 0.25; 
+  opacity: 0.25;
   animation: fadeIn 3.5s linear;
 }
 
@@ -43,32 +34,32 @@
     opacity: 0;
   }
   100% {
-    opacity: 0.25; 
+    opacity: 0.25;
   }
 }
 
 .aboutContainer {
   position: absolute;
   background: rgba(0, 0, 0, 0.5);
-  width: 70vw; 
+  width: 70vw;
   max-width: 1180px;
-  padding: 30px; 
+  padding: 30px;
   color: white;
   font-size: 30px;
-  text-align: center; 
-  top: 50%; 
-  transform: translateY(-50%); 
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .info {
-  text-align: center; 
-  max-width: 100%; 
+  text-align: center;
+  max-width: 100%;
 }
 
 .info p {
   font-size: 24px;
   margin: 0;
-  padding: 10px; 
+  padding: 10px;
 }
 
 /*-----Body-----*/
@@ -93,7 +84,7 @@
   justify-content: center;
   gap: 10px;
   flex-wrap: wrap;
-  margin-top: 10px; 
+  margin-top: 10px;
 }
 
 /*-----Footer-----*/
@@ -106,7 +97,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0; 
+  margin: 0;
 }
 
 .iconLinks {

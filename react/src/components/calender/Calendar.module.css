@@ -4,15 +4,12 @@
   --support-color: #ffffff;
 }
 
-.calendarConatiner {
-  min-height: 100vh;
-}
-
 .headerBackground {
   background-image: url(../../assets/headerImages/CalendarHeader.png);
-  height: 250px;
+  height: 350px;
   background-size: cover;
   min-width: 100%;
+  padding-bottom: 40px;
 }
 
 .logo {

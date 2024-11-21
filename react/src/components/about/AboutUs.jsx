@@ -4,7 +4,7 @@ import styles from "./AboutUs.module.css";
 import ProfileCard from "../ProfileCard";
 import LinkedIn from "../../assets/LinkedIn.svg";
 import Github from "../../assets/Github.svg";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getDevelopers } from "../../services/developerService";
 import developersData from "../../assets/data/developersData.js";
 import config from "../../../config.js";
@@ -31,7 +31,7 @@ function AboutUs() {
   }, []);
 
   return (
-    <div className={styles.aboutUs}>
+    <>
       {/* Header */}
       <div className={styles.header}>
         <img className={styles.bgImg} src={LaImg} alt="Los Angeles" />
@@ -89,7 +89,7 @@ function AboutUs() {
           </a>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
