@@ -30,6 +30,10 @@
   .searchInputContainer {
     flex-direction: column;
   }
+
+  .searchIcon {
+    width: 50px;
+  }
 }
 
 .searchInputLeft,
