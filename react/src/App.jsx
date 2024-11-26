@@ -4,7 +4,7 @@ import "./App.css";
 import AboutUs from "./components/about/AboutUs";
 import Calendar from "./components/calender/Calendar";
 import Construction from "./components/underConstruction/Construction";
-import Home from "./components/home/Home";
+// import Home from "./components/home/Home";
 // import Login from "./components/login/Login";
 import Navigate from "./components/Navigate";
 // import Register from "./components/register/Register";
@@ -12,6 +12,7 @@ import NotFound from "./components/NotFound";
 // import ContactUs from "./components/contact/ContactUs";
 import RegisterOrg from "./components/register/RegisterOrg";
 import DefaultLayout from "./layouts/DefaultLayout";
+import MobileHome from "./components/home/MobileHome";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -24,7 +25,8 @@ function App() {
     <>
       <DefaultLayout isLoggedIn={isLoggedIn} onLogout={handleLogin}>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<MobileHome />} />
+          {/* <Route path="/" element={<Home />} /> */}
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/calendar" element={<Calendar />} />
           {/* <Route path="/login" element={<Login onLogin={handleLogin} />} /> */}
