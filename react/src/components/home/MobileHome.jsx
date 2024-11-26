@@ -9,6 +9,7 @@ import FilterButtons from "./FilterButtons.jsx";
 import { useLocation } from "react-router-dom";
 import resultFilterer from "./resultFilterer.js";
 import Spinner from "react-bootstrap/Spinner";
+import Tabs from "./Tabs.jsx";
 
 function MobileHome() {
   const dayOfTheWeek = [
@@ -136,24 +137,7 @@ function MobileHome() {
         <div className={`${styles.filterContainer}`}>
           <FilterButtons dayOfTheWeek={dayOfTheWeek} />
         </div>
-        <div className={styles.tabContainer}>
-          <div
-            className={`${styles.tab} ${showMap ? styles.tabActive : ""}`}
-            onClick={() => {
-              setShowMap(true);
-            }}
-          >
-            Card
-          </div>
-          <div
-            className={`${styles.tab} ${!showMap ? styles.tabActive : ""}`}
-            onClick={() => {
-              setShowMap(false);
-            }}
-          >
-            Map
-          </div>
-        </div>
+        <Tabs showMap={showMap} setShowMap={setShowMap} />
       </Row>
 
       <Row>
