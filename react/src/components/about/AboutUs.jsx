@@ -4,14 +4,15 @@ import styles from "./AboutUs.module.css";
 import ProfileCard from "../ProfileCard";
 import LinkedIn from "../../assets/LinkedIn.svg";
 import Github from "../../assets/Github.svg";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getDevelopers } from "../../services/developerService";
 import developersData from "../../assets/data/developersData.js";
+import config from "../../../config.js";
 
 function AboutUs() {
   const [developers, setDevelopers] = useState([]);
 
-  // Fetching data from the fake json-derver (plugin) API
+  // Fetching data from the fake json-server (plugin) API
   useEffect(() => {
     const fetchDevelopers = async () => {
       try {
@@ -23,15 +24,14 @@ function AboutUs() {
 
         // Static developers data will show up if the API call fails
         console.log("Error! Developers sample data:");
-        setDevelopers(developersData);
       }
     };
 
-    fetchDevelopers();
+    config.enableApiFlag ? fetchDevelopers() : setDevelopers(developersData);
   }, []);
 
   return (
-    <div className={styles.aboutUs}>
+    <>
       {/* Header */}
       <div className={styles.header}>
         <img className={styles.bgImg} src={LaImg} alt="Los Angeles" />
@@ -89,7 +89,7 @@ function AboutUs() {
           </a>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import styles from "./Home.module.css";
 import BaseMap from "../map/BaseMap";
 import foodResourcesService from "../../services/foodResourcesService";
-import sampleResults from "../../assets/data/sampleResults.js";
+import sampleResults from "../../assets/data/foodResources.js";
 import SearchResults from "./SearchResults.jsx";
 import HomeSlide from "./HomeSlide.jsx";
 import FilterButtons from "./FilterButtons.jsx";
@@ -29,7 +29,11 @@ function Home() {
   const locationParam = urlParams.get("l");
 
   const [center, setCenter] = useState({ lat: 34.0549, lng: -118.2426 });
-  const [current, setCurrent] = useState({ lat: 34.0549, lng: -118.2426, active: "off" });
+  const [current, setCurrent] = useState({
+    lat: 34.0549,
+    lng: -118.2426,
+    active: "off",
+  });
   const [zoom, setZoom] = useState(15);
   const [results, setResults] = useState([]);
   const [resultsArray, setResultsArray] = useState([]);
@@ -99,14 +103,22 @@ function Home() {
           className={styles.searchInputRight}
           placeholder=" Please Enter a City or Zip Code"
         />
-        <i className={`fa-solid fa-magnifying-glass ${styles.searchIcon}`} onClick={() => {}} />
+        <i
+          className={`fa-solid fa-magnifying-glass ${styles.searchIcon}`}
+          onClick={() => {}}
+        />
       </>
     );
   };
 
   useEffect(() => {
     if (dayParam || productParam || locationParam) {
-      const filteredResults = resultFilterer(resultsArray, dayParam, productParam, locationParam);
+      const filteredResults = resultFilterer(
+        resultsArray,
+        dayParam,
+        productParam,
+        locationParam
+      );
 
       setResults(() => [...filteredResults]);
     } else {
@@ -116,44 +128,51 @@ function Home() {
 
   return (
     <>
-      <Container className={styles.home}>
-        <div className="Home-Carousel">
-          <HomeSlide className="Carousel-Hero" />
+      <div className="Home-Carousel">
+        <HomeSlide className="Carousel-Hero" />
+      </div>
+      <Row className={`mx-2 my-4 ${styles.searchContainer}`}>
+        <div className={styles.searchInputContainer}>
+          <SearchBar />
         </div>
-        <Row className={`mx-2 my-4 ${styles.searchContainer}`}>
-          <div className={styles.searchInputContainer}>
-            <SearchBar />
-          </div>
-          <div className={`${styles.filterContainer}`}>
-            <FilterButtons dayOfTheWeek={dayOfTheWeek} />
-          </div>
-        </Row>
+        <div className={`${styles.filterContainer}`}>
+          <FilterButtons dayOfTheWeek={dayOfTheWeek} />
+        </div>
+      </Row>
 
-        <Row>
-          <Col>
-            {resultsArray.length ? (
-              <SearchResults
-                results={results}
-                dayOfTheWeek={dayOfTheWeek}
-                setCenter={setCenter}
-                center={center}
-                current={current}
-              />
-            ) : (
-              <Spinner animation="grow" variant="dark" className="mt-5 d-flex mx-auto" />
-            )}
-          </Col>
-          <Col className={`${styles.mapContainer}`}>
-            <h4 className={styles.mapTitle}>Map of Los Angeles, CA</h4>
-            <BaseMap markers={markers} center={center} current={current} zoom={zoom} />
-          </Col>
-        </Row>
-        <Row className={`mt-3 ${styles.heroContainer}`}>
-          <div>
-            <p> Hero Section: Welcome to the Los Angeles Data Project...</p>
-          </div>
-        </Row>
-      </Container>
+      <Row>
+        <Col>
+          {resultsArray.length ? (
+            <SearchResults
+              results={results}
+              dayOfTheWeek={dayOfTheWeek}
+              setCenter={setCenter}
+              center={center}
+              current={current}
+            />
+          ) : (
+            <Spinner
+              animation="grow"
+              variant="dark"
+              className="mt-5 d-flex mx-auto"
+            />
+          )}
+        </Col>
+        <Col className={`${styles.mapContainer}`}>
+          <h4 className={styles.mapTitle}>Map of Los Angeles, CA</h4>
+          <BaseMap
+            markers={markers}
+            center={center}
+            current={current}
+            zoom={zoom}
+          />
+        </Col>
+      </Row>
+      <Row className={`mt-3 ${styles.heroContainer}`}>
+        <div>
+          <p> Hero Section: Welcome to the Los Angeles Data Project...</p>
+        </div>
+      </Row>
     </>
   );
 }
