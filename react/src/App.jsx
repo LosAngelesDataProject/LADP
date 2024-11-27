@@ -13,6 +13,7 @@ import NotFound from "./components/NotFound";
 // import ContactUs from "./components/contact/ContactUs";
 import NavBar from "./components/navBar/NavBar";
 import RegisterOrg from "./components/register/RegisterOrg";
+import UserEdit from "./components/users/UserEdit";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -28,6 +29,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/calendar" element={<Calendar />} />
+        <Route path="/user-edit" element={<UserEdit />} />
         {/* <Route path="/login" element={<Login onLogin={handleLogin} />} /> */}
         <Route path="/login" element={<Construction/>} />
         <Route path="/navigate" element={<Navigate />} />
@@ -35,7 +37,6 @@ function App() {
         <Route path="/register-org" element={<RegisterOrg />} />
         <Route path="/contact-us" element={<Construction/>} />
         <Route path="*" element={<NotFound />} />
-        <Route path="/under-construction" element={<Construction/>} />
       </Routes>
       <Footer />
     </>
