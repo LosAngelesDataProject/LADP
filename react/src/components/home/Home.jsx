@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import styles from "./Home.module.css";
 import BaseMap from "../map/BaseMap";
 import foodResourcesService from "../../services/foodResourcesService";
@@ -128,53 +128,51 @@ function Home() {
 
   return (
     <>
-      <Container className={styles.home}>
-        <div className="Home-Carousel">
-          <HomeSlide className="Carousel-Hero" />
+      <div className="Home-Carousel">
+        <HomeSlide className="Carousel-Hero" />
+      </div>
+      <Row className={`mx-2 my-4 ${styles.searchContainer}`}>
+        <div className={styles.searchInputContainer}>
+          <SearchBar />
         </div>
-        <Row className={`mx-2 my-4 ${styles.searchContainer}`}>
-          <div className={styles.searchInputContainer}>
-            <SearchBar />
-          </div>
-          <div className={`${styles.filterContainer}`}>
-            <FilterButtons dayOfTheWeek={dayOfTheWeek} />
-          </div>
-        </Row>
+        <div className={`${styles.filterContainer}`}>
+          <FilterButtons dayOfTheWeek={dayOfTheWeek} />
+        </div>
+      </Row>
 
-        <Row>
-          <Col>
-            {resultsArray.length ? (
-              <SearchResults
-                results={results}
-                dayOfTheWeek={dayOfTheWeek}
-                setCenter={setCenter}
-                center={center}
-                current={current}
-              />
-            ) : (
-              <Spinner
-                animation="grow"
-                variant="dark"
-                className="mt-5 d-flex mx-auto"
-              />
-            )}
-          </Col>
-          <Col className={`${styles.mapContainer}`}>
-            <h4 className={styles.mapTitle}>Map of Los Angeles, CA</h4>
-            <BaseMap
-              markers={markers}
+      <Row>
+        <Col>
+          {resultsArray.length ? (
+            <SearchResults
+              results={results}
+              dayOfTheWeek={dayOfTheWeek}
+              setCenter={setCenter}
               center={center}
               current={current}
-              zoom={zoom}
             />
-          </Col>
-        </Row>
-        <Row className={`mt-3 ${styles.heroContainer}`}>
-          <div>
-            <p> Hero Section: Welcome to the Los Angeles Data Project...</p>
-          </div>
-        </Row>
-      </Container>
+          ) : (
+            <Spinner
+              animation="grow"
+              variant="dark"
+              className="mt-5 d-flex mx-auto"
+            />
+          )}
+        </Col>
+        <Col className={`${styles.mapContainer}`}>
+          <h4 className={styles.mapTitle}>Map of Los Angeles, CA</h4>
+          <BaseMap
+            markers={markers}
+            center={center}
+            current={current}
+            zoom={zoom}
+          />
+        </Col>
+      </Row>
+      <Row className={`mt-3 ${styles.heroContainer}`}>
+        <div>
+          <p> Hero Section: Welcome to the Los Angeles Data Project...</p>
+        </div>
+      </Row>
     </>
   );
 }

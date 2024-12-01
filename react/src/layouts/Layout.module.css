@@ -1,0 +1,6 @@
+.defaultContainer {
+  min-width: 75vw;
+  margin: 0;
+  padding: 40px;
+  min-height: 100vh;
+}
