@@ -89,24 +89,53 @@ function MobileHome() {
   };
 
   const SearchBar = () => {
+    const [toggleInput, setToggleInput] = useState("");
     return (
       <>
+        <i
+          className={`fa-solid fa-arrow-left ${styles.searchIconLeft} ${
+            toggleInput === "" ? "d-none" : ""
+          }`}
+          onClick={() => {
+            setToggleInput("");
+          }}
+        />
         <input
           id="searchFilter"
-          type="search"
-          className={styles.searchInputLeft}
-          placeholder=" Search what you need"
+          type="text"
+          placeholder="&#xF002; Search"
+          className={`${styles.searchInputLeft} ${
+            toggleInput === "search" ? styles.expand : "w-50"
+          } ${toggleInput === "location" ? "d-none" : ""}
+            `}
+          onClick={() => {
+            setToggleInput("search");
+          }}
         />
         <input
           id="searchLocation"
-          type="search"
-          className={styles.searchInputRight}
-          placeholder=" Please Enter a City or Zip Code"
+          type="text"
+          placeholder="&#xF3C5; Location"
+          className={`${styles.searchInputRight} ${
+            toggleInput === "location" ? styles.expand : "w-50"
+          }  ${toggleInput === "search" ? "d-none" : ""}`}
+          onSelect={() => {
+            setToggleInput("location");
+          }}
         />
-        <i
-          className={`fa-solid fa-magnifying-glass ${styles.searchIcon}`}
-          onClick={() => {}}
-        />
+        {toggleInput === "search" ? (
+          <i
+            className={`fa-solid fa-magnifying-glass ${styles.searchIconRight}`}
+            onClick={() => {}}
+          />
+        ) : (
+          <i
+            className={`fa-solid fa-location-dot ${styles.searchIconRight} ${
+              toggleInput === "" ? "d-none" : ""
+            }`}
+            onClick={() => {}}
+          />
+        )}
       </>
     );
   };
