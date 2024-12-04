@@ -4,7 +4,7 @@ const foodResourcesService = {
   endpoint: "http://localhost:5197/api/FoodResources",
 };
 
-foodResourcesService.getFoodResources = () => {
+const getFoodResources = () => {
   const config = {
     method: "GET",
     url: foodResourcesService.endpoint,
@@ -13,7 +13,12 @@ foodResourcesService.getFoodResources = () => {
     headers: { "Content-Type": "application/json" },
   };
 
-  return axios(config);
+  return axios(config)
+    .then((response) => response.data)
+    .catch((error) => {
+      console.error("Error loading food resources.", error);
+      throw error;
+    });
 };
 
-export default foodResourcesService;
+export { getFoodResources };

@@ -19,6 +19,16 @@
   display: flex;
 }
 
+@media (max-width: 576px) {
+  .searchInputContainer {
+    flex-direction: column;
+  }
+
+  .searchIcon {
+    width: 50px;
+  }
+}
+
 .searchInputLeft,
 .searchInputRight {
   border-color: rgba(235, 235, 235, 1);

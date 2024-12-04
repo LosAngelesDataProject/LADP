@@ -5,6 +5,7 @@ const config = {
   // Set to "true" to hide the Product Type filter button in the home page.
   hideProductTypeFilter: true,
 
+  // Set to "true" to enable all API calls.
   enableApiFlag: false,
 };
 
