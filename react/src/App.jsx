@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import AboutUs from "./components/about/AboutUs";
 import Calendar from "./components/calender/Calendar";
-import Construction from "./components/underConstruction/Construction";
+import Construction from "./components/underConstruction/Construction"
 import Home from "./components/home/Home";
 // import Login from "./components/login/Login";
 import Navigate from "./components/Navigate";
@@ -12,6 +12,7 @@ import NotFound from "./components/NotFound";
 // import ContactUs from "./components/contact/ContactUs";
 import RegisterOrg from "./components/register/RegisterOrg";
 import DefaultLayout from "./layouts/DefaultLayout";
+import UserEdit from "./components/users/UserEdit";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -27,7 +28,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/calendar" element={<Calendar />} />
-          {/* <Route path="/login" element={<Login onLogin={handleLogin} />} /> */}
+          <Route path="/user-edit" element={<UserEdit />} />
+          {/* <Route path="/login" element={<Login onLogin={handleLogin} />} />  */}
           <Route path="/login" element={<Construction />} />
           <Route path="/navigate" element={<Navigate />} />
           <Route path="/register" element={<Construction />} />
