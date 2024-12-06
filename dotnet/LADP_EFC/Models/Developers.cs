@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-
-namespace LADP__EFC.Models
+namespace LADP_EFC.Models
 {
     public class Developers
     {
@@ -10,10 +7,7 @@ namespace LADP__EFC.Models
         public string? PictureUrl { get; set; }
         public string? LinkedInUrl { get; set; }
         public string? GithubUrl { get; set; }
-
         public int RoleID { get; set; }
-
-
         public DevelopersRole? Role { get; set; }
     }
 }
