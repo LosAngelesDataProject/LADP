@@ -11,7 +11,7 @@ const NavBar = (props) => {
   return (
     <Navbar className={styles.background} expand="md">
       <Container>
-        <Nav className="me-auto col-md-5 justify-content-start justify-content-around">
+        <Nav className="me-auto col-md-4 justify-content-start justify-content-around">
           <Nav.Link
             className={`${styles.endText} ${isActive("/")}`}
             as={Link}
@@ -38,7 +38,7 @@ const NavBar = (props) => {
         <Navbar.Brand
           as={Link}
           to="/"
-          className="mx-auto d-flex justify-content-center col-md-2"
+          className="mx-auto d-flex justify-content-center col-md-4"
         >
           <img
             src={logo}
@@ -48,7 +48,7 @@ const NavBar = (props) => {
             className="align-self-center rounded-4"
           />
         </Navbar.Brand>
-        <Nav className="ms-auto col-md-5 justify-content-end justify-content-around">
+        <Nav className="ms-auto col-md-4 justify-content-end justify-content-around">
           <Nav.Link
             className={`${styles.navLink} ${isActive("/contact-us")}`}
             as={Link}
