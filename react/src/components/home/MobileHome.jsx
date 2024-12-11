@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import styles from "./Home.module.css";
 import BaseMap from "../map/BaseMap";
-import foodResourcesService from "../../services/foodResourcesService";
+
+import { getFoodResources } from "../../services/foodResourcesService";
 import sampleResults from "../../assets/data/foodResources.js";
 import SearchResults from "./SearchResults.jsx";
 import FilterButtons from "./FilterButtons.jsx";
@@ -10,6 +11,7 @@ import { useLocation } from "react-router-dom";
 import resultFilterer from "./resultFilterer.js";
 import Spinner from "react-bootstrap/Spinner";
 import Tabs from "./Tabs.jsx";
+import config from "../../../config.js";
 
 function MobileHome() {
   const dayOfTheWeek = [
@@ -71,22 +73,25 @@ function MobileHome() {
       }
     });
 
-    foodResourcesService
-      .getFoodResources()
-      .then(onGetFoodResourcesSuccess)
-      .catch(onGetFoodResourcesError);
+    const fetchFoodResources = async () => {
+      try {
+        const data = await getFoodResources();
+        await setResultsArray(() => [data]);
+        await setResults(() => [data]);
+      } catch (error) {
+        console.error("Error loading food resources.", error);
+        await setResultsArray(() => [...sampleResults]);
+        await setResults(() => [...sampleResults]);
+      }
+    };
+
+    const resultSetter = async () => {
+      await setResultsArray(() => [...sampleResults]);
+      await setResults(() => [...sampleResults]);
+    };
+
+    config.enableApiFlag ? fetchFoodResources() : resultSetter();
   }, []);
-
-  const onGetFoodResourcesSuccess = (response) => {
-    setResultsArray(() => [...response.data]);
-    setResults(() => [...response.data]);
-  };
-
-  const onGetFoodResourcesError = (error) => {
-    console.error("Error!!!!!!!!!!!!!!! ", error);
-    setResultsArray(() => [...sampleResults]);
-    setResults(() => [...sampleResults]);
-  };
 
   const SearchBar = () => {
     const [toggleInput, setToggleInput] = useState("");

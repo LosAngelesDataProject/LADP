@@ -21,19 +21,9 @@
   display: flex;
 }
 
-@media (max-width: 576px) {
-  .searchInputContainer {
-    flex-direction: column;
-  }
-
-  .searchIcon {
-    width: 50px;
-  }
-}
-
 .searchInputLeft,
 .searchInputRight {
-  border-color: var(--main-color) !important;
+  /* border-color: var(--main-color); */
   background-color: var(--support-color);
   max-height: 40px;
   color: black;
@@ -50,18 +40,19 @@
 }
 
 .expand {
-  border: none;
-  width: 100%;
-  border-radius: 10px !important;
+  /* border: none; */
+  width: calc(100% - 36px);
+  border-radius: 10px 0px 0px 10px !important;
   padding: 12px 20px 12px 40px;
 }
 
 .searchIconRight,
 .searchIconLeft {
-  color: var(--main-color);
-  background-color: var(--support-color);
+  color: var(--support-color);
+  background-color: var(--main-color);
   justify-content: center;
   align-content: space-around;
+  min-width: 36px;
   padding-left: 10px;
   padding-right: 10px;
   height: 40px;
@@ -75,8 +66,6 @@
 
 .searchIconRight {
   border-radius: 0px 10px 10px 0px;
-  position: absolute;
-  translate: -30px;
 }
 
 .searchIconLeft {
@@ -194,7 +183,10 @@
   bottom: 1rem;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  height: calc(100vh - 15rem);
+  /* height: calc(100vh - 15rem); */
+  height: calc(100vh - 1rem);
+
+  padding: 12px;
 }
 
 .mapTitle {
