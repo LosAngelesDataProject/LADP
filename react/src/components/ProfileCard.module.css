@@ -1,37 +1,49 @@
+
 .cardContainer {
-    padding: 30px;
-  }
-  
-  .cardStyle {
-    width: 25rem; 
-    height: 500px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; 
-  }
-  
-  .imageContainer {
-    width: 100%; 
-    height: 400px; 
-    overflow: hidden; 
-  }
-  
-  .profileImage {
-    width: 100%;
-    height: 100%; 
-    object-fit: cover; 
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-  }
-  
-  .cardTitle {
-    margin: 10px 0 5px; 
-  }
-  
-  .cardText {
-    margin: 5px 0; 
-  }
-  
-  
+  padding: 30px;
+  display: grid; 
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+  gap: 20px; 
+}
+
+.cardStyle {
+  width: 20rem; 
+  height: auto; 
+  padding: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+  border-radius: 0 !important; 
+}
+
+.imageContainer {
+  width: 100%; 
+  height: 22rem; 
+  overflow: hidden; 
+  border-radius: 0 !important; 
+}
+
+.profileImage {
+  width: 100%;
+  height: 100%; 
+  object-fit: cover; 
+  border-radius: 0 !important; 
+}
+
+.cardTitle {
+  margin: 10px 0 5px; 
+}
+
+.cardText {
+  margin: 5px 0; 
+  font-size: 20px;
+}
+
+.iconLinksLinkedin:hover {
+  transform: scale(1.05); 
+}
+
+.iconLinksGit:hover {
+  transform: scale(1.05); 
+}
