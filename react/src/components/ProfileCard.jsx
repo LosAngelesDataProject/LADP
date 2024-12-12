@@ -19,10 +19,20 @@ function ProfileCard({ name, role, pictureUrl, linkedInUrl, githubUrl }) {
           <Card.Title className={styles.cardTitle}>{role}</Card.Title>
           <Card.Text className={styles.cardText}>{name}</Card.Text>
           <div className={styles.iconLinks}>
-            <a href={linkedInUrl} rel="noreferrer noopener" target="_blank">
+            <a
+              href={linkedInUrl}
+              rel="noreferrer noopener"
+              target="_blank"
+              className={styles.iconLinksLinkedin} // Updated this line
+            >
               <img src={LinkedInIcon} alt="LinkedIn" />
             </a>
-            <a href={githubUrl} rel="noreferrer noopener" target="_blank">
+            <a
+              href={githubUrl}
+              rel="noreferrer noopener"
+              target="_blank"
+              className={styles.iconLinksGit} // Updated this line
+            >
               <img src={GithubIcon} alt="GitHub" />
             </a>
           </div>
