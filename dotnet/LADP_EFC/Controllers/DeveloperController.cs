@@ -1,10 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using LADP__EFC.DTO.Developer;
-using LADP__EFC.Repository.Interfaces;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using LADP_EFC.DTO.Developer;
+using LADP_EFC.Repository.Interfaces;
 
-namespace LADP__EFC.Controllers
+namespace LADP_EFC.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -19,11 +17,11 @@ namespace LADP__EFC.Controllers
 
         // GET: api/Developers
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<DeveloperDTO>>> GetDevelopers()
+        public ActionResult<IEnumerable<DeveloperDTO>> GetDevelopers()
         {
             try
             {
-                var list = await _repository.GetAllAsync();
+                var list = _repository.GetAll();
                 if (list == null || !list.Any())
                 {
                     return NotFound();

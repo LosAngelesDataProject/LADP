@@ -78,3 +78,34 @@
     padding-left: 1rem;
   }
 }
+
+/*---------------Mobile Footer----------------------------------------*/
+
+.footerContainer {
+  background-color: var(--main-color);
+  min-height: 40px;
+  padding: 6px 0px;
+  max-width: 100vw;
+}
+
+.footerIcon {
+  color: var(--support-color);
+}
+
+.footerText {
+  color: var(--support-color);
+  font-size: 0.75rem;
+  display: block;
+  margin-top: 4px;
+  text-decoration: none !important;
+}
+
+.active {
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+
+.link {
+  text-decoration: none !important;
+  color: inherit;
+}
