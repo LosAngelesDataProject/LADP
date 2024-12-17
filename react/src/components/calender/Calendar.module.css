@@ -32,6 +32,9 @@
   top: 50%;
   left: 12%;
   transform: translateY(-50%);
+  top: 50%;
+  left: 12%;
+  transform: translateY(-50%);
   opacity: 0.6;
 }
 .customGrid {

@@ -145,7 +145,6 @@ function Home() {
           <FilterButtons dayOfTheWeek={dayOfTheWeek} />
         </div>
       </Row>
-
       <Row>
         <Col>
           {resultsArray.length ? (

@@ -4,7 +4,7 @@ import "./App.css";
 import AboutUs from "./components/about/AboutUs";
 import Calendar from "./components/calender/Calendar";
 import Construction from "./components/underConstruction/Construction";
-// import Home from "./components/home/Home";
+import Home from "./components/home/Home";
 // import Login from "./components/login/Login";
 import Navigate from "./components/Navigate";
 // import Register from "./components/register/Register";
@@ -12,33 +12,54 @@ import NotFound from "./components/NotFound";
 // import ContactUs from "./components/contact/ContactUs";
 import RegisterOrg from "./components/register/RegisterOrg";
 import DefaultLayout from "./layouts/DefaultLayout";
+import { useMediaQuery } from "react-responsive";
+import MobileLayout from "./layouts/MobileLayout";
 import MobileHome from "./components/home/MobileHome";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const isPhone = useMediaQuery({
+    query: "(max-width: 768px)",
+  });
   const handleLogin = () => {
     setIsLoggedIn(!isLoggedIn);
   };
 
   return (
     <>
-      <DefaultLayout isLoggedIn={isLoggedIn} onLogout={handleLogin}>
-        <Routes>
-          <Route path="/" element={<MobileHome />} />
-          {/* <Route path="/" element={<Home />} /> */}
-          <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/calendar" element={<Calendar />} />
-          {/* <Route path="/login" element={<Login onLogin={handleLogin} />} /> */}
-          <Route path="/login" element={<Construction />} />
-          <Route path="/navigate" element={<Navigate />} />
-          <Route path="/register" element={<Construction />} />
-          <Route path="/register-org" element={<RegisterOrg />} />
-          <Route path="/contact-us" element={<Construction />} />
-          <Route path="*" element={<NotFound />} />
-          <Route path="/under-construction" element={<Construction />} />
-        </Routes>
-      </DefaultLayout>
+      {isPhone ? (
+        <MobileLayout isLoggedIn={isLoggedIn} onLogout={handleLogin}>
+          <Routes>
+            <Route path="/" element={<MobileHome />} />
+            <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/calendar" element={<Calendar />} />
+            {/* <Route path="/login" element={<Login onLogin={handleLogin} />} /> */}
+            <Route path="/login" element={<Construction />} />
+            <Route path="/navigate" element={<Navigate />} />
+            <Route path="/register" element={<Construction />} />
+            <Route path="/register-org" element={<RegisterOrg />} />
+            <Route path="/contact-us" element={<Construction />} />
+            <Route path="*" element={<NotFound />} />
+            <Route path="/under-construction" element={<Construction />} />
+          </Routes>
+        </MobileLayout>
+      ) : (
+        <DefaultLayout isLoggedIn={isLoggedIn} onLogout={handleLogin}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/calendar" element={<Calendar />} />
+            {/* <Route path="/login" element={<Login onLogin={handleLogin} />} /> */}
+            <Route path="/login" element={<Construction />} />
+            <Route path="/navigate" element={<Navigate />} />
+            <Route path="/register" element={<Construction />} />
+            <Route path="/register-org" element={<RegisterOrg />} />
+            <Route path="/contact-us" element={<Construction />} />
+            <Route path="*" element={<NotFound />} />
+            <Route path="/under-construction" element={<Construction />} />
+          </Routes>
+        </DefaultLayout>
+      )}
     </>
   );
 }
