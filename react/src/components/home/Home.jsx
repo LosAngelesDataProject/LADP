@@ -142,7 +142,7 @@ function Home() {
           <SearchBar />
         </div>
         <div className={`${styles.filterContainer}`}>
-          <FilterButtons dayOfTheWeek={dayOfTheWeek} />
+          <FilterButtons daysOfTheWeek={dayOfTheWeek} />
         </div>
       </Row>
       <Row>
@@ -150,7 +150,7 @@ function Home() {
           {resultsArray.length ? (
             <SearchResults
               results={results}
-              dayOfTheWeek={dayOfTheWeek}
+              daysOfTheWeek={dayOfTheWeek}
               setCenter={setCenter}
               center={center}
               current={current}

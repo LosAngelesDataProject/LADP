@@ -13,6 +13,9 @@
   border-collapse: collapse;
   border-spacing: 0;
   width: 100%;
+  margin-bottom: 24px;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
 /*------------Search bar-------*/
@@ -23,7 +26,6 @@
 
 .searchInputLeft,
 .searchInputRight {
-  /* border-color: var(--main-color); */
   background-color: var(--support-color);
   max-height: 40px;
   color: black;
@@ -40,7 +42,6 @@
 }
 
 .expand {
-  /* border: none; */
   width: calc(100% - 36px);
   border-radius: 10px 0px 0px 10px !important;
   padding: 12px 20px 12px 40px;
@@ -178,15 +179,12 @@
 /*---------------Map----------------------------------------*/
 
 .mapContainer {
-  position: sticky !important;
-  top: 1rem;
-  bottom: 1rem;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  /* height: calc(100vh - 15rem); */
-  height: calc(100vh - 1rem);
-
-  padding: 12px;
+  /* height: calc(100vh - 58px); */
+  height: calc(100vh - 15rem);
+  /* height: calc(100vh - 1rem); */
+  /* padding: 12px; */
 }
 
 .mapTitle {
@@ -196,6 +194,14 @@
   font-size: medium;
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+
+@media (min-width: 768) {
+  .mapContainer {
+    position: sticky !important;
+    top: 1rem;
+    bottom: 2rem;
+  }
 }
 
 /*---------------Hero----------------------------------------*/
@@ -281,5 +287,16 @@
   .tab {
     padding: 1rem 0;
     font-size: 1.125rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .mapContainer {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  .resultsContainer {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
   }
 }

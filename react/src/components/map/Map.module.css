@@ -41,3 +41,10 @@
   margin-right: 5px;
   align-self: center;
 }
+
+@media (max-width: 768px) {
+  .leafletContainer {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}

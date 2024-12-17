@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import styles from "./Home.module.css";
 import BaseMap from "../map/BaseMap";
 
@@ -12,18 +12,9 @@ import resultFilterer from "./resultFilterer.js";
 import Spinner from "react-bootstrap/Spinner";
 import Tabs from "./Tabs.jsx";
 import config from "../../../config.js";
+import daysOfTheWeek from "../../assets/data/daysOfTheWeek.js";
 
 function MobileHome() {
-  const dayOfTheWeek = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
-  ];
-
   const location = useLocation();
   const urlParams = new URLSearchParams(location.search);
   const dayParam = urlParams.get("d");
@@ -164,22 +155,24 @@ function MobileHome() {
 
   return (
     <>
-      <Row className={`mx-2 my-4 ${styles.searchContainer}`}>
+      <Row className={`${styles.searchContainer}`}>
         <div className={styles.searchInputContainer}>
           <SearchBar />
         </div>
         <div className={`${styles.filterContainer}`}>
-          <FilterButtons dayOfTheWeek={dayOfTheWeek} />
+          <FilterButtons daysOfTheWeek={daysOfTheWeek} />
         </div>
         <Tabs showMap={showMap} setShowMap={setShowMap} />
       </Row>
 
-      <Row>
+      <Row
+        className={`${showMap ? styles.resultsContainer : styles.mapContainer}`}
+      >
         {showMap ? (
           resultsArray.length ? (
             <SearchResults
               results={results}
-              dayOfTheWeek={dayOfTheWeek}
+              daysOfTheWeek={daysOfTheWeek}
               setCenter={setCenter}
               center={center}
               current={current}
@@ -192,14 +185,12 @@ function MobileHome() {
             />
           )
         ) : (
-          <Col className={`${styles.mapContainer}`}>
-            <BaseMap
-              markers={markers}
-              center={center}
-              current={current}
-              zoom={zoom}
-            />
-          </Col>
+          <BaseMap
+            markers={markers}
+            center={center}
+            current={current}
+            zoom={zoom}
+          />
         )}
       </Row>
     </>
