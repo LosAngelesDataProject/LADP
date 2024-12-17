@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Row } from "react-bootstrap";
 import styles from "./Home.module.css";
 import BaseMap from "../map/BaseMap";
-
 import { getFoodResources } from "../../services/foodResourcesService";
 import sampleResults from "../../assets/data/foodResources.js";
 import SearchResults from "./SearchResults.jsx";
@@ -13,6 +12,7 @@ import Spinner from "react-bootstrap/Spinner";
 import Tabs from "./Tabs.jsx";
 import config from "../../../config.js";
 import daysOfTheWeek from "../../assets/data/daysOfTheWeek.js";
+import SearchBar from "./SearchBar.jsx";
 
 function MobileHome() {
   const location = useLocation();
@@ -83,58 +83,6 @@ function MobileHome() {
 
     config.enableApiFlag ? fetchFoodResources() : resultSetter();
   }, []);
-
-  const SearchBar = () => {
-    const [toggleInput, setToggleInput] = useState("");
-    return (
-      <>
-        <i
-          className={`fa-solid fa-arrow-left ${styles.searchIconLeft} ${
-            toggleInput === "" ? "d-none" : ""
-          }`}
-          onClick={() => {
-            setToggleInput("");
-          }}
-        />
-        <input
-          id="searchFilter"
-          type="text"
-          placeholder="&#xF002; Search"
-          className={`${styles.searchInputLeft} ${
-            toggleInput === "search" ? styles.expand : "w-50"
-          } ${toggleInput === "location" ? "d-none" : ""}
-            `}
-          onClick={() => {
-            setToggleInput("search");
-          }}
-        />
-        <input
-          id="searchLocation"
-          type="text"
-          placeholder="&#xF3C5; Location"
-          className={`${styles.searchInputRight} ${
-            toggleInput === "location" ? styles.expand : "w-50"
-          }  ${toggleInput === "search" ? "d-none" : ""}`}
-          onSelect={() => {
-            setToggleInput("location");
-          }}
-        />
-        {toggleInput === "search" ? (
-          <i
-            className={`fa-solid fa-magnifying-glass ${styles.searchIconRight}`}
-            onClick={() => {}}
-          />
-        ) : (
-          <i
-            className={`fa-solid fa-location-dot ${styles.searchIconRight} ${
-              toggleInput === "" ? "d-none" : ""
-            }`}
-            onClick={() => {}}
-          />
-        )}
-      </>
-    );
-  };
 
   useEffect(() => {
     if (dayParam || productParam || locationParam) {

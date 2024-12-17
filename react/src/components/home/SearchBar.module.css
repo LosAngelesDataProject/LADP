@@ -1,0 +1,62 @@
+:root {
+  --heroHeight: 300px;
+  --searchHeight: 300px;
+  --main-color: #062d1d;
+  --secondary-color: #e3aa4d;
+  --support-color: #ffffff;
+}
+
+.searchInputContainer {
+  display: flex;
+}
+
+.searchInputLeft,
+.searchInputRight {
+  background-color: var(--support-color);
+  max-height: 40px;
+  color: black;
+  padding: 12px 20px 12px 20px;
+  font-family: Arial, FontAwesome;
+}
+
+.searchInputLeft {
+  border-radius: 10px 0px 0px 10px;
+}
+
+.searchInputRight {
+  border-radius: 0px 10px 10px 0px;
+}
+
+.expand {
+  width: calc(100% - 36px);
+  border-radius: 10px 0px 0px 10px !important;
+  padding: 12px 20px 12px 40px;
+}
+
+.searchIconRight,
+.searchIconLeft {
+  color: var(--support-color);
+  background-color: var(--main-color);
+  justify-content: center;
+  align-content: space-around;
+  min-width: 36px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 40px;
+}
+
+.searchIconRight:hover,
+.searchIconLeft:hover {
+  cursor: pointer;
+  color: var(--secondary-color);
+}
+
+.searchIconRight {
+  border-radius: 0px 10px 10px 0px;
+}
+
+.searchIconLeft {
+  border-radius: 10px 0px 0px 10px;
+  position: absolute;
+  translate: 0px;
+}
