@@ -30,5 +30,24 @@
 }
 
 .active {
-  text-decoration: wavy underline rgb(69, 184, 255) !important;
+  text-decoration: wavy underline rgb(69, 184, 255);
+}
+
+/**------- Mobile NavBar -------------- **/
+
+.navBrandText {
+  color: var(--support-color) !important;
+  text-align: center;
+  font-family: "Merriweather", serif;
+}
+
+.profileIcon {
+  color: var(--support-color);
+}
+
+@media (max-width: 768px) {
+  .active {
+    color: var(--secondary-color);
+    text-decoration: none;
+  }
 }
