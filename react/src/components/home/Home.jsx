@@ -2,35 +2,28 @@ import { useEffect, useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import styles from "./Home.module.css";
 import BaseMap from "../map/BaseMap";
-
-import sampleResults from "../../assets/data/foodResources.js";
 import { getFoodResources } from "../../services/foodResourcesService";
-
+import sampleResults from "../../assets/data/foodResources.js";
 import SearchResults from "./SearchResults.jsx";
 import HomeSlide from "./HomeSlide.jsx";
 import FilterButtons from "./FilterButtons.jsx";
 import { useLocation } from "react-router-dom";
 import resultFilterer from "./resultFilterer.js";
 import Spinner from "react-bootstrap/Spinner";
+import Tabs from "./Tabs.jsx";
 import config from "../../../config.js";
+import daysOfTheWeek from "../../assets/data/daysOfTheWeek.js";
+import SearchBar from "./SearchBar.jsx";
+import PropTypes from "prop-types";
 
-function Home() {
-  const dayOfTheWeek = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
-  ];
-
+function Home(props) {
+  const { isPhone } = props;
   const location = useLocation();
   const urlParams = new URLSearchParams(location.search);
   const dayParam = urlParams.get("d");
   const productParam = urlParams.get("p");
   const locationParam = urlParams.get("l");
-
+  const [showMap, setShowMap] = useState(true);
   const [center, setCenter] = useState({ lat: 34.0549, lng: -118.2426 });
   const [current, setCurrent] = useState({
     lat: 34.0549,
@@ -94,29 +87,6 @@ function Home() {
     config.enableApiFlag ? fetchFoodResources() : resultSetter();
   }, []);
 
-  const SearchBar = () => {
-    return (
-      <>
-        <input
-          id="searchFilter"
-          type="search"
-          className={styles.searchInputLeft}
-          placeholder=" Search what you need"
-        />
-        <input
-          id="searchLocation"
-          type="search"
-          className={styles.searchInputRight}
-          placeholder=" Please Enter a City or Zip Code"
-        />
-        <i
-          className={`fa-solid fa-magnifying-glass ${styles.searchIcon}`}
-          onClick={() => {}}
-        />
-      </>
-    );
-  };
-
   useEffect(() => {
     if (dayParam || productParam || locationParam) {
       const filteredResults = resultFilterer(
@@ -132,54 +102,69 @@ function Home() {
     }
   }, [location, dayParam, productParam, locationParam]);
 
+  const RenderResults = () => {
+    return resultsArray.length ? (
+      <SearchResults
+        results={results}
+        daysOfTheWeek={daysOfTheWeek}
+        setCenter={setCenter}
+        center={center}
+        current={current}
+      />
+    ) : (
+      <Spinner
+        animation="grow"
+        variant="dark"
+        className="mt-5 d-flex mx-auto"
+      />
+    );
+  };
+
+  const RenderMap = () => (
+    <BaseMap markers={markers} center={center} current={current} zoom={zoom} />
+  );
+
   return (
     <>
-      <div className="Home-Carousel">
-        <HomeSlide className="Carousel-Hero" />
-      </div>
-      <Row className={`mx-2 my-4 ${styles.searchContainer}`}>
+      {!isPhone && (
+        <div className="Home-Carousel">
+          <HomeSlide className="Carousel-Hero" />
+        </div>
+      )}
+      <Row className={`${styles.searchContainer}`}>
         <div className={styles.searchInputContainer}>
           <SearchBar />
         </div>
         <div className={`${styles.filterContainer}`}>
-          <FilterButtons daysOfTheWeek={dayOfTheWeek} />
+          <FilterButtons daysOfTheWeek={daysOfTheWeek} />
         </div>
+        {isPhone && <Tabs showMap={showMap} setShowMap={setShowMap} />}
       </Row>
-      <Row>
-        <Col>
-          {resultsArray.length ? (
-            <SearchResults
-              results={results}
-              daysOfTheWeek={dayOfTheWeek}
-              setCenter={setCenter}
-              center={center}
-              current={current}
-            />
-          ) : (
-            <Spinner
-              animation="grow"
-              variant="dark"
-              className="mt-5 d-flex mx-auto"
-            />
-          )}
-        </Col>
-        <Col className={`${styles.mapContainer}`}>
-          <h4 className={styles.mapTitle}>Map of Los Angeles, CA</h4>
-          <BaseMap
-            markers={markers}
-            center={center}
-            current={current}
-            zoom={zoom}
-          />
-        </Col>
-      </Row>
-      <Row className={`mt-3 ${styles.heroContainer}`}>
-        <div>
-          <p> Hero Section: Welcome to the Los Angeles Data Project...</p>
-        </div>
-      </Row>
+      {isPhone ? (
+        <Row
+          className={showMap ? styles.resultsContainer : styles.mapContainer}
+        >
+          {showMap ? RenderResults() : RenderMap()}
+        </Row>
+      ) : (
+        <Row>
+          <Col className={styles.resultsContainer}>{RenderResults()}</Col>
+          <Col className={styles.mapContainer}>{RenderMap()}</Col>
+        </Row>
+      )}
+      {!isPhone && (
+        <Row className={`mt-3 ${styles.heroContainer}`}>
+          <div>
+            <p> Hero Section: Welcome to the Los Angeles Data Project...</p>
+          </div>
+        </Row>
+      )}
     </>
   );
 }
+
+Home.propTypes = {
+  isPhone: PropTypes.bool.isRequired,
+};
 
 export default Home;

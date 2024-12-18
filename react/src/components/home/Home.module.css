@@ -18,6 +18,11 @@
   margin-right: 0 !important;
 }
 
+@media (min-width: 769px) {
+  .searchContainer {
+    margin-top: 24px !important;
+  }
+}
 /*------------Filter Buttons-------*/
 
 .filterContainer {
@@ -83,6 +88,30 @@
   background-color: #ddd;
 }
 
+@media (max-width: 360px) {
+  .filterItem {
+    max-width: 100px;
+  }
+
+  .filterButton {
+    font-size: 0.5em;
+    font-weight: 500;
+  }
+}
+
+@media (max-width: 425px) and (min-width: 360px) {
+  .filterItem {
+    max-width: 100px;
+  }
+
+  .filterButton {
+    font-size: 0.7em;
+    font-weight: 500;
+    min-height: 50px;
+    align-items: center;
+  }
+}
+
 /*---------------Search Results----------------------------------------*/
 
 .card {
@@ -119,15 +148,25 @@
   font-size: 16px;
 }
 
+@media (min-width: 769px) {
+  .resultsContainer {
+    padding-right: 8px !important;
+  }
+}
+
+@media (max-width: 575px) {
+  .resultsContainer {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
 /*---------------Map----------------------------------------*/
 
 .mapContainer {
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  /* height: calc(100vh - 58px); */
   height: calc(100vh - 15rem);
-  /* height: calc(100vh - 1rem); */
-  /* padding: 12px; */
 }
 
 .mapTitle {
@@ -139,11 +178,21 @@
   margin-bottom: 1rem;
 }
 
-@media (min-width: 768) {
+@media (min-width: 769px) {
   .mapContainer {
     position: sticky !important;
     top: 1rem;
     bottom: 2rem;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 8px !important;
+  }
+}
+
+@media (max-width: 575px) {
+  .mapContainer {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
   }
 }
 
@@ -156,42 +205,6 @@
   background-color: #f0f0f0;
   min-height: var(--heroHeight);
   bottom: 0;
-}
-
-@media (max-width: 360px) {
-  .filterItem {
-    max-width: 100px;
-  }
-
-  .filterButton {
-    font-size: 0.5em;
-    font-weight: 500;
-  }
-}
-
-@media (max-width: 425px) and (min-width: 360px) {
-  .filterItem {
-    max-width: 100px;
-  }
-
-  .filterButton {
-    font-size: 0.7em;
-    font-weight: 500;
-    min-height: 50px;
-    align-items: center;
-  }
-
-  .card {
-    transition: height 0.15s ease-out;
-  }
-
-  .mapContainer {
-    display: none;
-  }
-
-  .heroContainer {
-    display: none;
-  }
 }
 
 /*---------------MobileTabs----------------------------------------*/
@@ -230,16 +243,5 @@
   .tab {
     padding: 1rem 0;
     font-size: 1.125rem;
-  }
-}
-
-@media (max-width: 575px) {
-  .mapContainer {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-  .resultsContainer {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
   }
 }

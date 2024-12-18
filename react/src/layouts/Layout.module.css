@@ -11,3 +11,21 @@
   padding: 20px 20px 80px 20px;
   min-height: 100vh;
 }
+
+@media (min-width: 752px) {
+  .mobileContainer {
+    max-width: 720px !important;
+  }
+}
+
+@media (max-width: 752px) and (min-width: 652px) {
+  .mobileContainer {
+    max-width: 620px !important;
+  }
+}
+
+@media (max-width: 652px) and (min-width: 552px) {
+  .mobileContainer {
+    max-width: 520px !important;
+  }
+}
