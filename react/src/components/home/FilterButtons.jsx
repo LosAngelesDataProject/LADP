@@ -5,7 +5,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import config from "../../../config";
 
 function FilterButtons(props) {
-  const { dayOfTheWeek } = props;
+  const { daysOfTheWeek } = props;
   const location = useLocation();
   const navigate = useNavigate();
   const urlParams = new URLSearchParams(location.search);
@@ -46,9 +46,11 @@ function FilterButtons(props) {
 
     if (dayParam) setFilteredDay({ selection: dayParam, selected: true });
 
-    if (productParam) setFilteredProduct({ selection: productParam, selected: true });
+    if (productParam)
+      setFilteredProduct({ selection: productParam, selected: true });
 
-    if (locationParam) setFilteredLocation({ selection: locationParam, selected: true });
+    if (locationParam)
+      setFilteredLocation({ selection: locationParam, selected: true });
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
@@ -58,11 +60,13 @@ function FilterButtons(props) {
 
   const handleClickOutside = (event) => {
     const clickedOutsideLocationDropdown =
-      locationDropdownRef.current && !locationDropdownRef.current.contains(event.target);
+      locationDropdownRef.current &&
+      !locationDropdownRef.current.contains(event.target);
     const clickedOutsideDayDropdown =
       dayDropdownRef.current && !dayDropdownRef.current.contains(event.target);
     const clickedOutsideProductDropdown =
-      productDropdownRef.current && !productDropdownRef.current.contains(event.target);
+      productDropdownRef.current &&
+      !productDropdownRef.current.contains(event.target);
 
     if (
       clickedOutsideLocationDropdown ||
@@ -82,7 +86,10 @@ function FilterButtons(props) {
 
   const handleDayButton = () => {
     if (!filteredDay.selected) {
-      handleButtonClick(setShowDayDropdown, [setShowLocationDropdown, setShowProductDropdown]);
+      handleButtonClick(setShowDayDropdown, [
+        setShowLocationDropdown,
+        setShowProductDropdown,
+      ]);
     } else {
       handleRemoveFilter(setFilteredDay, "d");
     }
@@ -90,7 +97,10 @@ function FilterButtons(props) {
 
   const handleTypeButton = () => {
     if (!filteredProduct.selected) {
-      handleButtonClick(setShowProductDropdown, [setShowLocationDropdown, setShowDayDropdown]);
+      handleButtonClick(setShowProductDropdown, [
+        setShowLocationDropdown,
+        setShowDayDropdown,
+      ]);
     } else {
       handleRemoveFilter(setFilteredProduct, "p");
     }
@@ -98,7 +108,10 @@ function FilterButtons(props) {
 
   const handleLocationButton = () => {
     if (!filteredLocation.selected) {
-      handleButtonClick(setShowLocationDropdown, [setShowDayDropdown, setShowProductDropdown]);
+      handleButtonClick(setShowLocationDropdown, [
+        setShowDayDropdown,
+        setShowProductDropdown,
+      ]);
     } else {
       handleRemoveFilter(setFilteredLocation, "l");
     }
@@ -130,17 +143,28 @@ function FilterButtons(props) {
             {filteredDay.selection || "Day of the Week"}
             <i
               className={`${
-                !filteredDay.selected ? `fa-solid fa-chevron-up` : `fa-regular fa-circle-xmark`
-              } ms-2 align-self-center ${showDayDropdown ? styles.filterClicked : ""}`}
+                !filteredDay.selected
+                  ? `fa-solid fa-chevron-up`
+                  : `fa-regular fa-circle-xmark`
+              } ms-2 align-self-center ${
+                showDayDropdown ? styles.filterClicked : ""
+              }`}
             />
           </button>
           {showDayDropdown && (
             <div ref={dayDropdownRef} className={styles.dropdown}>
-              {dayOfTheWeek.map((day, index) => (
+              {daysOfTheWeek.map((day, index) => (
                 <option
                   key={index}
                   className={styles.filterOption}
-                  onClick={() => handleOptionClick(day, "d", setFilteredDay, setShowDayDropdown)}
+                  onClick={() =>
+                    handleOptionClick(
+                      day,
+                      "d",
+                      setFilteredDay,
+                      setShowDayDropdown
+                    )
+                  }
                 >
                   {day}
                 </option>
@@ -160,8 +184,12 @@ function FilterButtons(props) {
             {filteredProduct.selection || "Product Type"}
             <i
               className={`${
-                !filteredProduct.selected ? `fa-solid fa-chevron-up` : `fa-regular fa-circle-xmark`
-              } ms-2 align-self-center ${showProductDropdown ? styles.filterClicked : ""}`}
+                !filteredProduct.selected
+                  ? `fa-solid fa-chevron-up`
+                  : `fa-regular fa-circle-xmark`
+              } ms-2 align-self-center ${
+                showProductDropdown ? styles.filterClicked : ""
+              }`}
             />
           </button>
           {showProductDropdown && (
@@ -171,7 +199,12 @@ function FilterButtons(props) {
                   key={index}
                   className={styles.filterOption}
                   onClick={() =>
-                    handleOptionClick(product, "p", setFilteredProduct, setShowProductDropdown)
+                    handleOptionClick(
+                      product,
+                      "p",
+                      setFilteredProduct,
+                      setShowProductDropdown
+                    )
                   }
                 >
                   {product}
@@ -191,8 +224,12 @@ function FilterButtons(props) {
           {filteredLocation.selection || "Location Type"}
           <i
             className={`${
-              !filteredLocation.selected ? `fa-solid fa-chevron-up` : `fa-regular fa-circle-xmark`
-            } ms-2 align-self-center ${showLocationDropdown ? styles.filterClicked : ""}`}
+              !filteredLocation.selected
+                ? `fa-solid fa-chevron-up`
+                : `fa-regular fa-circle-xmark`
+            } ms-2 align-self-center ${
+              showLocationDropdown ? styles.filterClicked : ""
+            }`}
           />
         </button>
         {showLocationDropdown && (
@@ -202,7 +239,12 @@ function FilterButtons(props) {
                 key={index}
                 className={styles.filterOption}
                 onClick={() =>
-                  handleOptionClick(location, "l", setFilteredLocation, setShowLocationDropdown)
+                  handleOptionClick(
+                    location,
+                    "l",
+                    setFilteredLocation,
+                    setShowLocationDropdown
+                  )
                 }
               >
                 {location}
@@ -216,7 +258,7 @@ function FilterButtons(props) {
 }
 
 FilterButtons.propTypes = {
-  dayOfTheWeek: PropTypes.array.isRequired,
+  daysOfTheWeek: PropTypes.array.isRequired,
 };
 
 export default FilterButtons;
