@@ -1,0 +1,45 @@
+:root {
+  --heroHeight: 300px;
+  --searchHeight: 300px;
+  --main-color: #062d1d;
+  --secondary-color: #e3aa4d;
+  --support-color: #ffffff;
+}
+
+.goToTop {
+  background-color: transparent;
+  display: block;
+  position: fixed;
+  cursor: pointer;
+  bottom: 6%;
+  left: 94%;
+}
+
+.goToTopIcon {
+  color: var(--main-color);
+  transform: scale(2);
+  text-align: center;
+  line-height: 30px;
+}
+
+.goToTopIcon:hover {
+  color: var(--secondary-color);
+}
+
+@media (max-width: 425px) {
+  .goToTop {
+    left: 93%;
+  }
+}
+
+@media (max-width: 425px) and (min-width: 350px) {
+  .goToTop {
+    left: 92%;
+  }
+}
+
+@media (max-width: 350px) {
+  .goToTop {
+    left: 90%;
+  }
+}
