@@ -3,11 +3,15 @@ import { Navbar, Nav, Container } from "react-bootstrap";
 import PropTypes from "prop-types";
 import logo from "../../assets/images/logo.png";
 import styles from "./NavBar.module.css";
+import UserIcon from "../../assets/UserIcon.png"
+import UserIcon2 from "../../assets/UserIcon2.png"
+
 
 const NavBar = (props) => {
   const { isLoggedIn, onLogout } = props;
   const location = useLocation(); // Get the current location
   const isActive = (path) => (location.pathname === path ? styles.active : "");
+
   return (
     <Navbar className={styles.background} expand="md">
       <Container>
@@ -27,13 +31,6 @@ const NavBar = (props) => {
           >
             Calendar
           </Nav.Link>
-          <Nav.Link
-            className={`${styles.navLink} ${isActive("/about-us")}`}
-            as={Link}
-            to="/about-us"
-          >
-            About Us
-          </Nav.Link>
         </Nav>
         <Navbar.Brand
           as={Link}
@@ -50,33 +47,43 @@ const NavBar = (props) => {
         </Navbar.Brand>
         <Nav className="ms-auto col-md-4 justify-content-end justify-content-around">
           <Nav.Link
-            className={`${styles.navLink} ${isActive("/contact-us")}`}
+            className={`${styles.navLink} ${isActive("/about-us")}`}
             as={Link}
-            to="/contact-us"
+            to="/about-us"
           >
-            Contact Us
+            About Us
           </Nav.Link>
-
+          <div className={styles.navLink}>
+              <div className={styles.dropdown}>
+                <div className={`${styles.helpbtn} ${isActive("/contact-us")}`}>Help</div>
+                <div className={styles.dropdown_content}>
+                  <a href="/contact-us">FAQ</a>
+                  <a href="/contact-us">Contact Us</a>
+                </div>
+              </div>
+            </div>
           {isLoggedIn ? (
-            <Nav.Link className={styles.endText} onClick={onLogout}>
-              Logout
-            </Nav.Link>
+            <>
+            <div className={`${styles.navLink} ${styles.dropdown}`}>
+              <img src={UserIcon2} alt="UserLogged" className={styles.dropimg}></img>
+                <div className={styles.dropdown_content}>
+                  <a href="/user-edit">Settings</a>
+                  <a href="/contact-us">FAQ</a>
+                  <a href="/contact-us">Contact Us</a>
+                  <a href="/" onClick={onLogout}>Logout</a>
+                </div>
+          </div>
+            </>
           ) : (
             <>
-              <Nav.Link
-                className={`${styles.navLink} ${isActive("/login")}`}
-                as={Link}
-                to="/login"
-              >
-                Login
-              </Nav.Link>
-              <Nav.Link
-                className={`${styles.endText} ${isActive("/register")}`}
-                as={Link}
-                to="/register"
-              >
-                Register
-              </Nav.Link>
+            <div className={`${styles.navLink} ${styles.dropdown}`}>
+              <img src={UserIcon} alt="Cinque Terre" className={styles.dropimg}></img>
+                <div className={styles.dropdown_content}>
+                  <a href="/user-edit">Settings</a>
+                  <a href="/login">Login</a>
+                  <a href="/register">Register</a>
+                </div>
+          </div>
             </>
           )}
         </Nav>

@@ -8,7 +8,9 @@ import config from "../../../config.js"
 
 function UserEdit(){
 
+
   const [sampleUser, setSampleUser] = useState({
+    id: 0,
     firstName: "John",
     mi: "",
     lastName: "Doe",
@@ -34,6 +36,7 @@ function UserEdit(){
   }, [])
 
   const [userData, setUserData] = useState({
+    id: "",
     firstName: "",
     mi: "",
     lastName: "",
@@ -54,6 +57,7 @@ function UserEdit(){
     toastr.error("Failed to update information. Please try again")
     console.log("Update Error", response)
   }
+
     return(
         <React.Fragment>
            <div>
@@ -148,6 +152,11 @@ function UserEdit(){
             <div>
               <button>
                 Update
+              </button>
+            </div>
+            <div>
+              <button>
+                Email Test
               </button>
             </div>
             </Form>

@@ -15,7 +15,7 @@ import DefaultLayout from "./layouts/DefaultLayout";
 import UserEdit from "./components/users/UserEdit";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const handleLogin = () => {
     setIsLoggedIn(!isLoggedIn);
