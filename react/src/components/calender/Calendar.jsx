@@ -14,7 +14,6 @@ import { addDays, subDays } from "date-fns";
 
 function Calendar() {
   const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const events = [
     {
       date: "Wed May 01 2024 12:14:29 GMT-0500 (Central Daylight Time)",
@@ -25,12 +24,6 @@ function Calendar() {
     {
       date: "Fri May 03 2024 12:14:29 GMT-0500 (Central Daylight Time)",
       title: "Event 2",
-      details:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    },
-    {
-      date: "Fri May 03 2024 12:14:29 GMT-0500 (Central Daylight Time)",
-      title: "Event 3",
       details:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     },
@@ -94,7 +87,9 @@ function Calendar() {
               isToday(day) ? styles.calendarToday : ""
             }`}
           >
-            <Card.Header className="fw-bold">{format(day, "d")}</Card.Header>
+            <Card.Header className={`fw-bold ${styles.dateHeader}`}>
+              {format(day, "d")}
+            </Card.Header>
             <Card.Body>
               {todaysEvents.map((event, eventIndex) => {
                 return (
@@ -134,6 +129,10 @@ function Calendar() {
   return (
     <>
       <div className={`mx-0 px-0 ${styles.headerBackground}`}>
+        <div className={styles.headerContent}>
+          <h1 className="text-white">Food Distribution Calendar</h1>
+          <h4 className="text-white">{format(currentDate, "MMMM yyyy")}</h4>
+        </div>
         <img
           src={Logo}
           width="120"
@@ -142,14 +141,10 @@ function Calendar() {
           className={`ms-5 ${styles.logo}`}
         />
       </div>
-      <div className="mb-4 text-center">
-        <h1>Food Distribution Calendar</h1>
-        <h4>{format(currentDate, "MMMM yyyy")}</h4>
-      </div>
       <div className={`row ${styles.customGrid} g-0`}>
         {weekDays.map((day) => (
-          <div key={day} className="col p-2">
-            <div className="fw-bold text-center">{day}</div>
+          <div key={day} className={`col ${styles.weekdayHeader}`}>
+            {day}
           </div>
         ))}
         <CalendarCards />
