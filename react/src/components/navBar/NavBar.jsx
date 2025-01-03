@@ -68,7 +68,6 @@ const NavBar = (props) => {
               <img src={UserIcon2} alt="UserLogged" className={styles.dropimg}></img>
                 <div className={styles.dropdown_content}>
                   <a href="/user-edit">Settings</a>
-                  <a href="/contact-us">FAQ</a>
                   <a href="/contact-us">Contact Us</a>
                   <a href="/" onClick={onLogout}>Logout</a>
                 </div>
