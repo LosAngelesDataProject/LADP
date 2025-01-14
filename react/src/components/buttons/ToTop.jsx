@@ -4,7 +4,7 @@ import styles from "./Buttons.module.css";
 function GoTop() {
   const [showGoTop, setShowGoTop] = useState(false);
   const handleVisibleButton = () => {
-    setShowGoTop(window.pageYOffset > 80);
+    setShowGoTop(window.pageYOffset > 90);
   };
   const handleScrollUp = () => {
     window.scrollTo({ left: 0, top: 0, behavior: "smooth" });
