@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using LADP_EFC.Models;
+﻿using LADP_EFC.Models;
 using LADP_EFC.Repository.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace LADP__EFC.Controllers
 {
@@ -39,7 +39,7 @@ namespace LADP__EFC.Controllers
         // PUT: api/TodoItems/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public  ActionResult<TodoItemDTO> PutTodoItem(int id, TodoItemDTO todoDTO)
+        public ActionResult<TodoItemDTO> PutTodoItem(int id, TodoItemDTO todoDTO)
         {
             if (id != todoDTO.Id)
             {
@@ -66,7 +66,7 @@ namespace LADP__EFC.Controllers
 
         // DELETE: api/TodoItems/5
         [HttpDelete("{id}")]
-        public  ActionResult<TodoItemDTO> DeleteTodoItem(int id)
+        public ActionResult<TodoItemDTO> DeleteTodoItem(int id)
         {
             var item = _repositroy.DeleteTodoItem(id);
             if (item != null)

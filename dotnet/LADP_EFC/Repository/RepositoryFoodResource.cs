@@ -1,8 +1,8 @@
 ﻿using LADP_EFC.Data;
-using LADP_EFC.DTO.Tag;
+using LADP_EFC.DTO.BusinessHours;
 using LADP_EFC.DTO.Day;
 using LADP_EFC.DTO.FoodResource;
-using LADP_EFC.DTO.BusinessHours;
+using LADP_EFC.DTO.Tag;
 using LADP_EFC.Models;
 using LADP_EFC.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;

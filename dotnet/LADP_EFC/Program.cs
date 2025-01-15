@@ -1,11 +1,5 @@
 
-using Microsoft.EntityFrameworkCore;
-using LADP_EFC.Data;
-using LADP_EFC.Repository;
-using LADP_EFC.Repository.Interfaces;
-using System.Text.Json.Serialization;
-
-namespace LADP__EFC
+namespace LADP_EFC
 {
     public class Program
     {
@@ -15,35 +9,11 @@ namespace LADP__EFC
 
             // Add services to the container.
 
-            // Add Repositories to the container.
-            builder.Services.AddScoped<IRepositoryFoodResource, RepositoryFoodResource>();
-            builder.Services.AddScoped<IRepositoryToDoItems, RepositoryToDoItems>();
-            builder.Services.AddScoped<IRepositoryDeveloper, RepositoryDeveloper>();
-            builder.Services.AddControllers().AddJsonOptions(options =>
-            {
-                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-            });
-
-
-            // CORS policy
-            builder.Services.AddCors(options =>
-            {
-                options.AddPolicy("AllowSpecificOrigin",
-                    policy => policy
-                        .WithOrigins("http://localhost:5173")
-                        .AllowAnyMethod()
-                        .AllowAnyHeader()
-                        .AllowCredentials());
-            });
-
+            builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            builder.Services.AddDbContext<DataContext>(options =>
-            {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 
-            });
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -56,6 +26,7 @@ namespace LADP__EFC
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
+
 
             app.MapControllers();
 

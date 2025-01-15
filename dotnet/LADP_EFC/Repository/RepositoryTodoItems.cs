@@ -1,5 +1,5 @@
-﻿using LADP_EFC.Models;
-using LADP_EFC.Data;
+﻿using LADP_EFC.Data;
+using LADP_EFC.Models;
 using LADP_EFC.Repository.Interfaces;
 
 namespace LADP_EFC.Repository
@@ -13,11 +13,11 @@ namespace LADP_EFC.Repository
         }
         public IEnumerable<TodoItemDTO> GetTodoItems()
         {
-        /* Another way to write more closely resembling SQL queries
-            var todoItems = from item in _context.TodoItems
-                            select ItemToDTO(item);
-                return todoItems.ToList();
-        */
+            /* Another way to write more closely resembling SQL queries
+                var todoItems = from item in _context.TodoItems
+                                select ItemToDTO(item);
+                    return todoItems.ToList();
+            */
             return _context.TodoItems
                 .Select(x => ItemToDTO(x))
                 .ToList();
@@ -55,7 +55,7 @@ namespace LADP_EFC.Repository
         public TodoItemDTO DeleteTodoItem(int id)
         {
             var todoItem = _context.TodoItems.Find(id);
-            if (todoItem != null) 
+            if (todoItem != null)
             {
                 _context.TodoItems.Remove(todoItem);
                 _context.SaveChanges();

@@ -32,7 +32,7 @@ namespace LADP_EFC.Repository
                 LinkedInUrl = item.LinkedInUrl,
                 GithubUrl = item.GithubUrl
             };
-            if(item.Role != null)
+            if (item.Role != null)
             {
                 mappedItem.Role = item.Role.Title;
             }

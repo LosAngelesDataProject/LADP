@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace LADP_EFC.Models;
-
-public class TodoItem
+namespace LADP_EFC.Models
 {
-    public int Id { get; set; }
+    public class TodoItem
+    {
+        public int Id { get; set; }
 
-    public string? Name { get; set; }
+        public string? Name { get; set; }
 
-    public bool IsComplete { get; set; }
+        public bool IsComplete { get; set; }
 
-    public string? SensitiveInfo { get; set; }
+        public string? SensitiveInfo { get; set; }
+    }
 }
