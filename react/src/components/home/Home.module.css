@@ -12,11 +12,9 @@
   justify-content: center;
   border-collapse: collapse;
   border-spacing: 0;
-  /* width: 100%; */
   margin-bottom: 24px;
-  /* margin-left: 0 !important;
-  margin-right: 0 !important; */
 }
+
 @media (max-width: 768px) and (min-width: 552px) {
   .searchContainer {
     margin-left: -1.5rem !important;
@@ -201,9 +199,21 @@
     height: calc(100vh - 15rem);
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 768px) and (min-width: 640px) {
   .mapContainer {
-    height: calc(100vh - 17rem);
+    height: calc(100vh - 22rem);
+  }
+}
+
+@media (max-width: 639px) and (min-width: 360px) {
+  .mapContainer {
+    height: calc(100vh - 21rem);
+  }
+}
+
+@media (max-width: 359px) {
+  .mapContainer {
+    height: calc(100vh - 20rem);
   }
 }
 
