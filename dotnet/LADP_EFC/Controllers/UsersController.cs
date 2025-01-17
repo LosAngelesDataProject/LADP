@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LADP_EFC.Controllers
 {
-    [Route("api/users")]
+    [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -21,7 +21,7 @@ namespace LADP_EFC.Controllers
             try
             {
                 var item = _repository.Create(userDTO);
-                result = CreatedAtAction("user created", new { id = item.Id }, item);
+                result = CreatedAtAction(nameof(CreateUser), new { id = item.Id }, item);
             }
             catch (Exception ex)
             {

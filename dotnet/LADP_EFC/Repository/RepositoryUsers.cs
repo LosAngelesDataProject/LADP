@@ -5,79 +5,76 @@ using LADP_EFC.Repository.Interfaces;
 
 namespace LADP_EFC.Repository
 {
-    public class RepositoryUsers
+    public class RepositoryUser : IRepositoryUser
     {
-        public class RepositoryUser : IRepositoryUser
+        private readonly DataContext _context;
+
+        public RepositoryUser(DataContext context)
         {
-            private readonly DataContext _context;
+            _context = context;
+        }
 
-            public RepositoryUser(DataContext context)
+        public UserDTO Create(AddUserDTO model)
+        {
+            string initialStatus = "Not Confirmed";
+            var newUser = new User
             {
-                _context = context;
-            }
+                Email = model.Email,
+                Password = model.Password,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Mi = model.Mi,
+                Status = initialStatus,
 
-            public UserDTO Create(AddUserDTO model)
+            };
+            _context.Users.Add(newUser);
+            _context.SaveChanges();
+
+            return MapUser(newUser);
+        }
+
+        public IEnumerable<UserDTO> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public UserDTO GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public UserDTO Update(UserDTO updateUser)
+        {
+            throw new NotImplementedException();
+        }
+        /*
+        private string CreateUserToken(int userId)
+        {
+            string token = Guid.NewGuid().ToString();
+            var newToken = new UserToken
             {
-                string initialStatus = "Not Confirmed";
-                var newUser = new User
-                {
-                    Email = model.Email,
-                    Password = model.Password,
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    Mi = model.Mi,
-                    Status = initialStatus,
+                Token = token,
+                UserId = userId,
+            };
+            _context.UserToken.Add(newToken);
+            _context.SaveChanges();
 
-                };
-                _context.Users.Add(newUser);
-                _context.SaveChanges();
+            return token;
 
-                return MapUser(newUser);
-            }
-
-            public IEnumerable<UserDTO> GetAll()
+        }
+        */
+        private static UserDTO MapUser(User user)
+        {
+            var mappedItem = new UserDTO
             {
-                throw new NotImplementedException();
-            }
-
-            public UserDTO GetById(int id)
-            {
-                throw new NotImplementedException();
-            }
-
-            public UserDTO Update(UserDTO updateUser)
-            {
-                throw new NotImplementedException();
-            }
-            /*
-            private string CreateUserToken(int userId)
-            {
-                string token = Guid.NewGuid().ToString();
-                var newToken = new UserToken
-                {
-                    Token = token,
-                    UserId = userId,
-                };
-                _context.UserToken.Add(newToken);
-                _context.SaveChanges();
-
-                return token;
-
-            }
-            */
-            private static UserDTO MapUser(User user)
-            {
-                var mappedItem = new UserDTO
-                {
-                    Id = user.Id,
-                    Email = user.Email,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    Mi = user.Mi,
-                    Status = user.Status,
-                };
-                return mappedItem;
-            }
+                Id = user.Id,
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Mi = user.Mi,
+                Status = user.Status,
+            };
+            return mappedItem;
         }
     }
 }
