@@ -4,10 +4,6 @@
   --main-color: #062d1d;
   --secondary-color: #e3aa4d;
   --support-color: #ffffff;
-  --searchContainerHeight: 125.18px;
-  --searchContainerPadding: 24px;
-  --mapTop: calc(var(--searchContainerHeight) + var(--searchContainerPadding));
-  --mapHeight: calc(var(--mapTop) + 24px);
 }
 
 /*---------------Search Area----------------------------------------*/
@@ -16,7 +12,9 @@
   justify-content: center;
   border-collapse: collapse;
   border-spacing: 0;
-  margin-bottom: var(--searchContainerPadding);
+  position: sticky !important;
+  background-color: var(--support-color);
+  top: 0;
 }
 
 @media (max-width: 768px) and (min-width: 552px) {
@@ -27,18 +25,14 @@
 }
 @media (max-width: 768px) {
   .searchContainer {
-    position: sticky !important;
-    background-color: var(--support-color);
-    top: 0;
     padding-top: 8px;
   }
 }
 @media (min-width: 769px) {
   .searchContainer {
     padding-top: 24px;
-    position: sticky !important;
-    top: 0;
-    background-color: var(--support-color);
+    padding-bottom: 16px;
+    z-index: 1;
   }
 }
 /*------------Filter Buttons-------*/
@@ -188,13 +182,13 @@
 
 @media (min-width: 769px) {
   .mapContainer {
+    height: calc(100vh - 141.19px - 16px);
     position: sticky !important;
-    top: var(--mapTop);
-    bottom: 2rem;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+    top: 141.19px;
+    margin-right: 12px !important;
     margin-left: 8px !important;
-    height: calc(100vh - var(--mapHeight));
+    padding-right: 0 !important;
+    padding-left: 0 !important;
   }
 }
 @media (max-width: 768px) and (min-width: 640px) {
