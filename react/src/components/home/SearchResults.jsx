@@ -141,7 +141,7 @@ const SearchResults = (props) => {
           );
         })
       ) : (
-        <p> No Results</p>
+        <p> Food Resource Not Found</p>
       )}
     </>
   );

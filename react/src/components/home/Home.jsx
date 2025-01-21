@@ -67,6 +67,14 @@ function Home(props) {
       }
     });
 
+    dataFetch();
+  }, []);
+
+  useEffect(() => {
+    locationFilter();
+  }, [location, dayParam, productParam, locationParam]);
+
+  function dataFetch() {
     const fetchFoodResources = async () => {
       try {
         const data = await getFoodResources();
@@ -85,9 +93,9 @@ function Home(props) {
     };
 
     config.enableApiFlag ? fetchFoodResources() : resultSetter();
-  }, []);
+  }
 
-  useEffect(() => {
+  function locationFilter() {
     if (dayParam || productParam || locationParam) {
       const filteredResults = resultFilterer(
         resultsArray,
@@ -100,7 +108,7 @@ function Home(props) {
     } else {
       setResults(() => [...resultsArray]);
     }
-  }, [location, dayParam, productParam, locationParam]);
+  }
 
   const RenderResults = () => {
     return resultsArray.length ? (
@@ -133,7 +141,11 @@ function Home(props) {
       )}
       <Row className={`${styles.searchContainer}`}>
         <div className={styles.searchInputContainer}>
-          <SearchBar />
+          <SearchBar
+            results={results}
+            setResults={setResults}
+            locationFilter={locationFilter}
+          />
         </div>
         <div className={`${styles.filterContainer}`}>
           <FilterButtons daysOfTheWeek={daysOfTheWeek} />
