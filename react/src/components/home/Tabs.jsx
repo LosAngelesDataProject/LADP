@@ -11,8 +11,7 @@ function Tabs(props) {
           setShowMap(true);
         }}
       >
-        {/*TODO Change name */}
-        Card
+        List
       </div>
       <div
         className={`${styles.tab} ${!showMap ? styles.tabActive : ""}`}
@@ -20,7 +19,6 @@ function Tabs(props) {
           setShowMap(false);
         }}
       >
-        {/*TODO Change name */}
         Map
       </div>
     </div>
