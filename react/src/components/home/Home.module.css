@@ -1,6 +1,5 @@
 :root {
   --heroHeight: 300px;
-  --searchHeight: 300px;
   --main-color: #062d1d;
   --secondary-color: #e3aa4d;
   --support-color: #ffffff;
@@ -12,7 +11,9 @@
   justify-content: center;
   border-collapse: collapse;
   border-spacing: 0;
-  margin-bottom: 24px;
+  position: sticky !important;
+  background-color: var(--support-color);
+  top: 0;
 }
 
 @media (max-width: 768px) and (min-width: 552px) {
@@ -23,15 +24,14 @@
 }
 @media (max-width: 768px) {
   .searchContainer {
-    position: sticky !important;
-    background-color: var(--support-color);
-    top: 0;
     padding-top: 8px;
   }
 }
 @media (min-width: 769px) {
   .searchContainer {
-    margin-top: 24px !important;
+    padding-top: 24px;
+    padding-bottom: 16px;
+    z-index: 1;
   }
 }
 /*------------Filter Buttons-------*/
@@ -179,41 +179,15 @@
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.mapTitle {
-  text-align: center;
-  color: #0c0c0c;
-  font-weight: bold;
-  font-size: medium;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
 @media (min-width: 769px) {
   .mapContainer {
+    height: calc(100vh - 141.19px - 16px);
     position: sticky !important;
-    top: 1rem;
-    bottom: 2rem;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+    top: 141.19px;
+    margin-right: 12px !important;
     margin-left: 8px !important;
-    height: calc(100vh - 15rem);
-  }
-}
-@media (max-width: 768px) and (min-width: 640px) {
-  .mapContainer {
-    height: calc(100vh - 22rem);
-  }
-}
-
-@media (max-width: 639px) and (min-width: 360px) {
-  .mapContainer {
-    height: calc(100vh - 21rem);
-  }
-}
-
-@media (max-width: 359px) {
-  .mapContainer {
-    height: calc(100vh - 20rem);
+    padding-right: 0 !important;
+    padding-left: 0 !important;
   }
 }
 
@@ -221,6 +195,28 @@
   .mapContainer {
     margin-left: 0 !important;
     margin-right: 0 !important;
+  }
+}
+
+/* height: 100vh - header - topPadding - searchContainer - bottomPadding - footer*/
+@media (max-width: 768px) and (min-width: 640px) {
+  .mapContainer {
+    height: calc(100vh - 61px - 16px - 169.188px - 22px - 58px);
+  }
+}
+@media (max-width: 639px) and (min-width: 425px) {
+  .mapContainer {
+    height: calc(100vh - 61px - 16px - 157.188px - 22px - 58px);
+  }
+}
+@media (max-width: 425px) and (min-width: 360px) {
+  .mapContainer {
+    height: calc(100vh - 61px - 16px - 157.188px - 22px - 58px);
+  }
+}
+@media (max-width: 359px) {
+  .mapContainer {
+    height: calc(100vh - 61px - 16px - 135.59px - 22px - 58px);
   }
 }
 
