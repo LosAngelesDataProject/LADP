@@ -14,6 +14,7 @@ import Tabs from "./Tabs.jsx";
 import config from "../../../config.js";
 import daysOfTheWeek from "../../assets/data/daysOfTheWeek.js";
 import SearchBar from "./SearchBar.jsx";
+import SearchBarMobile from "./SearchBarMobile.jsx";
 import PropTypes from "prop-types";
 
 function Home(props) {
@@ -33,6 +34,9 @@ function Home(props) {
   const [zoom, setZoom] = useState(15);
   const [results, setResults] = useState([]);
   const [resultsArray, setResultsArray] = useState([]);
+  const [filteredArray, setFilteredArray] = useState([]);
+  const [isFilterApplied, setIsFilterApplied] = useState(false);
+  const [isResetAllClicked, setIsResetAllClicked] = useState(false);
 
   const markers = results.map((result) => ({
     geocode: [result.latitude, result.longitude],
@@ -104,9 +108,11 @@ function Home(props) {
         locationParam
       );
 
-      setResults(() => [...filteredResults]);
+      setFilteredArray(() => [...filteredResults]);
+      setIsFilterApplied(true);
     } else {
-      setResults(() => [...resultsArray]);
+      setIsFilterApplied(false);
+      setFilteredArray(() => [...resultsArray]);
     }
   }
 
@@ -140,15 +146,36 @@ function Home(props) {
         </div>
       )}
       <Row className={`${styles.searchContainer}`}>
-        <div className={styles.searchInputContainer}>
-          <SearchBar
-            results={results}
-            setResults={setResults}
-            locationFilter={locationFilter}
-          />
-        </div>
+        {isPhone ? (
+          <div className={styles.searchInputContainer}>
+            <SearchBarMobile
+              setResults={setResults}
+              locationFilter={locationFilter}
+              resultsArray={resultsArray}
+              filteredArray={filteredArray}
+              isFilterApplied={isFilterApplied}
+              isResetAllClicked={isResetAllClicked}
+              setIsResetAllClicked={setIsResetAllClicked}
+            />
+          </div>
+        ) : (
+          <div className={styles.searchInputContainerStandard}>
+            <SearchBar
+              setResults={setResults}
+              locationFilter={locationFilter}
+              resultsArray={resultsArray}
+              filteredArray={filteredArray}
+              isFilterApplied={isFilterApplied}
+              isResetAllClicked={isResetAllClicked}
+              setIsResetAllClicked={setIsResetAllClicked}
+            />
+          </div>
+        )}
         <div className={`${styles.filterContainer}`}>
-          <FilterButtons daysOfTheWeek={daysOfTheWeek} />
+          <FilterButtons
+            daysOfTheWeek={daysOfTheWeek}
+            setIsResetAllClicked={setIsResetAllClicked}
+          />
         </div>
         {isPhone && <Tabs showMap={showMap} setShowMap={setShowMap} />}
       </Row>

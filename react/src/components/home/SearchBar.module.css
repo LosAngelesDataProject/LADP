@@ -10,6 +10,10 @@
   display: flex;
 }
 
+.searchInputContainerStandard {
+  text-align: center;
+}
+
 .searchInputLeft,
 .searchInputRight {
   background-color: var(--support-color);
@@ -23,14 +27,25 @@
   border-radius: 10px 0px 0px 10px;
 }
 
-.searchInputRight {
-  border-radius: 0px 10px 10px 0px;
+.searchInputLeftStandard {
+  border-radius: 10px 0px 0px 10px;
+  width: 50%;
+}
+.searchInputRightStandard {
+  border-radius: 0;
+  width: 46%;
 }
 
 .expand {
-  width: calc(100% - 36px);
+  width: calc(100%);
   border-radius: 10px 0px 0px 10px !important;
   padding: 12px 20px 12px 40px;
+}
+
+.searchIconX {
+  margin-left: -20px;
+  padding-top: 12px;
+  position: absolute;
 }
 
 .searchIconRight,
@@ -43,6 +58,7 @@
   padding-left: 10px;
   padding-right: 10px;
   height: 40px;
+  position: absolute;
 }
 
 .searchIconRight:hover,

@@ -33,9 +33,13 @@
   max-width: 600px;
 }
 
+.resetButton {
+  margin: 0rem 1rem;
+}
+
 .filterItem {
   position: relative;
-  display: inline-block;
+  display: flex;
   justify-content: space-between;
 }
 

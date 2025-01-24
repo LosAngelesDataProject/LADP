@@ -5,7 +5,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import config from "../../../config";
 
 function FilterButtons(props) {
-  const { daysOfTheWeek } = props;
+  const { daysOfTheWeek, setIsResetAllClicked } = props;
   const location = useLocation();
   const navigate = useNavigate();
   const urlParams = new URLSearchParams(location.search);
@@ -44,6 +44,10 @@ function FilterButtons(props) {
     const productParam = urlParams.get("p");
     const locationParam = urlParams.get("l");
 
+    if (!filteredLocation.selection) {
+      handleRemoveFilter(setFilteredLocation, "l");
+    }
+
     if (dayParam) setFilteredDay({ selection: dayParam, selected: true });
 
     if (productParam)
@@ -57,6 +61,11 @@ function FilterButtons(props) {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  function resetAll() {
+    handleRemoveFilter(setFilteredLocation, "l");
+    setIsResetAllClicked(true);
+  }
 
   const handleClickOutside = (event) => {
     const clickedOutsideLocationDropdown =
@@ -232,6 +241,12 @@ function FilterButtons(props) {
             }`}
           />
         </button>
+        <button
+          className={`${styles.filterButton} ${styles.resetButton} `}
+          onClick={resetAll}
+        >
+          {"Reset All"}
+        </button>
         {showLocationDropdown && (
           <div ref={locationDropdownRef} className={styles.dropdown}>
             {locationOptions.map((location, index) => (
@@ -259,6 +274,7 @@ function FilterButtons(props) {
 
 FilterButtons.propTypes = {
   daysOfTheWeek: PropTypes.array.isRequired,
+  setIsResetAllClicked: PropTypes.func.isRequired,
 };
 
 export default FilterButtons;
