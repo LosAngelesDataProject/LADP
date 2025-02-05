@@ -6,12 +6,6 @@
   --support-color: #ffffff;
 }
 
-/* mapcontainer */
-.leafletContainer {
-  height: 100%;
-  width: 100%;
-}
-
 .directionButton {
   display: flex;
   border-radius: 10px;
