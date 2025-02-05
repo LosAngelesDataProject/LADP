@@ -19,7 +19,6 @@ function UserEdit(){
   })
 
   useEffect(() => {
-    // getCurrentUser().then().catch()
     const fetchCurrentUser = async () => {
       try {
         const data = await getCurrentUser();
