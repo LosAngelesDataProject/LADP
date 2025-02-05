@@ -1,5 +1,4 @@
 import LaImg from "../../assets/LaImg.jpg";
-import logo from "../../assets/ladpLogo_light.png";
 import styles from "./AboutUs.module.css";
 import ProfileCard from "../ProfileCard";
 import LinkedIn from "../../assets/LinkedIn.svg";
@@ -34,22 +33,19 @@ function AboutUs() {
     <>
       {/* Header */}
       <div className={styles.header}>
-        <img className={styles.bgImg} src={LaImg} alt="Los Angeles" />
-        <div className={styles.aboutContainer}>
+        <div className={styles.bgImg}>
           <div className={styles.info}>
-            <h2 className={styles.title}>Our Mission</h2>
+            <h1 className={styles.titleHeader}>Our Mission</h1>
             <p>
-              To create innovative and user-friendly digital solutions tailored
-              to address the specific challenges and requirements of Los Angeles
-              residents.
+              To create innovative, user-friendly digital solutions tailored to
+              address the challenges of Los Angeles residents.
               <br />
               Our organization harnesses open data and community-centric
               approaches to develop applications, aiming to improve overall
-              well-being and connectivity throughout Los Angeles.
+              well-being and connectivity throughout the city.
             </p>
           </div>
         </div>
-        <img className={styles.logo} src={logo} alt="LADP Logo" />
       </div>
 
       {/* Body */}
@@ -71,7 +67,7 @@ function AboutUs() {
 
       {/* Footer */}
       <div className={styles.aboutFooter}>
-        <h2 className={styles.title}>Check Us Out</h2>
+        <h2 className={styles.footerTitle}>Check Us Out</h2>{" "}
         <div className={styles.iconLinks}>
           <a
             href="https://www.linkedin.com/company/los-angeles-data-project/"
