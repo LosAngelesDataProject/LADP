@@ -5,12 +5,15 @@ import {
   getDay,
   isToday,
   startOfMonth,
+  addMonths,
+  subMonths,
 } from "date-fns";
 import { useMemo, useState } from "react";
 import styles from "./Calendar.module.css";
 import Logo from "../../assets/ladpLogo_light.png";
 import { Card, Modal } from "react-bootstrap";
 import { addDays, subDays } from "date-fns";
+import "font-awesome/css/font-awesome.min.css";
 
 function Calendar() {
   const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -19,13 +22,13 @@ function Calendar() {
       date: "Wed May 01 2024 12:14:29 GMT-0500 (Central Daylight Time)",
       title: "Event 1",
       details:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     },
     {
       date: "Fri May 03 2024 12:14:29 GMT-0500 (Central Daylight Time)",
       title: "Event 2",
       details:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     },
     {
       date: subDays(new Date(), 9),
@@ -39,9 +42,18 @@ function Calendar() {
     },
   ];
 
-  const currentDate = new Date();
-  const firstDayOfMonth = startOfMonth(currentDate);
-  const lastDayOfMonth = endOfMonth(currentDate);
+  const [currentMonth, setCurrentMonth] = useState(new Date());
+
+  const handleNextMonth = () => {
+    setCurrentMonth(addMonths(currentMonth, 1));
+  };
+
+  const handlePrevMonth = () => {
+    setCurrentMonth(subMonths(currentMonth, 1));
+  };
+
+  const firstDayOfMonth = startOfMonth(currentMonth);
+  const lastDayOfMonth = endOfMonth(currentMonth);
   const startingDayIndex = getDay(firstDayOfMonth);
   const endingDayIndex = getDay(lastDayOfMonth);
   const placeholdersToEnd = 6 - endingDayIndex;
@@ -56,6 +68,7 @@ function Calendar() {
     setCurrentEvent(event);
     setModal(!modal);
   };
+
   const daysInMonth = eachDayOfInterval({
     start: firstDayOfMonth,
     end: lastDayOfMonth,
@@ -131,7 +144,7 @@ function Calendar() {
       <div className={`mx-0 px-0 ${styles.headerBackground}`}>
         <div className={styles.headerContent}>
           <h1 className="text-white">Food Distribution Calendar</h1>
-          <h4 className="text-white">{format(currentDate, "MMMM yyyy")}</h4>
+          <h4 className="text-white">{format(currentMonth, "MMMM yyyy")}</h4>
         </div>
         <img
           src={Logo}
@@ -140,6 +153,17 @@ function Calendar() {
           alt="logo"
           className={`ms-5 ${styles.logo}`}
         />
+      </div>
+      <div className="d-flex justify-content-center align-items-center mb-3">
+        <button onClick={handlePrevMonth} className={`btn ${styles.button}`}>
+          &lt; Previous Month
+        </button>
+        <button
+          onClick={handleNextMonth}
+          className={`btn ${styles.button} ms-2`}
+        >
+          Next Month &gt;
+        </button>
       </div>
       <div className={`row ${styles.customGrid} g-0`}>
         {weekDays.map((day) => (
