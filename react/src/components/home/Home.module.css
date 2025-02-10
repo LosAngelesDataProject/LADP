@@ -46,6 +46,12 @@
 
 .resetButton {
   margin: 0rem 1rem;
+  background-color: #e3aa4d;
+  color: red;
+  border: red;
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 10px;
 }
 
 .filterItem {

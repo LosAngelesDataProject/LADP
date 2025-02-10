@@ -5,13 +5,20 @@ import { useNavigate, useLocation } from "react-router-dom";
 import config from "../../../config";
 
 function FilterButtons(props) {
-  const { daysOfTheWeek, setIsResetAllClicked } = props;
+  const {
+    daysOfTheWeek,
+    setIsResetAllClicked,
+    isFilterApplied,
+    isSearchApplied,
+    setIsSearchApplied,
+  } = props;
   const location = useLocation();
   const navigate = useNavigate();
   const urlParams = new URLSearchParams(location.search);
   const [showDayDropdown, setShowDayDropdown] = useState(false);
   const [showProductDropdown, setShowProductDropdown] = useState(false);
   const [showLocationDropdown, setShowLocationDropdown] = useState(false);
+  const [showResetButton, setShowResetButton] = useState(false);
   const locationDropdownRef = useRef(null);
   const dayDropdownRef = useRef(null);
   const productDropdownRef = useRef(null);
@@ -62,9 +69,19 @@ function FilterButtons(props) {
     };
   }, []);
 
+  useEffect(() => {
+    if (isFilterApplied || isSearchApplied) {
+      setShowResetButton(true);
+    } else {
+      setShowResetButton(false);
+    }
+  }, [isFilterApplied, isSearchApplied]);
+
   function resetAll() {
     handleRemoveFilter(setFilteredLocation, "l");
     setIsResetAllClicked(true);
+    setShowResetButton(false);
+    setIsSearchApplied(false);
   }
 
   const handleClickOutside = (event) => {
@@ -242,7 +259,9 @@ function FilterButtons(props) {
           />
         </button>
         <button
-          className={`${styles.filterButton} ${styles.resetButton} `}
+          className={` ${styles.resetButton} ${
+            showResetButton ? "" : "d-none"
+          }`}
           onClick={resetAll}
         >
           {"Reset All"}
@@ -275,6 +294,10 @@ function FilterButtons(props) {
 FilterButtons.propTypes = {
   daysOfTheWeek: PropTypes.array.isRequired,
   setIsResetAllClicked: PropTypes.func.isRequired,
+  setIsSearchApplied: PropTypes.func.isRequired,
+
+  isFilterApplied: PropTypes.bool.isRequired,
+  isSearchApplied: PropTypes.bool.isRequired,
 };
 
 export default FilterButtons;

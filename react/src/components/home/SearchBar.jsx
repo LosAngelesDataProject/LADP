@@ -7,6 +7,7 @@ function SearchBar(props) {
     resultsArray,
     filteredArray,
     isFilterApplied,
+    setIsSearchApplied,
     setResults,
     locationFilter,
     isResetAllClicked,
@@ -48,8 +49,11 @@ function SearchBar(props) {
       return nameMatch && locationMatch;
     });
 
-    console.log(filtered);
     setResults(filtered.length > 0 ? filtered : []);
+
+    if (nameValue != "" || locationValue != "") {
+      setIsSearchApplied(true);
+    }
   }
 
   function searchHandler() {
@@ -83,6 +87,7 @@ function SearchBar(props) {
     } else {
       searchHandler();
     }
+    setIsSearchApplied(false);
   }
 
   return (
@@ -147,6 +152,7 @@ SearchBar.propTypes = {
   isFilterApplied: PropTypes.bool.isRequired,
   isResetAllClicked: PropTypes.bool.isRequired,
   setIsResetAllClicked: PropTypes.func.isRequired,
+  setIsSearchApplied: PropTypes.func.isRequired,
 
   setResults: PropTypes.func.isRequired,
   locationFilter: PropTypes.func.isRequired,

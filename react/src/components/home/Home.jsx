@@ -36,6 +36,7 @@ function Home(props) {
   const [resultsArray, setResultsArray] = useState([]);
   const [filteredArray, setFilteredArray] = useState([]);
   const [isFilterApplied, setIsFilterApplied] = useState(false);
+  const [isSearchApplied, setIsSearchApplied] = useState(false);
   const [isResetAllClicked, setIsResetAllClicked] = useState(false);
 
   const markers = results.map((result) => ({
@@ -153,6 +154,7 @@ function Home(props) {
               locationFilter={locationFilter}
               resultsArray={resultsArray}
               filteredArray={filteredArray}
+              setIsSearchApplied={setIsSearchApplied}
               isFilterApplied={isFilterApplied}
               isResetAllClicked={isResetAllClicked}
               setIsResetAllClicked={setIsResetAllClicked}
@@ -166,6 +168,7 @@ function Home(props) {
               resultsArray={resultsArray}
               filteredArray={filteredArray}
               isFilterApplied={isFilterApplied}
+              setIsSearchApplied={setIsSearchApplied}
               isResetAllClicked={isResetAllClicked}
               setIsResetAllClicked={setIsResetAllClicked}
             />
@@ -175,6 +178,9 @@ function Home(props) {
           <FilterButtons
             daysOfTheWeek={daysOfTheWeek}
             setIsResetAllClicked={setIsResetAllClicked}
+            isFilterApplied={isFilterApplied}
+            isSearchApplied={isSearchApplied}
+            setIsSearchApplied={setIsSearchApplied}
           />
         </div>
         {isPhone && <Tabs showMap={showMap} setShowMap={setShowMap} />}
