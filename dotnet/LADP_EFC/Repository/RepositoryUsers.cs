@@ -14,6 +14,13 @@ namespace LADP_EFC.Repository
             _context = context;
         }
 
+        public IEnumerable<UserDTO> GetAll() 
+        {
+            return _context.Users
+                .Select(u => MapUser(u))
+                .ToList();
+        }
+
         public UserDTO Create(AddUserDTO model)
         {
             string initialStatus = "Not Confirmed";
@@ -33,11 +40,6 @@ namespace LADP_EFC.Repository
             return MapUser(newUser);
         }
 
-        public IEnumerable<UserDTO> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
         public UserDTO GetById(int id)
         {
             throw new NotImplementedException();
@@ -47,7 +49,7 @@ namespace LADP_EFC.Repository
         {
             throw new NotImplementedException();
         }
-        /*
+        
         private string CreateUserToken(int userId)
         {
             string token = Guid.NewGuid().ToString();
@@ -56,13 +58,13 @@ namespace LADP_EFC.Repository
                 Token = token,
                 UserId = userId,
             };
-            _context.UserToken.Add(newToken);
+            _context.UserTokens.Add(newToken);
             _context.SaveChanges();
 
             return token;
 
         }
-        */
+        
         private static UserDTO MapUser(User user)
         {
             var mappedItem = new UserDTO

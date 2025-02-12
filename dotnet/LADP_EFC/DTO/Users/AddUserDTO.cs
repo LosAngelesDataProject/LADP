@@ -13,7 +13,5 @@ namespace LADP_EFC.DTO.Users
         public string LastName { get; set; } = null!;
         public string Mi { get; set; } = null!;
         public string Status { get; set; } = null!;
-        public DateTime DateCreated { get; set; }
-        public DateTime DateModified { get; set; }
     }
 }
