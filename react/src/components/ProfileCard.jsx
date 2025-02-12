@@ -23,7 +23,7 @@ function ProfileCard({ name, role, pictureUrl, linkedInUrl, githubUrl }) {
               href={linkedInUrl}
               rel="noreferrer noopener"
               target="_blank"
-              className={styles.iconLinksLinkedin} // Updated this line
+              className={styles.iconLinksLinkedin}
             >
               <img src={LinkedInIcon} alt="LinkedIn" />
             </a>
@@ -31,7 +31,7 @@ function ProfileCard({ name, role, pictureUrl, linkedInUrl, githubUrl }) {
               href={githubUrl}
               rel="noreferrer noopener"
               target="_blank"
-              className={styles.iconLinksGit} // Updated this line
+              className={styles.iconLinksGit}
             >
               <img src={GithubIcon} alt="GitHub" />
             </a>
