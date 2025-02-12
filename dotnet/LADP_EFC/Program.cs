@@ -19,6 +19,7 @@ namespace LADP__EFC
             builder.Services.AddScoped<IRepositoryFoodResource, RepositoryFoodResource>();
             builder.Services.AddScoped<IRepositoryToDoItems, RepositoryToDoItems>();
             builder.Services.AddScoped<IRepositoryDeveloper, RepositoryDeveloper>();
+            builder.Services.AddScoped<IRepositoryUser, RepositoryUser>();
             builder.Services.AddControllers().AddJsonOptions(options =>
             {
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
