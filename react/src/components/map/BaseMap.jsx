@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import styles from "./Map.module.css";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 import osmProviders from "./osm-providers";
@@ -26,32 +25,33 @@ const BaseMap = (props) => {
 
   return (
     <>
-      <div className={styles.leafletContainer}>
-        <MapContainer center={center} zoom={baseZoom} ref={mapRef}>
-          {zoom === 16 && (
-            <Marker position={current} icon={customIcon}>
-              <Popup>
-                <p>Current location</p>
-              </Popup>
-            </Marker>
-          )}
-          <TileLayer
-            url={osmProviders.maptiler.url}
-            attribution={osmProviders.maptiler.attribution}
-          />
-          {markers.map((marker, index) => (
-            <Marker position={marker.geocode} key={`marker-${index}`}>
-              <Popup>
-                <p>{marker.popUp.name}</p>
-                <p>{marker.popUp.address}</p>
+      <MapContainer center={center} zoom={baseZoom} ref={mapRef}>
+        {zoom === 16 && (
+          <Marker position={current} icon={customIcon}>
+            <Popup>
+              <p>Current location</p>
+            </Popup>
+          </Marker>
+        )}
+        <TileLayer
+          url={osmProviders.maptiler.url}
+          attribution={osmProviders.maptiler.attribution}
+        />
+        {markers.map((marker, index) => (
+          <Marker position={marker.geocode} key={`marker-${index}`}>
+            <Popup>
+              <p>{marker.popUp.name}</p>
+              <p>{marker.popUp.address}</p>
 
-                <GetDirections markerAddress={marker.popUp.address} current={current} />
-              </Popup>
-            </Marker>
-          ))}
-          ;
-        </MapContainer>
-      </div>
+              <GetDirections
+                markerAddress={marker.popUp.address}
+                current={current}
+              />
+            </Popup>
+          </Marker>
+        ))}
+        ;
+      </MapContainer>
     </>
   );
 };
