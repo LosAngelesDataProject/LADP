@@ -44,12 +44,16 @@ function Calendar() {
 
   const [currentMonth, setCurrentMonth] = useState(new Date());
 
-  const handleNextMonth = () => {
-    setCurrentMonth(addMonths(currentMonth, 1));
+  const handlePreviousMonth = () => {
+    setCurrentMonth(
+      new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1)
+    );
   };
 
-  const handlePrevMonth = () => {
-    setCurrentMonth(subMonths(currentMonth, 1));
+  const handleNextMonth = () => {
+    setCurrentMonth(
+      new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1)
+    );
   };
 
   const firstDayOfMonth = startOfMonth(currentMonth);
@@ -154,15 +158,15 @@ function Calendar() {
           className={`ms-5 ${styles.logo}`}
         />
       </div>
-      <div className="d-flex justify-content-center align-items-center mb-3">
-        <button onClick={handlePrevMonth} className={`btn ${styles.button}`}>
-          &lt; Previous Month
-        </button>
+      <div className={styles.monthSwitchButtons}>
         <button
-          onClick={handleNextMonth}
-          className={`btn ${styles.button} ms-2`}
+          className={styles.monthSwitchButton}
+          onClick={handlePreviousMonth}
         >
-          Next Month &gt;
+          Previous Month
+        </button>
+        <button className={styles.monthSwitchButton} onClick={handleNextMonth}>
+          Next Month
         </button>
       </div>
       <div className={`row ${styles.customGrid} g-0`}>
