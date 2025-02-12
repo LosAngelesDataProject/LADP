@@ -100,7 +100,7 @@ function Calendar() {
         return (
           <div
             key={`card-${index}`}
-            className={`col rounded ${styles.calendarCard} ${
+            className={`col  ${styles.calendarCard} ${
               isToday(day) ? styles.calendarToday : ""
             }`}
           >
