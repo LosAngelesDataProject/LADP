@@ -14,6 +14,7 @@ import RegisterOrg from "./components/register/RegisterOrg";
 import DefaultLayout from "./layouts/DefaultLayout";
 import { useMediaQuery } from "react-responsive";
 import MobileLayout from "./layouts/MobileLayout";
+import UserEdit from "./components/users/UserEdit";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -30,7 +31,8 @@ function App() {
         <Route path="/" element={<Home isPhone={isPhone} />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/calendar" element={<Calendar />} />
-        {/* <Route path="/login" element={<Login onLogin={handleLogin} />} /> */}
+        <Route path="/user-edit" element={<UserEdit />} />
+        {/* <Route path="/login" element={<Login onLogin={handleLogin} />} />  */}
         <Route path="/login" element={<Construction />} />
         <Route path="/navigate" element={<Navigate />} />
         <Route path="/register" element={<Construction />} />
