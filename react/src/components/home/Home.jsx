@@ -33,7 +33,7 @@ function Home(props) {
   const [zoom, setZoom] = useState(15);
   const [results, setResults] = useState([]);
   const [resultsArray, setResultsArray] = useState([]);
-  const [showDescription, setShowDescription] = useState({});
+  const [showDescriptionIndex, setShowDescriptionIndex] = useState(null);
 
   const markers = results.map((result) => ({
     geocode: [result.latitude, result.longitude],
@@ -104,7 +104,7 @@ function Home(props) {
   }, [location, dayParam, productParam, locationParam]);
 
   const RenderResults = () => {
-    console.log("showDescription in HOME:::", showDescription);
+    console.log("showDescription in HOME:::", showDescriptionIndex);
     return resultsArray.length ? (
       <SearchResults
         results={results}
@@ -112,8 +112,8 @@ function Home(props) {
         setCenter={setCenter}
         center={center}
         current={current}
-        showDescription={showDescription}
-        setShowDescription={setShowDescription}
+        showDescriptionIndex={showDescriptionIndex}
+        setShowDescriptionIndex={setShowDescriptionIndex}
       />
     ) : (
       <Spinner

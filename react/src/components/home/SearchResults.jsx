@@ -9,15 +9,17 @@ const SearchResults = (props) => {
     daysOfTheWeek,
     center,
     current,
-    showDescription,
-    setShowDescription,
+    showDescriptionIndex,
+    setShowDescriptionIndex,
   } = props;
 
   const currentDate = new Date();
   const todayIs = daysOfTheWeek[currentDate.getDay() - 1];
 
   const handleDescriptionClick = (index) => {
-    setShowDescription((prevIndex) => (prevIndex === index ? null : index));
+    setShowDescriptionIndex((prevIndex) =>
+      prevIndex === index ? null : index
+    );
 
     let resultsLocation = {
       lat: results[index].latitude,
@@ -42,7 +44,7 @@ const SearchResults = (props) => {
           return (
             <div
               className={`${finalCard} ${styles.card} ${
-                showDescription === index ? styles.cardSelected : ""
+                showDescriptionIndex === index ? styles.cardSelected : ""
               }`}
               key={`resultCard-${index}`}
               onClick={() => {
@@ -65,7 +67,7 @@ const SearchResults = (props) => {
                     {result.zipcode}
                   </p>
                 </div>
-                {showDescription === index && (
+                {showDescriptionIndex === index && (
                   <>
                     <div className={`mb-1 ${!result.phone ? "d-none" : ""}`}>
                       <h6 className="col d-inline">Phone number: &nbsp;</h6>
@@ -145,8 +147,8 @@ const SearchResults = (props) => {
 
 SearchResults.propTypes = {
   setCenter: PropTypes.func.isRequired,
-  setShowDescription: PropTypes.func.isRequired,
-  showDescription: PropTypes.array.isRequired,
+  setShowDescriptionIndex: PropTypes.func.isRequired,
+  showDescriptionIndex: PropTypes.number,
   results: PropTypes.arrayOf(
     PropTypes.shape({
       latitude: PropTypes.number.isRequired,
