@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import AboutUs from "./components/about/AboutUs";
-import Calendar from "./components/calender/Calendar";
-import Construction from "./components/underConstruction/Construction"
+import Calendar from "./components/calendar/Calendar";
+import Construction from "./components/underConstruction/Construction";
 import Home from "./components/home/Home";
 // import Login from "./components/login/Login";
 import Navigate from "./components/Navigate";
@@ -31,7 +31,7 @@ function App() {
         <Route path="/" element={<Home isPhone={isPhone} />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/calendar" element={<Calendar />} />
-          <Route path="/user-edit" element={<UserEdit />} />
+        <Route path="/user-edit" element={<UserEdit />} />
         {/* <Route path="/login" element={<Login onLogin={handleLogin} />} />  */}
         <Route path="/login" element={<Construction />} />
         <Route path="/navigate" element={<Navigate />} />
