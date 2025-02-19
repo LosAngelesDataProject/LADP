@@ -7,7 +7,7 @@ import GetDirections from "./GetDirections";
 import PropTypes from "prop-types";
 
 const BaseMap = (props) => {
-  const { center, markers, zoom, current } = props;
+  const { center, markers, zoom, current, setShowDescriptionIndex } = props;
   const baseZoom = 10.5; //base zoom level
   const mapRef = useRef();
   useEffect(() => {
@@ -22,6 +22,12 @@ const BaseMap = (props) => {
     iconAnchor: [25, 50], // point of the icon which will correspond to marker's location
     popupAnchor: [-0, -45], // point from which the popup should open relative to the iconAnchor
   });
+
+  const handleDescriptionClick = (index) => {
+    setShowDescriptionIndex((prevIndex) =>
+      prevIndex === index ? null : index
+    );
+  };
 
   return (
     <>
@@ -38,7 +44,15 @@ const BaseMap = (props) => {
           attribution={osmProviders.maptiler.attribution}
         />
         {markers.map((marker, index) => (
-          <Marker position={marker.geocode} key={`marker-${index}`}>
+          <Marker
+            position={marker.geocode}
+            key={`marker-${index}`}
+            eventHandlers={{
+              click: () => {
+                handleDescriptionClick(index);
+              },
+            }}
+          >
             <Popup>
               <p>{marker.popUp.name}</p>
               <p>{marker.popUp.address}</p>
@@ -76,6 +90,7 @@ BaseMap.propTypes = {
     active: PropTypes.string,
   }),
   zoom: PropTypes.number.isRequired,
+  setShowDescriptionIndex: PropTypes.func.isRequired,
 };
 
 export default BaseMap;
