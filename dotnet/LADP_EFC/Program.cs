@@ -4,14 +4,18 @@ using LADP_EFC.Data;
 using LADP_EFC.Repository;
 using LADP_EFC.Repository.Interfaces;
 using System.Text.Json.Serialization;
+using sib_api_v3_sdk.Client;
 
-namespace LADP__EFC
+namespace LADP_EFC
 {
     public class Program
     {
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            Configuration.Default.ApiKey.Add("api-key", builder.Configuration["BrevoApi:ApiKey"]);
+
+            builder.Services.AddTransient<IRepositoryEmail, RepositoryEmail>();
 
             // Add services to the container.
 
