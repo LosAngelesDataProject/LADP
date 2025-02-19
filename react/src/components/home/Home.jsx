@@ -125,7 +125,13 @@ function Home(props) {
   };
 
   const RenderMap = () => (
-    <BaseMap markers={markers} center={center} current={current} zoom={zoom} />
+    <BaseMap
+      markers={markers}
+      center={center}
+      current={current}
+      zoom={zoom}
+      setShowDescriptionIndex={setShowDescriptionIndex}
+    />
   );
 
   const handleTabChange = (isMap) => {

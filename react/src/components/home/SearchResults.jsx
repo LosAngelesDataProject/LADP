@@ -1,3 +1,4 @@
+import { useRef, useEffect } from "react";
 import styles from "./Home.module.css";
 import PropTypes from "prop-types";
 import GetDirections from "../map/GetDirections";
@@ -15,6 +16,20 @@ const SearchResults = (props) => {
 
   const currentDate = new Date();
   const todayIs = daysOfTheWeek[currentDate.getDay() - 1];
+
+  const resultRefs = useRef([]);
+
+  useEffect(() => {
+    if (
+      showDescriptionIndex !== null &&
+      resultRefs.current[showDescriptionIndex]
+    ) {
+      resultRefs.current[showDescriptionIndex].scrollIntoView({
+        behavior: "instant",
+        block: "center",
+      });
+    }
+  }, [showDescriptionIndex]);
 
   const handleDescriptionClick = (index) => {
     setShowDescriptionIndex((prevIndex) =>
@@ -43,6 +58,7 @@ const SearchResults = (props) => {
           const resultAddressString = `${result.streetAddress}, ${result.city}, ${result.state} ${result.zipcode}`;
           return (
             <div
+              ref={(element) => (resultRefs.current[index] = element)}
               className={`${finalCard} ${styles.card} ${
                 showDescriptionIndex === index ? styles.cardSelected : ""
               }`}
