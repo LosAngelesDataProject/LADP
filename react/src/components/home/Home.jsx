@@ -104,7 +104,6 @@ function Home(props) {
   }, [location, dayParam, productParam, locationParam]);
 
   const RenderResults = () => {
-    console.log("showDescription in HOME:::", showDescriptionIndex);
     return resultsArray.length ? (
       <SearchResults
         results={results}
