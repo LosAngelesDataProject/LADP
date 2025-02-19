@@ -1,27 +1,23 @@
 import styles from "./Home.module.css";
-import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import GetDirections from "../map/GetDirections";
 
 const SearchResults = (props) => {
-  const { setCenter, results, daysOfTheWeek, center, current } = props;
-  const [showDescription, setShowDescription] = useState(
-    new Array(results.length).fill(false)
-  );
+  const {
+    setCenter,
+    results,
+    daysOfTheWeek,
+    center,
+    current,
+    showDescription,
+    setShowDescription,
+  } = props;
+
   const currentDate = new Date();
   const todayIs = daysOfTheWeek[currentDate.getDay() - 1];
 
-  useEffect(() => {
-    if (results.length > 0) {
-      setShowDescription(new Array(results.length).fill(false));
-    }
-  }, [results]);
-
   const handleDescriptionClick = (index) => {
-    const newShowDescription = showDescription.map((_, i) =>
-      i === index ? !showDescription[index] : false
-    );
-    setShowDescription(newShowDescription);
+    setShowDescription((prevIndex) => (prevIndex === index ? null : index));
 
     let resultsLocation = {
       lat: results[index].latitude,
@@ -46,7 +42,7 @@ const SearchResults = (props) => {
           return (
             <div
               className={`${finalCard} ${styles.card} ${
-                showDescription[index] ? styles.cardSelected : ""
+                showDescription === index ? styles.cardSelected : ""
               }`}
               key={`resultCard-${index}`}
               onClick={() => {
@@ -69,7 +65,7 @@ const SearchResults = (props) => {
                     {result.zipcode}
                   </p>
                 </div>
-                {showDescription[index] && (
+                {showDescription === index && (
                   <>
                     <div className={`mb-1 ${!result.phone ? "d-none" : ""}`}>
                       <h6 className="col d-inline">Phone number: &nbsp;</h6>
@@ -149,6 +145,8 @@ const SearchResults = (props) => {
 
 SearchResults.propTypes = {
   setCenter: PropTypes.func.isRequired,
+  setShowDescription: PropTypes.func.isRequired,
+  showDescription: PropTypes.array.isRequired,
   results: PropTypes.arrayOf(
     PropTypes.shape({
       latitude: PropTypes.number.isRequired,

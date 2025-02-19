@@ -33,6 +33,7 @@ function Home(props) {
   const [zoom, setZoom] = useState(15);
   const [results, setResults] = useState([]);
   const [resultsArray, setResultsArray] = useState([]);
+  const [showDescription, setShowDescription] = useState({});
 
   const markers = results.map((result) => ({
     geocode: [result.latitude, result.longitude],
@@ -103,6 +104,7 @@ function Home(props) {
   }, [location, dayParam, productParam, locationParam]);
 
   const RenderResults = () => {
+    console.log("showDescription in HOME:::", showDescription);
     return resultsArray.length ? (
       <SearchResults
         results={results}
@@ -110,6 +112,8 @@ function Home(props) {
         setCenter={setCenter}
         center={center}
         current={current}
+        showDescription={showDescription}
+        setShowDescription={setShowDescription}
       />
     ) : (
       <Spinner
@@ -123,6 +127,10 @@ function Home(props) {
   const RenderMap = () => (
     <BaseMap markers={markers} center={center} current={current} zoom={zoom} />
   );
+
+  const handleTabChange = (isMap) => {
+    setShowMap(isMap);
+  };
 
   return (
     <>
@@ -138,7 +146,7 @@ function Home(props) {
         <div className={`${styles.filterContainer}`}>
           <FilterButtons daysOfTheWeek={daysOfTheWeek} />
         </div>
-        {isPhone && <Tabs showMap={showMap} setShowMap={setShowMap} />}
+        {isPhone && <Tabs showMap={showMap} setShowMap={handleTabChange} />}
       </Row>
       {isPhone ? (
         <Row
