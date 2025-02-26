@@ -22,11 +22,11 @@
 .logo {
     height: 100px;
     width: 100px;
-    left: 92%;
-    top: 19%;
+    left: 17%;
+    top: 25%;
     position: absolute;
     opacity: 25%;
-    color: #ffffff;
+    color: #929292;
 }
 
 .message {
