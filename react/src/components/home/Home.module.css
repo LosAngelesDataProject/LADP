@@ -44,9 +44,20 @@
   max-width: 600px;
 }
 
+.resetButton {
+  margin: 0rem 1rem;
+  background-color: var(--secondary-color);
+  font-family: inherit;
+  color: var(--main-color);
+  border-radius: 10px;
+  font-size: 1em;
+  font-weight: 500;
+  padding: 0.6em 1.2em;
+}
+
 .filterItem {
   position: relative;
-  display: inline-block;
+  display: flex;
   justify-content: space-between;
 }
 
