@@ -7,7 +7,7 @@
 }
 
 .searchInputContainer {
-  display: flex;
+  display: inline-block;
 }
 
 .searchInputContainerStandard {
@@ -21,6 +21,7 @@
   color: black;
   padding: 12px 20px 12px 20px;
   font-family: Arial, FontAwesome;
+  width: 44%;
 }
 
 .searchInputLeft {
@@ -37,7 +38,7 @@
 }
 
 .expand {
-  width: calc(100%);
+  width: calc(94%);
   border-radius: 10px 0px 0px 10px !important;
   padding: 12px 20px 12px 40px;
 }

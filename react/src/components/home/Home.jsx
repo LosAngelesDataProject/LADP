@@ -13,9 +13,8 @@ import Spinner from "react-bootstrap/Spinner";
 import Tabs from "./Tabs.jsx";
 import config from "../../../config.js";
 import daysOfTheWeek from "../../assets/data/daysOfTheWeek.js";
-import SearchBar from "./SearchBar.jsx";
-import SearchBarMobile from "./SearchBarMobile.jsx";
 import PropTypes from "prop-types";
+import SearchBarWrapper from "./SearchBarWrapper.jsx";
 
 function Home(props) {
   const { isPhone } = props;
@@ -147,33 +146,19 @@ function Home(props) {
         </div>
       )}
       <Row className={`${styles.searchContainer}`}>
-        {isPhone ? (
-          <div className={styles.searchInputContainer}>
-            <SearchBarMobile
-              setResults={setResults}
-              locationFilter={locationFilter}
-              resultsArray={resultsArray}
-              filteredArray={filteredArray}
-              setIsSearchApplied={setIsSearchApplied}
-              isFilterApplied={isFilterApplied}
-              isResetAllClicked={isResetAllClicked}
-              setIsResetAllClicked={setIsResetAllClicked}
-            />
-          </div>
-        ) : (
-          <div className={styles.searchInputContainerStandard}>
-            <SearchBar
-              setResults={setResults}
-              locationFilter={locationFilter}
-              resultsArray={resultsArray}
-              filteredArray={filteredArray}
-              isFilterApplied={isFilterApplied}
-              setIsSearchApplied={setIsSearchApplied}
-              isResetAllClicked={isResetAllClicked}
-              setIsResetAllClicked={setIsResetAllClicked}
-            />
-          </div>
-        )}
+        {
+          <SearchBarWrapper
+            setResults={setResults}
+            locationFilter={locationFilter}
+            resultsArray={resultsArray}
+            filteredArray={filteredArray}
+            setIsSearchApplied={setIsSearchApplied}
+            isFilterApplied={isFilterApplied}
+            isResetAllClicked={isResetAllClicked}
+            setIsResetAllClicked={setIsResetAllClicked}
+            isPhone={isPhone}
+          />
+        }
         <div className={`${styles.filterContainer}`}>
           <FilterButtons
             daysOfTheWeek={daysOfTheWeek}

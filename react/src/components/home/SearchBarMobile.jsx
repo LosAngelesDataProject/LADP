@@ -2,7 +2,7 @@ import styles from "./SearchBar.module.css";
 import { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 
-function SearchBar(props) {
+function SearchBarMobile(props) {
   const {
     resultsArray,
     filteredArray,
@@ -148,7 +148,7 @@ function SearchBar(props) {
         type="text"
         placeholder="&#xF3C5; Location"
         className={`${styles.searchInputRight} ${
-          toggleInput === "location" ? styles.expand : "w-50"
+          toggleInput === "location" ? styles.expand : ""
         }  ${toggleInput === "search" ? "d-none" : ""}`}
         onSelect={() => {
           setToggleInput("location");
@@ -186,7 +186,7 @@ function SearchBar(props) {
   );
 }
 
-SearchBar.propTypes = {
+SearchBarMobile.propTypes = {
   filteredArray: PropTypes.array.isRequired,
   resultsArray: PropTypes.array.isRequired,
   isFilterApplied: PropTypes.bool.isRequired,
@@ -198,4 +198,4 @@ SearchBar.propTypes = {
   locationFilter: PropTypes.func.isRequired,
 };
 
-export default SearchBar;
+export default SearchBarMobile;
