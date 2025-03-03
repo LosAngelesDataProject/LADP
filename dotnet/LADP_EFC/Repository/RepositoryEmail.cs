@@ -54,47 +54,5 @@ namespace LADP_EFC.Repository
                 throw;
             }
         }
-
-        //public static void SendEmail(string senderEmail, string senderName,
-        //    string receiverEmail, string receiverName, string subject, string message)
-        //{
-        //    var apiInstance = new TransactionalEmailsApi();
-        //    SendSmtpEmailSender sender = new SendSmtpEmailSender(senderName, senderEmail);
-
-        //    SendSmtpEmailTo recevier1 = new SendSmtpEmailTo(receiverEmail, receiverName);
-        //    List<SendSmtpEmailTo> To = new List<SendSmtpEmailTo>();
-        //    To.Add(recevier1);
-
-        //    string HtmlContent = null;
-        //    string TextContent = message;
-
-        //    try
-        //    {
-        //        var sendSmtpEmail = new SendSmtpEmail(sender, To, null, null, HtmlContent, TextContent, subject);
-        //        CreateSmtpEmail result = apiInstance.SendTransacEmail(sendSmtpEmail);
-        //        Console.WriteLine("Brevo Response:" + result.ToJson());
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine("Brevo Exception:" + e.Message);
-        //    }
-        //}
-
-        //public Task SendEmailAsync(string email, string subject, string message)
-        //{
-        //    var mail = "example@Email.com";
-        //    var pw = "pass123";
-
-        //    var client = new SmtpClient("smtp-mail.outlook.com", 587)
-        //    {
-        //        EnableSsl = true,
-        //        Credentials = new NetworkCredential(mail, pw)
-        //    };
-        //    return client.SendMailAsync(
-        //        new MailMessage(from: mail,
-        //                        to: email,
-        //                        subject,
-        //                        message));
-        //}
     }
 }
