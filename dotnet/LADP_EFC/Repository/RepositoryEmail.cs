@@ -27,7 +27,7 @@ namespace LADP_EFC.Repository
             string nameOfSender = _brevo.SenderName;
             SendSmtpEmailSender senderInfo = new SendSmtpEmailSender(nameOfSender, senderEmail);
 
-            SendSmtpEmailTo smtpEmailTo = new SendSmtpEmailTo("jaredndev@gmail.com");
+            SendSmtpEmailTo smtpEmailTo = new SendSmtpEmailTo("na106@mail.chapman.edu");
 
             List<SendSmtpEmailTo> emailRecipients = new List<SendSmtpEmailTo>();
             emailRecipients.Add(smtpEmailTo);
