@@ -33,6 +33,7 @@ function Home(props) {
   const [zoom, setZoom] = useState(15);
   const [results, setResults] = useState([]);
   const [resultsArray, setResultsArray] = useState([]);
+  const [activeMarker, setActiveMarker] = useState(null);
 
   const markers = results.map((result) => ({
     geocode: [result.latitude, result.longitude],
@@ -102,6 +103,12 @@ function Home(props) {
     }
   }, [location, dayParam, productParam, locationParam]);
 
+  useEffect(() => {
+    if (isPhone && showMap && activeMarker) {
+      setCenter(activeMarker);
+    }
+  }, [showMap, activeMarker, isPhone]);
+
   const RenderResults = () => {
     return resultsArray.length ? (
       <SearchResults
@@ -110,6 +117,7 @@ function Home(props) {
         setCenter={setCenter}
         center={center}
         current={current}
+        setActiveMarker={setActiveMarker}
       />
     ) : (
       <Spinner
@@ -121,7 +129,13 @@ function Home(props) {
   };
 
   const RenderMap = () => (
-    <BaseMap markers={markers} center={center} current={current} zoom={zoom} />
+    <BaseMap
+      markers={markers}
+      center={center}
+      current={current}
+      zoom={zoom}
+      activeMarker={activeMarker}
+    />
   );
 
   return (

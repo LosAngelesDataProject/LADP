@@ -4,7 +4,14 @@ import PropTypes from "prop-types";
 import GetDirections from "../map/GetDirections";
 
 const SearchResults = (props) => {
-  const { setCenter, results, daysOfTheWeek, center, current } = props;
+  const {
+    setCenter,
+    results,
+    daysOfTheWeek,
+    center,
+    current,
+    setActiveMarker,
+  } = props;
   const [showDescription, setShowDescription] = useState(
     new Array(results.length).fill(false)
   );
@@ -17,6 +24,7 @@ const SearchResults = (props) => {
     }
   }, [results]);
 
+  //this fires when a location card is clicked
   const handleDescriptionClick = (index) => {
     const newShowDescription = showDescription.map((_, i) =>
       i === index ? !showDescription[index] : false
@@ -29,6 +37,7 @@ const SearchResults = (props) => {
     };
     let reCenter =
       resultsLocation.lat === center.lat && resultsLocation.lng === center.lng;
+    setActiveMarker(resultsLocation);
     if (reCenter) {
       setCenter({
         lat: results[index].latitude,

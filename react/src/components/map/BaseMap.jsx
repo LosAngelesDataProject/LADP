@@ -7,14 +7,26 @@ import GetDirections from "./GetDirections";
 import PropTypes from "prop-types";
 
 const BaseMap = (props) => {
-  const { center, markers, zoom, current } = props;
+  const { center, markers, zoom, current, activeMarker } = props;
   const baseZoom = 10.5; //base zoom level
   const mapRef = useRef();
+
   useEffect(() => {
     if (mapRef.current) {
       mapRef.current.setView(center, zoom); // Adjust the zoom level as needed
     }
-  }, [center, zoom]);
+    if (mapRef.current && activeMarker) {
+      mapRef.current.eachLayer((layer) => {
+        if (
+          layer.getLatLng &&
+          layer.getLatLng().lat === activeMarker.lat &&
+          layer.getLatLng().lng === activeMarker.lng
+        ) {
+          layer.openPopup();
+        }
+      });
+    }
+  }, [center, zoom, activeMarker]);
 
   const customIcon = L.icon({
     iconUrl: "../src/assets/images/googleMarker/GoogleMarker.png",
