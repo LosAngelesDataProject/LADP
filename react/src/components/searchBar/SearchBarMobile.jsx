@@ -1,38 +1,21 @@
 import styles from "./SearchBar.module.css";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import withSearchBarLogic from "./withSearchLogic";
 
 function SearchBarMobile(props) {
   const {
-    resultsArray,
-    filteredArray,
-    isFilterApplied,
-    setIsSearchApplied,
-    setResults,
-    locationFilter,
-    isResetAllClicked,
-    setIsResetAllClicked,
+    searchHandler,
+    setSearchInputValue,
+    searchFilterRef,
+    searchInputValue,
+    resetInputs,
+    setLocationInputValue,
+    searchLocationRef,
+    locationInputValue,
   } = props;
 
   const [toggleInput, setToggleInput] = useState("");
-
-  const [searchInputValue, setSearchInputValue] = useState("");
-  const [locationInputValue, setLocationInputValue] = useState("");
-
-  const searchFilterRef = useRef(null);
-  const searchLocationRef = useRef(null);
-
-  useEffect(() => {
-    if (isResetAllClicked) {
-      searchFilterRef.current.value = "";
-      setSearchInputValue("");
-      searchLocationRef.current.value = "";
-      setLocationInputValue("");
-      setIsResetAllClicked(false);
-    }
-
-    searchHandler();
-  }, [isFilterApplied, isResetAllClicked]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -50,62 +33,11 @@ function SearchBarMobile(props) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  function filterResults(nameValue, locationValue) {
-    const arrayToFilter =
-      filteredArray.length > 0 ? [...filteredArray] : [...resultsArray];
-
-    const filtered = arrayToFilter.filter((location) => {
-      const nameMatch = nameValue
-        ? location.name.toLowerCase().includes(nameValue.toLowerCase())
-        : true;
-
-      const locationMatch = locationValue
-        ? location.city.toLowerCase().includes(locationValue.toLowerCase()) ||
-          location.zipcode.includes(locationValue)
-        : true;
-
-      return nameMatch && locationMatch;
-    });
-
-    setResults(filtered.length > 0 ? filtered : []);
-    if (nameValue != "" || locationValue != "") {
-      setIsSearchApplied(true);
-    }
-  }
-
-  function searchHandler() {
-    const searchValue = searchFilterRef.current?.value || "";
-    const locationValue = searchLocationRef.current?.value || "";
-
-    filterResults(searchValue, locationValue);
-  }
-
   function handleKeyDown(event) {
     if (event.key === "Enter") {
       searchHandler();
       setToggleInput("");
     }
-  }
-
-  function resetInputs(resetTrigger) {
-    if (resetTrigger === "search" && searchFilterRef.current) {
-      searchFilterRef.current.value = "";
-      setSearchInputValue("");
-      searchHandler();
-    }
-
-    if (resetTrigger === "location" && searchLocationRef.current) {
-      searchLocationRef.current.value = "";
-      setLocationInputValue("");
-      searchHandler();
-    }
-
-    if (!searchFilterRef.current?.value && !searchLocationRef.current?.value) {
-      locationFilter(); // Reset to the default list
-    } else {
-      searchHandler();
-    }
-    setIsSearchApplied(false);
   }
 
   return (
@@ -187,15 +119,14 @@ function SearchBarMobile(props) {
 }
 
 SearchBarMobile.propTypes = {
-  filteredArray: PropTypes.array.isRequired,
-  resultsArray: PropTypes.array.isRequired,
-  isFilterApplied: PropTypes.bool.isRequired,
-  isResetAllClicked: PropTypes.bool.isRequired,
-  setIsResetAllClicked: PropTypes.func.isRequired,
-  setIsSearchApplied: PropTypes.func.isRequired,
-
-  setResults: PropTypes.func.isRequired,
-  locationFilter: PropTypes.func.isRequired,
+  searchHandler: PropTypes.func.isRequired,
+  setSearchInputValue: PropTypes.func.isRequired,
+  searchFilterRef: PropTypes.object.isRequired,
+  searchInputValue: PropTypes.string.isRequired,
+  resetInputs: PropTypes.func.isRequired,
+  setLocationInputValue: PropTypes.func.isRequired,
+  searchLocationRef: PropTypes.object.isRequired,
+  locationInputValue: PropTypes.string.isRequired,
 };
 
-export default SearchBarMobile;
+export default withSearchBarLogic(SearchBarMobile);
