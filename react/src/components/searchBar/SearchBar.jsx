@@ -1,6 +1,6 @@
 import styles from "./SearchBar.module.css";
 import PropTypes from "prop-types";
-import withSearchBarLogic from "./withSearchLogic";
+import withSearchBarLogic from "./WithSearchLogic";
 
 function SearchBar(props) {
   const {

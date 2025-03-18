@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 
-const withSearchLogic = (WrappedComponent) => {
+const WithSearchLogic = (WrappedComponent) => {
   function SearchLogicWrapper(props) {
     const {
       resultsArray,
@@ -116,4 +116,4 @@ const withSearchLogic = (WrappedComponent) => {
   return SearchLogicWrapper;
 };
 
-export default withSearchLogic;
+export default WithSearchLogic;
