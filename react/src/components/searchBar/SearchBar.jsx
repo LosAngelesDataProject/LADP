@@ -1,6 +1,6 @@
 import styles from "./SearchBar.module.css";
 import PropTypes from "prop-types";
-import WithSearchBarLogic from "../WithSearchLogic";
+import WithSearchLogic from "./WithSearchLogic";
 
 function SearchBar(props) {
   const {
@@ -87,4 +87,4 @@ SearchBar.propTypes = {
   locationInputValue: PropTypes.string.isRequired,
 };
 
-export default WithSearchBarLogic(SearchBar);
+export default WithSearchLogic(SearchBar);

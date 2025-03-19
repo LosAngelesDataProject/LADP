@@ -1,7 +1,7 @@
 import styles from "./SearchBar.module.css";
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import WithSearchBarLogic from "../WithSearchLogic";
+import WithSearchLogic from "./WithSearchLogic";
 
 function SearchBarMobile(props) {
   const {
@@ -129,4 +129,4 @@ SearchBarMobile.propTypes = {
   locationInputValue: PropTypes.string.isRequired,
 };
 
-export default WithSearchBarLogic(SearchBarMobile);
+export default WithSearchLogic(SearchBarMobile);
