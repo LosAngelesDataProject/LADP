@@ -14,7 +14,7 @@ import Tabs from "./Tabs.jsx";
 import config from "../../../config.js";
 import daysOfTheWeek from "../../assets/data/daysOfTheWeek.js";
 import PropTypes from "prop-types";
-import SearchBarWrapper from "./SearchBarWrapper.jsx";
+import SearchBarWrapper from "../searchBar/SearchBarWrapper.jsx";
 
 function Home(props) {
   const { isPhone } = props;
@@ -169,7 +169,6 @@ function Home(props) {
             isFilterApplied={isFilterApplied}
             isResetAllClicked={isResetAllClicked}
             setIsResetAllClicked={setIsResetAllClicked}
-            isPhone={isPhone}
           />
         }
         <div className={`${styles.filterContainer}`}>
