@@ -37,7 +37,7 @@ const SearchResults = (props) => {
     };
     let reCenter =
       resultsLocation.lat === center.lat && resultsLocation.lng === center.lng;
-    setActiveMarker(resultsLocation);
+    setActiveMarker(resultsLocation); //saving location in state
     if (reCenter) {
       setCenter({
         lat: results[index].latitude,

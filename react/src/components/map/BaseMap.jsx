@@ -16,15 +16,18 @@ const BaseMap = (props) => {
       mapRef.current.setView(center, zoom); // Adjust the zoom level as needed
     }
     if (mapRef.current && activeMarker) {
-      mapRef.current.eachLayer((layer) => {
-        if (
-          layer.getLatLng &&
-          layer.getLatLng().lat === activeMarker.lat &&
-          layer.getLatLng().lng === activeMarker.lng
-        ) {
-          layer.openPopup();
-        }
-      });
+      setTimeout(() => {
+        console.log("popup working");
+        mapRef.current.eachLayer((layer) => {
+          if (
+            layer.getLatLng &&
+            layer.getLatLng().lat === activeMarker.lat &&
+            layer.getLatLng().lng === activeMarker.lng
+          ) {
+            layer.openPopup();
+          }
+        });
+      }, 500);
     }
   }, [center, zoom, activeMarker]);
 
