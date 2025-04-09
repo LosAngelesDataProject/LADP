@@ -190,6 +190,7 @@ SearchResults.propTypes = {
     lng: PropTypes.number,
     active: PropTypes.string,
   }),
+  setActiveMarker: PropTypes.func.isRequired,
 };
 
 export default SearchResults;

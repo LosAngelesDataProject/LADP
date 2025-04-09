@@ -23,7 +23,7 @@ function Home(props) {
   const dayParam = urlParams.get("d");
   const productParam = urlParams.get("p");
   const locationParam = urlParams.get("l");
-  const [showMap, setShowMap] = useState(true);
+  const [showMap, setShowMap] = useState(false);
   const [center, setCenter] = useState({ lat: 34.0549, lng: -118.2426 });
   const [current, setCurrent] = useState({
     lat: 34.0549,
@@ -49,25 +49,19 @@ function Home(props) {
         setZoom(16);
         setCurrent((prevState) => {
           const newCurrent = { ...prevState };
-
           newCurrent.lat = position.coords.latitude;
           newCurrent.lng = position.coords.longitude;
           newCurrent.active = "on";
-
           return { ...newCurrent };
         });
-
         setCenter((prevState) => {
           const newCurrent = { ...prevState };
-
           newCurrent.lat = position.coords.latitude;
           newCurrent.lng = position.coords.longitude;
-
           return { ...newCurrent };
         });
       }
     });
-
     const fetchFoodResources = async () => {
       try {
         const data = await getFoodResources();
@@ -79,12 +73,10 @@ function Home(props) {
         await setResults(() => [...sampleResults]);
       }
     };
-
     const resultSetter = async () => {
       await setResultsArray(() => [...sampleResults]);
       await setResults(() => [...sampleResults]);
     };
-
     config.enableApiFlag ? fetchFoodResources() : resultSetter();
   }, []);
 
@@ -96,7 +88,6 @@ function Home(props) {
         productParam,
         locationParam
       );
-
       setResults(() => [...filteredResults]);
     } else {
       setResults(() => [...resultsArray]);
@@ -155,10 +146,21 @@ function Home(props) {
         {isPhone && <Tabs showMap={showMap} setShowMap={setShowMap} />}
       </Row>
       {isPhone ? (
-        <Row
-          className={showMap ? styles.resultsContainer : styles.mapContainer}
-        >
-          {showMap ? RenderResults() : RenderMap()}
+        <Row>
+          <div
+            className={`${styles.resultsContainer} ${
+              showMap ? styles.hiddenList : ""
+            }`}
+          >
+            {RenderResults()}
+          </div>
+          <div
+            className={`${styles.mapContainer} ${
+              !showMap ? styles.hidden : ""
+            }`}
+          >
+            {RenderMap()}
+          </div>
         </Row>
       ) : (
         <Row>
@@ -176,9 +178,7 @@ function Home(props) {
     </>
   );
 }
-
 Home.propTypes = {
   isPhone: PropTypes.bool.isRequired,
 };
-
 export default Home;

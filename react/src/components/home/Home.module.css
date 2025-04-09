@@ -177,6 +177,16 @@
 .mapContainer {
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding-bottom: 12px;
+  padding-top: 12px;
+}
+
+.hidden {
+  visibility: none;
+}
+
+.hiddenList {
+  display: none;
 }
 
 @media (min-width: 769px) {

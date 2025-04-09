@@ -6,18 +6,14 @@ function Tabs(props) {
   return (
     <div className={styles.tabContainer}>
       <div
-        className={`${styles.tab} ${showMap ? styles.tabActive : ""}`}
-        onClick={() => {
-          setShowMap(true);
-        }}
+        className={`${styles.tab} ${!showMap ? styles.tabActive : ""}`}
+        onClick={() => setShowMap(false)}
       >
         List
       </div>
       <div
-        className={`${styles.tab} ${!showMap ? styles.tabActive : ""}`}
-        onClick={() => {
-          setShowMap(false);
-        }}
+        className={`${styles.tab} ${showMap ? styles.tabActive : ""}`}
+        onClick={() => setShowMap(true)}
       >
         Map
       </div>
