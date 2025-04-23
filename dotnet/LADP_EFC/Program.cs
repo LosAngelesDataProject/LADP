@@ -12,10 +12,12 @@ namespace LADP__EFC
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            DotNetEnv.Env.Load();
 
             // Add services to the container.
 
             // Add Repositories to the container.
+            builder.Services.AddScoped<IRepositoryEmail, RepositoryEmail>();
             builder.Services.AddScoped<IRepositoryFoodResource, RepositoryFoodResource>();
             builder.Services.AddScoped<IRepositoryToDoItems, RepositoryToDoItems>();
             builder.Services.AddScoped<IRepositoryDeveloper, RepositoryDeveloper>();
