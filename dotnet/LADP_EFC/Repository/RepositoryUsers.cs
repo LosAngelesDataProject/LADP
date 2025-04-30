@@ -8,12 +8,10 @@ namespace LADP_EFC.Repository
     public class RepositoryUser : IRepositoryUser
     {
         private readonly DataContext _context;
-        private IRepositoryEmail RepositoryEmail;
 
-        public RepositoryUser(DataContext context, IRepositoryEmail repositoryEmail)
+        public RepositoryUser(DataContext context)
         {
             _context = context;
-            RepositoryEmail = repositoryEmail ?? throw new ArgumentNullException(nameof(repositoryEmail));
         }
 
         public IEnumerable<UserDTO> GetAll() 
@@ -39,7 +37,6 @@ namespace LADP_EFC.Repository
             _context.Users.Add(newUser);
             _context.SaveChanges();
             string token = CreateUserToken(newUser.Id);
-            
             return MapUser(newUser);
         }
 
