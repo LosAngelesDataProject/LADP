@@ -145,31 +145,26 @@ function Calendar() {
 
   return (
     <>
-      <div className={`mx-0 px-0 ${styles.headerBackground}`}>
+      <div className={styles.headerBackground}>
         <div className={styles.headerContent}>
-          <h1 className="text-white">Food Distribution Calendar</h1>
-          <h4 className="text-white">{format(currentMonth, "MMMM yyyy")}</h4>
+          <h1 className={styles.headerTitle}>Food Distribution Calendar</h1>
+          <div className={styles.monthYearRow}>
+            <span className={styles.monthYearText}>{format(currentMonth, "MMMM yyyy")}</span>
+          </div>
+          <div className={styles.monthSwitchButtons}>
+            <button
+              className={styles.monthSwitchButton}
+              onClick={handlePreviousMonth}
+            >
+              Previous Month
+            </button>
+            <button className={styles.monthSwitchButton} onClick={handleNextMonth}>
+              Next Month
+            </button>
+          </div>
         </div>
-        <img
-          src={Logo}
-          width="120"
-          height="120"
-          alt="logo"
-          className={`ms-5 ${styles.logo}`}
-        />
       </div>
-      <div className={styles.monthSwitchButtons}>
-        <button
-          className={styles.monthSwitchButton}
-          onClick={handlePreviousMonth}
-        >
-          Previous Month
-        </button>
-        <button className={styles.monthSwitchButton} onClick={handleNextMonth}>
-          Next Month
-        </button>
-      </div>
-      <div className={`row ${styles.customGrid} g-0`}>
+      <div className={`row ${styles.customGrid} ${styles.roundedCalendar} g-0`}>
         {weekDays.map((day) => (
           <div key={day} className={`col ${styles.weekdayHeader}`}>
             {day}
