@@ -4,6 +4,7 @@ using LADP_EFC.Data;
 using LADP_EFC.Repository;
 using LADP_EFC.Repository.Interfaces;
 using System.Text.Json.Serialization;
+using LADP_EFC.Models.AppSettings;
 
 namespace LADP__EFC
 {
@@ -26,7 +27,7 @@ namespace LADP__EFC
             {
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
             });
-
+           
 
             // CORS policy
             builder.Services.AddCors(options =>

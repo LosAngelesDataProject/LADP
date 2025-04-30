@@ -93,7 +93,12 @@ namespace LADP_EFC.Data
                 entity.Property(e => e.DateCreated).IsRequired().HasColumnName("DateCreated").HasColumnType("datetime2(7)");
                 entity.Property(e => e.DateModified).IsRequired().HasColumnName("DateModified").HasColumnType("datetime2(7)");
                 entity.Property(e => e.Phone).HasMaxLength(50).HasColumnName("Phone").HasColumnType("nvarchar(50)");
-                
+
+                entity.ToTable("Users");
+                entity.HasKey(e => e.Id).HasName("PK_Users");
+                entity.Property(e => e.Id)
+                      .HasColumnName("Id")
+                      .HasColumnType("int");
             });
 
             modelBuilder.Entity<UserToken>(entity =>
@@ -103,6 +108,10 @@ namespace LADP_EFC.Data
                 entity.Property(e => e.Token).HasColumnName("Token").HasMaxLength(200).HasColumnType("varchar(200)");
                 entity.Property(e => e.UserId).HasColumnName("UserId").HasColumnType("int");
 
+                entity.HasOne<User>()
+                    .WithOne()
+                    .HasForeignKey<UserToken>(e => e.UserId)
+                    .OnDelete(DeleteBehavior.Restrict);
             });
             
 

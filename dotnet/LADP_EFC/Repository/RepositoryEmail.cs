@@ -4,6 +4,9 @@ using DotNetEnv;
 using brevo_csharp.Model;
 using brevo_csharp.Api;
 using brevo_csharp.Client;
+using LADP_EFC.DTO.Users;
+using Microsoft.Extensions.Options;
+using LADP_EFC.Models.AppSettings;
 
 namespace LADP_EFC.Repository
 {
@@ -13,12 +16,14 @@ namespace LADP_EFC.Repository
         private readonly string apiKey;
         private readonly string senderEmail;
         private readonly string senderName;
+        
 
         public RepositoryEmail()
         {
             apiKey = Env.GetString("BREVO_API_KEY");
             senderEmail = Env.GetString("SENDER_EMAIL");
             senderName = Env.GetString("SENDER_NAME");
+            
         }
 
         public async Task TestEmail()
@@ -50,6 +55,10 @@ namespace LADP_EFC.Repository
                 Console.WriteLine($"Exception when sending test email: {ex.Message}");
             }
         }
+
+       
+
+
 
         private async Task SendEmailAsync(SendSmtpEmail email)
         {
