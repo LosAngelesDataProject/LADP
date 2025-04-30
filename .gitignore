@@ -30,3 +30,6 @@ dotnet/LADP_EFC/.vs/
 
 # Ignore all .env files in the repository
 **/.env
+
+#Ignore all appsettings.json files in the repository
+**/appsettings.json
