@@ -13,8 +13,8 @@ import Spinner from "react-bootstrap/Spinner";
 import Tabs from "./Tabs.jsx";
 import config from "../../../config.js";
 import daysOfTheWeek from "../../assets/data/daysOfTheWeek.js";
-import SearchBar from "./SearchBar.jsx";
 import PropTypes from "prop-types";
+import SearchBarWrapper from "../searchBar/SearchBarWrapper.jsx";
 
 function Home(props) {
   const { isPhone } = props;
@@ -33,6 +33,11 @@ function Home(props) {
   const [zoom, setZoom] = useState(15);
   const [results, setResults] = useState([]);
   const [resultsArray, setResultsArray] = useState([]);
+  const [showDescriptionIndex, setShowDescriptionIndex] = useState(null);
+  const [filteredArray, setFilteredArray] = useState([]);
+  const [isFilterApplied, setIsFilterApplied] = useState(false);
+  const [isSearchApplied, setIsSearchApplied] = useState(false);
+  const [isResetAllClicked, setIsResetAllClicked] = useState(false);
 
   const markers = results.map((result) => ({
     geocode: [result.latitude, result.longitude],
@@ -67,6 +72,14 @@ function Home(props) {
       }
     });
 
+    dataFetch();
+  }, []);
+
+  useEffect(() => {
+    locationFilter();
+  }, [location, dayParam, productParam, locationParam]);
+
+  function dataFetch() {
     const fetchFoodResources = async () => {
       try {
         const data = await getFoodResources();
@@ -85,9 +98,9 @@ function Home(props) {
     };
 
     config.enableApiFlag ? fetchFoodResources() : resultSetter();
-  }, []);
+  }
 
-  useEffect(() => {
+  function locationFilter() {
     if (dayParam || productParam || locationParam) {
       const filteredResults = resultFilterer(
         resultsArray,
@@ -96,11 +109,13 @@ function Home(props) {
         locationParam
       );
 
-      setResults(() => [...filteredResults]);
+      setFilteredArray(() => [...filteredResults]);
+      setIsFilterApplied(true);
     } else {
-      setResults(() => [...resultsArray]);
+      setIsFilterApplied(false);
+      setFilteredArray(() => [...resultsArray]);
     }
-  }, [location, dayParam, productParam, locationParam]);
+  }
 
   const RenderResults = () => {
     return resultsArray.length ? (
@@ -110,6 +125,8 @@ function Home(props) {
         setCenter={setCenter}
         center={center}
         current={current}
+        showDescriptionIndex={showDescriptionIndex}
+        setShowDescriptionIndex={setShowDescriptionIndex}
       />
     ) : (
       <Spinner
@@ -121,8 +138,18 @@ function Home(props) {
   };
 
   const RenderMap = () => (
-    <BaseMap markers={markers} center={center} current={current} zoom={zoom} />
+    <BaseMap
+      markers={markers}
+      center={center}
+      current={current}
+      zoom={zoom}
+      setShowDescriptionIndex={setShowDescriptionIndex}
+    />
   );
+
+  const handleTabChange = (isMap) => {
+    setShowMap(isMap);
+  };
 
   return (
     <>
@@ -132,13 +159,28 @@ function Home(props) {
         </div>
       )}
       <Row className={`${styles.searchContainer}`}>
-        <div className={styles.searchInputContainer}>
-          <SearchBar />
-        </div>
+        {
+          <SearchBarWrapper
+            setResults={setResults}
+            locationFilter={locationFilter}
+            resultsArray={resultsArray}
+            filteredArray={filteredArray}
+            setIsSearchApplied={setIsSearchApplied}
+            isFilterApplied={isFilterApplied}
+            isResetAllClicked={isResetAllClicked}
+            setIsResetAllClicked={setIsResetAllClicked}
+          />
+        }
         <div className={`${styles.filterContainer}`}>
-          <FilterButtons daysOfTheWeek={daysOfTheWeek} />
+          <FilterButtons
+            daysOfTheWeek={daysOfTheWeek}
+            setIsResetAllClicked={setIsResetAllClicked}
+            isFilterApplied={isFilterApplied}
+            isSearchApplied={isSearchApplied}
+            setIsSearchApplied={setIsSearchApplied}
+          />
         </div>
-        {isPhone && <Tabs showMap={showMap} setShowMap={setShowMap} />}
+        {isPhone && <Tabs showMap={showMap} setShowMap={handleTabChange} />}
       </Row>
       {isPhone ? (
         <Row

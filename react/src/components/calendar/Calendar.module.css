@@ -3,7 +3,6 @@
   --secondary-color: #e3aa4d;
   --support-color: #ffffff;
   --spacing: 16px;
-
   --shadow-light: 0 2px 8px rgba(6, 45, 29, 0.04);
   --shadow-medium: 0 4px 16px rgba(6, 45, 29, 0.08);
   --shadow-strong: 0 6px 24px rgba(227, 170, 77, 0.12);
@@ -78,6 +77,12 @@
   border-style: solid;
   padding: 0.5rem;
   position: relative;
+  border-radius: 15px;
+  border: 1.5px solid var(--main-color);
+  box-shadow: var(--shadow-light);
+  background: #fff;
+  margin: 8px 0;
+  transition: box-shadow 0.2s;
 }
 
 .calendarCard .date {
@@ -98,7 +103,7 @@
 }
 
 .eventCard {
-  border-radius: 5px;
+  border-radius: 15px;
   background-color: rgba(6, 45, 29, 0.6);
   margin-bottom: 4px;
   margin-top: 7px;
