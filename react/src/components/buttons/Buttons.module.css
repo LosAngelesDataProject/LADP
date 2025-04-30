@@ -1,4 +1,6 @@
 :root {
+  --heroHeight: 300px;
+  --searchHeight: 300px;
   --main-color: #062d1d;
   --secondary-color: #e3aa4d;
   --support-color: #ffffff;
