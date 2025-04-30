@@ -5,12 +5,9 @@ import {
   getDay,
   isToday,
   startOfMonth,
-  addMonths,
-  subMonths,
 } from "date-fns";
 import { useMemo, useState } from "react";
 import styles from "./Calendar.module.css";
-import Logo from "../../assets/ladpLogo_light.png";
 import { Card, Modal } from "react-bootstrap";
 import { addDays, subDays } from "date-fns";
 import "font-awesome/css/font-awesome.min.css";
