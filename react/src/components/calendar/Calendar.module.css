@@ -3,7 +3,6 @@
   --secondary-color: #e3aa4d;
   --support-color: #ffffff;
   --spacing: 16px;
-
   --shadow-light: 0 2px 8px rgba(6, 45, 29, 0.04);
   --shadow-medium: 0 4px 16px rgba(6, 45, 29, 0.08);
   --shadow-strong: 0 6px 24px rgba(227, 170, 77, 0.12);
@@ -62,7 +61,6 @@
 .customGrid > * {
   flex: 0 0 auto;
   min-width: 14.2857142857%;
-  border: 1px solid #ddd;
 }
 
 .weekdayHeader {
@@ -74,10 +72,13 @@
 
 .calendarCard {
   height: 8rem;
-  border-width: 1px;
-  border-style: solid;
   padding: 0.5rem;
   position: relative;
+  background: #fff;
+  border: 1px solid #ddd;
+  box-shadow: none;
+  border-radius: 0;
+  transition: none;
 }
 
 .calendarCard .date {
@@ -98,7 +99,7 @@
 }
 
 .eventCard {
-  border-radius: 5px;
+  border-radius: 8px;
   background-color: rgba(6, 45, 29, 0.6);
   margin-bottom: 4px;
   margin-top: 7px;
