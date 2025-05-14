@@ -2,19 +2,19 @@ import { useEffect, useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import styles from "./Home.module.css";
 import BaseMap from "../map/BaseMap";
-import { getFoodResources } from "../../services/foodResourcesService";
-import sampleResults from "../../assets/data/foodResources.js";
-import SearchResults from "./SearchResults.jsx";
 import HomeSlide from "./HomeSlide.jsx";
 import FilterButtons from "./FilterButtons.jsx";
 import { useLocation } from "react-router-dom";
-import resultFilterer from "./resultFilterer.js";
-import Spinner from "react-bootstrap/Spinner";
 import Tabs from "./Tabs.jsx";
-import config from "../../../config.js";
 import daysOfTheWeek from "../../assets/data/daysOfTheWeek.js";
 import PropTypes from "prop-types";
 import SearchBarWrapper from "../searchBar/SearchBarWrapper.jsx";
+import RenderResults from "./RenderResults.jsx";
+import {
+  fetchFoodResources,
+  filterLocation,
+  updateMaplocation,
+} from "../../utils/utils.js";
 
 function Home(props) {
   const { isPhone } = props;
@@ -48,96 +48,38 @@ function Home(props) {
   }));
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      if (position.coords.latitude) {
-        setZoom(16);
-        setCurrent((prevState) => {
-          const newCurrent = { ...prevState };
-
-          newCurrent.lat = position.coords.latitude;
-          newCurrent.lng = position.coords.longitude;
-          newCurrent.active = "on";
-
-          return { ...newCurrent };
-        });
-
-        setCenter((prevState) => {
-          const newCurrent = { ...prevState };
-
-          newCurrent.lat = position.coords.latitude;
-          newCurrent.lng = position.coords.longitude;
-
-          return { ...newCurrent };
-        });
-      }
-    });
-
-    dataFetch();
+    updateMaplocation(setCurrent, setCenter, setZoom);
+    fetchFoodResources(setResultsArray, setResults);
   }, []);
 
   useEffect(() => {
-    locationFilter();
+    filterLocation(
+      resultsArray,
+      dayParam,
+      productParam,
+      locationParam,
+      setFilteredArray,
+      setIsFilterApplied
+    );
   }, [location, dayParam, productParam, locationParam]);
 
-  function dataFetch() {
-    const fetchFoodResources = async () => {
-      try {
-        const data = await getFoodResources();
-        await setResultsArray(() => [data]);
-        await setResults(() => [data]);
-      } catch (error) {
-        console.error("Error loading food resources.", error);
-        await setResultsArray(() => [...sampleResults]);
-        await setResults(() => [...sampleResults]);
-      }
-    };
-
-    const resultSetter = async () => {
-      await setResultsArray(() => [...sampleResults]);
-      await setResults(() => [...sampleResults]);
-    };
-
-    config.enableApiFlag ? fetchFoodResources() : resultSetter();
-  }
-
-  function locationFilter() {
-    if (dayParam || productParam || locationParam) {
-      const filteredResults = resultFilterer(
-        resultsArray,
-        dayParam,
-        productParam,
-        locationParam
-      );
-
-      setFilteredArray(() => [...filteredResults]);
-      setIsFilterApplied(true);
-    } else {
-      setIsFilterApplied(false);
-      setFilteredArray(() => [...resultsArray]);
-    }
-  }
-
-  const RenderResults = () => {
-    return resultsArray.length ? (
-      <SearchResults
-        results={results}
-        daysOfTheWeek={daysOfTheWeek}
-        setCenter={setCenter}
-        center={center}
-        current={current}
-        showDescriptionIndex={showDescriptionIndex}
-        setShowDescriptionIndex={setShowDescriptionIndex}
-      />
-    ) : (
-      <Spinner
-        animation="grow"
-        variant="dark"
-        className="mt-5 d-flex mx-auto"
-      />
-    );
+  const handleTabChange = (isMap) => {
+    setShowMap(isMap);
   };
 
-  const RenderMap = () => (
+  const resultsComponent = (
+    <RenderResults
+      resultsArray={resultsArray}
+      results={results}
+      setCenter={setCenter}
+      center={center}
+      current={current}
+      showDescriptionIndex={showDescriptionIndex}
+      setShowDescriptionIndex={setShowDescriptionIndex}
+    />
+  );
+
+  const mapComponent = (
     <BaseMap
       markers={markers}
       center={center}
@@ -147,8 +89,15 @@ function Home(props) {
     />
   );
 
-  const handleTabChange = (isMap) => {
-    setShowMap(isMap);
+  const locationFilter = () => {
+    filterLocation(
+      resultsArray,
+      dayParam,
+      productParam,
+      locationParam,
+      setFilteredArray,
+      setIsFilterApplied
+    );
   };
 
   return (
@@ -159,18 +108,16 @@ function Home(props) {
         </div>
       )}
       <Row className={`${styles.searchContainer}`}>
-        {
-          <SearchBarWrapper
-            setResults={setResults}
-            locationFilter={locationFilter}
-            resultsArray={resultsArray}
-            filteredArray={filteredArray}
-            setIsSearchApplied={setIsSearchApplied}
-            isFilterApplied={isFilterApplied}
-            isResetAllClicked={isResetAllClicked}
-            setIsResetAllClicked={setIsResetAllClicked}
-          />
-        }
+        <SearchBarWrapper
+          setResults={setResults}
+          locationFilter={locationFilter}
+          resultsArray={resultsArray}
+          filteredArray={filteredArray}
+          setIsSearchApplied={setIsSearchApplied}
+          isFilterApplied={isFilterApplied}
+          isResetAllClicked={isResetAllClicked}
+          setIsResetAllClicked={setIsResetAllClicked}
+        />
         <div className={`${styles.filterContainer}`}>
           <FilterButtons
             daysOfTheWeek={daysOfTheWeek}
@@ -186,19 +133,12 @@ function Home(props) {
         <Row
           className={showMap ? styles.resultsContainer : styles.mapContainer}
         >
-          {showMap ? RenderResults() : RenderMap()}
+          {showMap ? resultsComponent : mapComponent}
         </Row>
       ) : (
         <Row>
-          <Col className={styles.resultsContainer}>{RenderResults()}</Col>
-          <Col className={styles.mapContainer}>{RenderMap()}</Col>
-        </Row>
-      )}
-      {!isPhone && (
-        <Row className={`mt-3 ${styles.heroContainer}`}>
-          <div>
-            <p> Hero Section: Welcome to the Los Angeles Data Project...</p>
-          </div>
+          <Col className={styles.resultsContainer}>{resultsComponent}</Col>
+          <Col className={styles.mapContainer}>{mapComponent}</Col>
         </Row>
       )}
     </>

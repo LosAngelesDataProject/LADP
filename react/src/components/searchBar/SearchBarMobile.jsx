@@ -129,4 +129,5 @@ SearchBarMobile.propTypes = {
   locationInputValue: PropTypes.string.isRequired,
 };
 
-export default WithSearchLogic(SearchBarMobile);
+const EnhancedSearchBarMobile = WithSearchLogic(SearchBarMobile);
+export default EnhancedSearchBarMobile;

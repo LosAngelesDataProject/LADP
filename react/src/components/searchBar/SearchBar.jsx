@@ -87,4 +87,5 @@ SearchBar.propTypes = {
   locationInputValue: PropTypes.string.isRequired,
 };
 
-export default WithSearchLogic(SearchBar);
+const EnhancedSearchBar = WithSearchLogic(SearchBar);
+export default EnhancedSearchBar;
