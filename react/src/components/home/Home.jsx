@@ -14,7 +14,7 @@ import {
   fetchFoodResources,
   filterLocation,
   updateMaplocation,
-} from "../../utils/utils.js";
+} from "../../services/homeService.js";
 
 function Home(props) {
   const { isPhone } = props;
