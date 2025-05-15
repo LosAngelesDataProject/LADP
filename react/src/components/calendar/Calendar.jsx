@@ -5,12 +5,9 @@ import {
   getDay,
   isToday,
   startOfMonth,
-  addMonths,
-  subMonths,
 } from "date-fns";
 import { useMemo, useState } from "react";
 import styles from "./Calendar.module.css";
-import Logo from "../../assets/ladpLogo_light.png";
 import { Card, Modal } from "react-bootstrap";
 import { addDays, subDays } from "date-fns";
 import "font-awesome/css/font-awesome.min.css";
@@ -19,26 +16,36 @@ function Calendar() {
   const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const events = [
     {
-      date: "Wed May 01 2024 12:14:29 GMT-0500 (Central Daylight Time)",
+      date: "Wed May 01 2025 12:14:29 GMT-0500 (Central Daylight Time)",
       title: "Event 1",
       details:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     },
     {
-      date: "Fri May 03 2024 12:14:29 GMT-0500 (Central Daylight Time)",
+      date: "Fri May 03 2025 12:14:29 GMT-0500 (Central Daylight Time)",
       title: "Event 2",
       details:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     },
     {
+      date: "Fri May 03 2025 18:30:00 GMT-0500 (Central Daylight Time)",
+      title: "Evening Event",
+      details: "Some evening food distribution info."
+    },
+    {
+      date: "Fri May 03 2025 15:00:00 GMT-0500 (Central Daylight Time)",
+      title: "Afternoon Gathering",
+      details: "Quick meeting for project updates."
+    },
+    {
       date: subDays(new Date(), 9),
       title: "Event 3",
-      details: "random details",
+      details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     },
     {
       date: addDays(new Date(), 3),
       title: "Event 4",
-      details: "random details",
+      details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     },
   ];
 
@@ -62,15 +69,16 @@ function Calendar() {
   const endingDayIndex = getDay(lastDayOfMonth);
   const placeholdersToEnd = 6 - endingDayIndex;
   const [modal, setModal] = useState(false);
-  const [currentEvent, setCurrentEvent] = useState({
-    date: "Fri May 03 2024 12:14:29 GMT-0500 (Central Daylight Time)",
-    title: "",
-    details: "",
-  });
+  const [currentEvent, setCurrentEvent] = useState(null);
 
-  const toggleModal = (event) => {
-    setCurrentEvent(event);
-    setModal(!modal);
+  const handleOpenModal = (eventData) => {
+    setCurrentEvent(eventData);
+    setModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setModal(false);
+    setCurrentEvent(null);
   };
 
   const daysInMonth = eachDayOfInterval({
@@ -80,7 +88,8 @@ function Calendar() {
 
   const eventsByDate = useMemo(() => {
     return events.reduce((acc, event) => {
-      const dateKey = format(event.date, "yyyy-MM-dd");
+      const dateObj = new Date(event.date); 
+      const dateKey = format(dateObj, "yyyy-MM-dd");
       if (!acc[dateKey]) {
         acc[dateKey] = [];
       }
@@ -113,7 +122,7 @@ function Calendar() {
                   <div
                     key={`event-${eventIndex}`}
                     className={`p-1 ${styles.eventCard}`}
-                    onClick={() => toggleModal(event)}
+                    onClick={() => handleOpenModal(event)}
                   >
                     {event.title}
                   </div>
@@ -130,46 +139,71 @@ function Calendar() {
   );
 
   const EventModal = () => (
-    <Modal show={modal} onHide={toggleModal} centered>
-      <Modal.Header closeButton>
-        {currentEvent
-          ? `Event on ${format(new Date(currentEvent.date), "PPPP")}`
-          : "No event selected."}
-      </Modal.Header>
-      <Modal.Body>
-        <p>Event Details</p>
-        <p>{currentEvent ? currentEvent.details : ""}</p>
-      </Modal.Body>
+    <Modal
+      show={modal}
+      onHide={handleCloseModal}
+      centered
+      dialogClassName={styles.eventModalDialog}
+    >
+      {currentEvent && (
+        <>
+          <Modal.Header closeButton className={styles.eventModalHeader}>
+            <Modal.Title className={styles.eventModalTitle}>
+              {currentEvent.title || "Event Details"}
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body className={styles.eventModalBody}>
+            <div className={styles.eventModalSection}>
+              <strong className={styles.eventModalLabel}>Date:</strong>
+              <span className={styles.eventModalValue}>
+                {format(new Date(currentEvent.date), "MMMM d, yyyy")}
+              </span>
+            </div>
+            <div className={styles.eventModalSection}>
+              <strong className={styles.eventModalLabel}>Time:</strong>
+              <span className={styles.eventModalValue}>
+                {format(new Date(currentEvent.date), "h:mm a")}
+              </span>
+            </div>
+            <div className={styles.eventModalSection}>
+              <strong className={styles.eventModalLabel}>Details:</strong>
+              <p className={styles.eventModalDetailsText}>
+                {currentEvent.details}
+              </p>
+            </div>
+          </Modal.Body>
+          <Modal.Footer className={styles.eventModalFooter}>
+            <button className={styles.modalCloseButton} onClick={handleCloseModal}>
+              Close
+            </button>
+          </Modal.Footer>
+        </>
+      )}
     </Modal>
   );
 
   return (
     <>
-      <div className={`mx-0 px-0 ${styles.headerBackground}`}>
+      <div className={styles.headerBackground}>
         <div className={styles.headerContent}>
-          <h1 className="text-white">Food Distribution Calendar</h1>
-          <h4 className="text-white">{format(currentMonth, "MMMM yyyy")}</h4>
+          <h1 className={styles.headerTitle}>Food Distribution Calendar</h1>
+          <div className={styles.monthYearRow}>
+            <span className={styles.monthYearText}>{format(currentMonth, "MMMM yyyy")}</span>
+          </div>
+          <div className={styles.monthSwitchButtons}>
+            <button
+              className={styles.monthSwitchButton}
+              onClick={handlePreviousMonth}
+            >
+              Previous Month
+            </button>
+            <button className={styles.monthSwitchButton} onClick={handleNextMonth}>
+              Next Month
+            </button>
+          </div>
         </div>
-        <img
-          src={Logo}
-          width="120"
-          height="120"
-          alt="logo"
-          className={`ms-5 ${styles.logo}`}
-        />
       </div>
-      <div className={styles.monthSwitchButtons}>
-        <button
-          className={styles.monthSwitchButton}
-          onClick={handlePreviousMonth}
-        >
-          Previous Month
-        </button>
-        <button className={styles.monthSwitchButton} onClick={handleNextMonth}>
-          Next Month
-        </button>
-      </div>
-      <div className={`row ${styles.customGrid} g-0`}>
+      <div className={`row ${styles.customGrid} ${styles.roundedCalendar} g-0`}>
         {weekDays.map((day) => (
           <div key={day} className={`col ${styles.weekdayHeader}`}>
             {day}
