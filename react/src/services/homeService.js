@@ -1,10 +1,17 @@
 import { getFoodResources } from "./foodResourcesService.js";
 
-import sampleResults from "../assets/data/foodResources.js";
+import mockFoodResources from "../assets/data/foodResources.js";
 import config from "../../config.js";
 
-// This function is used to fetch the food resources from the API
-// and laverages the flag in the config file to determine if the API should be used or not
+/**
+ * Fetches the food resources list from the API or sample data,
+ * depending on the enableApiFlag in the config file.
+ *
+ * @param {Function} setResultsArray - Function to set the original, unfiltered results array in the Home component.
+ * @param {Function} setResults - SetResults The function to set the visible results list to be rendered in the Home component.
+ * @returns {Promise<void>} - A promise that resolves when the data is fetched or sample data is set, based on the enableApiFlag.
+ * @throws {Error} - If data cannot be fetched from the API.
+ */
 export async function fetchFoodResources(setResultsArray, setResults) {
   const dataFetch = async () => {
     try {
@@ -13,21 +20,30 @@ export async function fetchFoodResources(setResultsArray, setResults) {
       setResults([data]);
     } catch (error) {
       console.error("Error loading food resources.", error);
-      setResultsArray([...sampleResults]);
-      setResults([...sampleResults]);
+      setResultsArray([...mockFoodResources]);
+      setResults([...mockFoodResources]);
     }
   };
 
   const resultSetter = async () => {
-    setResultsArray([...sampleResults]);
-    setResults([...sampleResults]);
+    setResultsArray([...mockFoodResources]);
+    setResults([...mockFoodResources]);
   };
 
   config.enableApiFlag ? dataFetch() : resultSetter();
 }
 
-// This function handles the filtering of the results based on the day, product or location
-// and sets the filtered array and the isFilterApplied state
+/**
+ * Filters the results based on the selected day, product, or location,
+ * and updates the filtered array and the isFilterApplied state accordingly.
+ *
+ * @param {Array} resultsArray - The original, unmodified array of food resources.
+ * @param {string|null} dayParam - The day filter selected by the user.
+ * @param {string|null} productParam - The product filter selected by the user.
+ * @param {string|null} locationParam - The location filter selected by the user.
+ * @param {Function} setFilteredArray - Function to update the filtered array in the Home component.
+ * @param {Function} setIsFilterApplied - Function to update the isFilterApplied state in the Home component.
+ */
 export function filterLocation(
   resultsArray,
   dayParam,
@@ -52,8 +68,14 @@ export function filterLocation(
   }
 }
 
-// This function is used to set current location of the user
-// or the deafault coordinates of the map if the user does not allow location access
+/**
+ * This function is used to set user's current location
+ * if the user grant access to the location in the browser
+ *
+ * @param {Function} setCurrent - Function to update the current location coordinates.
+ * @param {Function} setCenter - Function to update the map's center coordinates.
+ * @param {Function} setZoom - Function to update the map's zoom level.
+ */
 export function updateMaplocation(setCurrent, setCenter, setZoom) {
   navigator.geolocation.getCurrentPosition((position) => {
     if (position.coords.latitude) {
@@ -70,11 +92,20 @@ export function updateMaplocation(setCurrent, setCenter, setZoom) {
         lng: position.coords.longitude,
       }));
     }
+    // No else block needed – Home has default state
   });
 }
 
-// This function is bein used in the filterLocation function above
-// and is used to filter the results based on the day, product and location
+/**
+ * Filters the currently visible results based on the selected day, product, and/or location.
+ * This function is used internally by the filterLocation function to update the rendered results.
+ *
+ * @param {Array} results - The array of food resources currently rendered in the Home component.
+ * @param {string|null} day - The day filter selected by the user.
+ * @param {string|null} product - The product filter selected by the user.
+ * @param {string|null} location - The location filter selected by the user.
+ * @returns {Array} - A filtered array of food resources, or an empty array if no matches are found.
+ */
 export function filterResults(results, day, product, location) {
   let newResults = [];
 
