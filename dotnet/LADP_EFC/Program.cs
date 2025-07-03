@@ -4,6 +4,8 @@ using LADP_EFC.Data;
 using LADP_EFC.Repository;
 using LADP_EFC.Repository.Interfaces;
 using System.Text.Json.Serialization;
+using LADP_EFC.Models.AppSettings;
+using LADP_EFC.Models;
 
 namespace LADP__EFC
 {
@@ -14,8 +16,9 @@ namespace LADP__EFC
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
+            builder.Services.Configure<BrevoApi>(builder.Configuration.GetSection("BrevoApi"));
             // Add Repositories to the container.
+            builder.Services.AddScoped<IRepositoryEmail, RepositoryEmail>();
             builder.Services.AddScoped<IRepositoryFoodResource, RepositoryFoodResource>();
             builder.Services.AddScoped<IRepositoryToDoItems, RepositoryToDoItems>();
             builder.Services.AddScoped<IRepositoryDeveloper, RepositoryDeveloper>();
@@ -24,7 +27,8 @@ namespace LADP__EFC
             {
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
             });
-
+            builder.Services.Configure<AppSettings>(
+                builder.Configuration.GetSection("AppSettings"));
 
             // CORS policy
             builder.Services.AddCors(options =>
