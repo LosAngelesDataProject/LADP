@@ -38,7 +38,7 @@ namespace LADP_EFC.Repository
                     },
                     To = new List<SendSmtpEmailTo>
                     {
-                        new SendSmtpEmailTo("Your-Email-Address")
+                        new SendSmtpEmailTo(brevo.TestRecipient)
                     },
                     Subject = "Test Email",
                     HtmlContent = "<html><body><h1>This is a test email</h1></body></html>"
