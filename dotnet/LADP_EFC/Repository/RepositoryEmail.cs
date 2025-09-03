@@ -5,7 +5,6 @@ using brevo_csharp.Api;
 using brevo_csharp.Client;
 using LADP_EFC.DTO.Users;
 using Microsoft.Extensions.Options;
-using LADP_EFC.Models.AppSettings;
 using LADP_EFC.Models;
 using Configuration = brevo_csharp.Client.Configuration;
 
@@ -21,7 +20,7 @@ namespace LADP_EFC.Repository
         public RepositoryEmail(IOptions<AppSettings> config, IOptions<BrevoApi> brevoApi)
         {
             brevo = brevoApi.Value;
-            baseUrl = config.Value.BaseUrl;
+            baseUrl = brevo.BaseUrl;
         }
 
         public async Task TestEmail()
@@ -38,7 +37,7 @@ namespace LADP_EFC.Repository
                     },
                     To = new List<SendSmtpEmailTo>
                     {
-                        new SendSmtpEmailTo("na106@mail.chapman.edu")
+                        new SendSmtpEmailTo(brevo.TestRecipient)
                     },
                     Subject = "Test Email",
                     HtmlContent = "<html><body><h1>This is a test email</h1></body></html>"
