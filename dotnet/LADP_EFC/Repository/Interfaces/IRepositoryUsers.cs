@@ -2,13 +2,13 @@
 
 namespace LADP_EFC.Repository.Interfaces
 {
-        public interface IRepositoryUser
-        {
-            UserDTO GetById(int id);
-            IEnumerable<UserDTO> GetAll();
-            UserDTO Create(AddUserDTO model);
-            UserDTO Update(UserDTO updateUser);
+    public interface IRepositoryUser
+    {
+        UserDTO GetById(int id);
+        IEnumerable<UserDTO> GetAll();
+        UserDTO Create(AddUserDTO model);
+        UserDTO Update(UserDTO updateUser);
+        Task ConfirmAccount(string tokenId);
+    }
 
-        }
-    
 }

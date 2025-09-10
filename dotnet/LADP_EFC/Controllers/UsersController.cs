@@ -29,7 +29,7 @@ namespace LADP_EFC.Controllers
                     return Ok(list);
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 int iCode = 500;
                 return StatusCode(iCode, ex.ToString());
@@ -53,6 +53,26 @@ namespace LADP_EFC.Controllers
                 result = StatusCode(iCode, ex.ToString());
             }
             return result;
+        }
+
+        [HttpPut("confirmuser")]
+        public async Task<ActionResult> ConfirmAccount([FromQuery] string tokenId)
+        {
+            if (string.IsNullOrEmpty(tokenId))
+            {
+                Console.WriteLine("Token missing or empty");
+                return BadRequest("Missing or invalid token");
+            }
+            try
+            {
+                await _repository.ConfirmAccount(tokenId);
+                return Ok(new { message = "Account confirmed" });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error confirming account: {ex.Message}");
+                return BadRequest($"Error: {ex.Message}");
+            }
         }
     }
 }

@@ -6,5 +6,6 @@ namespace LADP_EFC.Repository.Interfaces
     {
         Task TestEmail();
 
+        Task EmailConfirm(AddUserDTO model, string token);
     }
 }

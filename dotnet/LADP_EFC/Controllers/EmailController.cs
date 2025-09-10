@@ -31,5 +31,25 @@ namespace LADP_EFC.Controllers
             return StatusCode(code);
         }
 
+        [HttpPut("confirmEmail")]
+        public async Task<ActionResult> EmailConfirm(string tokenId)
+        {
+            if (string.IsNullOrEmpty(tokenId))
+            {
+                Console.WriteLine("Token missing or empty");
+                return BadRequest("Missing or invalid token");
+            }
+            try
+            {
+                await _repositoryUser.ConfirmAccount(tokenId);
+                return Ok("Account confirmed");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error confirming account: {ex.Message}");
+                return BadRequest($"Error: {ex.Message}");
+            }
+        }
+
     }
 }
