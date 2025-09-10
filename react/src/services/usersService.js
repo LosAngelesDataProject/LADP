@@ -1,7 +1,7 @@
 import axios from "axios";
 
 var userService = {
-  endpoint: "http://localhost:5173/",
+  endpoint: "http://localhost:5197/api/user",
 };
 
 const registerUser = (payload) => {
@@ -36,8 +36,20 @@ const updateUser = (payload) => {
     crossdomain: true,
     headers: { "Content-Type": "application/json" },
   }
+  return axios(config)
+}
+
+const confirmAccount = (tokenId) => {
+  const config = {
+    method: "PUT",
+    url: `${userService.endpoint}/confirmuser?tokenId=${tokenId}`,
+    withCredentials: true,
+    crossdomain: true,
+    headers: { "Content-Type": "application/json" },
+
+  }
   console.log("user information updated")
   return axios(config)
 }
 
-export { registerUser, updateUser, getCurrentUser };
+export default { registerUser, updateUser, getCurrentUser, confirmAccount };
