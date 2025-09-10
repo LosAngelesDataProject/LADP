@@ -5,7 +5,6 @@ using brevo_csharp.Api;
 using brevo_csharp.Client;
 using LADP_EFC.DTO.Users;
 using Microsoft.Extensions.Options;
-using LADP_EFC.Models.AppSettings;
 using LADP_EFC.Models;
 using Configuration = brevo_csharp.Client.Configuration;
 using LADP_EFC.Models.AppSettings;
