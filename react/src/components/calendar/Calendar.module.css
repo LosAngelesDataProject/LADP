@@ -9,8 +9,7 @@
 }
 
 .headerBackground {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
-    url(../../assets/headerImages/CalendarHeader.png);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url(../../assets/headerImages/CalendarHeader.png);
   background-size: cover;
   background-position: center;
   width: 100%;
@@ -72,7 +71,8 @@
 }
 
 .calendarCard {
-  height: 8rem;
+  min-height: 8rem;
+  overflow-y: auto;
   padding: 0.5rem;
   position: relative;
   background: #fff;
@@ -86,12 +86,6 @@
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
-}
-
-.calendarCard:hover {
-  border-color: var(--secondary-color);
-  color: var(--secondary-color);
-  transition: 0.2s;
 }
 
 .calendarToday {
@@ -184,6 +178,83 @@
   box-shadow: var(--shadow-medium);
   border: 1.5px solid var(--main-color);
   letter-spacing: 1px;
+}
+
+/* Event Modal Styles */
+.eventModalDialog {
+  max-width: 500px; 
+}
+
+.eventModalHeader {
+  background-color: var(--main-color);
+  color: var(--support-color);
+  border-bottom: 1px solid #dee2e6; 
+  padding: var(--spacing);
+}
+
+.eventModalHeader .btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%); 
+}
+
+.eventModalTitle {
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.eventModalBody {
+  padding: var(--spacing);
+  line-height: 1.6;
+}
+
+.eventModalSection {
+  margin-bottom: 1rem;
+}
+
+.eventModalSection:last-child {
+  margin-bottom: 0;
+}
+
+.eventModalLabel {
+  font-weight: bold;
+  color: var(--main-color);
+  margin-right: 0.5em;
+  font-size: 1.1rem;
+}
+
+.eventModalValue {
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.eventModalDetailsText {
+  margin-top: 0.3em;
+  color: #555;
+  white-space: pre-wrap; 
+  font-size: 1.05rem;
+}
+
+.eventModalFooter {
+  padding: var(--spacing);
+  border-top: 1px solid #dee2e6; 
+  display: flex;
+  justify-content: flex-end; 
+}
+
+.modalCloseButton {
+  background-color: var(--secondary-color); 
+  color: var(--main-color); 
+  border: 1px solid var(--main-color); 
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 0.5rem;
+}
+
+.modalCloseButton:hover {
+  background-color: rgba(6, 45, 29, 0.8); 
+  color: var(--support-color);
+  border-color: rgba(6, 45, 29, 0.8); 
+    border-radius: 0.5rem;
 }
 
 @media (max-width: 425px) and (min-width: 320px) {
