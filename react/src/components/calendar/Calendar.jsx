@@ -38,6 +38,21 @@ function Calendar() {
       details: "Quick meeting for project updates."
     },
     {
+      date: "Fri May 03 2025 15:00:00 GMT-0500 (Central Daylight Time)",
+      title: "Afternoon Gathering",
+      details: "Quick meeting for project updates."
+    },
+    {
+      date: "Fri May 03 2025 15:00:00 GMT-0500 (Central Daylight Time)",
+      title: "Afternoon Gathering",
+      details: "Quick meeting for project updates."
+    },
+    {
+      date: "Fri May 03 2025 15:00:00 GMT-0500 (Central Daylight Time)",
+      title: "Afternoon Gathering",
+      details: "Quick meeting for project updates."
+    },
+    {
       date: subDays(new Date(), 9),
       title: "Event 3",
       details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
