@@ -35,7 +35,9 @@ namespace LADP_EFC.Repository
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 Mi = model.Mi,
-                Status = initialStatus
+                Status = initialStatus,
+                DateCreated = DateTime.UtcNow,
+                DateModified = DateTime.UtcNow,
 
             };
             _context.Users.Add(newUser);

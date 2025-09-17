@@ -7,7 +7,6 @@ using LADP_EFC.DTO.Users;
 using Microsoft.Extensions.Options;
 using LADP_EFC.Models;
 using Configuration = brevo_csharp.Client.Configuration;
-using LADP_EFC.Models.AppSettings;
 
 
 namespace LADP_EFC.Repository
@@ -18,7 +17,7 @@ namespace LADP_EFC.Repository
         private readonly string baseUrl;
         private BrevoApi brevo;
 
-        public RepositoryEmail(IOptions<AppSettings> config, IOptions<BrevoApi> brevoApi)
+        public RepositoryEmail(IOptions<BrevoApi> brevoApi)
         {
             brevo = brevoApi.Value;
             baseUrl = brevo.BaseUrl;

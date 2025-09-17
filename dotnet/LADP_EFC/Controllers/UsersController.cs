@@ -43,8 +43,6 @@ namespace LADP_EFC.Controllers
             try
             {
                 var item = _repository.Create(userDTO);
-                item.DateCreated = DateTime.Now;
-                item.DateModified = DateTime.Now;
                 result = CreatedAtAction(nameof(CreateUser), new { id = item.Id }, item);
             }
             catch (Exception ex)
