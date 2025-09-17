@@ -70,7 +70,6 @@ namespace LADP_EFC.Repository
 
         private string CreateUserToken(int userId)
         {
-            //string token = Guid.NewGuid().ToString();
             var newToken = new UserToken
             {
                 Token = Guid.NewGuid().ToString(),
