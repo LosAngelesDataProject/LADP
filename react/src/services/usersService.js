@@ -1,7 +1,7 @@
 import axios from "axios";
 
 var userService = {
-  endpoint: "http://localhost:5197/api/user",
+  endpoint: "https://localhost:7035/api/User",
 };
 
 const registerUser = (payload) => {

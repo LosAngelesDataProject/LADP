@@ -36,7 +36,7 @@ namespace LADP__EFC
                         .AllowAnyHeader()
                         .AllowCredentials());
             });
-            
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -58,7 +58,7 @@ namespace LADP__EFC
             }
 
             app.UseCors("AllowSpecificOrigin");
-            //app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
             app.UseAuthorization();
 
             app.MapControllers();
