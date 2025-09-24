@@ -70,7 +70,6 @@ namespace LADP_EFC.Repository
 
         private string CreateUserToken(int userId)
         {
-            //string token = Guid.NewGuid().ToString();
             var newToken = new UserToken
             {
                 Token = Guid.NewGuid().ToString(),
@@ -141,7 +140,7 @@ namespace LADP_EFC.Repository
                 Email = user.Email,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                Mi = user.Mi ?? "",
+                Mi = user.Mi,
                 Status = user.Status,
             };
             return mappedItem;
