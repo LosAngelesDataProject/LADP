@@ -1,4 +1,4 @@
-﻿using LADP_EFC.Models;
+﻿using LADP_EFC.Enitities;
 
 namespace LADP_EFC.Repository.Interfaces
 {

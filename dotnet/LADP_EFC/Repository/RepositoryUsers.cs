@@ -1,6 +1,7 @@
 ﻿using LADP_EFC.Data;
+using LADP_EFC.Data.Enitities.Users;
 using LADP_EFC.DTO.Users;
-using LADP_EFC.Models.Users;
+using LADP_EFC.Enitities.Users;
 using LADP_EFC.Repository.Interfaces;
 
 namespace LADP_EFC.Repository

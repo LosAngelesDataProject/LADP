@@ -1,26 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using LADP_EFC.Repository.Interfaces;
-using LADP_EFC.DTO.FoodResource;
+using LADP_EFC.DTO.FoodResources;
+using LADP_EFC.Services;
 
 namespace LADP_EFC.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FoodResourcesController : ControllerBase
+    public class FoodResourcesController(FoodResourceService service) : ControllerBase
     {
-        private readonly IRepositoryFoodResource _repository;
-        public FoodResourcesController(IRepositoryFoodResource repository)
-        {
-            _repository = repository;
-        }
+        private readonly FoodResourceService _service = service;
 
-        // GET: api/FoodResources
+        /// <summary>
+        /// Fetches a list of all FoodResources.
+        /// </summary>
         [HttpGet]
-        public ActionResult<IEnumerable<FoodResourceDTO>> GetFoodResources()
+        public ActionResult<IEnumerable<FoodResourceDTO>> GetAll()
         {
             try
             {
-                var list = _repository.GetAll();
+                var list = _service.GetAllFoodResources();
                 if (list == null)
                 {
                     return NotFound();
@@ -37,13 +36,12 @@ namespace LADP_EFC.Controllers
             }
         }
 
-        // GET: api/FoodResources/5
         [HttpGet("{id}")]
         public ActionResult<FoodResourceDTO> GetFoodResource(int id)
         {
             try
             {
-                var foodResource = _repository.GetById(id);
+                var foodResource = _service.GetFoodResource(id);
 
                 if (foodResource == null)
                 {
@@ -59,8 +57,6 @@ namespace LADP_EFC.Controllers
             }
         }
 
-        // PUT: api/FoodResources/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public ActionResult<FoodResourceDTO> UpdateFoodResource(int id, FoodResourceDTO foodResource)
         {
@@ -71,7 +67,7 @@ namespace LADP_EFC.Controllers
             }
             try
             {
-                var item = _repository.Update(foodResource);
+                var item = _service.Update(foodResource);
                 if (item == null)
                 {
                     return NoContent();
@@ -89,16 +85,13 @@ namespace LADP_EFC.Controllers
             return result;
         }
 
-        // POST: api/FoodResources
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        //public ActionResult<FoodResourceAddDTO> PostFoodResource(FoodResourceAddDTO foodResource)
         public ActionResult<FoodResourceDTO> CreateFoodResource(AddFoodResourceDTO foodResource)
         {
             ObjectResult result;
             try
             {
-                var item = _repository.Create(foodResource);
+                var item = _service.Create(foodResource);
                 result = CreatedAtAction("GetFoodResource", new { id = item.Id }, item);
             }
             catch (Exception ex)
@@ -109,13 +102,12 @@ namespace LADP_EFC.Controllers
             return result;
         }
 
-        // DELETE: api/FoodResources/5
         [HttpDelete("{id}")]
         public ActionResult<FoodResourceDTO> DeleteFoodResource(int id)
         {
             try
             {
-                var item = _repository.Delete(id);
+                var item = _service.DeleteFoodResource(id);
                 if (item == null)
                 {
                     return NoContent();

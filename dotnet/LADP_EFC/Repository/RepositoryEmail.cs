@@ -2,27 +2,18 @@
 using Task = System.Threading.Tasks.Task;
 using brevo_csharp.Model;
 using brevo_csharp.Api;
-using brevo_csharp.Client;
-using LADP_EFC.DTO.Users;
 using Microsoft.Extensions.Options;
-using LADP_EFC.Models.AppSettings;
-using LADP_EFC.Models;
 using Configuration = brevo_csharp.Client.Configuration;
+using LADP_EFC.Data.Enitities;
 
 
 namespace LADP_EFC.Repository
 {
-    public class RepositoryEmail : IRepositoryEmail
+    public class RepositoryEmail(IOptions<AppSettings> config, IOptions<BrevoApi> brevoApi) : IRepositoryEmail
     {
 
-        private readonly string baseUrl;
-        private BrevoApi brevo;
-
-        public RepositoryEmail(IOptions<AppSettings> config, IOptions<BrevoApi> brevoApi)
-        {
-            brevo = brevoApi.Value;
-            baseUrl = config.Value.BaseUrl;
-        }
+        private readonly string baseUrl = config.Value.BaseUrl;
+        private readonly BrevoApi brevo = brevoApi.Value;
 
         public async Task TestEmail()
         {
@@ -73,5 +64,9 @@ namespace LADP_EFC.Repository
                 Console.WriteLine($"Exception when calling Brevo API: {ex.Message}");
             }
         }
+    }
+
+    public class AppSettings
+    {
     }
 }

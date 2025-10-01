@@ -6,13 +6,9 @@ namespace LADP_EFC.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UserController(IRepositoryUser repository) : ControllerBase
     {
-        private readonly IRepositoryUser _repository;
-        public UserController(IRepositoryUser repository)
-        {
-            _repository = repository;
-        }
+        private readonly IRepositoryUser _repository = repository;
 
         [HttpGet]
         public ActionResult<IEnumerable<UserDTO>> GetUsers()
