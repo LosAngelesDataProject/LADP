@@ -2,19 +2,23 @@
 using LADP_EFC.DTO.Users;
 using LADP_EFC.Models.Users;
 using LADP_EFC.Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using NuGet.Protocol.Plugins;
 
 namespace LADP_EFC.Repository
 {
     public class RepositoryUser : IRepositoryUser
     {
         private readonly DataContext _context;
+        private IRepositoryEmail RepositoryEmail;
 
-        public RepositoryUser(DataContext context)
+        public RepositoryUser(DataContext context, IRepositoryEmail repositoryEmail)
         {
             _context = context;
+            RepositoryEmail = repositoryEmail ?? throw new ArgumentNullException(nameof(repositoryEmail));
         }
 
-        public IEnumerable<UserDTO> GetAll() 
+        public IEnumerable<UserDTO> GetAll()
         {
             return _context.Users
                 .Select(u => MapUser(u))
@@ -32,11 +36,14 @@ namespace LADP_EFC.Repository
                 LastName = model.LastName,
                 Mi = model.Mi,
                 Status = initialStatus,
+                DateCreated = DateTime.UtcNow,
+                DateModified = DateTime.UtcNow,
 
             };
             _context.Users.Add(newUser);
             _context.SaveChanges();
-
+            string token = CreateUserToken(newUser.Id);
+            RepositoryEmail.EmailConfirm(model, token);
             return MapUser(newUser);
         }
 
@@ -49,22 +56,82 @@ namespace LADP_EFC.Repository
         {
             throw new NotImplementedException();
         }
-        
+
+        public async Task UpdateUserStatus(int id, string status)
+        {
+            var user = await _context.Users.FindAsync(id);
+            if (user != null)
+            {
+                user.Status = status;
+                user.DateModified = DateTime.Now;
+                await _context.SaveChangesAsync();
+            }
+        }
+
         private string CreateUserToken(int userId)
         {
-            string token = Guid.NewGuid().ToString();
             var newToken = new UserToken
             {
-                Token = token,
+                Token = Guid.NewGuid().ToString(),
                 UserId = userId,
             };
             _context.UserTokens.Add(newToken);
             _context.SaveChanges();
 
-            return token;
+            return newToken.Token;
 
         }
-        
+
+        public async Task ConfirmAccount(string tokenId)
+        {
+            if (string.IsNullOrEmpty(tokenId))
+            {
+                throw new ArgumentNullException("token missing or empty");
+            }
+            var token = await _context.UserTokens.FirstOrDefaultAsync(t => t.Token == tokenId);
+            if (token == null)
+            {
+                Console.WriteLine($"Token not found: {tokenId}");
+                throw new Exception($"No user found for the token: {tokenId}");
+            }
+            await UpdateUserStatus(token.UserId, "Confirmed");
+            _context.UserTokens.Remove(token);
+            try
+            {
+
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                Console.WriteLine("Token already deleted. Safe to Ignore");
+            }
+        }
+
+        public int GetByToken(string tokenId)
+        {
+            var token = _context.UserTokens.FirstOrDefault(t => t.Token == tokenId);
+            if (token == null)
+            {
+                return 0;
+            }
+            return token.UserId;
+        }
+
+        public async Task<UserToken> DeleteUserToken(string tokenId)
+        {
+            var token = _context.UserTokens.Find(tokenId);
+            if (token != null)
+            {
+                _context.UserTokens.Remove(token);
+                await _context.SaveChangesAsync();
+                return token;
+            }
+            else
+            {
+                throw new Exception("Token not found, cannot delete");
+            }
+        }
+
         private static UserDTO MapUser(User user)
         {
             var mappedItem = new UserDTO
