@@ -15,7 +15,7 @@ namespace LADP_EFC.Data
         public DbSet<Developers> Developers { get; set; }
         public DbSet<DevelopersRole> DevelopersRole { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<UserToken> UserTokens {get; set;}
+        public DbSet<UserToken> UserTokens { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -88,7 +88,7 @@ namespace LADP_EFC.Data
                 entity.Property(e => e.DateCreated).IsRequired().HasColumnName("DateCreated").HasColumnType("datetime2(7)");
                 entity.Property(e => e.DateModified).IsRequired().HasColumnName("DateModified").HasColumnType("datetime2(7)");
                 entity.Property(e => e.Phone).HasMaxLength(50).HasColumnName("Phone").HasColumnType("nvarchar(50)");
-                
+
             });
 
             modelBuilder.Entity<UserToken>(entity =>
@@ -99,7 +99,7 @@ namespace LADP_EFC.Data
                 entity.Property(e => e.UserId).HasColumnName("UserId").HasColumnType("int");
 
             });
-            
+
 
             modelBuilder.Entity<ResourceTags>(entity =>
             {

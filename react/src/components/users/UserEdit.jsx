@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import toastr from "toastr";
 import {Formik, Form, Field, ErrorMessage} from "formik";
-import { getCurrentUser, updateUser } from "../../services/usersService";
+import usersService from "../../services/usersService.js";
 import styles from "./UserEdit.module.css"
 import userEditFormSchema from "./userEditFormSchema";
 import config from "../../../config.js"
@@ -21,7 +21,7 @@ function UserEdit(){
   useEffect(() => {
     const fetchCurrentUser = async () => {
       try {
-        const data = await getCurrentUser();
+        const data = await usersService.getCurrentUser();
         console.log("User fetched", data)
         await setSampleUser(data)
       } catch (error) {
@@ -44,7 +44,7 @@ function UserEdit(){
   });
 
   const handleSubmit = (values) => {
-    updateUser(values).then(onUpdateSuccess).catch(onUpdateErr)
+    usersService.updateUser(values).then(onUpdateSuccess).catch(onUpdateErr)
   }
 
   const onUpdateSuccess = (response) => {

@@ -5,14 +5,14 @@ using brevo_csharp.Api;
 using Microsoft.Extensions.Options;
 using Configuration = brevo_csharp.Client.Configuration;
 using LADP_EFC.Data.Enitities;
+using LADP_EFC.DTO.Users;
 
 
 namespace LADP_EFC.Repository
 {
-    public class RepositoryEmail(IOptions<AppSettings> config, IOptions<BrevoApi> brevoApi) : IRepositoryEmail
+    public class RepositoryEmail(IOptions<BrevoApi> brevoApi) : IRepositoryEmail
     {
 
-        private readonly string baseUrl = config.Value.BaseUrl;
         private readonly BrevoApi brevo = brevoApi.Value;
 
         public async Task TestEmail()
@@ -27,10 +27,10 @@ namespace LADP_EFC.Repository
                         Email = brevo.SenderEmail,
                         Name = brevo.SenderName,
                     },
-                    To = new List<SendSmtpEmailTo>
-                    {
+                    To =
+                    [
                         new SendSmtpEmailTo(brevo.TestRecipient)
-                    },
+                    ],
                     Subject = "Test Email",
                     HtmlContent = "<html><body><h1>This is a test email</h1></body></html>"
                 };
@@ -44,6 +44,70 @@ namespace LADP_EFC.Repository
                 Console.WriteLine($"Exception when sending test email: {ex.Message}");
             }
         }
+        public async Task EmailConfirm(AddUserDTO model, string tokenId)
+        {
+            try
+            {
+                var email = new SendSmtpEmail
+                {
+                    Sender = new SendSmtpEmailSender
+                    {
+                        Email = brevo.SenderEmail,
+                        Name = brevo.SenderName,
+                    },
+                    To =
+                    [
+                        new SendSmtpEmailTo(model.Email)
+                    ],
+                    Subject = "Confirm your Email Address",
+                    HtmlContent = LoadHtmlTemplate("emailConfirmation.html", brevo.BaseUrl, model.FirstName, tokenId)
+                };
+
+                await SendEmailAsync(email);
+                Console.WriteLine("Confirmation email sent successfully!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception when sending confirmation email: {ex.Message}");
+            }
+            ;
+        }
+
+        private static string LoadHtmlTemplate(string templateFileName, string url, string firstName = null, string tokenId = null)
+        {
+            try
+            {
+                string templatePath = Path.Combine("Models", "Emails", "EmailTemplates", templateFileName);
+
+                if (File.Exists(templatePath))
+                {
+                    string htmlContent = File.ReadAllText(templatePath);
+
+                    if (!string.IsNullOrEmpty(tokenId))
+                    {
+                        string confirmationLink = $"{url}/confirmuser?tokenId={tokenId}";
+
+                        htmlContent = htmlContent
+                            .Replace("Confirm-Link-Insert", confirmationLink)
+                            .Replace("Users-First-Name", firstName ?? "User");
+
+                        return htmlContent;
+                    }
+
+                    return htmlContent;
+                }
+                else
+                {
+                    return $"Template file not found: {templatePath}";
+                }
+            }
+            catch (Exception ex)
+            {
+                return $"Error loading HTML template: {ex.Message}";
+            }
+        }
+
+
 
         private async Task SendEmailAsync(SendSmtpEmail email)
         {
@@ -64,9 +128,5 @@ namespace LADP_EFC.Repository
                 Console.WriteLine($"Exception when calling Brevo API: {ex.Message}");
             }
         }
-    }
-
-    public class AppSettings
-    {
     }
 }

@@ -15,6 +15,7 @@ import DefaultLayout from "./layouts/DefaultLayout";
 import { useMediaQuery } from "react-responsive";
 import MobileLayout from "./layouts/MobileLayout";
 import UserEdit from "./components/users/UserEdit";
+import UserConfirm from "./components/users/UserConfirm";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -40,6 +41,7 @@ function App() {
         <Route path="/contact-us" element={<Construction />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/under-construction" element={<Construction />} />
+        <Route path="/confirmuser" element={<UserConfirm/>} />
       </Routes>
     );
   };
