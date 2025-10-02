@@ -6,14 +6,9 @@ namespace LADP_EFC.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DevelopersController : ControllerBase
+    public class DevelopersController(IRepositoryDeveloper repository) : ControllerBase
     {
-        private readonly IRepositoryDeveloper _repository;
-
-        public DevelopersController(IRepositoryDeveloper repository)
-        {
-            _repository = repository;
-        }
+        private readonly IRepositoryDeveloper _repository = repository;
 
         // GET: api/Developers
         [HttpGet]

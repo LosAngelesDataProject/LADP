@@ -1,6 +1,0 @@
-@LADP_EFC_HostAddress = http://localhost:5276
-
-GET {{LADP_EFC_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

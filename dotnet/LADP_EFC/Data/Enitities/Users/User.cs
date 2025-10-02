@@ -1,4 +1,4 @@
-﻿namespace LADP_EFC.Models.Users
+﻿namespace LADP_EFC.Data.Enitities.Users
 {
     public class User
     {

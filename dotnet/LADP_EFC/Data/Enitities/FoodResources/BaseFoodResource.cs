@@ -1,10 +1,6 @@
-﻿using LADP_EFC.DTO.BusinessHours;
-using LADP_EFC.DTO.Tag;
-using LADP_EFC.Models;
-
-namespace LADP_EFC.DTO.FoodResource
+﻿namespace LADP_EFC.Data.Enitities.FoodResources
 {
-    public class AddFoodResourceDTO
+    public class BaseFoodResource
     {
         public string Name { get; set; } = null!;
         public string? Area { get; set; }
@@ -18,7 +14,5 @@ namespace LADP_EFC.DTO.FoodResource
         public string? Phone { get; set; }
         public string? Website { get; set; }
         public string? Description { get; set; }
-        public List<TagDTO> Tags { get; set; } = [];
-        public List<BusinessHoursDTO> BusinessHours { get; set; } = [];
     }
 }

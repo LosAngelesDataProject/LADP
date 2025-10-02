@@ -1,17 +1,12 @@
-﻿using LADP_EFC.Models;
-using LADP_EFC.Models.Users;
-using Microsoft.AspNetCore.Identity;
+﻿using LADP_EFC.Data.Enitities;
+using LADP_EFC.Data.Enitities.FoodResources;
+using LADP_EFC.Data.Enitities.Users;
 using Microsoft.EntityFrameworkCore;
 
 namespace LADP_EFC.Data
 {
-    public partial class DataContext : DbContext
+    public partial class DataContext(DbContextOptions<DataContext> options) : DbContext(options)
     {
-        public DataContext(DbContextOptions<DataContext> options) : base(options)
-        {
-        }
-
-        public DbSet<TodoItem> TodoItems { get; set; } = null!;
         public DbSet<FoodResource> FoodResources { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<ResourceTags> ResourceTags { get; set; }
