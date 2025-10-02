@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using LADP_EFC.Repository.Interfaces;
 using LADP_EFC.DTO.FoodResources;
 using LADP_EFC.Services;
 
@@ -11,9 +10,6 @@ namespace LADP_EFC.Controllers
     {
         private readonly FoodResourceService _service = service;
 
-        /// <summary>
-        /// Fetches a list of all FoodResources.
-        /// </summary>
         [HttpGet]
         public ActionResult<IEnumerable<FoodResourceDTO>> GetAll()
         {

@@ -35,7 +35,7 @@ namespace LADP_EFC
             {
                 options.AddPolicy("AllowSpecificOrigin",
                     policy => policy
-                        .WithOrigins("http://localhost:5173", "https://localhost:5173")
+                        .WithOrigins(builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? [])
                         .AllowAnyMethod()
                         .AllowAnyHeader()
                         .AllowCredentials());

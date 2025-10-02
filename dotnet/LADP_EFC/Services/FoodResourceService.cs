@@ -13,8 +13,11 @@ namespace LADP_EFC.Services
         /// <summary>
         /// Adds Food Resource to the database and handles Tags and Business Hours.
         /// </summary>
-        /// <param name="item"></param>
-        /// <returns></returns>
+        /// <param name="item">Food Resource DTO without an Id</param>
+        /// <returns>Full Food Resource entity</returns>
+        /// <remarks>
+        ///     Will create Business Hours for every day of the week.
+        /// </remarks>
         public FoodResource Create(AddFoodResourceDTO item)
         {
             // Create new instance of your entity without setting Id
@@ -59,6 +62,8 @@ namespace LADP_EFC.Services
         /// Returns Food Resource based on it's Id.
         /// </summary>        
         /// <param name="id"></param>
+        /// <returns>Food Resource DTO(without an Id)</returns>
+        /// <remarks> Will throw an exception if FoodRedource is not found.</remarks>
         public FoodResourceDTO GetFoodResource(int id)
         {
             var item = _repository.GetFoodResource(id);
@@ -80,7 +85,10 @@ namespace LADP_EFC.Services
         /// Returns the FoodReource after updating in the database and handles Tags and Business Hours.
         /// </summary>
         /// <param name="updateItem"></param>
-        /// <returns></returns>
+        /// <returns>Food Resource DTO(without an Id)</returns>
+        /// <remarks>
+        ///     Will not create duplicate tags but does not delete now unused tags.
+        /// </remarks>
         public FoodResourceDTO Update(FoodResourceDTO updateItem)
         {
             // Get tracked FoodResource
@@ -156,7 +164,10 @@ namespace LADP_EFC.Services
         /// Returns the FoodReource after removing from the database.
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns>Full Food Resource entity</returns>
+        /// <remarks>
+        ///     Relies on enity realtionship to cascade on deletion of FoodResource.
+        /// </remarks>
         public FoodResource DeleteFoodResource(int id)
         {
             // Get tracked FoodResource
