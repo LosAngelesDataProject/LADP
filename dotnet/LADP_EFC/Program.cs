@@ -49,10 +49,8 @@ namespace LADP_EFC
             builder.Services.AddDbContext<DataContext>(options =>
             {
                 options.UseSqlServer(
-                    builder.Configuration.GetConnectionString("DefaultConnection"),
-                    sqlOptions => sqlOptions.EnableRetryOnFailure());
-            });
-
+                    builder.Configuration.GetConnectionString("DefaultConnection"));
+                    
             });
             var app = builder.Build();
 
