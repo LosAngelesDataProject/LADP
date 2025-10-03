@@ -21,7 +21,7 @@ function UserConfirm() {
     }
   }, [tokenId]);
 
-    const onConfirmSuccess = (response) => {
+  const onConfirmSuccess = (response) => {
     console.log("Confirmation Success", tokenId, response);
     toastr.success("Your email has been confirmed!");
     setConfirmStatus("success");
@@ -36,6 +36,9 @@ const onConfirmErr = (response) => {
       "Confirmation failed. Please try again or contact us to request a new link."
     );
     setConfirmStatus("error")
+    setTimeout(() => {
+      navigate("/");
+    }, 3000)
 };
     
 const renderMessage = () => {
@@ -44,7 +47,7 @@ const renderMessage = () => {
   } else if (confirmStatus === "success") {
     return <h1>Email Confirmed! You will be redirected in 3 seconds.</h1>;
   } else if (confirmStatus === "error") {
-    return <h1>If an error occurs, please try again or contact us.</h1>;
+    return <h1>Redirecting to Home...</h1>;
   }
 };
 
