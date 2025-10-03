@@ -31,7 +31,7 @@ namespace LADP__EFC
             {
                 options.AddPolicy("AllowSpecificOrigin",
                     policy => policy
-                        .WithOrigins("http://localhost:5173", "https://localhost:5173")
+                        .WithOrigins("http://localhost:5173")
                         .AllowAnyMethod()
                         .AllowAnyHeader()
                         .AllowCredentials());
@@ -44,10 +44,9 @@ namespace LADP__EFC
             builder.Services.AddDbContext<DataContext>(options =>
             {
                 options.UseSqlServer(
-                    builder.Configuration.GetConnectionString("DefaultConnection"),
-                    sqlOptions => sqlOptions.EnableRetryOnFailure());
+                    builder.Configuration.GetConnectionString("DefaultConnection"));
+                    
             });
-
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
