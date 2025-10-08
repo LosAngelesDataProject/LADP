@@ -52,28 +52,28 @@ namespace LADP_EFC.Repository
         }
 
         /// <summary>
-        /// Returns the FoodReource after updating in the database.
+        /// Returns the foodResource after updating in the database.
         /// </summary>
-        /// <param name="foodReource"></param>
+        /// <param name="foodResource"></param>
         /// <returns></returns>
-        public FoodResource UpdateFoodResource(FoodResource foodReource)
+        public FoodResource UpdateFoodResource(FoodResource foodResource)
         {
-            _context.Update(foodReource);
+            _context.Update(foodResource);
             _context.SaveChanges();
-            _context.Entry(foodReource).State = EntityState.Detached;
-            return foodReource;
+            _context.Entry(foodResource).State = EntityState.Detached;
+            return foodResource;
         }
 
         /// <summary>
         /// Returns the FoodReource after removing from the database.
         /// </summary>
-        /// <param name="foodReource"></param>
+        /// <param name="foodResource"></param>
         /// <returns></returns>
-        public FoodResource DeleteFoodResource(FoodResource foodReource)
+        public FoodResource DeleteFoodResource(FoodResource foodResource)
         {
-            _context.FoodResources.Remove(foodReource);
+            _context.FoodResources.Remove(foodResource);
             _context.SaveChanges();
-            return foodReource;
+            return foodResource;
         }
         #endregion
 
@@ -132,9 +132,9 @@ namespace LADP_EFC.Repository
         }
 
         /// <summary>
-        /// Updates a FoodReource in the database.
+        /// Updates a ResourceTag in the database.
         /// </summary>
-        /// <param name="foodReource"></param>
+        /// <param name="tag"></param>
         /// <returns></returns>
         public void DeleteResourceTag(ResourceTags tag)
         {

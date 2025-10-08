@@ -8,8 +8,8 @@ namespace LADP_EFC.Repository.Interfaces
         public FoodResource AddFoodResource(FoodResource foodResource);
         public IQueryable<FoodResource> GetAllFoodResources();
         public FoodResource? GetFoodResource(int id);
-        public FoodResource UpdateFoodResource(FoodResource foodReource);
-        public FoodResource DeleteFoodResource(FoodResource foodReource);
+        public FoodResource UpdateFoodResource(FoodResource foodResource);
+        public FoodResource DeleteFoodResource(FoodResource foodResource);
 
         public Tag AddTag(Tag tag);
         public Tag? GetTag(string name);
