@@ -2,26 +2,18 @@
 using Task = System.Threading.Tasks.Task;
 using brevo_csharp.Model;
 using brevo_csharp.Api;
-using brevo_csharp.Client;
-using LADP_EFC.DTO.Users;
 using Microsoft.Extensions.Options;
-using LADP_EFC.Models;
 using Configuration = brevo_csharp.Client.Configuration;
+using LADP_EFC.Data.Enitities;
+using LADP_EFC.DTO.Users;
 
 
 namespace LADP_EFC.Repository
 {
-    public class RepositoryEmail : IRepositoryEmail
+    public class RepositoryEmail(IOptions<BrevoApi> brevoApi) : IRepositoryEmail
     {
 
-        private readonly string baseUrl;
-        private BrevoApi brevo;
-
-        public RepositoryEmail(IOptions<BrevoApi> brevoApi)
-        {
-            brevo = brevoApi.Value;
-            baseUrl = brevo.BaseUrl;
-        }
+        private readonly BrevoApi brevo = brevoApi.Value;
 
         public async Task TestEmail()
         {
@@ -35,10 +27,10 @@ namespace LADP_EFC.Repository
                         Email = brevo.SenderEmail,
                         Name = brevo.SenderName,
                     },
-                    To = new List<SendSmtpEmailTo>
-                    {
+                    To =
+                    [
                         new SendSmtpEmailTo(brevo.TestRecipient)
-                    },
+                    ],
                     Subject = "Test Email",
                     HtmlContent = "<html><body><h1>This is a test email</h1></body></html>"
                 };
@@ -63,12 +55,12 @@ namespace LADP_EFC.Repository
                         Email = brevo.SenderEmail,
                         Name = brevo.SenderName,
                     },
-                    To = new List<SendSmtpEmailTo>
-                    {
+                    To =
+                    [
                         new SendSmtpEmailTo(model.Email)
-                    },
+                    ],
                     Subject = "Confirm your Email Address",
-                    HtmlContent = LoadHtmlTemplate("emailConfirmation.html", baseUrl, model.FirstName, tokenId)
+                    HtmlContent = LoadHtmlTemplate("emailConfirmation.html", brevo.BaseUrl, model.FirstName, tokenId)
                 };
 
                 await SendEmailAsync(email);
@@ -77,10 +69,11 @@ namespace LADP_EFC.Repository
             catch (Exception ex)
             {
                 Console.WriteLine($"Exception when sending confirmation email: {ex.Message}");
-            };
+            }
+            ;
         }
 
-        private string LoadHtmlTemplate(string templateFileName, string url, string firstName = null, string tokenId = null)
+        private static string LoadHtmlTemplate(string templateFileName, string url, string firstName = null, string tokenId = null)
         {
             try
             {

@@ -1,9 +1,8 @@
 ﻿using LADP_EFC.Data;
+using LADP_EFC.Data.Enitities.Users;
 using LADP_EFC.DTO.Users;
-using LADP_EFC.Models.Users;
 using LADP_EFC.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using NuGet.Protocol.Plugins;
 
 namespace LADP_EFC.Repository
 {
