@@ -1,6 +1,4 @@
-using System.Collections.Generic;
-
-namespace LADP_EFC.Models
+namespace LADP_EFC.Data.Enitities
 {
     public class DevelopersRole
     {

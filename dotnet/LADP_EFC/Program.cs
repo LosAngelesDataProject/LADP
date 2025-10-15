@@ -3,9 +3,10 @@ using LADP_EFC.Data;
 using LADP_EFC.Repository;
 using LADP_EFC.Repository.Interfaces;
 using System.Text.Json.Serialization;
-using LADP_EFC.Models;
+using LADP_EFC.Data.Enitities;
+using LADP_EFC.Services;
 
-namespace LADP__EFC
+namespace LADP_EFC
 {
     public class Program
     {
@@ -15,12 +16,15 @@ namespace LADP__EFC
 
             // Add services to the container.
             builder.Services.Configure<BrevoApi>(builder.Configuration.GetSection("BrevoApi"));
+            builder.Services.AddScoped< FoodResourceService>();
+
             // Add Repositories to the container.
             builder.Services.AddScoped<IRepositoryEmail, RepositoryEmail>();
             builder.Services.AddScoped<IRepositoryFoodResource, RepositoryFoodResource>();
-            builder.Services.AddScoped<IRepositoryToDoItems, RepositoryToDoItems>();
             builder.Services.AddScoped<IRepositoryDeveloper, RepositoryDeveloper>();
             builder.Services.AddScoped<IRepositoryUser, RepositoryUser>();
+            
+            // Add Controllers
             builder.Services.AddControllers().AddJsonOptions(options =>
             {
                 options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
@@ -31,7 +35,7 @@ namespace LADP__EFC
             {
                 options.AddPolicy("AllowSpecificOrigin",
                     policy => policy
-                        .WithOrigins("http://localhost:5173", "https://localhost:5173")
+                        .WithOrigins(builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? [])
                         .AllowAnyMethod()
                         .AllowAnyHeader()
                         .AllowCredentials());
@@ -40,7 +44,8 @@ namespace LADP__EFC
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            
+
+            // Database
             builder.Services.AddDbContext<DataContext>(options =>
             {
                 options.UseSqlServer(
@@ -60,7 +65,6 @@ namespace LADP__EFC
             app.UseCors("AllowSpecificOrigin");
             app.UseHttpsRedirection();
             app.UseAuthorization();
-
             app.MapControllers();
             app.Run();
         }
