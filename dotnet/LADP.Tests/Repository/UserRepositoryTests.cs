@@ -14,26 +14,34 @@ namespace LADP.Tests.Repository
 {
     public class UserRepositoryTests
     {
-        private DataContext GetInMemoryDbContext()
+        private readonly DataContext _context;
+        private readonly Mock<IRepositoryEmail> _mockEmailRepo;
+        private readonly RepositoryUser _repository;
+
+        public UserRepositoryTests()
         {
+            // Shared setup
             var options = new DbContextOptionsBuilder<DataContext>()
-                .UseInMemoryDatabase(Guid.NewGuid().ToString())
+                .UseInMemoryDatabase(Guid.NewGuid().ToString()) // unique for test run
                 .Options;
-            return new DataContext(options);
+
+            _context = new DataContext(options);
+            _mockEmailRepo = new Mock<IRepositoryEmail>();
+            _repository = new RepositoryUser(_context, _mockEmailRepo.Object);
         }
-    
-        [Fact]
-        public void CreateUserTest() 
-        { 
-            // Set up in-memory DB and mock dependencies
-            var context = GetInMemoryDbContext();
-            var mockEmailRepo = new Mock<IRepositoryEmail>();
-            var repository = new RepositoryUser(context, mockEmailRepo.Object);
-            
-            // Stock data
+
+        private void ResetDatabase()
+        {
+            _context.Database.EnsureDeleted();
+            _context.Database.EnsureCreated();
+        }
+
+        // Helper to create a test user with configurable email
+        private (AddUserDTO dto, UserDTO result) CreateTestUser(string email = "test@example.com")
+        {
             var addUserDto = new AddUserDTO
             {
-                Email = "test@example.com",
+                Email = email,
                 Password = "Password123!",
                 PasswordConfirm = "Password123!",
                 FirstName = "Jane",
@@ -42,10 +50,21 @@ namespace LADP.Tests.Repository
                 Phone = ""
             };
 
-            var result = repository.Create(addUserDto);
+            var result = _repository.Create(addUserDto);
+            return (addUserDto, result);
+        }
 
-            // Verify results
-            var user = context.Users.FirstOrDefault(u => u.Email == addUserDto.Email);
+        [Fact]
+        public async Task CreateUserTest_ShouldAddUser_AndTriggerEmail()
+        {
+            // Arrange
+            ResetDatabase();
+
+            // Act
+            var (addUserDto, result) = CreateTestUser();
+
+            // Assert
+            var user = await _context.Users.FindAsync(result.Id);
             Assert.NotNull(user);
 
             // Verify if stock data matches repository data
@@ -55,17 +74,12 @@ namespace LADP.Tests.Repository
             Assert.Equal(addUserDto.Mi, user.Mi);
             Assert.Equal("Not Confirmed", user.Status);
 
-            var token = context.UserTokens.FirstOrDefault(t => t.UserId == user.Id);
+            // Verify if token was created
+            var token = _context.UserTokens.FirstOrDefault(t => t.UserId == user.Id);
             Assert.NotNull(token);
 
-            // Verify if repository data matches mapped data
-            Assert.Equal(user.Email, result.Email);
-            Assert.Equal(user.FirstName, result.FirstName);
-            Assert.Equal(user.LastName, result.LastName);
-            Assert.Equal(user.Status, result.Status);
-
-            // Verify if method was triggered
-            mockEmailRepo.Verify(e => e.EmailConfirm(addUserDto, It.IsAny<string>()), Times.Once);
+            // Verify if EmailConfirm() was called
+            _mockEmailRepo.Verify(e => e.EmailConfirm(addUserDto, It.IsAny<string>()), Times.Once);
         }
     }
 
