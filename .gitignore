@@ -27,6 +27,8 @@ dist-ssr
 dotnet/LADP_EFC/bin/
 dotnet/LADP_EFC/obj/
 dotnet/LADP_EFC/.vs/
+**/bin/
+**/obj/
 
 #Ignore all appsettings.json files in the repository
 **/appsettings.json

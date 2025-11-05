@@ -41,6 +41,7 @@ namespace LADP_EFC
                         .AllowCredentials());
             });
 
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

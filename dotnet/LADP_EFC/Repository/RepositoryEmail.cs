@@ -7,7 +7,6 @@ using Configuration = brevo_csharp.Client.Configuration;
 using LADP_EFC.Data.Enitities;
 using LADP_EFC.DTO.Users;
 
-
 namespace LADP_EFC.Repository
 {
     public class RepositoryEmail(IOptions<BrevoApi> brevoApi) : IRepositoryEmail
