@@ -30,3 +30,4 @@ dotnet/LADP_EFC/.vs/
 
 #Ignore all appsettings.json files in the repository
 **/appsettings.json
+dotnet/LADP.Tests/
