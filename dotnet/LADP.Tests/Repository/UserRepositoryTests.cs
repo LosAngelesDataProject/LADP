@@ -14,7 +14,6 @@ namespace LADP.Tests.Repository
 {
     public class UserRepositoryTests
     {
-<<<<<<< HEAD
         private readonly DataContext _context;
         private readonly Mock<IRepositoryEmail> _mockEmailRepo;
         private readonly RepositoryUser _repository;
@@ -43,28 +42,6 @@ namespace LADP.Tests.Repository
             var addUserDto = new AddUserDTO
             {
                 Email = email,
-=======
-        private DataContext GetInMemoryDbContext()
-        {
-            var options = new DbContextOptionsBuilder<DataContext>()
-                .UseInMemoryDatabase(Guid.NewGuid().ToString())
-                .Options;
-            return new DataContext(options);
-        }
-    
-        [Fact]
-        public void CreateUserTest() 
-        { 
-            // Set up in-memory DB and mock dependencies
-            var context = GetInMemoryDbContext();
-            var mockEmailRepo = new Mock<IRepositoryEmail>();
-            var repository = new RepositoryUser(context, mockEmailRepo.Object);
-            
-            // Stock data
-            var addUserDto = new AddUserDTO
-            {
-                Email = "test@example.com",
->>>>>>> 606e316 (Installed NuGet packages and file for createUser unit testing)
                 Password = "Password123!",
                 PasswordConfirm = "Password123!",
                 FirstName = "Jane",
@@ -73,7 +50,6 @@ namespace LADP.Tests.Repository
                 Phone = ""
             };
 
-<<<<<<< HEAD
             var result = _repository.Create(addUserDto);
             return (addUserDto, result);
         }
@@ -89,12 +65,6 @@ namespace LADP.Tests.Repository
 
             // Assert
             var user = await _context.Users.FindAsync(result.Id);
-=======
-            var result = repository.Create(addUserDto);
-
-            // Verify results
-            var user = context.Users.FirstOrDefault(u => u.Email == addUserDto.Email);
->>>>>>> 606e316 (Installed NuGet packages and file for createUser unit testing)
             Assert.NotNull(user);
 
             // Verify if stock data matches repository data
@@ -104,7 +74,6 @@ namespace LADP.Tests.Repository
             Assert.Equal(addUserDto.Mi, user.Mi);
             Assert.Equal("Not Confirmed", user.Status);
 
-<<<<<<< HEAD
             // Verify if token was created
             var token = _context.UserTokens.FirstOrDefault(t => t.UserId == user.Id);
             Assert.NotNull(token);
@@ -115,20 +84,3 @@ namespace LADP.Tests.Repository
     }
 
 }
-=======
-            var token = context.UserTokens.FirstOrDefault(t => t.UserId == user.Id);
-            Assert.NotNull(token);
-
-            // Verify if repository data matches mapped data
-            Assert.Equal(user.Email, result.Email);
-            Assert.Equal(user.FirstName, result.FirstName);
-            Assert.Equal(user.LastName, result.LastName);
-            Assert.Equal(user.Status, result.Status);
-
-            // Verify if method was triggered
-            mockEmailRepo.Verify(e => e.EmailConfirm(addUserDto, It.IsAny<string>()), Times.Once);
-        }
-    }
-
-}
->>>>>>> 606e316 (Installed NuGet packages and file for createUser unit testing)
