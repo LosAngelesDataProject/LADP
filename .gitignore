@@ -30,5 +30,15 @@ dotnet/LADP_EFC/.vs/
 dotnet/LADP.Tests/bin/
 dotnet/LADP.Tests/obj/
 
+# Visual Studio files
+.vs/
+*.user
+*.suo
+*.v8.*
+
+# Build outputs
+**/bin/
+**/obj/
+
 #Ignore all appsettings.json files in the repository
 **/appsettings.json
