@@ -1,11 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-<<<<<<< HEAD
     <TargetFramework>net9.0</TargetFramework>
-=======
-    <TargetFramework>net8.0</TargetFramework>
->>>>>>> 606e316 (Installed NuGet packages and file for createUser unit testing)
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
@@ -14,7 +10,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-<<<<<<< HEAD
     <PackageReference Include="coverlet.collector" Version="6.0.2" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
     <PackageReference Include="Moq" Version="4.20.72" />
@@ -24,25 +19,10 @@
 
   <ItemGroup>
     <Using Include="Xunit" />
-=======
-    <PackageReference Include="coverlet.collector" Version="6.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.9" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
-    <PackageReference Include="Moq" Version="4.20.72" />
-    <PackageReference Include="xunit" Version="2.5.3" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
->>>>>>> 606e316 (Installed NuGet packages and file for createUser unit testing)
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\LADP_EFC\LADP_EFC.csproj" />
   </ItemGroup>
 
-<<<<<<< HEAD
-=======
-  <ItemGroup>
-    <Using Include="Xunit" />
-  </ItemGroup>
-
->>>>>>> 606e316 (Installed NuGet packages and file for createUser unit testing)
 </Project>
