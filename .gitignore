@@ -21,12 +21,17 @@ dist-ssr
 *.sln
 *.sw?
 
-.vs/
-
 # Ignore build directories
-dotnet/LADP_EFC/bin/
-dotnet/LADP_EFC/obj/
 dotnet/LADP_EFC/.vs/
+
+# Visual Studio files
+.vs/
+*.user
+*.v8.*
+
+# Build outputs
+**/bin/
+**/obj/
 
 #Ignore all appsettings.json files in the repository
 **/appsettings.json
