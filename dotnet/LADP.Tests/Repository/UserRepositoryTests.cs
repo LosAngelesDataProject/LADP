@@ -10,15 +10,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LADP.Tests.Repositories
+namespace LADP.Tests.Repository
 {
-    public class RepositoryUserTests : IDisposable
+    public class UserRepositoryTests : IDisposable
     {
         private readonly DataContext _context;
         private readonly Mock<IRepositoryEmail> _mockEmailRepo;
         private readonly RepositoryUser _repository;
 
-        public RepositoryUserTests()
+        public UserRepositoryTests()
         {
             // new DB per test class instance
             var options = new DbContextOptionsBuilder<DataContext>()
