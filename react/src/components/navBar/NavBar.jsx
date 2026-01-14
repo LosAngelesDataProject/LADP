@@ -57,8 +57,8 @@ const NavBar = (props) => {
               <div className={styles.dropdown}>
                 <div className={`${styles.helpbtn} ${isActive("/contact-us")}`}>Help</div>
                 <div className={styles.dropdown_content}>
-                  <a href="/contact-us">FAQ</a>
-                  <a href="/contact-us">Contact Us</a>
+                  <Nav.Link as={Link} to="/contact-us">FAQ</Nav.Link>
+                  <Nav.Link as={Link} to="/contact-us">Contact Us</Nav.Link>
                 </div>
               </div>
             </div>
@@ -67,9 +67,9 @@ const NavBar = (props) => {
             <div className={`${styles.navLink} ${styles.dropdown}`}>
               <img src={UserIcon2} alt="UserLogged" className={styles.dropimg}></img>
                 <div className={styles.dropdown_content}>
-                  <a href="/user-edit">Settings</a>
-                  <a href="/contact-us">Contact Us</a>
-                  <a href="/" onClick={onLogout}>Logout</a>
+                  <Nav.Link as={Link} to="/user-edit">Settings</Nav.Link>
+                  <Nav.Link as={Link} to="/contact-us">Contact Us</Nav.Link>
+                  <Nav.Link as={Link} to="/" onClick={onLogout}>Logout</Nav.Link>
                 </div>
           </div>
             </>
@@ -78,9 +78,9 @@ const NavBar = (props) => {
             <div className={`${styles.navLink} ${styles.dropdown}`}>
               <img src={UserIcon} alt="Cinque Terre" className={styles.dropimg}></img>
                 <div className={styles.dropdown_content}>
-                  <a href="/user-edit">Settings</a>
-                  <a href="/login">Login</a>
-                  <a href="/register">Register</a>
+                  <Nav.Link as={Link} to="/user-edit">Settings</Nav.Link>
+                  <Nav.Link as={Link} to="/login">Login</Nav.Link>
+                  <Nav.Link as={Link} to="/register">Register</Nav.Link>
                 </div>
           </div>
             </>

@@ -1,4 +1,5 @@
-﻿using LADP_EFC.DTO.Users;
+﻿using LADP_EFC.Data.Enitities.Users;
+using LADP_EFC.DTO.Users;
 
 namespace LADP_EFC.Repository.Interfaces
 {
@@ -9,6 +10,8 @@ namespace LADP_EFC.Repository.Interfaces
         UserDTO Create(AddUserDTO model);
         UserDTO Update(UserDTO updateUser);
         Task ConfirmAccount(string tokenId);
+        User? GetByEmail(string email);
+
     }
 
 }
