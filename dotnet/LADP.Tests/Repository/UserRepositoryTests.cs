@@ -119,5 +119,30 @@ namespace LADP.Tests.Repository
             var deletedToken = _context.UserTokens.FirstOrDefault(t => t.Token == testToken.Token);
             Assert.Null(deletedToken);
         }
+
+        [Fact]
+        public async Task ConfirmAccount_InvalidTokenTest()
+        {
+            // Arrange
+            string invalidToken = Guid.NewGuid().ToString();
+
+            // Act
+            var exception = await Assert.ThrowsAsync<Exception>(
+                () => _repository.ConfirmAccount(invalidToken));
+
+            // Assert
+            Assert.Contains("No user found for the token", exception.Message);
+        }
+
+        [Fact]
+        public async Task ConfirmAccount_EmptyTokenTest()
+        {
+            // Arrange
+            string emptyToken = "";
+
+            // Act + Assert
+            await Assert.ThrowsAsync<ArgumentNullException>(
+                () => _repository.ConfirmAccount(emptyToken));
+        }
     }
 }
