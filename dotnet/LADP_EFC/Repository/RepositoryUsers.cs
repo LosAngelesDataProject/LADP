@@ -2,6 +2,7 @@
 using LADP_EFC.Data.Enitities.Users;
 using LADP_EFC.DTO.Users;
 using LADP_EFC.Repository.Interfaces;
+using LADP_EFC.Utilities;
 using Microsoft.EntityFrameworkCore;
 
 namespace LADP_EFC.Repository
@@ -30,26 +31,57 @@ namespace LADP_EFC.Repository
             var newUser = new User
             {
                 Email = model.Email,
-                Password = model.Password,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 Mi = model.Mi,
                 Status = initialStatus,
                 DateCreated = DateTime.UtcNow,
                 DateModified = DateTime.UtcNow,
-
             };
+
+            // Hash the password before saving to the DB
+            newUser.Password = PasswordHasherUtil.Hash(newUser, model.Password);
+
             _context.Users.Add(newUser);
             _context.SaveChanges();
+
             string token = CreateUserToken(newUser.Id);
             RepositoryEmail.EmailConfirm(model, token);
             return MapUser(newUser);
         }
 
+        //public UserDTO Create(AddUserDTO model)
+        //{
+        //    string initialStatus = "Not Confirmed";
+        //    var newUser = new User
+        //    {
+        //        Email = model.Email,
+        //        Password = model.Password,
+        //        FirstName = model.FirstName,
+        //        LastName = model.LastName,
+        //        Mi = model.Mi,
+        //        Status = initialStatus,
+        //        DateCreated = DateTime.UtcNow,
+        //        DateModified = DateTime.UtcNow,
+
+        //    };
+        //    _context.Users.Add(newUser);
+        //    _context.SaveChanges();
+        //    string token = CreateUserToken(newUser.Id);
+        //    RepositoryEmail.EmailConfirm(model, token);
+        //    return MapUser(newUser);
+        //}
+
         public UserDTO GetById(int id)
         {
             throw new NotImplementedException();
         }
+
+        public User? GetByEmail(string email)
+        {
+            return _context.Users.SingleOrDefault(u => u.Email == email);
+        }
+
 
         public UserDTO Update(UserDTO updateUser)
         {
