@@ -22,7 +22,7 @@ namespace LADP.Tests.Repository
         {
             // new DB per test class instance
             var options = new DbContextOptionsBuilder<DataContext>()
-                .UseInMemoryDatabase(Guid.NewGuid().ToString())
+                .UseInMemoryDatabase(Guid.NewGuid().ToString()) 
                 .Options;
 
             _context = new DataContext(options);
