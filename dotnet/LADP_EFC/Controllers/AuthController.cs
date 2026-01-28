@@ -18,12 +18,14 @@ namespace LADP_EFC.Controllers
         private readonly IRepositoryUser _users;
         private readonly IConfiguration _config;
 
+        // Sets up the controller with access to the user database and app settings.
         public AuthController(IRepositoryUser users, IConfiguration config)
         {
             _users = users;
             _config = config;
         }
 
+        // Validates user creds and attaches a secure auth cookie to the browser response.
         [HttpPost("login")]
         public IActionResult Login(LoginRequest request)
         {
@@ -52,10 +54,11 @@ namespace LADP_EFC.Controllers
             });
         }
 
+        // Clears session by instructing browser to delete the auth cookie.
         [HttpPost("logout")]
         public IActionResult Logout()
         {
-            // Explicitly clearing with same options used during creation
+            // Explicitly removing with same options used during creation
             Response.Cookies.Delete("access_token", new CookieOptions
             {
                 HttpOnly = true,
@@ -65,7 +68,8 @@ namespace LADP_EFC.Controllers
             return Ok();
         }
 
-        [Authorize] // checks the "access_token" cookie automatically
+        // Fetches and returns the currently authenticated user's data from their token.
+        [Authorize] 
         [HttpGet("me")]
         public IActionResult Me()
         {
@@ -86,6 +90,7 @@ namespace LADP_EFC.Controllers
             });
         }
 
+        // Generates a signed JWT containing user's Id and Email to prove their identity in future requests.
         private string GenerateJwt(User user)
         {
             var claims = new[]
