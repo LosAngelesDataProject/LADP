@@ -5,6 +5,9 @@ using LADP_EFC.Repository.Interfaces;
 using System.Text.Json.Serialization;
 using LADP_EFC.Data.Enitities;
 using LADP_EFC.Services;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace LADP_EFC
 {
@@ -14,9 +17,13 @@ namespace LADP_EFC
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            var jwtKey = builder.Configuration["Jwt:Key"] ?? throw new Exception("JWT Key missing");
+            var allowedOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>()
+                                 ?? new[] { "http://localhost:5173" }; // Fallback for local dev
+
             // Add services to the container.
             builder.Services.Configure<BrevoApi>(builder.Configuration.GetSection("BrevoApi"));
-            builder.Services.AddScoped< FoodResourceService>();
+            builder.Services.AddScoped<FoodResourceService>();
 
             // Add Repositories to the container.
             builder.Services.AddScoped<IRepositoryEmail, RepositoryEmail>();
@@ -33,12 +40,11 @@ namespace LADP_EFC
             // CORS policy
             builder.Services.AddCors(options =>
             {
-                options.AddPolicy("AllowSpecificOrigin",
-                    policy => policy
-                        .WithOrigins(builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? [])
-                        .AllowAnyMethod()
-                        .AllowAnyHeader()
-                        .AllowCredentials());
+                options.AddPolicy("AllowSpecificOrigin", policy =>
+                    policy.WithOrigins(allowedOrigins)
+                          .AllowAnyMethod()
+                          .AllowAnyHeader()
+                          .AllowCredentials()); // Required for Cookies
             });
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -52,6 +58,28 @@ namespace LADP_EFC
                     builder.Configuration.GetConnectionString("DefaultConnection"));
                     
             });
+
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
+                };
+
+                options.Events = new JwtBearerEvents
+                {
+                    OnMessageReceived = ctx =>
+                    {
+                        ctx.Token = ctx.Request.Cookies["access_token"];
+                        return Task.CompletedTask;
+                    }
+                };
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -61,8 +89,9 @@ namespace LADP_EFC
                 app.UseSwaggerUI();
             }
 
-            app.UseCors("AllowSpecificOrigin");
             app.UseHttpsRedirection();
+            app.UseCors("AllowSpecificOrigin");
+            app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();
             app.Run();
