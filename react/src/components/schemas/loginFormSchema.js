@@ -5,7 +5,7 @@ const loginFormSchema = Yup.object().shape({
     .email("Invalid email format") // Ensures it looks like an email (e.g., name@domain.com)
     .required("Email is required"),
   password: Yup.string()
-    .min(8, "Password must be at least 1 characters") // Added for better security
+    .min(8, "Password must be at least 8 characters") // Added for better security
     .required("Password is required"),
 });
 

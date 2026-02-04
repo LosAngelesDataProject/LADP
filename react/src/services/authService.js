@@ -1,4 +1,3 @@
-// services/authService.js
 import axios from "axios";
 
 const API = "https://localhost:7035/api/auth";

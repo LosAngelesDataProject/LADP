@@ -2,7 +2,6 @@ import { useState } from "react";
 import toastr from "toastr";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Link, useNavigate } from "react-router-dom";
-//import loginUser from "../../services/loginService";
 import PropTypes from "prop-types";
 import { login } from "../../services/authService";
 import loginFormSchema from "../schemas/loginFormSchema";
@@ -34,13 +33,6 @@ function Login({onLogin}) {
         toastr.error("Invalid credentials");
       });
   };
-  // function onAddSuccess() {
-  //   toastr.success("Login Successful");
-  //   navigate("/", { state: { loginData } });
-  // }
-  // function onAddError() {
-  //   toastr.error("Unsuccessful, please try again");
-  // }
 
   return (
     <>

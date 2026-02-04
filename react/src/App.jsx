@@ -20,11 +20,10 @@ import { getCurrentUser } from "./services/authService";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isLoading, setIsLoading] = useState(true); // Professionals use this to prevent "flicker"
-
+  const [isLoading, setIsLoading] = useState(true); // isLoading used to prevent "flicker"
   const isPhone = useMediaQuery({ query: "(max-width: 768px)" });
 
-  // Runs once as soon as the app starts/refreshes
+  // Check auth status on load/refresh
   useEffect(() => {
     getCurrentUser()
       .then(() => {
@@ -38,13 +37,16 @@ function App() {
       });
   }, []);
 
-  const handleLogin = (value) => {
-    setIsLoggedIn(typeof value === "boolean" ? value : !isLoggedIn);
-  };
+  const setAuthState = (status) => setIsLoggedIn(status);
 
   // If still waiting for the server, show nothing (or a spinner)
   if (isLoading) return null;
 
+  const layoutProps = { 
+    isLoggedIn, 
+    onLogout: () => setAuthState(false) 
+  };
+  
   const AllRoutes = () => {
     return (
       <Routes>
@@ -53,7 +55,7 @@ function App() {
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/user-edit" element={<UserEdit />} />
         {/* <Route path="/login" element={<Login onLogin={handleLogin} />} />  */}
-        <Route path="/login" element={<Login onLogin={handleLogin} />} />
+        <Route path="/login" element={<Login onLogin={()=> setAuthState(true)} />} />
         <Route path="/navigate" element={<Navigate />} />
         <Route path="/register" element={<Construction />} />
         <Route path="/register-org" element={<RegisterOrg />} />
@@ -68,11 +70,11 @@ function App() {
   return (
     <>
       {isPhone ? (
-        <MobileLayout isLoggedIn={isLoggedIn} onLogout={handleLogin}>
+        <MobileLayout {...layoutProps}>
           <AllRoutes />
         </MobileLayout>
       ) : (
-        <DefaultLayout isLoggedIn={isLoggedIn} onLogout={handleLogin}>
+        <DefaultLayout {...layoutProps}>
           <AllRoutes />
         </DefaultLayout>
       )}
