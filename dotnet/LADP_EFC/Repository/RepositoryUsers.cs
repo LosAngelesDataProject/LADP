@@ -50,28 +50,6 @@ namespace LADP_EFC.Repository
             return MapUser(newUser);
         }
 
-        //public UserDTO Create(AddUserDTO model)
-        //{
-        //    string initialStatus = "Not Confirmed";
-        //    var newUser = new User
-        //    {
-        //        Email = model.Email,
-        //        Password = model.Password,
-        //        FirstName = model.FirstName,
-        //        LastName = model.LastName,
-        //        Mi = model.Mi,
-        //        Status = initialStatus,
-        //        DateCreated = DateTime.UtcNow,
-        //        DateModified = DateTime.UtcNow,
-
-        //    };
-        //    _context.Users.Add(newUser);
-        //    _context.SaveChanges();
-        //    string token = CreateUserToken(newUser.Id);
-        //    RepositoryEmail.EmailConfirm(model, token);
-        //    return MapUser(newUser);
-        //}
-
         public UserDTO GetById(int id)
         {
             throw new NotImplementedException();
